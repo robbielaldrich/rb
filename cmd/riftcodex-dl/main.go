@@ -1,6 +1,6 @@
 // Command riftcodex-dl downloads all card data from the Riftcodex API
-// (https://riftcodex.com/docs/endpoints/cards/) and writes it to disk as one
-// JSON file per set, plus a combined cards.json and sets.json.
+// (https://riftcodex.com/docs/endpoints/cards/) and writes it to disk as
+// sets.json and cards.json.
 package main
 
 import (
@@ -77,11 +77,6 @@ func run(client *http.Client, outDir string) error {
 			return fmt.Errorf("fetching cards for set %s: %w", s.SetID, err)
 		}
 		allCards = append(allCards, cards...)
-
-		setFile := filepath.Join(outDir, fmt.Sprintf("%s.json", normalizeSetID(s.SetID)))
-		if err := writeJSON(setFile, cards); err != nil {
-			return fmt.Errorf("writing %s: %w", setFile, err)
-		}
 		log.Printf("set %-6s (%s): %d cards", s.SetID, s.Name, len(cards))
 	}
 
@@ -91,17 +86,6 @@ func run(client *http.Client, outDir string) error {
 	log.Printf("done: %d total cards across %d sets written to %s", len(allCards), len(sets), outDir)
 
 	return nil
-}
-
-func normalizeSetID(id string) string {
-	out := make([]rune, 0, len(id))
-	for _, r := range id {
-		if r >= 'A' && r <= 'Z' {
-			r = r - 'A' + 'a'
-		}
-		out = append(out, r)
-	}
-	return string(out)
 }
 
 func fetchSets(client *http.Client) ([]Set, error) {
