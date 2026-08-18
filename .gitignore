@@ -1,3 +1,4 @@
-/riftcodex_cards/*.json
-/riftcodex_cards/images/
-/riftcodex-dl
+/cards/cards.json
+/cards/sets.json
+/cards/images/
+
