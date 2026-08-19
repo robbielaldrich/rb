@@ -49,5 +49,8 @@ Skip comments that restate the next line.
 
 ## Layout
 
-`cmd/rb/main.go` holds the whole CLI, split by banner comments per subcommand.
-Shared domain types live in packages (`cards`).
+`cmd/rb/main.go` only dispatches: it maps a subcommand name to a `cli.Run*`
+call, prints usage, and owns the exit. Each subcommand is implemented in its
+own file under `cli/` (`downloadcards.go`, `collection.go`) and exposes a
+single exported `Run*(args []string) error`. Everything else in the package
+stays unexported. Shared domain types live in their own packages (`cards`).

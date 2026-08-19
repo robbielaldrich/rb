@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"encoding/json"
@@ -37,7 +37,7 @@ func typeKeys(t *testing.T, m *collectionModel, keys ...string) {
 
 func newTestModel(t *testing.T, path string) *collectionModel {
 	t.Helper()
-	cs, err := loadCatalog("../../cards/cards.json")
+	cs, err := loadCatalog("../cards/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}
@@ -149,7 +149,7 @@ func TestViewRenders(t *testing.T) {
 
 func load(t *testing.T) *cardIndex {
 	t.Helper()
-	cs, err := loadCatalog("../../cards/cards.json")
+	cs, err := loadCatalog("../cards/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}
