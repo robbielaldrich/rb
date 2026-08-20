@@ -1,18 +1,16 @@
-package cli
+package collection
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
-	"time"
 
 	tea "charm.land/bubbletea/v2"
 )
 
-func typeKeys(t *testing.T, m *collectionModel, keys ...string) {
+func typeKeys(t *testing.T, m *model, keys ...string) {
 	t.Helper()
 	for _, k := range keys {
 		var msg tea.KeyPressMsg
@@ -35,17 +33,17 @@ func typeKeys(t *testing.T, m *collectionModel, keys ...string) {
 	}
 }
 
-func newTestModel(t *testing.T, path string) *collectionModel {
+func newTestModel(t *testing.T, path string) *model {
 	t.Helper()
 	cs, err := loadCatalog("../cards/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}
-	coll, err := loadCollection(path)
+	coll, err := load(path)
 	if err != nil {
 		t.Fatal(err)
 	}
-	return newCollectionModel(cs, coll, path)
+	return newModel(cs, coll, path)
 }
 
 func readColl(t *testing.T, path string) collection {
@@ -145,45 +143,4 @@ func TestViewRenders(t *testing.T) {
 		t.Fatalf("view missing result:\n%s", out)
 	}
 	t.Logf("\n%s", out)
-}
-
-func load(t *testing.T) *cardIndex {
-	t.Helper()
-	cs, err := loadCatalog("../cards/cards.json")
-	if err != nil {
-		t.Skip(err)
-	}
-	t.Logf("catalog: %d unique cards", len(cs))
-	return buildIndex(cs)
-}
-
-func TestSearchQueries(t *testing.T) {
-	ix := load(t)
-	coll := &collection{}
-	for _, q := range []string{"astral 44", "astral", "astrel heron", "heron", "44 ven", "sona harm", "annie", "fury rune", "zzzzqqq"} {
-		res := ix.search(q, coll, 5)
-		var lines []string
-		for _, r := range res {
-			lines = append(lines, fmt.Sprintf("%s [d=%d num=%v]", cardLabel(r.card), r.dist, r.numMatch))
-		}
-		t.Logf("%-14q -> %v", q, lines)
-	}
-}
-
-func TestRecencyBreaksTies(t *testing.T) {
-	ix := load(t)
-	base := ix.search("rune", &collection{}, 5)
-	if len(base) < 2 {
-		t.Fatalf("need >=2 results, got %d", len(base))
-	}
-	t.Logf("before: %s", cardLabel(base[0].card))
-	second := base[1].card
-
-	coll := &collection{}
-	coll.set(second, 3, time.Now())
-	after := ix.search("rune", coll, 5)
-	t.Logf("after touching %s: top is %s", cardLabel(second), cardLabel(after[0].card))
-	if after[0].card.RiftboundID != second.RiftboundID {
-		t.Errorf("recency did not promote %s", cardLabel(second))
-	}
 }

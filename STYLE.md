@@ -46,11 +46,3 @@ an error — return `nil` so `-h` exits 0.
 Comment why, not what. Explain decisions the code can't state itself:
 a workaround for upstream behaviour, a non-obvious algorithm, a tradeoff.
 Skip comments that restate the next line.
-
-## Layout
-
-`cmd/rb/main.go` only dispatches: it maps a subcommand name to a `cli.Run*`
-call, prints usage, and owns the exit. Each subcommand is implemented in its
-own file under `cli/` (`downloadcards.go`, `collection.go`) and exposes a
-single exported `Run*(args []string) error`. Everything else in the package
-stays unexported. Shared domain types live in their own packages (`cards`).
