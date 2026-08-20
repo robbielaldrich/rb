@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	apiBase  = "https://api.riftcodex.com"
+	baseURL  = "https://api.riftcodex.com"
 	pageSize = 100
 )
 
@@ -58,7 +58,7 @@ func fetchAllCards(client *http.Client, setID string) ([]json.RawMessage, error)
 
 	page := 1
 	for {
-		url := fmt.Sprintf("%s/cards?size=%d&page=%d&set_id=%s&sort=collector_number", apiBase, pageSize, page, setID)
+		url := fmt.Sprintf("%s/cards?size=%d&page=%d&set_id=%s&sort=collector_number", baseURL, pageSize, page, setID)
 		var resp cardsResponse
 		if err := getJSON(client, url, &resp); err != nil {
 			return nil, fmt.Errorf("failed to fetch page %d for set %s: %w", page, setID, err)

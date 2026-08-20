@@ -27,7 +27,7 @@ func Run(catalogPath, collectionPath string) error {
 		return fmt.Errorf("failed to load collection: %w", err)
 	}
 
-	m := newModel(catalog, coll, collectionPath)
+	m := NewModel(catalog, coll, collectionPath)
 	if _, err := tea.NewProgram(m).Run(); err != nil {
 		return fmt.Errorf("failed to run collection UI: %w", err)
 	}

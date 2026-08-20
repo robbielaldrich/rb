@@ -10,7 +10,7 @@ import (
 	tea "charm.land/bubbletea/v2"
 )
 
-func typeKeys(t *testing.T, m *model, keys ...string) {
+func typeKeys(t *testing.T, m *shoppingModel, keys ...string) {
 	t.Helper()
 	for _, k := range keys {
 		var msg tea.KeyPressMsg
@@ -33,7 +33,7 @@ func typeKeys(t *testing.T, m *model, keys ...string) {
 	}
 }
 
-func newTestModel(t *testing.T, path string) *model {
+func newTestModel(t *testing.T, path string) *shoppingModel {
 	t.Helper()
 	cs, err := loadCatalog("../cards/cards.json")
 	if err != nil {

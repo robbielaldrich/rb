@@ -8,6 +8,8 @@ import (
 
 	"rb/collection"
 	"rb/riftcodex"
+
+	tea "charm.land/bubbletea/v2"
 )
 
 // RunDownloadCards mirrors the Riftcodex card database onto local disk.
@@ -17,12 +19,13 @@ func RunDownloadCards(args []string) error {
 	images := fs.Bool("images", true, "also download card images")
 	concurrency := fs.Int("concurrency", 8, "number of concurrent image downloads")
 	if run, err := parse(fs, args); !run {
-		return err
+		return fmt.Errorf("failed to parse args: %w", err)
 	}
 
 	if err := riftcodex.DownloadCards(*outDir, *images, *concurrency); err != nil {
 		return fmt.Errorf("failed to download cards: %w", err)
 	}
+
 	return nil
 }
 
@@ -32,7 +35,13 @@ func RunCollection(args []string) error {
 	cardsDir := fs.String("cards", "cards", "directory holding cards.json")
 	file := fs.String("file", "collection.json", "collection file to read and write")
 	if run, err := parse(fs, args); !run {
-		return err
+		return fmt.Errorf("failed to parse args: %w", err)
+	}
+
+	// Hack - testing bubbletea!
+	p := tea.NewProgram(collection.NewModel())
+	if _, err := p.Run(); err != nil {
+		return fmt.Errorf("failed to run shopping tui: %w", err)
 	}
 
 	return collection.Run(filepath.Join(*cardsDir, "cards.json"), *file)
