@@ -3,68 +3,54 @@ package collection
 import (
 	"fmt"
 
+	"rb/cards"
+
+	"charm.land/bubbles/v2/textinput"
 	tea "charm.land/bubbletea/v2"
 )
 
-type shoppingModel struct {
-	choices  []string
-	cursor   int
-	selected map[int]struct{}
+type editor struct {
+	catalog    []cards.Card
+	collection *collection
+
+	ti textinput.Model
 }
 
-func NewModel(_ ...any) shoppingModel {
-	return shoppingModel{
-		choices:  []string{"card 1", "card 2", "card 3"},
-		selected: map[int]struct{}{},
+func newEditor(collection *collection, cards []cards.Card) editor {
+	ti := textinput.New()
+
+	suggestions := make([]string, len(cards))
+	for i, card := range cards {
+		suggestions[i] = fmt.Sprintf("%s %d %s", card.Name, card.CollectorNumber, card.Set)
+	}
+	ti.SetSuggestions(suggestions)
+	ti.ShowSuggestions = true
+	ti.Prompt = "Choose a card."
+	ti.Focus()
+
+	return editor{
+		catalog:    cards,
+		collection: collection,
+		ti:         ti,
 	}
 }
 
-func (m shoppingModel) Init() tea.Cmd {
-	return nil
-}
+func (e editor) Init() tea.Cmd { return nil }
 
-func (m shoppingModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
+func (e editor) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	switch msg.(type) {
 	case tea.KeyPressMsg:
-		switch msg.String() {
-		case "q", "ctl+c":
-			return m, tea.Quit
-		case "up", "k":
-			if m.cursor > 0 {
-				m.cursor--
-			}
-		case "down", "j":
-			if m.cursor < len(m.choices)-1 {
-				m.cursor++
-			}
-		case "enter", "space":
-			if _, alreadySelected := m.selected[m.cursor]; alreadySelected {
-				delete(m.selected, m.cursor)
-			} else {
-				m.selected[m.cursor] = struct{}{}
-			}
+		if msg == "q" {
+			return e, tea.Quit
 		}
 	}
 
-	return m, nil
+	var cmd tea.Cmd
+	e.ti, cmd = e.ti.Update(msg)
+
+	return e, cmd
 }
 
-func (m shoppingModel) View() tea.View {
-	s := "What should we buy?\n\n"
-
-	for i := range m.choices {
-		cursorCol := " "
-		if m.cursor == i {
-			cursorCol = ">"
-		}
-
-		selectedCol := " "
-		if _, selected := m.selected[i]; selected {
-			selectedCol = "x"
-		}
-
-		s += fmt.Sprintf("%s %s %s\n", cursorCol, selectedCol, m.choices[i])
-	}
-
-	return tea.NewView(s)
+func (e editor) View() tea.View {
+	return tea.NewView(e.ti.View())
 }
