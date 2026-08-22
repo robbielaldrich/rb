@@ -1,4 +1,4 @@
-package cards
+package catalog
 
 // Card is a single Riftbound card, as returned by the Riftcodex API
 // (https://riftcodex.com/docs/endpoints/cards/) and stored in cards.json.

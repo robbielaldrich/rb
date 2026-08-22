@@ -8,7 +8,7 @@ import (
 
 func loadIndex(t *testing.T) *cardIndex {
 	t.Helper()
-	cs, err := loadCatalog("../cards/cards.json")
+	cs, err := loadCatalog("../catalog/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}

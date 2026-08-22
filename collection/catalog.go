@@ -10,13 +10,13 @@ import (
 	"strconv"
 	"strings"
 
-	"rb/cards"
+	"rb/catalog"
 )
 
 // loadCatalog reads cards.json and deduplicates it by riftbound_id. The API
 // returns more than one record for some cards (a stale one and a refreshed
 // one); the most recently updated record wins.
-func loadCatalog(path string) ([]cards.Card, error) {
+func loadCatalog(path string) ([]catalog.Card, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -25,12 +25,12 @@ func loadCatalog(path string) ([]cards.Card, error) {
 		return nil, fmt.Errorf("failed to read %s: %w", path, err)
 	}
 
-	var all []cards.Card
+	var all []catalog.Card
 	if err := json.Unmarshal(data, &all); err != nil {
 		return nil, fmt.Errorf("failed to parse %s: %w", path, err)
 	}
 
-	newest := make(map[string]cards.Card, len(all))
+	newest := make(map[string]catalog.Card, len(all))
 	for _, c := range all {
 		if prev, ok := newest[c.RiftboundID]; ok && prev.Metadata.UpdatedOn >= c.Metadata.UpdatedOn {
 			continue
@@ -38,11 +38,11 @@ func loadCatalog(path string) ([]cards.Card, error) {
 		newest[c.RiftboundID] = c
 	}
 
-	out := make([]cards.Card, 0, len(newest))
+	out := make([]catalog.Card, 0, len(newest))
 	for _, c := range newest {
 		out = append(out, c)
 	}
-	slices.SortFunc(out, func(a, b cards.Card) int {
+	slices.SortFunc(out, func(a, b catalog.Card) int {
 		if n := cmp.Compare(a.Set.SetID, b.Set.SetID); n != 0 {
 			return n
 		}
@@ -59,7 +59,7 @@ var riftIDRe = regexp.MustCompile(`^([a-z]+)-([0-9]+[a-z*]?)-([0-9]+)$`)
 // cardNumber renders a card's printed number, e.g. "44/166". Cards whose
 // riftbound_id doesn't carry a set size (runes, some promos) fall back to
 // their collector number alone.
-func cardNumber(c cards.Card) string {
+func cardNumber(c catalog.Card) string {
 	if m := riftIDRe.FindStringSubmatch(c.RiftboundID); m != nil {
 		num := strings.TrimLeft(m[2], "0")
 		if num == "" {
@@ -72,6 +72,6 @@ func cardNumber(c cards.Card) string {
 
 // cardLabel renders a card the way it is written on paper, e.g.
 // "Astral Heron 44/166 VEN".
-func cardLabel(c cards.Card) string {
+func cardLabel(c catalog.Card) string {
 	return fmt.Sprintf("%s %s %s", c.Name, cardNumber(c), strings.ToUpper(c.Set.SetID))
 }

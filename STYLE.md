@@ -33,8 +33,8 @@ if err != nil {
 A full chain then looks like:
 
 ```
-rb collection: failed to load catalog: cards/cards.json not found,
-run `rb download-cards` first: open cards/cards.json: no such file or directory
+rb collection: failed to load catalog: catalog/cards.json not found,
+run `rb download-cards` first: open catalog/cards.json: no such file or directory
 ```
 
 Subcommands use `flag.ContinueOnError` and return parse failures, rather than

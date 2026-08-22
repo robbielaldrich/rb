@@ -11,7 +11,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"rb/cards"
+	"rb/catalog"
 )
 
 func RunEditor(collectionPath, catalogPath string) error {
@@ -20,12 +20,12 @@ func RunEditor(collectionPath, catalogPath string) error {
 		return fmt.Errorf("failed to load collection: %w", err)
 	}
 
-	catalog, err := loadCatalog(catalogPath)
+	cards, err := loadCatalog(catalogPath)
 	if err != nil {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	updatedEditor, err := tea.NewProgram(newEditor(coll, catalog)).Run()
+	updatedEditor, err := tea.NewProgram(newEditor(coll, cards)).Run()
 	if err != nil {
 		return fmt.Errorf("failed to run: %w", err)
 	}
@@ -70,7 +70,7 @@ func load(path string) (*collection, error) {
 
 // set records qty copies of a card, dropping the entry entirely if qty is
 // zero or less.
-func (c *collection) set(card cards.Card, qty int, now time.Time) {
+func (c *collection) set(card catalog.Card, qty int, now time.Time) {
 	for i, e := range c.Cards {
 		if e.RiftboundID != card.RiftboundID {
 			continue

@@ -4,7 +4,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"path/filepath"
 
 	"rb/collection"
 	"rb/riftcodex"
@@ -13,7 +12,7 @@ import (
 // RunDownloadCards mirrors the Riftcodex card database onto local disk.
 func RunDownloadCards(args []string) error {
 	fs := flag.NewFlagSet("download-cards", flag.ContinueOnError)
-	outDir := fs.String("out", "cards", "directory to write downloaded card data into")
+	outDir := fs.String("out", "catalog", "directory to write downloaded card data into")
 	images := fs.Bool("images", true, "also download card images")
 	concurrency := fs.Int("concurrency", 8, "number of concurrent image downloads")
 	if run, err := parse(fs, args); !run {
@@ -30,13 +29,14 @@ func RunDownloadCards(args []string) error {
 // RunCollection opens the interactive collection tracker.
 func RunCollection(args []string) error {
 	fs := flag.NewFlagSet("collection", flag.ContinueOnError)
-	cardsDir := fs.String("cards", "cards", "directory holding cards.json")
-	file := fs.String("file", "collection.json", "collection file to read and write")
+	catalogFile := fs.String("catalog-file", "catalog/cards.json", "directory holding card catalog (cards.json)")
+	collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read and write")
 	if run, err := parse(fs, args); !run {
 		return fmt.Errorf("failed to parse args: %w", err)
 	}
 
-	if err := collection.RunEditor(*file, filepath.Join(*cardsDir, "cards.json")); err != nil {
+	if err := collection.RunEditor(*collectionFile, *catalogFile); err != nil {
+		return fmt.Errorf("failed to run editor: %w", err)
 	}
 	return nil
 }
