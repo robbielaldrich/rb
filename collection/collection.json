@@ -1,3 +1,20 @@
 {
-  "cards": null
+  "cards": [
+    {
+      "riftbound_id": "ogn-045-298",
+      "name": "Defy",
+      "number": "45/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-22T08:56:49.906277002-07:00"
+    },
+    {
+      "riftbound_id": "ven-044-166",
+      "name": "Astral Heron",
+      "number": "44/166",
+      "set_id": "VEN",
+      "quantity": 3,
+      "updated_at": "2026-08-22T08:57:08.386344215-07:00"
+    }
+  ]
 }

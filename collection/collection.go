@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	tea "charm.land/bubbletea/v2"
-
 	"rb/catalog"
 )
 
+// RunEditor loads the catalog and collection and hands them to the
+// interactive editor, which writes each change through as it is made.
 func RunEditor(collectionPath, catalogPath string) error {
 	coll, err := load(collectionPath)
 	if err != nil {
@@ -25,15 +25,9 @@ func RunEditor(collectionPath, catalogPath string) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	updatedEditor, err := tea.NewProgram(newEditor(coll, cards)).Run()
-	if err != nil {
-		return fmt.Errorf("failed to run: %w", err)
+	if err := newEditor(coll, cards, collectionPath).run(os.Stdin, os.Stdout); err != nil {
+		return fmt.Errorf("failed to run the collection editor: %w", err)
 	}
-
-	if err := updatedEditor.(editor).collection.save(collectionPath); err != nil {
-		return fmt.Errorf("failed to save: %w", err)
-	}
-
 	return nil
 }
 
