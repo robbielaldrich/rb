@@ -1,6 +1,14 @@
 {
   "cards": [
     {
+      "riftbound_id": "ven-005-166",
+      "name": "Forsaken Baccai",
+      "number": "5/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:54:11.059392976-07:00"
+    },
+    {
       "riftbound_id": "ven-006-166",
       "name": "Oasis Raider",
       "number": "6/166",
@@ -25,6 +33,22 @@
       "updated_at": "2026-08-23T12:46:52.771444783-07:00"
     },
     {
+      "riftbound_id": "ven-026-166",
+      "name": "Field Musicians",
+      "number": "26/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:53:22.484021781-07:00"
+    },
+    {
+      "riftbound_id": "ven-028-166",
+      "name": "Mournful Witness",
+      "number": "28/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:29.772912341-07:00"
+    },
+    {
       "riftbound_id": "ven-029-166",
       "name": "Ol' Poro",
       "number": "29/166",
@@ -33,12 +57,28 @@
       "updated_at": "2026-08-23T12:46:55.547285955-07:00"
     },
     {
+      "riftbound_id": "ven-030-166",
+      "name": "Serene Ascetic",
+      "number": "30/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:53:06.85310968-07:00"
+    },
+    {
       "riftbound_id": "ven-033-166",
       "name": "Pakaa Protector",
       "number": "33/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-08-23T12:52:45.732619844-07:00"
+    },
+    {
+      "riftbound_id": "ven-047-166",
+      "name": "Apprentice Mage",
+      "number": "47/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-23T12:46:58.595573746-07:00"
+      "updated_at": "2026-08-23T12:53:17.724585-07:00"
     },
     {
       "riftbound_id": "ven-052-166",
@@ -47,6 +87,14 @@
       "set_id": "VEN",
       "quantity": 1,
       "updated_at": "2026-08-23T12:47:21.050414194-07:00"
+    },
+    {
+      "riftbound_id": "ven-056-166",
+      "name": "Clairvoyance",
+      "number": "56/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:35.180864754-07:00"
     },
     {
       "riftbound_id": "ven-065-166",
@@ -65,6 +113,14 @@
       "updated_at": "2026-08-23T12:47:01.147077249-07:00"
     },
     {
+      "riftbound_id": "ven-077-166",
+      "name": "Tools of Empire",
+      "number": "77/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:52.892655128-07:00"
+    },
+    {
       "riftbound_id": "ven-088-166",
       "name": "Jayce, Hammer in Hand",
       "number": "88/166",
@@ -81,6 +137,14 @@
       "updated_at": "2026-08-23T12:47:11.738747093-07:00"
     },
     {
+      "riftbound_id": "ven-095-166",
+      "name": "Shadow Order Disciple",
+      "number": "95/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:53:02.468329657-07:00"
+    },
+    {
       "riftbound_id": "ven-106-166",
       "name": "Wind and Ghosts",
       "number": "106/166",
@@ -89,12 +153,44 @@
       "updated_at": "2026-08-23T12:47:15.794614361-07:00"
     },
     {
+      "riftbound_id": "ven-111-166",
+      "name": "Minah Swiftfoot",
+      "number": "111/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:26.172878053-07:00"
+    },
+    {
       "riftbound_id": "ven-121-166",
       "name": "Reluctant Leader",
       "number": "121/166",
       "set_id": "VEN",
       "quantity": 1,
       "updated_at": "2026-08-23T12:47:18.642726244-07:00"
+    },
+    {
+      "riftbound_id": "ven-123-166",
+      "name": "Soulspinner",
+      "number": "123/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:58.420293857-07:00"
+    },
+    {
+      "riftbound_id": "ven-151-166",
+      "name": "Mel - Soul's Reflection",
+      "number": "151/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:04.174433978-07:00"
+    },
+    {
+      "riftbound_id": "ven-158-166",
+      "name": "Heisho, Shell of the World",
+      "number": "158/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:52:49.628534032-07:00"
     },
     {
       "riftbound_id": "ven-163-166",
