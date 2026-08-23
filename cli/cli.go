@@ -12,7 +12,7 @@ import (
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "collection-stats", "gen-anki"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "gen-anki"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -30,6 +30,15 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 				return fmt.Errorf("collect takes one optional set label, got %d arguments", fs.NArg())
 			}
 			return collect(*collectionFile, *catalogFile, fs.Arg(0))
+		}
+
+	case "validate":
+		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to check and correct")
+		return func() error {
+			if fs.NArg() > 1 {
+				return fmt.Errorf("validate takes one optional set label, got %d arguments", fs.NArg())
+			}
+			return validate(*collectionFile, fs.Arg(0))
 		}
 
 	case "collection-stats":
@@ -130,6 +139,13 @@ func downloadCards(outDir string, images bool, concurrency int) error {
 func collect(collectionFile, catalogFile, setID string) error {
 	if err := collection.RunEditor(collectionFile, catalogFile, setID); err != nil {
 		return fmt.Errorf("failed to run editor: %w", err)
+	}
+	return nil
+}
+
+func validate(collectionFile, setID string) error {
+	if err := collection.RunValidator(collectionFile, setID); err != nil {
+		return fmt.Errorf("failed to validate the collection: %w", err)
 	}
 	return nil
 }

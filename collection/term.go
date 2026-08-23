@@ -1,11 +1,14 @@
 package collection
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"os"
 	"strings"
 	"unicode/utf8"
+
+	"golang.org/x/term"
 )
 
 // key is one decoded keystroke. Printable keys carry their rune and an empty
@@ -74,6 +77,48 @@ func decodeKey(b []byte) (key, int) {
 	}
 	r, n := utf8.DecodeRune(b)
 	return key{r: r}, n
+}
+
+// runLoop drives a full-screen prompt: it puts the terminal into raw mode,
+// paints what frame lays out, and feeds every keystroke to handle until it
+// asks to stop or fails.
+func runLoop(in, out *os.File, frame func(width int) ([]string, int, int), handle func(key) (bool, error)) error {
+	fd := int(in.Fd())
+	if !term.IsTerminal(fd) {
+		return errors.New("stdin is not a terminal")
+	}
+	restore, err := term.MakeRaw(fd)
+	if err != nil {
+		return fmt.Errorf("failed to put the terminal into raw mode: %w", err)
+	}
+	defer term.Restore(fd, restore)
+
+	s := &screen{w: out}
+	defer s.finish()
+
+	buf := make([]byte, 128)
+	for {
+		width, _, err := term.GetSize(fd)
+		if err != nil || width < 20 {
+			width = 80
+		}
+		lines, caretRow, caretCol := frame(width)
+		s.render(lines, caretRow, caretCol)
+
+		n, err := in.Read(buf)
+		if err != nil {
+			return fmt.Errorf("failed to read from the terminal: %w", err)
+		}
+		for _, k := range decodeKeys(buf[:n]) {
+			stop, err := handle(k)
+			if err != nil {
+				return err
+			}
+			if stop {
+				return nil
+			}
+		}
+	}
 }
 
 // screen paints a block of lines wherever the cursor happens to be and

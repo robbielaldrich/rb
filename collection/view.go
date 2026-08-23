@@ -77,3 +77,23 @@ func resultLine(i int, r result, width int) string {
 
 	return fmt.Sprintf("  %s  %s%s", paint(strconv.Itoa(i+1), "36;1"), label, dim(owned))
 }
+
+func (v *validator) frame(width int) (lines []string, caretRow, caretCol int) {
+	e := v.entry()
+	where := ""
+	if v.setID != "" {
+		where = " · " + v.setID
+	}
+	lines = append(lines, "  "+dim(truncate(fmt.Sprintf("card %d of %d%s%s",
+		v.at+1, len(v.ids), where, v.status), width-2)))
+	lines = append(lines, "  "+bold(truncate(
+		fmt.Sprintf("%s %s %s", e.Name, e.Number, e.SetID), width-2)))
+
+	caretRow = len(lines)
+	caretCol = 2 + utf8.RuneCountInString(v.qty)
+	lines = append(lines, "× "+v.qty+dim("  copies recorded"), "")
+
+	lines = append(lines, "  "+dim(truncate(
+		"enter ok · digits, ↑↓ or +/- fix · ctrl+z back · esc stop", width-2)))
+	return lines, caretRow, caretCol
+}

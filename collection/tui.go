@@ -1,15 +1,12 @@
 package collection
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 	"unicode"
-
-	"golang.org/x/term"
 
 	"rb/cards"
 )
@@ -62,42 +59,7 @@ func newEditor(coll *collection, cs []cards.Card, path, setID string) *editor {
 }
 
 func (e *editor) run(in, out *os.File) error {
-	fd := int(in.Fd())
-	if !term.IsTerminal(fd) {
-		return errors.New("stdin is not a terminal")
-	}
-	restore, err := term.MakeRaw(fd)
-	if err != nil {
-		return fmt.Errorf("failed to put the terminal into raw mode: %w", err)
-	}
-	defer term.Restore(fd, restore)
-
-	s := &screen{w: out}
-	defer s.finish()
-
-	buf := make([]byte, 128)
-	for {
-		width, _, err := term.GetSize(fd)
-		if err != nil || width < 20 {
-			width = 80
-		}
-		lines, caretRow, caretCol := e.frame(width)
-		s.render(lines, caretRow, caretCol)
-
-		n, err := in.Read(buf)
-		if err != nil {
-			return fmt.Errorf("failed to read from the terminal: %w", err)
-		}
-		for _, k := range decodeKeys(buf[:n]) {
-			quit, err := e.handle(k)
-			if err != nil {
-				return err
-			}
-			if quit {
-				return nil
-			}
-		}
-	}
+	return runLoop(in, out, e.frame, e.handle)
 }
 
 func (e *editor) handle(k key) (quit bool, err error) {
