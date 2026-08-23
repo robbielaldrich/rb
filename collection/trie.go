@@ -153,9 +153,11 @@ func (ix *cardIndex) parseQuery(line string) query {
 			q.setID = tok
 			continue
 		}
-		if tok != "" {
-			q.words = append(q.words, tok)
-		}
+		// The index holds names cut into words the same way, so a typed
+		// "star-crossed" has to become the two words the trie knows rather
+		// than one word it has never seen. It also drops a lone "-", which
+		// would otherwise match nothing and empty the whole result set.
+		q.words = append(q.words, nameWords(tok)...)
 	}
 	return q
 }

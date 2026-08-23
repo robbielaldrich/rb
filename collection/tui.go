@@ -41,11 +41,20 @@ type editor struct {
 	status  string
 
 	card cards.Card
+	// undo holds what each edited card was worth before it was picked, most
+	// recent last, so an edit can be taken back after it has been made.
+	undo []change
 	// qty is held as text so backspacing to an empty box is representable.
 	qty string
 	// qtyFresh marks a quantity the editor chose rather than the user, so the
 	// first digit typed replaces it instead of appending to it.
 	qtyFresh bool
+}
+
+// change is the quantity a card carried before an edit.
+type change struct {
+	card cards.Card
+	qty  int
 }
 
 func newEditor(coll *collection, cs []cards.Card, path, setID string) *editor {
@@ -95,6 +104,8 @@ func (e *editor) handle(k key) (quit bool, err error) {
 	switch k.name {
 	case "ctrl+c", "ctrl+d":
 		return true, nil
+	case "ctrl+z":
+		return false, e.undoLast()
 	case "esc":
 		if e.mode == modeQuantity {
 			e.done()
@@ -183,10 +194,37 @@ func (e *editor) handleQuantity(k key) error {
 // quantity to the user to adjust.
 func (e *editor) pick(i int) error {
 	r := e.results[i]
+	e.undo = append(e.undo, change{card: r.card, qty: r.owned})
 	e.card, e.mode = r.card, modeQuantity
 	e.qty, e.qtyFresh = strconv.Itoa(r.owned+1), true
 	e.status = ""
 	return e.apply()
+}
+
+// undoLast puts the most recently picked card back to the quantity it had
+// before it was picked, whether or not that edit was finished, and drops the
+// user back at the search prompt.
+func (e *editor) undoLast() error {
+	if len(e.undo) == 0 {
+		e.status = "nothing to undo"
+		return nil
+	}
+	c := e.undo[len(e.undo)-1]
+	e.undo = e.undo[:len(e.undo)-1]
+
+	e.collection.set(c.card, c.qty, time.Now())
+	if err := e.collection.save(e.path); err != nil {
+		return fmt.Errorf("failed to save collection: %w", err)
+	}
+
+	if c.qty == 0 {
+		e.status = fmt.Sprintf("undid %s — none owned", c.card.Label())
+	} else {
+		e.status = fmt.Sprintf("undid %s — back to %d", c.card.Label(), c.qty)
+	}
+	e.mode, e.query = modeSearch, ""
+	e.refresh()
+	return nil
 }
 
 // apply writes the quantity being edited through to disk on every keystroke,

@@ -187,3 +187,68 @@ func TestDecodeKeys(t *testing.T) {
 		}
 	}
 }
+
+func TestUndoPutsTheCardBack(t *testing.T) {
+	e := newTestEditor(t)
+
+	e.typing(t, "astral her<enter>3<enter>")
+	if n := owned(t, e); n != 3 {
+		t.Fatalf("after typing 3, quantity = %d", n)
+	}
+
+	e.typing(t, "astral her<enter>5<enter>")
+	if n := owned(t, e); n != 5 {
+		t.Fatalf("after typing 5, quantity = %d", n)
+	}
+
+	e.typing(t, "<ctrl+z>")
+	if n := owned(t, e); n != 3 {
+		t.Errorf("after undo, quantity = %d, want the 3 it was before", n)
+	}
+	if !strings.Contains(e.status, "back to 3") {
+		t.Errorf("status = %q, want it to report the restored count", e.status)
+	}
+
+	e.typing(t, "<ctrl+z>")
+	if n := len(e.collection.Cards); n != 0 {
+		t.Errorf("after undoing the first edit, the collection holds %d cards, want none", n)
+	}
+}
+
+// Undo during quantity editing takes back the edit in progress, since that is
+// the most recent change.
+func TestUndoWhileEditingQuantity(t *testing.T) {
+	e := newTestEditor(t)
+
+	e.typing(t, "astral her<enter>7")
+	if e.mode != modeQuantity {
+		t.Fatalf("mode = %v, want quantity", e.mode)
+	}
+
+	e.typing(t, "<ctrl+z>")
+	if e.mode != modeSearch {
+		t.Errorf("undo left mode %v, want search", e.mode)
+	}
+	if n := len(e.collection.Cards); n != 0 {
+		t.Errorf("collection holds %d cards, want the unfinished edit gone", n)
+	}
+}
+
+func TestUndoWithNothingToUndo(t *testing.T) {
+	e := newTestEditor(t)
+	e.typing(t, "<ctrl+z>")
+	if !strings.Contains(e.status, "nothing to undo") {
+		t.Errorf("status = %q, want it to say there is nothing to undo", e.status)
+	}
+	if n := len(e.collection.Cards); n != 0 {
+		t.Errorf("collection holds %d cards, want none", n)
+	}
+}
+
+func owned(t *testing.T, e *editor) int {
+	t.Helper()
+	if len(e.collection.Cards) != 1 {
+		t.Fatalf("collection holds %d cards, want one", len(e.collection.Cards))
+	}
+	return e.collection.Cards[0].Quantity
+}

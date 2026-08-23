@@ -44,7 +44,7 @@ func (e *editor) searchFrame(width int) (lines []string, caretRow, caretCol int)
 	}
 
 	lines = append(lines, "", "  "+dim(truncate(
-		"1-5 add · enter adds the top match · #44 collector number · esc quit", width-2)))
+		"1-5 add · enter adds the top match · #44 number · ctrl+z undo · esc quit", width-2)))
 	return lines, caretRow, caretCol
 }
 
@@ -56,7 +56,7 @@ func (e *editor) quantityFrame(width int) (lines []string, caretRow, caretCol in
 	lines = append(lines, "× "+e.qty+dim("  copies owned"), "")
 
 	lines = append(lines, "  "+dim(truncate(
-		"digits, ↑↓ or +/- set the count · enter done · or type the next card name", width-2)))
+		"digits, ↑↓ or +/- set the count · enter done · ctrl+z undo · or type the next card", width-2)))
 	return lines, caretRow, caretCol
 }
 

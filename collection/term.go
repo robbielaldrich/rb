@@ -65,6 +65,10 @@ func decodeKey(b []byte) (key, int) {
 		return key{name: "ctrl+u"}, 1
 	case c == 0x17:
 		return key{name: "ctrl+w"}, 1
+	// Raw mode has already turned off the terminal's own handling of ^Z, so
+	// it arrives as an ordinary byte rather than suspending rb.
+	case c == 0x1a:
+		return key{name: "ctrl+z"}, 1
 	case c < 0x20:
 		return key{name: "unknown"}, 1
 	}

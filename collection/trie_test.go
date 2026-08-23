@@ -48,3 +48,30 @@ func TestRecencyBreaksTies(t *testing.T) {
 		t.Errorf("recency did not promote %s", second.Label())
 	}
 }
+
+// Punctuation inside a name is a separator to the index, so it has to be one
+// to the query too: "star-crossed" and "ol' poro" are typed as they are read
+// off the card.
+func TestPunctuationInQuery(t *testing.T) {
+	cs, err := cards.Load("../cards/cards.json")
+	if err != nil {
+		t.Skip(err)
+	}
+	ix := buildIndex(cs)
+
+	for _, tc := range []struct{ query, want string }{
+		{"star-crossed", "Star-Crossed"},
+		{"star crossed", "Star-Crossed"},
+		{"ol' poro", "Ol' Poro"},
+		{"akali - rogue assassin", "Akali - Rogue Assassin"},
+	} {
+		got := ix.search(tc.query, &collection{}, maxMatches)
+		if len(got) == 0 {
+			t.Errorf("%q found nothing, want %q", tc.query, tc.want)
+			continue
+		}
+		if got[0].card.Name != tc.want {
+			t.Errorf("%q found %q, want %q", tc.query, got[0].card.Name, tc.want)
+		}
+	}
+}
