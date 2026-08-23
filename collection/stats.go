@@ -92,7 +92,7 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 		}
 
 		switch {
-		case c.Metadata.AlternateArt:
+		case c.IsAlternateArt():
 			s.alt.count(owned[c.RiftboundID])
 		case c.Metadata.Overnumbered:
 			s.over.count(owned[c.RiftboundID])

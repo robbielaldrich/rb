@@ -83,3 +83,21 @@ func TestHiddenCardsInCatalog(t *testing.T) {
 		t.Errorf("found only %d Hidden cards, expected the whole keyword cycle", len(names))
 	}
 }
+
+func TestIsAlternateArt(t *testing.T) {
+	for _, tc := range []struct {
+		name string
+		card Card
+		want bool
+	}{
+		{"flagged", Card{RiftboundID: "ven-046a-166", Metadata: Metadata{AlternateArt: true}}, true},
+		{"unflagged, but an 'a' printing", Card{RiftboundID: "ven-113a-166"}, true},
+		{"plain printing", Card{RiftboundID: "ven-113-166"}, false},
+		{"signature", Card{RiftboundID: "unl-226*-219", Metadata: Metadata{Signature: true}}, false},
+		{"rune, which has no number at all", Card{RiftboundID: "ven-r01"}, false},
+	} {
+		if got := tc.card.IsAlternateArt(); got != tc.want {
+			t.Errorf("%s: IsAlternateArt(%s) = %v, want %v", tc.name, tc.card.RiftboundID, got, tc.want)
+		}
+	}
+}

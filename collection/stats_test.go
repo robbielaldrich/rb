@@ -111,3 +111,22 @@ func TestWriteStatsIsAligned(t *testing.T) {
 		t.Errorf("stats table:\n%s\nwant:\n%s", out.String(), want)
 	}
 }
+
+// A dozen alternate arts are missing the API's flag, so the "a" in the
+// riftbound_id has to be enough on its own.
+func TestUnflaggedAlternateArtStillCounts(t *testing.T) {
+	cs := []cards.Card{
+		printing("ven-113-166", "Kennen, Storm of Shuriken", "ven", cards.Metadata{}),
+		printing("ven-113a-166", "Kennen, Storm of Shuriken", "ven", cards.Metadata{}),
+	}
+	s := summarise(cs, &collection{
+		Cards: []collectedCard{{RiftboundID: "ven-113a-166", Quantity: 1}},
+	})[0]
+
+	if s.alt != (tally{owned: 1, total: 1}) {
+		t.Errorf("alt = %v, want 1/1", s.alt)
+	}
+	if s.named != (tally{owned: 1, total: 1}) {
+		t.Errorf("named = %v, want the alternate art to complete the one card", s.named)
+	}
+}

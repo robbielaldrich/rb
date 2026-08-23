@@ -68,6 +68,19 @@ func (c Card) Number() string {
 	return strconv.Itoa(c.CollectorNumber)
 }
 
+// IsAlternateArt reports whether this printing is an alternate art.
+//
+// The API flags most of them, but a dozen are missing the flag; their
+// riftbound_id still carries the "a" that tells the printing apart from the
+// plain one at the same collector number, e.g. ven-113a-166.
+func (c Card) IsAlternateArt() bool {
+	if c.Metadata.AlternateArt {
+		return true
+	}
+	m := riftIDRe.FindStringSubmatch(c.RiftboundID)
+	return m != nil && strings.HasSuffix(m[2], "a")
+}
+
 // Label renders a card the way it is written on paper, e.g.
 // "Astral Heron 44/166 VEN".
 func (c Card) Label() string {
