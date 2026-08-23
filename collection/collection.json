@@ -53,8 +53,8 @@
       "name": "Smite",
       "number": "7/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:21:20.352067824-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T14:25:31.121570329-07:00"
     },
     {
       "riftbound_id": "unl-008-219",
@@ -165,16 +165,16 @@
       "name": "Monch",
       "number": "35/219",
       "set_id": "UNL",
-      "quantity": 2,
-      "updated_at": "2026-08-23T14:06:27.859620436-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T14:25:26.545233956-07:00"
     },
     {
       "riftbound_id": "unl-036-219",
       "name": "Mutated Mouser",
       "number": "36/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:21:28.520773507-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T14:25:39.890252528-07:00"
     },
     {
       "riftbound_id": "unl-037-219",
@@ -213,8 +213,8 @@
       "name": "Enthusiastic Promoter",
       "number": "43/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:56:17.655246316-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T14:26:00.491463868-07:00"
     },
     {
       "riftbound_id": "unl-045-219",
@@ -269,8 +269,8 @@
       "name": "Fate Weaver",
       "number": "64/219",
       "set_id": "UNL",
-      "quantity": 2,
-      "updated_at": "2026-08-23T14:05:29.339247587-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T14:25:35.705909341-07:00"
     },
     {
       "riftbound_id": "unl-065-219",
@@ -313,6 +313,14 @@
       "updated_at": "2026-08-23T14:07:35.212213956-07:00"
     },
     {
+      "riftbound_id": "unl-071-219",
+      "name": "Chakram Dancer",
+      "number": "71/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:02.448026031-07:00"
+    },
+    {
       "riftbound_id": "unl-072-219",
       "name": "Crescent Strike",
       "number": "72/219",
@@ -335,6 +343,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T14:21:42.570291566-07:00"
+    },
+    {
+      "riftbound_id": "unl-082-219",
+      "name": "Lillia - Fae Fawn",
+      "number": "82/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:53.708437887-07:00"
     },
     {
       "riftbound_id": "unl-087-219",
@@ -375,6 +391,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T14:06:16.683792388-07:00"
+    },
+    {
+      "riftbound_id": "unl-095-219",
+      "name": "Grim Resolve",
+      "number": "95/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:16.200679179-07:00"
     },
     {
       "riftbound_id": "unl-096-219",
@@ -505,6 +529,14 @@
       "updated_at": "2026-08-23T13:56:42.831729762-07:00"
     },
     {
+      "riftbound_id": "unl-124-219",
+      "name": "Isolate",
+      "number": "124/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:23.177108024-07:00"
+    },
+    {
       "riftbound_id": "unl-125-219",
       "name": "Lunar Boon",
       "number": "125/219",
@@ -525,8 +557,8 @@
       "name": "Star-Crossed",
       "number": "128/219",
       "set_id": "UNL",
-      "quantity": 2,
-      "updated_at": "2026-08-23T14:05:11.066875665-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T14:24:57.703489984-07:00"
     },
     {
       "riftbound_id": "unl-129-219",
@@ -557,8 +589,8 @@
       "name": "Blast Cone",
       "number": "133/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:50:54.77858795-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T14:25:12.304583852-07:00"
     },
     {
       "riftbound_id": "unl-135-219",
@@ -613,8 +645,8 @@
       "name": "Crimson Pigeons",
       "number": "154/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:21:07.22290786-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T14:25:20.224961772-07:00"
     },
     {
       "riftbound_id": "unl-155-219",
@@ -665,6 +697,14 @@
       "updated_at": "2026-08-23T14:06:20.475619903-07:00"
     },
     {
+      "riftbound_id": "unl-161-219",
+      "name": "Divining Shells",
+      "number": "161/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:06.864360204-07:00"
+    },
+    {
       "riftbound_id": "unl-162-219",
       "name": "Enthralling Protector",
       "number": "162/219",
@@ -679,6 +719,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T14:18:42.985298453-07:00"
+    },
+    {
+      "riftbound_id": "unl-169-219",
+      "name": "Ashe - Focused",
+      "number": "169/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:24:52.591130248-07:00"
     },
     {
       "riftbound_id": "unl-171-219",
@@ -751,6 +799,22 @@
       "set_id": "UNL",
       "quantity": 2,
       "updated_at": "2026-08-23T14:19:33.743325672-07:00"
+    },
+    {
+      "riftbound_id": "unl-195-219",
+      "name": "Ivern - Green Father",
+      "number": "195/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:25:46.32262616-07:00"
+    },
+    {
+      "riftbound_id": "unl-201-219",
+      "name": "Kha'Zix - Voidreaver",
+      "number": "201/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-08-23T14:24:44.462751313-07:00"
     },
     {
       "riftbound_id": "unl-205-219",
