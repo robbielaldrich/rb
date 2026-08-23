@@ -1,6 +1,22 @@
 {
   "cards": [
     {
+      "riftbound_id": "ogn-045-298",
+      "name": "Defy",
+      "number": "45/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T15:17:58.500317591-07:00"
+    },
+    {
+      "riftbound_id": "ogn-199-298",
+      "name": "Tideturner",
+      "number": "199/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-08-23T15:18:01.852295329-07:00"
+    },
+    {
       "riftbound_id": "sfd-001-221",
       "name": "Against the Odds",
       "number": "1/221",
