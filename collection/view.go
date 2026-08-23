@@ -45,7 +45,7 @@ func (e *editor) searchFrame(width int) (lines []string, caretRow, caretCol int)
 }
 
 func (e *editor) quantityFrame(width int) (lines []string, caretRow, caretCol int) {
-	lines = append(lines, "  "+bold(truncate(cardLabel(e.card), width-2)))
+	lines = append(lines, "  "+bold(truncate(e.card.Label(), width-2)))
 
 	caretRow = len(lines)
 	caretCol = 2 + utf8.RuneCountInString(e.qty)
@@ -66,7 +66,7 @@ func resultLine(i int, r result, width int) string {
 
 	const gutter = 5 // "  1  "
 	const ownedCol = 9
-	label := truncate(cardLabel(r.card), width-gutter-ownedCol)
+	label := truncate(r.card.Label(), width-gutter-ownedCol)
 	if owned != "" {
 		label = pad(label, width-gutter-ownedCol)
 	}

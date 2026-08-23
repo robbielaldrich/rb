@@ -3,12 +3,14 @@ package collection
 import (
 	"fmt"
 	"testing"
+
+	"rb/catalog"
 	"time"
 )
 
 func loadIndex(t *testing.T) *cardIndex {
 	t.Helper()
-	cs, err := loadCatalog("../catalog/cards.json")
+	cs, err := catalog.Load("../catalog/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}
@@ -23,7 +25,7 @@ func TestSearchQueries(t *testing.T) {
 		res := ix.search(q, coll, 5)
 		var lines []string
 		for _, r := range res {
-			lines = append(lines, fmt.Sprintf("%s [d=%d num=%v]", cardLabel(r.card), r.dist, r.numMatch))
+			lines = append(lines, fmt.Sprintf("%s [d=%d num=%v]", r.card.Label(), r.dist, r.numMatch))
 		}
 		t.Logf("%-14q -> %v", q, lines)
 	}
@@ -35,14 +37,14 @@ func TestRecencyBreaksTies(t *testing.T) {
 	if len(base) < 2 {
 		t.Fatalf("need >=2 results, got %d", len(base))
 	}
-	t.Logf("before: %s", cardLabel(base[0].card))
+	t.Logf("before: %s", base[0].card.Label())
 	second := base[1].card
 
 	coll := &collection{}
 	coll.set(second, 3, time.Now())
 	after := ix.search("rune", coll, 5)
-	t.Logf("after touching %s: top is %s", cardLabel(second), cardLabel(after[0].card))
+	t.Logf("after touching %s: top is %s", second.Label(), after[0].card.Label())
 	if after[0].card.RiftboundID != second.RiftboundID {
-		t.Errorf("recency did not promote %s", cardLabel(second))
+		t.Errorf("recency did not promote %s", second.Label())
 	}
 }

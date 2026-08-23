@@ -212,9 +212,9 @@ func (e *editor) done() {
 	n, _ := strconv.Atoi(e.qty)
 	switch {
 	case n == 0:
-		e.status = fmt.Sprintf("removed %s", cardLabel(e.card))
+		e.status = fmt.Sprintf("removed %s", e.card.Label())
 	default:
-		e.status = fmt.Sprintf("%s — you now have %d", cardLabel(e.card), n)
+		e.status = fmt.Sprintf("%s — you now have %d", e.card.Label(), n)
 	}
 	e.mode, e.query = modeSearch, ""
 	e.refresh()

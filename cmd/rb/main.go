@@ -22,6 +22,8 @@ func main() {
 		err = cli.RunDownloadCards(args)
 	case "collection":
 		err = cli.RunCollection(args)
+	case "anki-gen":
+		err = cli.RunAnkiGen(args)
 	case "-h", "-help", "--help", "help":
 		usage()
 	default:
@@ -43,5 +45,6 @@ func usage() {
 commands:
   download-cards   download card and set data from the Riftcodex API
   collection       add cards to your collection, interactively
+  anki-gen         generate an Anki deck for memorising card costs
 `)
 }

@@ -20,7 +20,7 @@ func RunEditor(collectionPath, catalogPath string) error {
 		return fmt.Errorf("failed to load collection: %w", err)
 	}
 
-	cards, err := loadCatalog(catalogPath)
+	cards, err := catalog.Load(catalogPath)
 	if err != nil {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
@@ -83,7 +83,7 @@ func (c *collection) set(card catalog.Card, qty int, now time.Time) {
 	c.Cards = append(c.Cards, collectedCard{
 		RiftboundID: card.RiftboundID,
 		Name:        card.Name,
-		Number:      cardNumber(card),
+		Number:      card.Number(),
 		SetID:       strings.ToUpper(card.Set.SetID),
 		Quantity:    qty,
 		UpdatedAt:   now,

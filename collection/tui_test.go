@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"rb/catalog"
 )
 
 // typing drives the editor the way a terminal would, feeding decoded
@@ -28,7 +30,7 @@ func (e *editor) typing(t *testing.T, s string) {
 
 func newTestEditor(t *testing.T) *editor {
 	t.Helper()
-	cs, err := loadCatalog("../catalog/cards.json")
+	cs, err := catalog.Load("../catalog/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}
