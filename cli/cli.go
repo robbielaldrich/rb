@@ -12,7 +12,7 @@ import (
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "gen-anki"}
+var commands = []string{"download-cards", "collect", "collection-stats", "gen-anki"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -31,6 +31,11 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 			}
 			return collect(*collectionFile, *catalogFile, fs.Arg(0))
 		}
+
+	case "collection-stats":
+		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
+		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
+		return func() error { return collectionStats(*collectionFile, *catalogFile) }
 
 	case "gen-anki":
 		var opts ankigen.Options
@@ -125,6 +130,13 @@ func downloadCards(outDir string, images bool, concurrency int) error {
 func collect(collectionFile, catalogFile, setID string) error {
 	if err := collection.RunEditor(collectionFile, catalogFile, setID); err != nil {
 		return fmt.Errorf("failed to run editor: %w", err)
+	}
+	return nil
+}
+
+func collectionStats(collectionFile, catalogFile string) error {
+	if err := collection.Stats(collectionFile, catalogFile, os.Stdout); err != nil {
+		return fmt.Errorf("failed to summarise the collection: %w", err)
 	}
 	return nil
 }
