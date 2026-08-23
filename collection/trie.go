@@ -8,7 +8,7 @@ import (
 	"time"
 	"unicode"
 
-	"rb/catalog"
+	"rb/cards"
 )
 
 // The search index is a trie over the words of every card name, walked with a
@@ -21,11 +21,11 @@ type trieNode struct {
 
 type cardIndex struct {
 	root   *trieNode
-	cards  []catalog.Card
+	cards  []cards.Card
 	setIDs map[string]bool
 }
 
-func buildIndex(cs []catalog.Card) *cardIndex {
+func buildIndex(cs []cards.Card) *cardIndex {
 	ix := &cardIndex{root: &trieNode{}, cards: cs, setIDs: map[string]bool{}}
 	for i, c := range cs {
 		ix.setIDs[strings.ToLower(c.Set.SetID)] = true
@@ -161,7 +161,7 @@ func (ix *cardIndex) parseQuery(line string) query {
 }
 
 type result struct {
-	card     catalog.Card
+	card     cards.Card
 	dist     int
 	numMatch bool
 	setMatch bool

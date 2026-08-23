@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"testing"
 
-	"rb/catalog"
+	"rb/cards"
 	"time"
 )
 
 func loadIndex(t *testing.T) *cardIndex {
 	t.Helper()
-	cs, err := catalog.Load("../catalog/cards.json")
+	cs, err := cards.Load("../cards/cards.json")
 	if err != nil {
 		t.Skip(err)
 	}

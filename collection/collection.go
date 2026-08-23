@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"rb/catalog"
+	"rb/cards"
 )
 
 // RunEditor loads the catalog and collection and hands them to the
@@ -20,12 +20,12 @@ func RunEditor(collectionPath, catalogPath string) error {
 		return fmt.Errorf("failed to load collection: %w", err)
 	}
 
-	cards, err := catalog.Load(catalogPath)
+	cs, err := cards.Load(catalogPath)
 	if err != nil {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	if err := newEditor(coll, cards, collectionPath).run(os.Stdin, os.Stdout); err != nil {
+	if err := newEditor(coll, cs, collectionPath).run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to run the collection editor: %w", err)
 	}
 	return nil
@@ -64,7 +64,7 @@ func load(path string) (*collection, error) {
 
 // set records qty copies of a card, dropping the entry entirely if qty is
 // zero or less.
-func (c *collection) set(card catalog.Card, qty int, now time.Time) {
+func (c *collection) set(card cards.Card, qty int, now time.Time) {
 	for i, e := range c.Cards {
 		if e.RiftboundID != card.RiftboundID {
 			continue

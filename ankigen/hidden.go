@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"rb/catalog"
+	"rb/cards"
 )
 
 // Options configure a generated deck.
@@ -45,12 +45,12 @@ const mediaPrefix = "rb-"
 // Hidden keyword cost. The front is the card with its top band painted out,
 // hiding the printed cost; the back is the same card intact.
 func GenerateHiddenCosts(opts Options) (Result, error) {
-	cards, err := catalog.Load(opts.CatalogPath)
+	cs, err := cards.Load(opts.CatalogPath)
 	if err != nil {
 		return Result{}, fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	hidden := selectHidden(cards, opts.AllPrintings)
+	hidden := selectHidden(cs, opts.AllPrintings)
 	if len(hidden) == 0 {
 		return Result{}, fmt.Errorf("no cards with the Hidden keyword in %s", opts.CatalogPath)
 	}
@@ -88,10 +88,10 @@ func GenerateHiddenCosts(opts Options) (Result, error) {
 // printed order. Unless every printing is wanted, one representative printing
 // stands in for each card: the same cost asked five times over teaches
 // nothing extra.
-func selectHidden(cards []catalog.Card, allPrintings bool) []catalog.Card {
-	var out []catalog.Card
+func selectHidden(cs []cards.Card, allPrintings bool) []cards.Card {
+	var out []cards.Card
 	seen := map[string]bool{}
-	for _, c := range cards {
+	for _, c := range cs {
 		if !c.HasKeyword("Hidden") {
 			continue
 		}
@@ -105,7 +105,7 @@ func selectHidden(cards []catalog.Card, allPrintings bool) []catalog.Card {
 	}
 	// Studying in name order beats studying in set order: the deck reads as a
 	// list of cards rather than a walk through a release.
-	slices.SortFunc(out, func(a, b catalog.Card) int {
+	slices.SortFunc(out, func(a, b cards.Card) int {
 		return strings.Compare(a.Label(), b.Label())
 	})
 	return out
@@ -113,7 +113,7 @@ func selectHidden(cards []catalog.Card, allPrintings bool) []catalog.Card {
 
 // renderCard writes the masked and intact images for one card and returns the
 // names to reference them by.
-func renderCard(c catalog.Card, mediaDir string, opts Options) (masked, full string, err error) {
+func renderCard(c cards.Card, mediaDir string, opts Options) (masked, full string, err error) {
 	src := filepath.Join(opts.ImageDir, c.RiftboundID+".png")
 	img, err := loadCardImage(src)
 	if err != nil {
@@ -134,11 +134,11 @@ func renderCard(c catalog.Card, mediaDir string, opts Options) (masked, full str
 
 // mediaName builds a filename safe for collection.media. The '*' that marks a
 // signature printing's riftbound_id is not legal on every filesystem.
-func mediaName(c catalog.Card, suffix string) string {
+func mediaName(c cards.Card, suffix string) string {
 	return mediaPrefix + strings.ReplaceAll(c.RiftboundID, "*", "s") + suffix + ".jpg"
 }
 
-func tagsFor(c catalog.Card) []string {
+func tagsFor(c cards.Card) []string {
 	return []string{
 		"riftbound::hidden",
 		"riftbound::set::" + strings.ToUpper(c.Set.SetID),

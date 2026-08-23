@@ -11,7 +11,7 @@ import (
 
 	"golang.org/x/term"
 
-	"rb/catalog"
+	"rb/cards"
 )
 
 // maxMatches is both how many matches are listed and how many digit keys
@@ -37,7 +37,7 @@ type editor struct {
 	results []result
 	status  string
 
-	card catalog.Card
+	card cards.Card
 	// qty is held as text so backspacing to an empty box is representable.
 	qty string
 	// qtyFresh marks a quantity the editor chose rather than the user, so the
@@ -45,8 +45,8 @@ type editor struct {
 	qtyFresh bool
 }
 
-func newEditor(coll *collection, cards []catalog.Card, path string) *editor {
-	return &editor{index: buildIndex(cards), collection: coll, path: path}
+func newEditor(coll *collection, cs []cards.Card, path string) *editor {
+	return &editor{index: buildIndex(cs), collection: coll, path: path}
 }
 
 func (e *editor) run(in, out *os.File) error {

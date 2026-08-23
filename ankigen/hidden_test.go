@@ -11,12 +11,12 @@ import (
 	"strings"
 	"testing"
 
-	"rb/catalog"
+	"rb/cards"
 )
 
 // fixture writes a catalog and matching scans to a temp dir, so the tests
 // don't depend on the downloaded card data.
-func fixture(t *testing.T, cards []catalog.Card) Options {
+func fixture(t *testing.T, cards []cards.Card) Options {
 	t.Helper()
 	dir := t.TempDir()
 	imgDir := filepath.Join(dir, "images")
@@ -69,12 +69,12 @@ func writeScan(t *testing.T, path string) {
 	}
 }
 
-func hiddenCard(id, name string) catalog.Card {
-	return catalog.Card{
+func hiddenCard(id, name string) cards.Card {
+	return cards.Card{
 		Name: name, RiftboundID: id, CollectorNumber: 3,
-		Set:            catalog.CardSet{SetID: "unl"},
-		Classification: catalog.Classification{Type: "Unit"},
-		Text:           catalog.Text{Plain: "[Hidden] (Hide now.)Deal 2 to an enemy unit."},
+		Set:            cards.CardSet{SetID: "unl"},
+		Classification: cards.Classification{Type: "Unit"},
+		Text:           cards.Text{Plain: "[Hidden] (Hide now.)Deal 2 to an enemy unit."},
 	}
 }
 
@@ -95,12 +95,12 @@ func readDeck(t *testing.T, res Result) (headers []string, rows [][]string) {
 }
 
 func TestGenerateHiddenCosts(t *testing.T) {
-	opts := fixture(t, []catalog.Card{
+	opts := fixture(t, []cards.Card{
 		hiddenCard("unl-003-219", "Mischievous Marai"),
 		{
 			Name: "Arena Kingpin", RiftboundID: "unl-001-219", CollectorNumber: 1,
-			Set:  catalog.CardSet{SetID: "unl"},
-			Text: catalog.Text{Plain: "I enter ready."},
+			Set:  cards.CardSet{SetID: "unl"},
+			Text: cards.Text{Plain: "I enter ready."},
 		},
 	})
 
@@ -157,7 +157,7 @@ func TestGenerateHiddenCosts(t *testing.T) {
 }
 
 func TestMaskedImageHidesOnlyTheTop(t *testing.T) {
-	opts := fixture(t, []catalog.Card{hiddenCard("unl-003-219", "Mischievous Marai")})
+	opts := fixture(t, []cards.Card{hiddenCard("unl-003-219", "Mischievous Marai")})
 	res, err := GenerateHiddenCosts(opts)
 	if err != nil {
 		t.Fatal(err)
@@ -191,7 +191,7 @@ func TestMaskedImageHidesOnlyTheTop(t *testing.T) {
 }
 
 func TestAllPrintingsFlag(t *testing.T) {
-	cards := []catalog.Card{
+	cards := []cards.Card{
 		hiddenCard("unl-028-219", "Pyke - Dockside Butcher"),
 		hiddenCard("unl-028a-219", "Pyke - Dockside Butcher (Alternate Art)"),
 	}
@@ -217,10 +217,10 @@ func TestAllPrintingsFlag(t *testing.T) {
 }
 
 func TestNoHiddenCardsIsAnError(t *testing.T) {
-	opts := fixture(t, []catalog.Card{{
+	opts := fixture(t, []cards.Card{{
 		Name: "Arena Kingpin", RiftboundID: "unl-001-219",
-		Set:  catalog.CardSet{SetID: "unl"},
-		Text: catalog.Text{Plain: "I enter ready."},
+		Set:  cards.CardSet{SetID: "unl"},
+		Text: cards.Text{Plain: "I enter ready."},
 	}})
 	if _, err := GenerateHiddenCosts(opts); err == nil {
 		t.Fatal("want an error when the catalog holds no Hidden cards")
@@ -228,7 +228,7 @@ func TestNoHiddenCardsIsAnError(t *testing.T) {
 }
 
 func TestMediaNameAvoidsIllegalCharacters(t *testing.T) {
-	c := catalog.Card{RiftboundID: "sfd-230*-221"}
+	c := cards.Card{RiftboundID: "sfd-230*-221"}
 	if got := mediaName(c, "-cost-masked"); strings.ContainsAny(got, `*/\`) {
 		t.Errorf("mediaName = %q, want no characters illegal in a filename", got)
 	}
