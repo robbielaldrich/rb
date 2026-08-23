@@ -34,7 +34,7 @@ func newTestEditor(t *testing.T) *editor {
 	if err != nil {
 		t.Skip(err)
 	}
-	e := newEditor(&collection{}, cs, filepath.Join(t.TempDir(), "collection.json"))
+	e := newEditor(&collection{}, cs, filepath.Join(t.TempDir(), "collection.json"), "")
 	e.refresh()
 	return e
 }

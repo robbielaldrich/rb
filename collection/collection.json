@@ -1,20 +1,108 @@
 {
   "cards": [
     {
-      "riftbound_id": "ogn-045-298",
-      "name": "Defy",
-      "number": "45/298",
-      "set_id": "OGN",
+      "riftbound_id": "ven-006-166",
+      "name": "Oasis Raider",
+      "number": "6/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-22T08:56:49.906277002-07:00"
+      "updated_at": "2026-08-23T12:46:44.251575206-07:00"
     },
     {
-      "riftbound_id": "ven-044-166",
-      "name": "Astral Heron",
-      "number": "44/166",
+      "riftbound_id": "ven-008-166",
+      "name": "Ruthless Strike",
+      "number": "8/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-08-22T08:57:08.386344215-07:00"
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:46:50.171224383-07:00"
+    },
+    {
+      "riftbound_id": "ven-024-166",
+      "name": "Affectionate Poro",
+      "number": "24/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:46:52.771444783-07:00"
+    },
+    {
+      "riftbound_id": "ven-029-166",
+      "name": "Ol' Poro",
+      "number": "29/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:46:55.547285955-07:00"
+    },
+    {
+      "riftbound_id": "ven-033-166",
+      "name": "Pakaa Protector",
+      "number": "33/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:46:58.595573746-07:00"
+    },
+    {
+      "riftbound_id": "ven-052-166",
+      "name": "Mesmerize",
+      "number": "52/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:21.050414194-07:00"
+    },
+    {
+      "riftbound_id": "ven-065-166",
+      "name": "Swain, Visionary",
+      "number": "65/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:45:28.405788478-07:00"
+    },
+    {
+      "riftbound_id": "ven-073-166",
+      "name": "Jagged Cutlass",
+      "number": "73/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:01.147077249-07:00"
+    },
+    {
+      "riftbound_id": "ven-088-166",
+      "name": "Jayce, Hammer in Hand",
+      "number": "88/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:07.923239764-07:00"
+    },
+    {
+      "riftbound_id": "ven-093-166",
+      "name": "Kinkou Lifeblade",
+      "number": "93/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:11.738747093-07:00"
+    },
+    {
+      "riftbound_id": "ven-106-166",
+      "name": "Wind and Ghosts",
+      "number": "106/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:15.794614361-07:00"
+    },
+    {
+      "riftbound_id": "ven-121-166",
+      "name": "Reluctant Leader",
+      "number": "121/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:18.642726244-07:00"
+    },
+    {
+      "riftbound_id": "ven-163-166",
+      "name": "Risen Altar",
+      "number": "163/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T12:47:25.754739621-07:00"
     }
   ]
 }

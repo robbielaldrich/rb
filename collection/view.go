@@ -20,13 +20,17 @@ func (e *editor) searchFrame(width int) (lines []string, caretRow, caretCol int)
 
 	// A query longer than the terminal scrolls, so the caret stays visible
 	// rather than wrapping the prompt onto a second line.
+	prompt := "> "
+	if e.setID != "" {
+		prompt = e.setID + " > "
+	}
 	q := []rune(e.query)
-	if n := width - 3; len(q) > n {
+	if n := width - 1 - len(prompt); len(q) > n {
 		q = q[len(q)-n:]
 	}
 	caretRow = len(lines)
-	caretCol = 2 + len(q)
-	lines = append(lines, "> "+string(q), "")
+	caretCol = len(prompt) + len(q)
+	lines = append(lines, prompt+string(q), "")
 
 	switch {
 	case len(e.results) > 0:

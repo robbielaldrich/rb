@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
 	"slices"
 	"strings"
@@ -14,7 +15,10 @@ import (
 
 // RunEditor loads the catalog and collection and hands them to the
 // interactive editor, which writes each change through as it is made.
-func RunEditor(collectionPath, catalogPath string) error {
+//
+// An empty setID searches the whole catalog; naming a set narrows the search
+// to it, for the common case of entering a stack of cards from one box.
+func RunEditor(collectionPath, catalogPath, setID string) error {
 	coll, err := load(collectionPath)
 	if err != nil {
 		return fmt.Errorf("failed to load collection: %w", err)
@@ -25,10 +29,35 @@ func RunEditor(collectionPath, catalogPath string) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	if err := newEditor(coll, cs, collectionPath).run(os.Stdin, os.Stdout); err != nil {
+	if setID != "" {
+		if cs, err = filterSet(cs, setID); err != nil {
+			return err
+		}
+	}
+
+	if err := newEditor(coll, cs, collectionPath, setID).run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to run the collection editor: %w", err)
 	}
 	return nil
+}
+
+// filterSet keeps only the cards printed in the named set. An unknown label
+// is refused here, before the editor opens, rather than leaving the user to
+// wonder why nothing they type matches.
+func filterSet(cs []cards.Card, setID string) ([]cards.Card, error) {
+	var out []cards.Card
+	known := map[string]bool{}
+	for _, c := range cs {
+		known[strings.ToUpper(c.Set.SetID)] = true
+		if strings.EqualFold(c.Set.SetID, setID) {
+			out = append(out, c)
+		}
+	}
+	if len(out) == 0 {
+		return nil, fmt.Errorf("no cards in set %q, known sets: %s",
+			setID, strings.Join(slices.Sorted(maps.Keys(known)), " "))
+	}
+	return out, nil
 }
 
 // collectedCard is one owned card. Cards are keyed by riftbound_id; the name, number
