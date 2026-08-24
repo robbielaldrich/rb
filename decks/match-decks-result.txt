@@ -1,10 +1,21 @@
 15 decks · 0 you can build · runes ignored · sideboards excluded
 
-  ✗ Rek'sai, Void Burrower · 29 of 44 cards missing
+  ✗ Master Yi, Wuju Bladesman · 22 of 44 cards missing
+      1 Akali, Silent               have 0 of 1
+      3 Charm                       have 0 of 3
+      3 Discipline                  have 0 of 3
+      2 First Mate                  have 0 of 2
+      1 Master Yi, Wuju Bladesman   have 0 of 1
+      2 Rengar, Trophy Hunter       have 1 of 3
+      2 Ruin Runner                 have 0 of 2
+      2 Sabotage                    have 0 of 2
+      3 Scuttle Crab                have 0 of 3
+      1 Star Spring                 have 0 of 1
+      2 Zhonya's Hourglass          have 0 of 2
+
+  ✗ Rek'sai, Void Burrower · 23 of 44 cards missing
       1 Carrion Dredger         have 2 of 3
       3 Cleave                  have 0 of 3
-      3 Cull the Weak           have 0 of 3
-      3 Faithful Manufactor     have 0 of 3
       2 Falling Star            have 0 of 2
       1 Honest Broker           have 2 of 3
       1 Inferna                 have 2 of 3
@@ -18,34 +29,14 @@
       3 Void Rush               have 0 of 3
       1 Zed, From the Shadows   have 0 of 1
 
-  ✗ Master Yi, Wuju Bladesman · 30 of 44 cards missing
-      1 Akali, Silent               have 0 of 1
-      3 Charm                       have 0 of 3
-      3 Discipline                  have 0 of 3
-      3 En Garde                    have 0 of 3
-      2 First Mate                  have 0 of 2
-      1 Lonely Poro                 have 2 of 3
-      1 Master Yi, Wuju Bladesman   have 0 of 1
-      2 Pit Rookie                  have 0 of 2
-      2 Punch First                 have 1 of 3
-      2 Rengar, Trophy Hunter       have 1 of 3
-      2 Ruin Runner                 have 0 of 2
-      2 Sabotage                    have 0 of 2
-      3 Scuttle Crab                have 0 of 3
-      1 Star Spring                 have 0 of 1
-      2 Zhonya's Hourglass          have 0 of 2
-
-  ✗ youyou · 30 of 44 cards missing
+  ✗ youyou · 26 of 44 cards missing
       1 Arise!                       have 2 of 3
       1 Azir, Emperor of the Sands   have 0 of 1
       2 B.F. Sword                   have 1 of 3
-      3 Brutalizer                   have 0 of 3
       1 Charm                        have 0 of 1
-      1 Cull the Weak                have 0 of 1
       3 Discipline                   have 0 of 3
-      2 Doran's Shield               have 1 of 3
-      1 En Garde                     have 0 of 1
-      1 Eye of the Herald            have 2 of 3
+      1 Doran's Shield               have 2 of 3
+      3 Eye of the Herald            have 0 of 3
       2 Guards!                      have 0 of 2
       3 Hidden Blade                 have 0 of 3
       2 Sacrifice                    have 0 of 2
@@ -54,10 +45,59 @@
       1 Trifarian War Camp           have 0 of 1
       2 Vi, Peacekeeper              have 0 of 2
 
-  ✗ Kennen, Heart of the Tempest · 31 of 44 cards missing
+  ✗ Viktor, Herald of the Arcane · 26 of 44 cards missing
+      3 Bellows Breath                 have 0 of 3
+      1 Carrion Dredger                have 2 of 3
+      3 Deadly Flourish                have 0 of 3
+      1 Diana, Lunari                  have 1 of 2
+      2 Hidden Blade                   have 0 of 2
+      3 Imperial Decree                have 0 of 3
+      1 Ravenbloom Conservatory        have 0 of 1
+      2 Shadow's Call                  have 1 of 3
+      2 Singularity                    have 0 of 2
+      2 Sprite Burst                   have 1 of 3
+      2 Thousand-Tailed Watcher        have 0 of 2
+      1 Treasure Hoard                 have 0 of 1
+      1 Viktor, Herald of the Arcane   have 0 of 1
+      1 Viktor, Leader                 have 0 of 1
+      1 Wages of Pain                  have 2 of 3
+
+  ✗ Nasus, Curator of the Sands · 27 of 44 cards missing
+      3 Astral Heron              have 0 of 3
+      1 Charm                     have 0 of 1
+      3 Discipline                have 0 of 3
+      1 Not So Fast               have 0 of 1
+      3 Ravenbloom Student        have 0 of 3
+      2 Retreat                   have 0 of 2
+      3 Scuttle Crab              have 0 of 3
+      1 Sigil of the Storm        have 0 of 1
+      1 Singularity               have 0 of 1
+      2 Siphoning Strike          have 0 of 2
+      2 Steel Paws                have 0 of 2
+      1 Temporal Breach           have 1 of 2
+      2 Thousand-Tailed Watcher   have 0 of 2
+      2 Time Warp                 have 0 of 2
+
+  ✗ jinan · 27 of 44 cards missing
+      1 Darius, Trifarian        have 0 of 1
+      1 Ferrous Forerunner       have 0 of 1
+      2 First Mate               have 0 of 2
+      2 Grim Apothecary          have 0 of 2
+      1 Inferna                  have 2 of 3
+      2 Irresistible Faefolk     have 1 of 3
+      3 Kai'Sa, Survivor         have 0 of 3
+      1 Kinkou Initiate          have 2 of 3
+      3 Nidalee, Cat Form        have 0 of 3
+      3 Noxus Hopeful            have 0 of 3
+      1 Pakaa Cub                have 0 of 1
+      1 Pyke, Dockside Butcher   have 0 of 1
+      2 Sabotage                 have 0 of 2
+      1 Star Spring              have 0 of 1
+      3 Thrill of the Hunt       have 0 of 3
+
+  ✗ Kennen, Heart of the Tempest · 27 of 44 cards missing
       1 Abandon                        have 0 of 1
       1 Baron Nashor                   have 0 of 1
-      1 Cull the Weak                  have 0 of 1
       2 Fizz, Trickster                have 0 of 2
       1 Flash                          have 0 of 1
       1 Hidden Blade                   have 0 of 1
@@ -70,56 +110,50 @@
       3 Seal of Discord                have 0 of 3
       3 Stacked Deck                   have 0 of 3
       1 The Harrowing                  have 0 of 1
-      3 Traveling Merchant             have 0 of 3
       1 Zaun Warrens                   have 0 of 1
 
-  ✗ Viktor, Herald of the Arcane · 31 of 44 cards missing
-      3 Bellows Breath                 have 0 of 3
-      1 Carrion Dredger                have 2 of 3
-      2 Cull the Weak                  have 0 of 2
-      3 Deadly Flourish                have 0 of 3
-      1 Diana, Lunari                  have 1 of 2
-      2 Hidden Blade                   have 0 of 2
-      3 Imperial Decree                have 0 of 3
-      1 Ravenbloom Conservatory        have 0 of 1
-      2 Shadow's Call                  have 1 of 3
-      2 Singularity                    have 0 of 2
-      2 Sprite Burst                   have 1 of 3
-      3 Stupefy                        have 0 of 3
-      2 Thousand-Tailed Watcher        have 0 of 2
-      1 Treasure Hoard                 have 0 of 1
-      1 Viktor, Herald of the Arcane   have 0 of 1
-      1 Viktor, Leader                 have 0 of 1
-      1 Wages of Pain                  have 2 of 3
+  ✗ s4shanghai · 27 of 44 cards missing
+      2 Bellows Breath              have 0 of 2
+      3 Catalyst of Aeons           have 0 of 3
+      1 Clairvoyance                have 2 of 3
+      3 Dazzling Aurora             have 0 of 3
+      3 Deadly Flourish             have 0 of 3
+      1 Disposal Order              have 1 of 2
+      1 Dredge Up                   have 2 of 3
+      3 Elder Dragon                have 0 of 3
+      1 Forgotten Monument          have 0 of 1
+      1 Garbage Grabber             have 1 of 2
+      1 Gutter Palace               have 0 of 1
+      1 Jayce, Brilliant Inventor   have 0 of 1
+      1 Platewyrm Egg               have 2 of 3
+      3 Promising Future            have 0 of 3
+      1 Sigil of the Storm          have 0 of 1
+      1 Temporal Breach             have 1 of 2
 
-  ✗ jinan · 32 of 44 cards missing
-      1 Darius, Trifarian        have 0 of 1
-      1 Ferrous Forerunner       have 0 of 1
-      2 First Mate               have 0 of 2
-      2 Grim Apothecary          have 0 of 2
-      1 Inferna                  have 2 of 3
-      2 Irresistible Faefolk     have 1 of 3
-      3 Kai'Sa, Survivor         have 0 of 3
-      1 Kinkou Initiate          have 2 of 3
-      3 Nidalee, Cat Form        have 0 of 3
-      3 Noxus Hopeful            have 0 of 3
-      1 Pakaa Cub                have 0 of 1
-      3 Pit Rookie               have 0 of 3
-      2 Punch First              have 1 of 3
-      1 Pyke, Dockside Butcher   have 0 of 1
-      2 Sabotage                 have 0 of 2
-      1 Star Spring              have 0 of 1
-      3 Thrill of the Hunt       have 0 of 3
+  ✗ yuyutsar · 28 of 44 cards missing
+      1 Arcane Shift                have 0 of 1
+      3 Bellows Breath              have 0 of 3
+      1 Bewitching Spirit           have 2 of 3
+      2 Deadly Flourish             have 0 of 2
+      1 Ezreal, Prodigal Explorer   have 0 of 1
+      3 Fizz, Trickster             have 0 of 3
+      1 Hard Bargain                have 0 of 1
+      3 Pack of Wonders             have 0 of 3
+      1 Sigil of the Storm          have 0 of 1
+      1 Sprite Fountain             have 0 of 1
+      3 Stacked Deck                have 0 of 3
+      2 The List                    have 0 of 2
+      2 Thousand-Tailed Watcher     have 0 of 2
+      3 Treasure Trove              have 0 of 3
+      1 Vex, Apathetic              have 0 of 1
 
-  ✗ Irelia, Blade Dancer · 32 of 44 cards missing
+  ✗ Irelia, Blade Dancer · 29 of 44 cards missing
       1 Akali, Silent          have 0 of 1
       2 Boots of Swiftness     have 0 of 2
       2 Charm                  have 0 of 2
       3 Defiant Dance          have 0 of 3
       3 Discipline             have 0 of 3
-      2 En Garde               have 0 of 2
       2 Guardian Angel         have 0 of 2
-      1 Gust                   have 0 of 1
       1 Irelia, Blade Dancer   have 0 of 1
       1 Not So Fast            have 0 of 1
       2 Pyke, Returned         have 0 of 2
@@ -131,52 +165,12 @@
       1 Tideturner             have 2 of 3
       1 Zhonya's Hourglass     have 0 of 1
 
-  ✗ yuyutsar · 33 of 44 cards missing
-      1 Arcane Shift                have 0 of 1
-      3 Bellows Breath              have 0 of 3
-      1 Bewitching Spirit           have 2 of 3
-      2 Deadly Flourish             have 0 of 2
-      1 Ezreal, Prodigal Explorer   have 0 of 1
-      3 Fizz, Trickster             have 0 of 3
-      2 Gust                        have 0 of 2
-      1 Hard Bargain                have 0 of 1
-      3 Pack of Wonders             have 0 of 3
-      1 Sigil of the Storm          have 0 of 1
-      1 Sprite Fountain             have 0 of 1
-      3 Stacked Deck                have 0 of 3
-      3 Stupefy                     have 0 of 3
-      2 The List                    have 0 of 2
-      2 Thousand-Tailed Watcher     have 0 of 2
-      3 Treasure Trove              have 0 of 3
-      1 Vex, Apathetic              have 0 of 1
-
-  ✗ s4shanghai · 34 of 44 cards missing
-      2 Bellows Breath              have 0 of 2
-      3 Catalyst of Aeons           have 0 of 3
-      1 Clairvoyance                have 2 of 3
-      3 Dazzling Aurora             have 0 of 3
-      3 Deadly Flourish             have 0 of 3
-      1 Disposal Order              have 1 of 2
-      1 Dredge Up                   have 2 of 3
-      3 Elder Dragon                have 0 of 3
-      3 Flurry of Blades            have 0 of 3
-      1 Forgotten Monument          have 0 of 1
-      2 Garbage Grabber             have 0 of 2
-      1 Gutter Palace               have 0 of 1
-      1 Jayce, Brilliant Inventor   have 0 of 1
-      3 Mobilize                    have 0 of 3
-      1 Platewyrm Egg               have 2 of 3
-      3 Promising Future            have 0 of 3
-      1 Sigil of the Storm          have 0 of 1
-      1 Temporal Breach             have 1 of 2
-
-  ✗ Diana, Scorn of the Moon · 35 of 44 cards missing
+  ✗ Diana, Scorn of the Moon · 30 of 44 cards missing
       1 Abandon                    have 0 of 1
       2 Acceptable Losses          have 0 of 2
       1 Diana, Scorn of the Moon   have 0 of 1
       2 Fizz, Trickster            have 0 of 2
       2 Flash                      have 0 of 2
-      2 Gust                       have 0 of 2
       1 Hard Bargain               have 0 of 1
       3 Hwei, Brooding Painter     have 0 of 3
       2 Kha'Zix, Mutating Horror   have 0 of 2
@@ -184,32 +178,50 @@
       3 Ravenbloom Student         have 0 of 3
       2 Ride the Wind              have 0 of 2
       3 Stacked Deck               have 0 of 3
-      3 Stupefy                    have 0 of 3
       1 Targon's Peak              have 0 of 1
       1 Tideturner                 have 2 of 3
       3 Vex, Apathetic             have 0 of 3
 
-  ✗ Nasus, Curator of the Sands · 35 of 44 cards missing
-      3 Astral Heron              have 0 of 3
-      1 Charm                     have 0 of 1
-      3 Discipline                have 0 of 3
-      3 Find Your Center          have 0 of 3
-      1 Lecturing Yordle          have 0 of 1
-      1 Not So Fast               have 0 of 1
-      3 Ravenbloom Student        have 0 of 3
-      2 Retreat                   have 0 of 2
-      3 Scuttle Crab              have 0 of 3
-      1 Sigil of the Storm        have 0 of 1
-      1 Singularity               have 0 of 1
-      2 Siphoning Strike          have 0 of 2
-      2 Steel Paws                have 0 of 2
-      1 Sterak's Gage             have 0 of 1
-      3 Stupefy                   have 0 of 3
-      1 Temporal Breach           have 1 of 2
-      2 Thousand-Tailed Watcher   have 0 of 2
-      2 Time Warp                 have 0 of 2
+  ✗ Kai'sa, Daughter of the Void · 31 of 44 cards missing
+      1 Bellows Breath                 have 0 of 1
+      2 Brynhir Thundersong            have 0 of 2
+      3 Falling Star                   have 0 of 3
+      2 Ferrous Forerunner             have 0 of 2
+      3 Hextech Ray                    have 0 of 3
+      1 Kai'Sa, Survivor               have 0 of 1
+      1 Kai'sa, Daughter of the Void   have 0 of 1
+      2 Lecturing Yordle               have 1 of 3
+      2 Noxus Hopeful                  have 0 of 2
+      1 Perfect Execution              have 0 of 1
+      2 Pouty Poro                     have 0 of 2
+      1 Progress Day                   have 0 of 1
+      2 Retreat                        have 0 of 2
+      2 Temporal Breach                have 1 of 3
+      3 Thousand-Tailed Watcher        have 0 of 3
+      1 Time Warp                      have 0 of 1
+      1 Void Gate                      have 0 of 1
+      1 Void Seeker                    have 0 of 1
 
-  ✗ cekmara · 35 of 44 cards missing
+  ✗ axl · 32 of 44 cards missing
+      3 Baited Hook               have 0 of 3
+      1 Dusk Rose Lab             have 0 of 1
+      1 Escaped Grayback          have 2 of 3
+      1 Glasc Mixologist          have 2 of 3
+      3 Harnessed Dragon          have 0 of 3
+      3 Hidden Blade              have 0 of 3
+      3 Karthus, Eternal          have 0 of 3
+      1 Leblanc, Deceiver         have 0 of 1
+      1 Mirror Image              have 0 of 1
+      2 Ruined Rex                have 1 of 3
+      2 Sacrifice                 have 0 of 2
+      1 Safety Inspector          have 0 of 1
+      3 Soaring Scout             have 0 of 3
+      1 Star Spring               have 0 of 1
+      2 Thousand-Tailed Watcher   have 0 of 2
+      3 Vi, Peacekeeper           have 0 of 3
+      1 Windswept Hillock         have 0 of 1
+
+  ✗ cekmara · 33 of 44 cards missing
       1 Boots of Swiftness        have 0 of 1
       1 Cleave                    have 0 of 1
       2 Darius, Trifarian         have 0 of 2
@@ -221,7 +233,6 @@
       3 Kai'Sa, Survivor          have 0 of 3
       3 Noxus Hopeful             have 0 of 3
       1 Pyke, Returned            have 0 of 1
-      2 Rebuke                    have 0 of 2
       1 Rek'Sai, Breacher         have 0 of 1
       2 Shadow Order Disciple     have 1 of 3
       3 Spinning Axe              have 0 of 3
@@ -248,46 +259,3 @@
       3 Sona, Harmonious           have 0 of 3
       3 Vi, Destructive            have 0 of 3
       3 Zed, From the Shadows      have 0 of 3
-
-  ✗ Kai'sa, Daughter of the Void · 38 of 44 cards missing
-      1 Bellows Breath                 have 0 of 1
-      2 Brynhir Thundersong            have 0 of 2
-      3 Falling Star                   have 0 of 3
-      2 Ferrous Forerunner             have 0 of 2
-      3 Hextech Ray                    have 0 of 3
-      1 Kai'Sa, Survivor               have 0 of 1
-      1 Kai'sa, Daughter of the Void   have 0 of 1
-      3 Lecturing Yordle               have 0 of 3
-      2 Noxus Hopeful                  have 0 of 2
-      1 Perfect Execution              have 0 of 1
-      2 Pouty Poro                     have 0 of 2
-      1 Progress Day                   have 0 of 1
-      2 Retreat                        have 0 of 2
-      3 Stupefy                        have 0 of 3
-      2 Temporal Breach                have 1 of 3
-      3 Thousand-Tailed Watcher        have 0 of 3
-      1 Time Warp                      have 0 of 1
-      1 Void Gate                      have 0 of 1
-      1 Void Seeker                    have 0 of 1
-      3 Watchful Sentry                have 0 of 3
-
-  ✗ axl · 40 of 44 cards missing
-      3 Baited Hook               have 0 of 3
-      3 Cull the Weak             have 0 of 3
-      1 Dusk Rose Lab             have 0 of 1
-      1 Escaped Grayback          have 2 of 3
-      3 Glasc Mixologist          have 0 of 3
-      3 Harnessed Dragon          have 0 of 3
-      3 Hidden Blade              have 0 of 3
-      3 Karthus, Eternal          have 0 of 3
-      1 Leblanc, Deceiver         have 0 of 1
-      1 Mirror Image              have 0 of 1
-      2 Ruined Rex                have 1 of 3
-      2 Sacrifice                 have 0 of 2
-      1 Safety Inspector          have 0 of 1
-      3 Soaring Scout             have 0 of 3
-      1 Star Spring               have 0 of 1
-      2 Thousand-Tailed Watcher   have 0 of 2
-      3 Vi, Peacekeeper           have 0 of 3
-      3 Watchful Sentry           have 0 of 3
-      1 Windswept Hillock         have 0 of 1

@@ -9,12 +9,268 @@
       "updated_at": "2026-08-23T15:17:58.500317591-07:00"
     },
     {
+      "riftbound_id": "ogn-046-298",
+      "name": "En Garde",
+      "number": "46/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:30:14.807220091-07:00"
+    },
+    {
+      "riftbound_id": "ogn-047-298",
+      "name": "Find Your Center",
+      "number": "47/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:31:33.839890845-07:00"
+    },
+    {
+      "riftbound_id": "ogn-083-298",
+      "name": "Consult the Past",
+      "number": "83/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:59.480010942-07:00"
+    },
+    {
+      "riftbound_id": "ogn-084-298",
+      "name": "Eager Apprentice",
+      "number": "84/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:31.070144155-07:00"
+    },
+    {
+      "riftbound_id": "ogn-085-298",
+      "name": "Falling Comet",
+      "number": "85/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:29.577318998-07:00"
+    },
+    {
+      "riftbound_id": "ogn-087-298",
+      "name": "Lecturing Yordle",
+      "number": "87/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:37.830627512-07:00"
+    },
+    {
+      "riftbound_id": "ogn-090-298",
+      "name": "Orb of Regret",
+      "number": "90/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:36.505617034-07:00"
+    },
+    {
+      "riftbound_id": "ogn-091-298",
+      "name": "Pit Crew",
+      "number": "91/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:19.137090297-07:00"
+    },
+    {
+      "riftbound_id": "ogn-092-298",
+      "name": "Riptide Rex",
+      "number": "92/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:03.400298511-07:00"
+    },
+    {
+      "riftbound_id": "ogn-093-298",
+      "name": "Smoke Screen",
+      "number": "93/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:50.063914657-07:00"
+    },
+    {
+      "riftbound_id": "ogn-095-298",
+      "name": "Stupefy",
+      "number": "95/298",
+      "set_id": "OGN",
+      "quantity": 6,
+      "updated_at": "2026-08-23T20:36:33.361671435-07:00"
+    },
+    {
+      "riftbound_id": "ogn-096-298",
+      "name": "Watchful Sentry",
+      "number": "96/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:35:59.728525241-07:00"
+    },
+    {
+      "riftbound_id": "ogn-097-298",
+      "name": "Blastcone Fae",
+      "number": "97/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:23.053625385-07:00"
+    },
+    {
+      "riftbound_id": "ogn-098-298",
+      "name": "Energy Conduit",
+      "number": "98/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:32:13.181414699-07:00"
+    },
+    {
+      "riftbound_id": "ogn-099-298",
+      "name": "Garbage Grabber",
+      "number": "99/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:31:58.532474303-07:00"
+    },
+    {
+      "riftbound_id": "ogn-102-298",
+      "name": "Portal Rescue",
+      "number": "102/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:44.162021225-07:00"
+    },
+    {
+      "riftbound_id": "ogn-106-298",
+      "name": "Sprite Mother",
+      "number": "106/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:33:12.104270018-07:00"
+    },
+    {
+      "riftbound_id": "ogn-107-298",
+      "name": "Ava Achiever",
+      "number": "107/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:41:08.586446592-07:00"
+    },
+    {
+      "riftbound_id": "ogn-108-298",
+      "name": "Convergent Mutation",
+      "number": "108/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:41:00.234441481-07:00"
+    },
+    {
+      "riftbound_id": "ogn-111-298",
+      "name": "Heimerdinger - Inventor",
+      "number": "111/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:40:54.378445721-07:00"
+    },
+    {
+      "riftbound_id": "ogn-112-298",
+      "name": "Kai'Sa - Evolutionary",
+      "number": "112/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:40:39.857898662-07:00"
+    },
+    {
+      "riftbound_id": "ogn-117-298",
+      "name": "Viktor - Innovator",
+      "number": "117/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:41:15.530850564-07:00"
+    },
+    {
+      "riftbound_id": "ogn-118-298",
+      "name": "Wraith of Echoes",
+      "number": "118/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:41:04.418756578-07:00"
+    },
+    {
+      "riftbound_id": "ogn-133-298",
+      "name": "Flurry of Blades",
+      "number": "133/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:37:08.450930876-07:00"
+    },
+    {
+      "riftbound_id": "ogn-134-298",
+      "name": "Mobilize",
+      "number": "134/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:37:36.372299805-07:00"
+    },
+    {
+      "riftbound_id": "ogn-136-298",
+      "name": "Pit Rookie",
+      "number": "136/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:38:02.796901279-07:00"
+    },
+    {
+      "riftbound_id": "ogn-169-298",
+      "name": "Gust",
+      "number": "169/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:40:28.177181522-07:00"
+    },
+    {
+      "riftbound_id": "ogn-172-298",
+      "name": "Rebuke",
+      "number": "172/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:39:22.81528667-07:00"
+    },
+    {
+      "riftbound_id": "ogn-176-298",
+      "name": "Sneaky Deckhand",
+      "number": "176/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:39:03.29490553-07:00"
+    },
+    {
+      "riftbound_id": "ogn-185-298",
+      "name": "Traveling Merchant",
+      "number": "185/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:39:45.447891323-07:00"
+    },
+    {
       "riftbound_id": "ogn-199-298",
       "name": "Tideturner",
       "number": "199/298",
       "set_id": "OGN",
       "quantity": 2,
       "updated_at": "2026-08-23T15:18:01.852295329-07:00"
+    },
+    {
+      "riftbound_id": "ogn-209-298",
+      "name": "Cull the Weak",
+      "number": "209/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:34:19.107637983-07:00"
+    },
+    {
+      "riftbound_id": "ogn-211-298",
+      "name": "Faithful Manufactor",
+      "number": "211/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:33:56.578593472-07:00"
     },
     {
       "riftbound_id": "sfd-001-221",
@@ -149,16 +405,16 @@
       "name": "Disarming Rake",
       "number": "32/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:12:28.514384322-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:29:36.845652127-07:00"
     },
     {
       "riftbound_id": "sfd-033-221",
       "name": "Doran's Shield",
       "number": "33/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:04:01.003695205-07:00"
+      "quantity": 2,
+      "updated_at": "2026-08-23T20:30:37.055457755-07:00"
     },
     {
       "riftbound_id": "sfd-034-221",
@@ -173,8 +429,8 @@
       "name": "Lonely Poro",
       "number": "36/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:10:46.450118788-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:29:47.495106455-07:00"
     },
     {
       "riftbound_id": "sfd-037-221",
@@ -199,6 +455,14 @@
       "set_id": "SFD",
       "quantity": 3,
       "updated_at": "2026-08-23T15:13:26.986235717-07:00"
+    },
+    {
+      "riftbound_id": "sfd-042-221",
+      "name": "Brutalizer",
+      "number": "42/221",
+      "set_id": "SFD",
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:27:45.18319653-07:00"
     },
     {
       "riftbound_id": "sfd-046-221",
@@ -231,6 +495,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:05:33.266925994-07:00"
+    },
+    {
+      "riftbound_id": "sfd-056-221",
+      "name": "Sterak's Gage",
+      "number": "56/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-08-23T20:29:03.558641292-07:00"
     },
     {
       "riftbound_id": "sfd-057-221",
@@ -405,8 +677,8 @@
       "name": "Punch First",
       "number": "97/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:12:03.506055571-07:00"
+      "quantity": 3,
+      "updated_at": "2026-08-23T20:38:33.157910161-07:00"
     },
     {
       "riftbound_id": "sfd-098-221",
@@ -633,14 +905,6 @@
       "updated_at": "2026-08-23T15:09:05.433894757-07:00"
     },
     {
-      "riftbound_id": "sfd-153-221",
-      "name": "Eye of the Herald",
-      "number": "153/221",
-      "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:14:17.570514835-07:00"
-    },
-    {
       "riftbound_id": "sfd-155-221",
       "name": "Honest Broker",
       "number": "155/221",
@@ -711,6 +975,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:04:31.803072241-07:00"
+    },
+    {
+      "riftbound_id": "sfd-165-221",
+      "name": "Glasc Mixologist",
+      "number": "165/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-08-23T20:35:00.877826066-07:00"
     },
     {
       "riftbound_id": "sfd-166-221",
