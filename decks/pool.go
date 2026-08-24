@@ -2,6 +2,7 @@ package decks
 
 import (
 	"regexp"
+	"slices"
 	"strings"
 
 	"rb/cards"
@@ -23,6 +24,39 @@ type pool struct {
 	// runes marks the keys the catalog files as runes, so a list that keeps
 	// them somewhere other than its rune pool still has them passed over.
 	runes map[string]bool
+	// filed is what the catalog prints under each key besides the count, for
+	// saying where a missing card can be found and what it costs to play.
+	filed map[string]*Details
+}
+
+// Details is what the catalog says about a card beyond how many are owned:
+// every set it is printed in, and the domains it belongs to.
+type Details struct {
+	Sets    []string
+	Domains []string
+}
+
+func (d *Details) add(c cards.Card) {
+	d.Sets = appendUnique(d.Sets, c.Set.Label)
+	for _, domain := range c.Classification.Domain {
+		d.Domains = appendUnique(d.Domains, domain)
+	}
+}
+
+func (d *Details) merge(other *Details) {
+	for _, s := range other.Sets {
+		d.Sets = appendUnique(d.Sets, s)
+	}
+	for _, domain := range other.Domains {
+		d.Domains = appendUnique(d.Domains, domain)
+	}
+}
+
+func appendUnique(xs []string, x string) []string {
+	if x == "" || slices.Contains(xs, x) {
+		return xs
+	}
+	return append(xs, x)
 }
 
 func newPool(cs []cards.Card, owned map[string]int) *pool {
@@ -31,6 +65,7 @@ func newPool(cs []cards.Card, owned map[string]int) *pool {
 		squashed: make(map[string]int, len(cs)),
 		printed:  make(map[string]string, len(cs)),
 		runes:    map[string]bool{},
+		filed:    make(map[string]*Details, len(cs)),
 	}
 	for _, c := range cs {
 		// Cards nobody owns are keyed too, so a name the catalog knows can be
@@ -41,11 +76,27 @@ func newPool(cs []cards.Card, owned map[string]int) *pool {
 		if _, seen := p.printed[k]; !seen {
 			p.printed[k] = c.BaseName()
 		}
+		p.file(k).add(c)
 		if c.Classification.Type == "Rune" {
 			p.runes[k], p.runes[squash(k)] = true, true
 		}
 	}
 	return p
+}
+
+// file returns the details filed under a key, opening one if the key is new.
+// The squashed spelling only fills a gap, so a name a card is really printed
+// under is never displaced by another card's fallback.
+func (p *pool) file(k string) *Details {
+	d, ok := p.filed[k]
+	if !ok {
+		d = &Details{}
+		p.filed[k] = d
+	}
+	if _, ok := p.filed[squash(k)]; !ok {
+		p.filed[squash(k)] = d
+	}
+	return d
 }
 
 var (
@@ -92,6 +143,38 @@ func (p *pool) have(name string) (qty int, known bool) {
 		}
 	}
 	return qty, known
+}
+
+// details reports what the catalog prints the named card as. It walks the
+// same three steps as have — the name as filed, the name with its word breaks
+// gone, then the keys it shares a tail with — so the sets and domains come
+// off whichever printings answered for the count.
+func (p *pool) details(name string) Details {
+	want := normalize(name)
+	if d, ok := p.filed[want]; ok {
+		return *d
+	}
+	if d, ok := p.filed[squash(want)]; ok {
+		return *d
+	}
+
+	// Tail matches come out of a map, so they are sorted before merging to
+	// keep the report the same from one run to the next.
+	var keys []string
+	for k := range p.owned {
+		if sharesTail(k, want) {
+			keys = append(keys, k)
+		}
+	}
+	slices.Sort(keys)
+
+	var out Details
+	for _, k := range keys {
+		if d, ok := p.filed[k]; ok {
+			out.merge(d)
+		}
+	}
+	return out
 }
 
 // sharesTail reports whether one of the names ends in the other, on a whole

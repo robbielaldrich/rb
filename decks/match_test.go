@@ -96,7 +96,7 @@ func TestReportSaysWhatCanBeBuilt(t *testing.T) {
 		"2 decks · 1 you can build · runes ignored · sideboards excluded",
 		"✓ Shadow Aggro · 1 card",
 		"✗ Rush Combo · 2 of 3 cards missing",
-		"2 Lightning Rush   have 1 of 3",
+		"2 Lightning Rush   have 1 of 3   Fury · Vendetta, Origins",
 	} {
 		if !strings.Contains(got, want) {
 			t.Errorf("the report doesn't say %q:\n%s", want, got)
@@ -155,5 +155,46 @@ func write(t *testing.T, path, content string) {
 	t.Helper()
 	if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
 		t.Fatalf("failed to write %s: %v", path, err)
+	}
+}
+
+// Knowing a card is missing is only half of it: the report says which sets it
+// can be bought out of and what domain it has to be played in.
+func TestReportSaysWhereAMissingCardIsPrintedAndWhatItCosts(t *testing.T) {
+	p := testPool(nil)
+	d := parse(t, "MainDeck:\n1 Lightning Rush\n1 Rek'sai, Void Burrower\n")
+
+	got := strings.Join(shortfallLines(check(d, p, false).Missing), "\n")
+	for _, want := range []string{
+		"Fury · Vendetta, Origins",
+		"Fury/Order · Vendetta",
+	} {
+		if !strings.Contains(got, want) {
+			t.Errorf("the report doesn't say %q:\n%s", want, got)
+		}
+	}
+}
+
+// An unknown name writes a long line and has no sets to name, so it is left
+// out of the column that lines the sets up rather than pushing them across
+// the page.
+func TestAnUnknownNameDoesntWidenTheSetColumn(t *testing.T) {
+	d := parse(t, "MainDeck:\n1 Lightning Rush\n1 Lightnign Rush of the Void\n")
+
+	lines := shortfallLines(check(d, testPool(nil), false).Missing)
+	if len(lines) != 2 {
+		t.Fatalf("lines = %v, want both cards", lines)
+	}
+	for _, line := range lines {
+		switch {
+		case strings.HasPrefix(line, "1 Lightning Rush "):
+			if want := "1 Lightning Rush               have 0 of 1   Fury · Vendetta, Origins"; line != want {
+				t.Errorf("line = %q, want %q", line, want)
+			}
+		default:
+			if strings.HasSuffix(line, " ") {
+				t.Errorf("line = %q, want no padding after a note nothing follows", line)
+			}
+		}
 	}
 }

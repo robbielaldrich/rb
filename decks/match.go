@@ -25,9 +25,26 @@ type Shortfall struct {
 	// Nearest is the catalog name closest to an unknown one, where there is
 	// one close enough to be worth suggesting.
 	Nearest string
+	// Sets and Domains say where the card can be found and what it needs to
+	// be played, the two things worth knowing before going out to buy it.
+	Sets    []string
+	Domains []string
 }
 
 func (s Shortfall) short() int { return s.Need - s.Have }
+
+// detail renders the card's domains and sets, e.g. "Fury/Mind · Origins,
+// Vendetta". An unknown name has neither, and comes back empty.
+func (s Shortfall) detail() string {
+	var parts []string
+	if len(s.Domains) > 0 {
+		parts = append(parts, strings.Join(s.Domains, "/"))
+	}
+	if len(s.Sets) > 0 {
+		parts = append(parts, strings.Join(s.Sets, ", "))
+	}
+	return strings.Join(parts, " · ")
+}
 
 // Result is how one deck stands against the collection.
 type Result struct {
@@ -56,6 +73,9 @@ type Options struct {
 	// ReportPath is where to keep a copy of the report to read later; no copy
 	// is kept when it is empty.
 	ReportPath string
+	// DataPath is where to leave the same results as JSON for the collection
+	// page to lay out; nothing is written when it is empty.
+	DataPath string
 	// Sideboard requires the sideboard as well, which a deck can be taken to
 	// a table without.
 	Sideboard bool
@@ -84,17 +104,23 @@ func Match(opts Options, w io.Writer) error {
 		return fmt.Errorf("failed to load collection: %w", err)
 	}
 
+	res := evaluate(reg.Decks, newPool(cs, owned), opts.Sideboard)
+
 	var report bytes.Buffer
-	writeReport(&report, evaluate(reg.Decks, newPool(cs, owned), opts.Sideboard), opts.Sideboard)
+	writeReport(&report, res, opts.Sideboard)
 
 	if _, err := w.Write(report.Bytes()); err != nil {
 		return fmt.Errorf("failed to write the report: %w", err)
 	}
-	if opts.ReportPath == "" {
-		return nil
+	if opts.ReportPath != "" {
+		if err := writeFile(opts.ReportPath, report.Bytes()); err != nil {
+			return fmt.Errorf("failed to keep a copy of the report: %w", err)
+		}
 	}
-	if err := writeFile(opts.ReportPath, report.Bytes()); err != nil {
-		return fmt.Errorf("failed to keep a copy of the report: %w", err)
+	if opts.DataPath != "" {
+		if err := writeData(opts.DataPath, res, opts.Sideboard); err != nil {
+			return fmt.Errorf("failed to write the report data: %w", err)
+		}
 	}
 	return nil
 }
@@ -135,6 +161,9 @@ func check(d Deck, p *pool, sideboard bool) Result {
 		short := Shortfall{Name: e.Name, Need: e.Quantity, Have: have, Unknown: !known}
 		if !known {
 			short.Nearest, _ = p.nearest(e.Name)
+		} else {
+			d := p.details(e.Name)
+			short.Sets, short.Domains = d.Sets, d.Domains
 		}
 		r.Missing = append(r.Missing, short)
 	}
@@ -167,24 +196,39 @@ func writeReport(w io.Writer, res []Result, sideboard bool) {
 }
 
 // shortfallLines renders the missing cards as a shopping list, e.g.
-// "2 Lightning Rush    have 1 of 3", with the counts in a column.
+// "2 Lightning Rush    have 1 of 3   Fury · Origins", with each part in a
+// column.
 func shortfallLines(ms []Shortfall) []string {
-	width := 0
-	for _, m := range ms {
-		width = max(width, utf8.RuneCountInString(m.Name))
+	notes := make([]string, len(ms))
+	details := make([]string, len(ms))
+	nameWidth, noteWidth := 0, 0
+	for i, m := range ms {
+		notes[i] = fmt.Sprintf("have %d of %d", m.Have, m.Need)
+		switch {
+		case m.Unknown && m.Nearest != "":
+			notes[i] = fmt.Sprintf("no such card in the catalog, did you mean %q?", m.Nearest)
+		case m.Unknown:
+			notes[i] = "no such card in the catalog"
+		}
+		details[i] = m.detail()
+
+		nameWidth = max(nameWidth, utf8.RuneCountInString(m.Name))
+		// A note with nothing after it needs no padding, so the long line an
+		// unknown name writes doesn't push every set label across the page.
+		if details[i] != "" {
+			noteWidth = max(noteWidth, utf8.RuneCountInString(notes[i]))
+		}
 	}
 
 	lines := make([]string, len(ms))
 	for i, m := range ms {
-		note := fmt.Sprintf("have %d of %d", m.Have, m.Need)
-		switch {
-		case m.Unknown && m.Nearest != "":
-			note = fmt.Sprintf("no such card in the catalog, did you mean %q?", m.Nearest)
-		case m.Unknown:
-			note = "no such card in the catalog"
+		line := strconv.Itoa(m.short()) + " " + m.Name + pad(nameWidth-utf8.RuneCountInString(m.Name)) + "   " + notes[i]
+		if details[i] != "" {
+			line += pad(noteWidth-utf8.RuneCountInString(notes[i])) + "   " + details[i]
 		}
-		pad := strings.Repeat(" ", width-utf8.RuneCountInString(m.Name))
-		lines[i] = strconv.Itoa(m.short()) + " " + m.Name + pad + "   " + note
+		lines[i] = line
 	}
 	return lines
 }
+
+func pad(n int) string { return strings.Repeat(" ", max(n, 0)) }

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Riftbound collection</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fafafa; --fg: #111; --muted: #666; --line: #ddd;
+    --have: #1a7f37; --short: #b3261e; --accent: #0969da;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111; --fg: #eee; --muted: #999; --line: #333;
+      --have: #3fb950; --short: #f85149; --accent: #58a6ff;
+    }
+  }
+  body {
+    margin: 0 auto; padding: 2rem 1rem; max-width: 48rem;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--fg);
+  }
+  h1 { font-size: 1.25rem; margin: 0 0 1rem; }
+  input {
+    width: 100%; box-sizing: border-box; padding: .6rem .75rem; font-size: 1rem;
+    border: 1px solid var(--line); border-radius: .5rem;
+    background: transparent; color: inherit;
+  }
+  .status { color: var(--muted); font-size: .85rem; margin: .75rem 0; }
+
+  /* Tabs */
+  [role="tablist"] { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem; }
+  [role="tab"] {
+    appearance: none; background: none; border: 0; border-bottom: 2px solid transparent;
+    margin-bottom: -1px; padding: .5rem .75rem; font: inherit; font-size: .95rem;
+    color: var(--muted); cursor: pointer;
+  }
+  [role="tab"]:hover { color: var(--fg); }
+  [role="tab"][aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 600; }
+  [role="tabpanel"][hidden] { display: none; }
+
+  /* Card search */
+  #results { list-style: none; margin: 0; padding: 0; }
+  #results li { display: flex; gap: .75rem; align-items: center; padding: .5rem 0; border-top: 1px solid var(--line); }
+  .thumb { width: 80px; flex: none; }
+  .thumb img { display: block; width: 100%; height: auto; border-radius: .25rem; background: var(--line); aspect-ratio: 744 / 1039; }
+  .thumb img.landscape { aspect-ratio: 1039 / 744; }
+  .name { flex: 1; }
+  .set { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+  .qty { font-size: .85rem; font-weight: 600; color: var(--have); }
+  .qty.none { color: var(--muted); font-weight: 400; }
+
+  /* Decks */
+  .deck { border-top: 1px solid var(--line); }
+  .deck > summary {
+    display: flex; gap: .75rem; align-items: baseline;
+    padding: .6rem .25rem; cursor: pointer; list-style: none;
+  }
+  .deck > summary::-webkit-details-marker { display: none; }
+  .deck > summary::before { content: "▸"; color: var(--muted); font-size: .8rem; }
+  .deck[open] > summary::before { content: "▾"; }
+  .deck-name { flex: 1; font-weight: 600; }
+  .badge { font-size: .8rem; font-variant-numeric: tabular-nums; color: var(--short); }
+  .badge.ok { color: var(--have); }
+  .deck-size { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .missing { list-style: none; margin: 0 0 .75rem; padding: 0 .25rem 0 1.5rem; }
+  .missing li {
+    display: grid; gap: 0 .75rem; align-items: baseline;
+    grid-template-columns: 1.75rem minmax(9rem, 1fr) auto;
+    padding: .25rem 0; font-size: .875rem;
+  }
+  .need { font-variant-numeric: tabular-nums; color: var(--short); font-weight: 600; }
+  .missing .card { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-align: left; cursor: pointer; }
+  .missing .card:hover { text-decoration: underline; }
+  .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .where { grid-column: 2 / -1; color: var(--muted); font-size: .8rem; }
+  .unknown { grid-column: 2 / -1; color: var(--short); font-size: .8rem; }
+</style>
+</head>
+<body>
+<h1>Riftbound collection</h1>
+
+<nav role="tablist" aria-label="Views">
+  <button role="tab" id="tab-search" aria-controls="panel-search" aria-selected="true">Do I have this card?</button>
+  <button role="tab" id="tab-decks" aria-controls="panel-decks" aria-selected="false">Decks</button>
+</nav>
+
+<section role="tabpanel" id="panel-search" aria-labelledby="tab-search">
+  <input id="q" type="search" placeholder="Search by card name&hellip;" autofocus disabled>
+  <p id="status" class="status">Loading catalog&hellip;</p>
+  <ul id="results"></ul>
+</section>
+
+<section role="tabpanel" id="panel-decks" aria-labelledby="tab-decks" hidden>
+  <p id="decks-status" class="status">Loading decks&hellip;</p>
+  <div id="decks"></div>
+</section>
+
+<script>
+const q = document.getElementById("q");
+const status = document.getElementById("status");
+const results = document.getElementById("results");
+let cards = [];
+
+Promise.all([
+  fetch("./cards/cards.json").then(r => r.json()),
+  fetch("./collection/collection.json").then(r => r.json()),
+]).then(([catalog, coll]) => {
+  const owned = new Map();
+  for (const c of coll.cards || []) owned.set(c.riftbound_id, c.quantity);
+  // The catalog lists some printings twice under one riftbound_id; keep one row each.
+  const byID = new Map();
+  for (const c of catalog) {
+    if (byID.has(c.riftbound_id)) continue;
+    byID.set(c.riftbound_id, {
+      name: c.name,
+      id: c.riftbound_id,
+      set: c.set.set_id,
+      number: c.collector_number,
+      image: c.media.image_url,
+      landscape: c.orientation === "landscape",
+      qty: owned.get(c.riftbound_id) || 0,
+    });
+  }
+  cards = [...byID.values()];
+  const have = cards.filter(c => c.qty > 0).length;
+  status.textContent = `${have} of ${cards.length} cards in the collection.`;
+  q.disabled = false;
+  q.focus();
+}).catch(err => {
+  status.textContent = "Failed to load card data: " + err;
+});
+
+q.addEventListener("input", () => {
+  const term = q.value.trim().toLowerCase();
+  results.innerHTML = "";
+  if (!term) return;
+  const matches = cards.filter(c => c.name.toLowerCase().includes(term));
+  const shown = matches.slice(0, 50);
+  status.textContent = matches.length === 0
+    ? `No card named like "${q.value.trim()}".`
+    : `${matches.length} match${matches.length === 1 ? "" : "es"}` +
+      (matches.length > shown.length ? `, showing the first ${shown.length}.` : ".");
+  for (const c of shown) {
+    const li = document.createElement("li");
+    const thumb = document.createElement("a");
+    thumb.className = "thumb";
+    thumb.href = c.image;
+    thumb.target = "_blank";
+    thumb.rel = "noreferrer";
+    const img = document.createElement("img");
+    // The catalog art is ~750px wide; ask the CDN for a thumbnail instead.
+    // Most URLs already carry a query string, but not all of them.
+    img.src = c.image + (c.image.includes("?") ? "&" : "?") + "w=160";
+    img.alt = c.name;
+    img.loading = "lazy";
+    if (c.landscape) img.className = "landscape";
+    thumb.append(img);
+    const name = document.createElement("span");
+    name.className = "name";
+    name.textContent = c.name;
+    const set = document.createElement("span");
+    set.className = "set";
+    set.textContent = `${c.set} ${c.number}`;
+    const qty = document.createElement("span");
+    qty.className = c.qty > 0 ? "qty" : "qty none";
+    qty.textContent = c.qty > 0 ? `×${c.qty}` : "—";
+    li.append(thumb, name, set, qty);
+    results.append(li);
+  }
+});
+
+/* Tabs */
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function select(tab) {
+  for (const t of tabs) {
+    const on = t === tab;
+    t.setAttribute("aria-selected", String(on));
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+  }
+  // The open tab lives in the URL, so a view can be linked to and survives
+  // a reload. Guarded, since assigning the hash fires hashchange straight back.
+  const hash = tab.id === "tab-decks" ? "#decks" : "#search";
+  if (location.hash !== hash) location.hash = hash;
+  if (tab.id === "tab-decks") loadDecks();
+  if (tab.id === "tab-search" && !q.disabled) q.focus();
+}
+for (const t of tabs) t.addEventListener("click", () => select(t));
+
+const fromHash = () =>
+  document.getElementById(location.hash === "#decks" ? "tab-decks" : "tab-search");
+window.addEventListener("hashchange", () => select(fromHash()));
+
+/* Decks */
+const decksStatus = document.getElementById("decks-status");
+const decksEl = document.getElementById("decks");
+let decksLoaded = false;
+
+function loadDecks() {
+  if (decksLoaded) return;
+  decksLoaded = true;
+  fetch("./decks/match-decks-result.json")
+    .then(r => r.json())
+    .then(render)
+    .catch(err => {
+      // The report is generated by `just match-decks`, so a missing file
+      // means it hasn't been run since the decks were registered.
+      decksStatus.textContent = "Failed to load the deck report: " + err;
+    });
+}
+
+function render(report) {
+  const buildable = report.decks.filter(d => d.buildable).length;
+  const scope = report.sideboard ? "sideboards included" : "sideboards excluded";
+  decksStatus.textContent =
+    `${report.decks.length} deck${report.decks.length === 1 ? "" : "s"} · ` +
+    `${buildable} you can build · runes ignored · ${scope}.`;
+
+  for (const d of report.decks) {
+    const deck = document.createElement("details");
+    deck.className = "deck";
+
+    const summary = document.createElement("summary");
+    const name = document.createElement("span");
+    name.className = "deck-name";
+    name.textContent = d.name;
+    const badge = document.createElement("span");
+    badge.className = d.buildable ? "badge ok" : "badge";
+    badge.textContent = d.buildable
+      ? "✓ buildable"
+      : `${d.short} card${d.short === 1 ? "" : "s"} short`;
+    const size = document.createElement("span");
+    size.className = "deck-size";
+    size.textContent = `${d.size} cards`;
+    summary.append(name, badge, size);
+    deck.append(summary);
+
+    if (d.buildable) {
+      // Nothing to list, so the row stays a closed line with its tick.
+      decksEl.append(deck);
+      continue;
+    }
+
+    const ul = document.createElement("ul");
+    ul.className = "missing";
+    for (const m of d.missing) {
+      const li = document.createElement("li");
+
+      const need = document.createElement("span");
+      need.className = "need";
+      need.textContent = `${m.short}×`;
+
+      // The name jumps to the search tab, since the next question after
+      // "what am I missing" is usually "what does it look like".
+      const card = document.createElement("button");
+      card.className = "card";
+      card.type = "button";
+      card.textContent = m.name;
+      card.addEventListener("click", () => {
+        select(document.getElementById("tab-search"));
+        q.value = m.name;
+        q.dispatchEvent(new Event("input"));
+      });
+
+      const count = document.createElement("span");
+      count.className = "count";
+      count.textContent = `have ${m.have} of ${m.need}`;
+      li.append(need, card, count);
+
+      if (m.unknown) {
+        const note = document.createElement("span");
+        note.className = "unknown";
+        note.textContent = m.nearest
+          ? `no such card in the catalog — did you mean “${m.nearest}”?`
+          : "no such card in the catalog";
+        li.append(note);
+      } else {
+        const where = document.createElement("span");
+        where.className = "where";
+        where.textContent = [
+          (m.domains || []).join("/"),
+          (m.sets || []).join(", "),
+        ].filter(Boolean).join(" · ");
+        if (where.textContent) li.append(where);
+      }
+      ul.append(li);
+    }
+    deck.append(ul);
+    decksEl.append(deck);
+  }
+}
+
+select(fromHash());
+</script>
+</body>
+</html>

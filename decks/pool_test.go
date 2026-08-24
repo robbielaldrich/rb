@@ -1,13 +1,32 @@
 package decks
 
 import (
+	"slices"
 	"testing"
 
 	"rb/cards"
 )
 
+// printing is a card as the catalog files it. It comes out of Vendetta in
+// the Fury domain unless a test cares otherwise, since most don't.
 func printing(id, name string) cards.Card {
-	return cards.Card{Name: name, RiftboundID: id}
+	c := cards.Card{Name: name, RiftboundID: id}
+	c.Set = cards.CardSet{SetID: "VEN", Label: "Vendetta"}
+	c.Classification.Domain = []string{"Fury"}
+	return c
+}
+
+// printedIn refiles a printing under another set, for the cards the catalog
+// reprints.
+func printedIn(c cards.Card, setID, label string) cards.Card {
+	c.Set = cards.CardSet{SetID: setID, Label: label}
+	return c
+}
+
+// inDomains says what a card costs to play, for the ones that take two.
+func inDomains(c cards.Card, ds ...string) cards.Card {
+	c.Classification.Domain = ds
+	return c
 }
 
 func runePrinting(id, name string) cards.Card {
@@ -23,12 +42,12 @@ func testPool(owned map[string]int) *pool {
 	return newPool([]cards.Card{
 		printing("ven-156-166", "Lightning Rush"),
 		printing("ven-156a-166", "Lightning Rush (Alternate Art)"),
-		printing("ogn-201-298", "Lightning Rush"),
+		printedIn(printing("ogn-201-298", "Lightning Rush"), "OGN", "Origins"),
 		printing("ven-111-166", "Nocturne - Horrifying"),
 		printing("ven-155-166", "Yordle, Kennen - Heart of the Tempest"),
-		printing("ven-197-166", "Heart of the Tempest"),
+		inDomains(printedIn(printing("ven-197-166", "Heart of the Tempest"), "OGN", "Origins"), "Order"),
 		printing("ven-042-166", "Shadow"),
-		printing("ven-160-166", "Rek'sai - Void Burrower"),
+		inDomains(printing("ven-160-166", "Rek'sai - Void Burrower"), "Fury", "Order"),
 		runePrinting("ven-r05", "Chaos Rune"),
 		printing("ven-043-166", "Shadow Order Disciple"),
 	}, owned)
@@ -129,5 +148,45 @@ func TestPastedNamesResolveAgainstTheCatalog(t *testing.T) {
 		if _, known := p.have(e.Name); !known {
 			t.Errorf("no card in the catalog answers to %q", e.Name)
 		}
+	}
+}
+
+// A card is worth buying wherever it is printed, so every set it has appeared
+// in is listed, not just the one the first printing came out of.
+func TestDetailsGatherEverySetACardIsPrintedIn(t *testing.T) {
+	got := testPool(nil).details("Lightning Rush")
+	if want := []string{"Vendetta", "Origins"}; !slices.Equal(got.Sets, want) {
+		t.Errorf("sets = %v, want %v", got.Sets, want)
+	}
+	if want := []string{"Fury"}; !slices.Equal(got.Domains, want) {
+		t.Errorf("domains = %v, want %v", got.Domains, want)
+	}
+}
+
+func TestDetailsKeepBothDomainsOfADualCard(t *testing.T) {
+	got := testPool(nil).details("Rek'Sai, Void Burrower")
+	if want := []string{"Fury", "Order"}; !slices.Equal(got.Domains, want) {
+		t.Errorf("domains = %v, want %v", got.Domains, want)
+	}
+}
+
+// Where a name is only matched on its tail it can answer to more than one
+// printing, and the details have to cover all of them.
+func TestDetailsMergeThePrintingsThatAnswerForAName(t *testing.T) {
+	got := testPool(nil).details("Kennen - Heart of the Tempest")
+	if want := []string{"Origins", "Vendetta"}; !slices.Equal(got.Sets, want) {
+		t.Errorf("sets = %v, want %v", got.Sets, want)
+	}
+	if want := []string{"Order", "Fury"}; !slices.Equal(got.Domains, want) {
+		t.Errorf("domains = %v, want %v", got.Domains, want)
+	}
+}
+
+// A name nothing is printed under has nowhere to be bought and no domain, so
+// there is nothing to say about it beyond that the catalog doesn't know it.
+func TestDetailsOfAnUnknownNameAreEmpty(t *testing.T) {
+	got := testPool(nil).details("Lightnign Rush")
+	if len(got.Sets) != 0 || len(got.Domains) != 0 {
+		t.Errorf("details = %+v, want nothing for a name the catalog doesn't print", got)
 	}
 }
