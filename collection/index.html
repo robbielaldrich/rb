@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection lookup</title>
+<style>
+  :root { color-scheme: light dark; --bg: #fafafa; --fg: #111; --muted: #666; --line: #ddd; --have: #1a7f37; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111; --fg: #eee; --muted: #999; --line: #333; --have: #3fb950; }
+  }
+  body {
+    margin: 0 auto; padding: 2rem 1rem; max-width: 40rem;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--fg);
+  }
+  h1 { font-size: 1.25rem; margin: 0 0 1rem; }
+  input {
+    width: 100%; box-sizing: border-box; padding: .6rem .75rem; font-size: 1rem;
+    border: 1px solid var(--line); border-radius: .5rem;
+    background: transparent; color: inherit;
+  }
+  #status { color: var(--muted); font-size: .85rem; margin: .75rem 0; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: flex; gap: .75rem; align-items: baseline; padding: .5rem 0; border-top: 1px solid var(--line); }
+  .name { flex: 1; }
+  .set { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+  .qty { font-size: .85rem; font-weight: 600; color: var(--have); }
+  .qty.none { color: var(--muted); font-weight: 400; }
+</style>
+</head>
+<body>
+<h1>Do I have this card?</h1>
+<input id="q" type="search" placeholder="Search by card name&hellip;" autofocus disabled>
+<p id="status">Loading catalog&hellip;</p>
+<ul id="results"></ul>
+
+<script>
+const q = document.getElementById("q");
+const status = document.getElementById("status");
+const results = document.getElementById("results");
+let cards = [];
+
+Promise.all([
+  fetch("../cards/cards.json").then(r => r.json()),
+  fetch("./collection.json").then(r => r.json()),
+]).then(([catalog, coll]) => {
+  const owned = new Map();
+  for (const c of coll.cards || []) owned.set(c.riftbound_id, c.quantity);
+  // The catalog lists some printings twice under one riftbound_id; keep one row each.
+  const byID = new Map();
+  for (const c of catalog) {
+    if (byID.has(c.riftbound_id)) continue;
+    byID.set(c.riftbound_id, {
+      name: c.name,
+      id: c.riftbound_id,
+      set: c.set.set_id,
+      number: c.collector_number,
+      qty: owned.get(c.riftbound_id) || 0,
+    });
+  }
+  cards = [...byID.values()];
+  const have = cards.filter(c => c.qty > 0).length;
+  status.textContent = `${have} of ${cards.length} cards in the collection.`;
+  q.disabled = false;
+  q.focus();
+}).catch(err => {
+  status.textContent = "Failed to load card data: " + err;
+});
+
+q.addEventListener("input", () => {
+  const term = q.value.trim().toLowerCase();
+  results.innerHTML = "";
+  if (!term) return;
+  const matches = cards.filter(c => c.name.toLowerCase().includes(term));
+  status.textContent = matches.length === 0
+    ? `No card named like "${q.value.trim()}".`
+    : `${matches.length} match${matches.length === 1 ? "" : "es"}.`;
+  for (const c of matches.slice(0, 50)) {
+    const li = document.createElement("li");
+    const name = document.createElement("span");
+    name.className = "name";
+    name.textContent = c.name;
+    const set = document.createElement("span");
+    set.className = "set";
+    set.textContent = `${c.set} ${c.number}`;
+    const qty = document.createElement("span");
+    qty.className = c.qty > 0 ? "qty" : "qty none";
+    qty.textContent = c.qty > 0 ? `×${c.qty}` : "—";
+    li.append(name, set, qty);
+    results.append(li);
+  }
+});
+</script>
+</body>
+</html>
