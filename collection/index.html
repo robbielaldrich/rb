@@ -22,7 +22,10 @@
   }
   #status { color: var(--muted); font-size: .85rem; margin: .75rem 0; }
   ul { list-style: none; margin: 0; padding: 0; }
-  li { display: flex; gap: .75rem; align-items: baseline; padding: .5rem 0; border-top: 1px solid var(--line); }
+  li { display: flex; gap: .75rem; align-items: center; padding: .5rem 0; border-top: 1px solid var(--line); }
+  .thumb { width: 80px; flex: none; }
+  .thumb img { display: block; width: 100%; height: auto; border-radius: .25rem; background: var(--line); aspect-ratio: 744 / 1039; }
+  .thumb img.landscape { aspect-ratio: 1039 / 744; }
   .name { flex: 1; }
   .set { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
   .qty { font-size: .85rem; font-weight: 600; color: var(--have); }
@@ -56,6 +59,8 @@ Promise.all([
       id: c.riftbound_id,
       set: c.set.set_id,
       number: c.collector_number,
+      image: c.media.image_url,
+      landscape: c.orientation === "landscape",
       qty: owned.get(c.riftbound_id) || 0,
     });
   }
@@ -73,11 +78,26 @@ q.addEventListener("input", () => {
   results.innerHTML = "";
   if (!term) return;
   const matches = cards.filter(c => c.name.toLowerCase().includes(term));
+  const shown = matches.slice(0, 50);
   status.textContent = matches.length === 0
     ? `No card named like "${q.value.trim()}".`
-    : `${matches.length} match${matches.length === 1 ? "" : "es"}.`;
-  for (const c of matches.slice(0, 50)) {
+    : `${matches.length} match${matches.length === 1 ? "" : "es"}` +
+      (matches.length > shown.length ? `, showing the first ${shown.length}.` : ".");
+  for (const c of shown) {
     const li = document.createElement("li");
+    const thumb = document.createElement("a");
+    thumb.className = "thumb";
+    thumb.href = c.image;
+    thumb.target = "_blank";
+    thumb.rel = "noreferrer";
+    const img = document.createElement("img");
+    // The catalog art is ~750px wide; ask the CDN for a thumbnail instead.
+    // Most URLs already carry a query string, but not all of them.
+    img.src = c.image + (c.image.includes("?") ? "&" : "?") + "w=160";
+    img.alt = c.name;
+    img.loading = "lazy";
+    if (c.landscape) img.className = "landscape";
+    thumb.append(img);
     const name = document.createElement("span");
     name.className = "name";
     name.textContent = c.name;
@@ -87,7 +107,7 @@ q.addEventListener("input", () => {
     const qty = document.createElement("span");
     qty.className = c.qty > 0 ? "qty" : "qty none";
     qty.textContent = c.qty > 0 ? `×${c.qty}` : "—";
-    li.append(name, set, qty);
+    li.append(thumb, name, set, qty);
     results.append(li);
   }
 });
