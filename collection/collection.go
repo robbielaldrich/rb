@@ -145,3 +145,18 @@ func (c *collection) save(path string) error {
 	}
 	return nil
 }
+
+// Owned reports how many copies of each card the collection holds, keyed by
+// riftbound_id, for callers that only want the counts and not the file.
+func Owned(path string) (map[string]int, error) {
+	c, err := load(path)
+	if err != nil {
+		return nil, fmt.Errorf("failed to load collection: %w", err)
+	}
+
+	owned := make(map[string]int, len(c.Cards))
+	for _, e := range c.Cards {
+		owned[e.RiftboundID] += e.Quantity
+	}
+	return owned, nil
+}

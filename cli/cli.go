@@ -9,10 +9,11 @@ import (
 
 	"rb/ankigen"
 	"rb/collection"
+	"rb/decks"
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "gen-anki"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -45,6 +46,20 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
 		return func() error { return collectionStats(*collectionFile, *catalogFile) }
+
+	case "add-decks":
+		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
+		decksFile := fs.String("decks-file", "decks/decks.json", "deck register to append to")
+		return func() error { return addDecks(*decksFile, *catalogFile) }
+
+	case "match-decks":
+		var opts decks.Options
+		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to read the deck names through")
+		fs.StringVar(&opts.CollectionPath, "collection-file", "collection/collection.json", "collection to build the decks out of")
+		fs.StringVar(&opts.DecksPath, "decks-file", "decks/decks.json", "deck register to measure")
+		fs.StringVar(&opts.ReportPath, "out", "decks/match-decks-result.txt", "file to keep a copy of the report in, or \"\" to keep none")
+		fs.BoolVar(&opts.Sideboard, "sideboard", false, "count the sideboard as part of the deck")
+		return func() error { return matchDecks(opts) }
 
 	case "gen-anki":
 		var opts ankigen.Options
@@ -153,6 +168,23 @@ func validate(collectionFile, setID string) error {
 func collectionStats(collectionFile, catalogFile string) error {
 	if err := collection.Stats(collectionFile, catalogFile, os.Stdout); err != nil {
 		return fmt.Errorf("failed to summarise the collection: %w", err)
+	}
+	return nil
+}
+
+func addDecks(decksFile, catalogFile string) error {
+	if err := decks.RunAdder(decksFile, catalogFile); err != nil {
+		return fmt.Errorf("failed to register the decks: %w", err)
+	}
+	return nil
+}
+
+func matchDecks(opts decks.Options) error {
+	if err := decks.Match(opts, os.Stdout); err != nil {
+		return fmt.Errorf("failed to match the decks against the collection: %w", err)
+	}
+	if opts.ReportPath != "" {
+		fmt.Printf("\nkept a copy in %s\n", opts.ReportPath)
 	}
 	return nil
 }
