@@ -19,6 +19,12 @@ type Options struct {
 	// MaskFraction is how much of the card's height to paint out, measured
 	// from the top edge.
 	MaskFraction float64
+	// EffectDeckName is the companion deck that asks what a Hidden card does
+	// rather than what it costs.
+	EffectDeckName string
+	// EffectMaskFraction is how much of the card's height to paint out for
+	// that deck, measured from the bottom edge.
+	EffectMaskFraction float64
 	// ImageWidth caps the pixel width of the generated images; 0 keeps the
 	// scans at their original size.
 	ImageWidth int
@@ -31,19 +37,22 @@ type Options struct {
 // Result reports what a run produced, so the caller can tell the user where
 // things landed.
 type Result struct {
-	DeckFile string
-	MediaDir string
-	Notes    int
-	Images   int
+	CostDeckFile   string
+	EffectDeckFile string
+	MediaDir       string
+	Notes          int
+	Images         int
 }
 
 // mediaPrefix namespaces the generated files inside Anki's collection.media,
 // which is one flat folder shared by every deck.
 const mediaPrefix = "rb-"
 
-// GenerateHiddenCosts builds a deck for memorising what the cards with the
-// Hidden keyword cost. The front is the card with its top band painted out,
-// hiding the printed cost; the back is the same card intact.
+// GenerateHiddenCosts builds two decks for memorising the cards with the
+// Hidden keyword, since a Hidden card has to be recognised from either half:
+// one asks what a card costs, from a scan with its top band painted out; the
+// other asks what it does, from a scan with its rules text painted out. Both
+// answer with the card intact, and both draw on the same media folder.
 func GenerateHiddenCosts(opts Options) (Result, error) {
 	cs, err := cards.Load(opts.CatalogPath)
 	if err != nil {
@@ -60,28 +69,44 @@ func GenerateHiddenCosts(opts Options) (Result, error) {
 		return Result{}, fmt.Errorf("failed to create %s: %w", mediaDir, err)
 	}
 
-	d := deck{name: opts.DeckName, notetype: "Basic"}
+	costs := deck{name: opts.DeckName, notetype: "Basic"}
+	effects := deck{name: opts.EffectDeckName, notetype: "Basic"}
 	images := 0
 	for _, c := range hidden {
-		masked, full, err := renderCard(c, mediaDir, opts)
+		r, err := renderCard(c, mediaDir, opts)
 		if err != nil {
 			return Result{}, err
 		}
-		images += 2
+		images += 3
 
-		d.notes = append(d.notes, note{
-			front: img(masked) + "<br>What is the cost?",
-			back:  img(full),
-			tags:  tagsFor(c),
+		costs.notes = append(costs.notes, note{
+			front: img(r.costMasked) + "<br>What is the cost?",
+			back:  img(r.full),
+			tags:  tagsFor(c, "riftbound::hidden::cost"),
+		})
+		effects.notes = append(effects.notes, note{
+			front: img(r.textMasked) + "<br>What does this hidden card do?",
+			back:  img(r.full),
+			tags:  tagsFor(c, "riftbound::hidden::effect"),
 		})
 	}
 
-	deckFile := filepath.Join(opts.OutDir, "riftbound-hidden-costs.txt")
-	if err := d.write(deckFile); err != nil {
+	costFile := filepath.Join(opts.OutDir, "riftbound-hidden-costs.txt")
+	if err := costs.write(costFile); err != nil {
+		return Result{}, fmt.Errorf("failed to write deck: %w", err)
+	}
+	effectFile := filepath.Join(opts.OutDir, "riftbound-hidden-effects.txt")
+	if err := effects.write(effectFile); err != nil {
 		return Result{}, fmt.Errorf("failed to write deck: %w", err)
 	}
 
-	return Result{DeckFile: deckFile, MediaDir: mediaDir, Notes: len(d.notes), Images: images}, nil
+	return Result{
+		CostDeckFile:   costFile,
+		EffectDeckFile: effectFile,
+		MediaDir:       mediaDir,
+		Notes:          len(costs.notes) + len(effects.notes),
+		Images:         images,
+	}, nil
 }
 
 // selectHidden picks the cards that actually carry the Hidden keyword, in
@@ -111,25 +136,38 @@ func selectHidden(cs []cards.Card, allPrintings bool) []cards.Card {
 	return out
 }
 
-// renderCard writes the masked and intact images for one card and returns the
-// names to reference them by.
-func renderCard(c cards.Card, mediaDir string, opts Options) (masked, full string, err error) {
+// rendered names the images written for one card, so the notes can reference
+// them.
+type rendered struct {
+	full       string
+	costMasked string
+	textMasked string
+}
+
+// renderCard writes the intact and masked images for one card.
+func renderCard(c cards.Card, mediaDir string, opts Options) (rendered, error) {
 	src := filepath.Join(opts.ImageDir, c.RiftboundID+".png")
 	img, err := loadCardImage(src)
 	if err != nil {
-		return "", "", fmt.Errorf("failed to read the scan of %s: %w", c.Label(), err)
+		return rendered{}, fmt.Errorf("failed to read the scan of %s: %w", c.Label(), err)
 	}
 	img = scaleToWidth(img, opts.ImageWidth)
 
-	full = mediaName(c, "")
-	masked = mediaName(c, "-cost-masked")
-	if err := writeJPEG(filepath.Join(mediaDir, full), img); err != nil {
-		return "", "", fmt.Errorf("failed to write the image of %s: %w", c.Label(), err)
+	r := rendered{
+		full:       mediaName(c, ""),
+		costMasked: mediaName(c, "-cost-masked"),
+		textMasked: mediaName(c, "-text-masked"),
 	}
-	if err := writeJPEG(filepath.Join(mediaDir, masked), maskTop(img, opts.MaskFraction)); err != nil {
-		return "", "", fmt.Errorf("failed to write the masked image of %s: %w", c.Label(), err)
+	if err := writeJPEG(filepath.Join(mediaDir, r.full), img); err != nil {
+		return rendered{}, fmt.Errorf("failed to write the image of %s: %w", c.Label(), err)
 	}
-	return masked, full, nil
+	if err := writeJPEG(filepath.Join(mediaDir, r.costMasked), maskTop(img, opts.MaskFraction)); err != nil {
+		return rendered{}, fmt.Errorf("failed to write the cost-masked image of %s: %w", c.Label(), err)
+	}
+	if err := writeJPEG(filepath.Join(mediaDir, r.textMasked), maskBottom(img, opts.EffectMaskFraction)); err != nil {
+		return rendered{}, fmt.Errorf("failed to write the text-masked image of %s: %w", c.Label(), err)
+	}
+	return r, nil
 }
 
 // mediaName builds a filename safe for collection.media. The '*' that marks a
@@ -138,9 +176,10 @@ func mediaName(c cards.Card, suffix string) string {
 	return mediaPrefix + strings.ReplaceAll(c.RiftboundID, "*", "s") + suffix + ".jpg"
 }
 
-func tagsFor(c cards.Card) []string {
+func tagsFor(c cards.Card, kind string) []string {
 	return []string{
 		"riftbound::hidden",
+		kind,
 		"riftbound::set::" + strings.ToUpper(c.Set.SetID),
 		"riftbound::type::" + strings.ToLower(c.Classification.Type),
 	}

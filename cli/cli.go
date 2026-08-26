@@ -68,7 +68,9 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.StringVar(&opts.ImageDir, "image-dir", "cards/images", "directory holding the downloaded card scans")
 		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck file and its media into")
 		fs.StringVar(&opts.DeckName, "deck", "Riftbound::Hidden Costs", "name of the deck to import into")
-		fs.Float64Var(&opts.MaskFraction, "mask", 1.0/3.0, "fraction of the card height to paint out, from the top")
+		fs.StringVar(&opts.EffectDeckName, "effect-deck", "Riftbound::Hidden Effects", "name of the companion deck asking what a card does")
+		fs.Float64Var(&opts.MaskFraction, "mask", 0.25, "fraction of the card height to paint out, from the top")
+		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out, from the bottom")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
 		return func() error { return genAnki(opts) }
@@ -194,6 +196,9 @@ func genAnki(opts ankigen.Options) error {
 	if opts.MaskFraction <= 0 || opts.MaskFraction > 1 {
 		return fmt.Errorf("-mask must be between 0 and 1, got %v", opts.MaskFraction)
 	}
+	if opts.EffectMaskFraction <= 0 || opts.EffectMaskFraction > 1 {
+		return fmt.Errorf("-effect-mask must be between 0 and 1, got %v", opts.EffectMaskFraction)
+	}
 
 	res, err := ankigen.GenerateHiddenCosts(opts)
 	if err != nil {
@@ -206,7 +211,8 @@ to import:
   1. copy %s/* into your Anki collection.media folder
      (Anki: Tools > Check Media > View Files)
   2. in Anki, File > Import and choose %s
-`, res.Notes, res.Images, res.MediaDir, res.DeckFile)
+  3. import %s the same way for the companion deck
+`, res.Notes, res.Images, res.MediaDir, res.CostDeckFile, res.EffectDeckFile)
 	return nil
 }
 

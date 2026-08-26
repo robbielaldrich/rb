@@ -40,11 +40,18 @@ func Load(path string) ([]Card, error) {
 	for _, c := range newest {
 		out = append(out, c)
 	}
+	// Alternate arts share a collector number with their plain printing, so
+	// the id breaks the tie: without it the sort is free to order the two
+	// differently on every run, and anything that picks one printing per card
+	// changes its mind each time.
 	slices.SortFunc(out, func(a, b Card) int {
 		if n := cmp.Compare(a.Set.SetID, b.Set.SetID); n != 0 {
 			return n
 		}
-		return cmp.Compare(a.CollectorNumber, b.CollectorNumber)
+		if n := cmp.Compare(a.CollectorNumber, b.CollectorNumber); n != 0 {
+			return n
+		}
+		return cmp.Compare(a.RiftboundID, b.RiftboundID)
 	})
 	return out, nil
 }

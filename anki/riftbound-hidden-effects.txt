@@ -1,0 +1,44 @@
+#separator:Tab
+#html:true
+#notetype:Basic
+#deck:Riftbound::Hidden Effects
+#tags column:3
+<img src='rb-unl-042-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-042-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::spell
+<img src='rb-ogn-097-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-097-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::unit
+<img src='rb-ogn-057-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-057-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-unl-139-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-139-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::spell
+<img src='rb-sfd-004-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-004-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-ogn-083-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-083-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-ven-117-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-117-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::unit
+<img src='rb-sfd-139-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-139-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::gear
+<img src='rb-sfd-043-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-043-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-unl-141-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-141-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::unit
+<img src='rb-ogn-220-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-220-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-ogn-168-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-168-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-ogn-256-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-256-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-sfd-154-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-154-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-sfd-111-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-111-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-ogn-213-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-213-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-sfd-202-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-202-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-unl-081-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-081-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::unit
+<img src='rb-ven-135-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-135-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::unit
+<img src='rb-unl-013-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-013-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::spell
+<img src='rb-unl-003-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-003-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::unit
+<img src='rb-ogn-135-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-135-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::unit
+<img src='rb-unl-028-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-028-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::unit
+<img src='rb-unl-145-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-145-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::unit
+<img src='rb-ven-034-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-034-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::spell
+<img src='rb-unl-083-219-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-unl-083-219.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::UNL riftbound::type::spell
+<img src='rb-ven-097-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-097-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::unit
+<img src='rb-ogn-094-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-094-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-ogn-053-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-053-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::spell
+<img src='rb-sfd-017-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-017-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-sfd-145-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-145-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-ogn-197-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-197-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::unit
+<img src='rb-ogn-121-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-121-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::unit
+<img src='rb-ven-066-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-066-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::spell
+<img src='rb-ogn-199-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-199-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::unit
+<img src='rb-ven-099-166-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ven-099-166.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::VEN riftbound::type::unit
+<img src='rb-sfd-070-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-070-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::spell
+<img src='rb-sfd-138-221-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-sfd-138-221.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::SFD riftbound::type::unit
+<img src='rb-ogn-077-298-text-masked.jpg'><br>What does this hidden card do?	<img src='rb-ogn-077-298.jpg'>	riftbound::hidden riftbound::hidden::effect riftbound::set::OGN riftbound::type::gear
