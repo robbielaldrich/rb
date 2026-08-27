@@ -76,6 +76,25 @@
   .count { color: var(--muted); font-variant-numeric: tabular-nums; }
   .where { grid-column: 2 / -1; color: var(--muted); font-size: .8rem; }
   .unknown { grid-column: 2 / -1; color: var(--short); font-size: .8rem; }
+
+  /* Summary */
+  /* Six columns don't fit a phone, so the table scrolls rather than the page. */
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+  th, td {
+    padding: .45rem .6rem; text-align: right; white-space: nowrap;
+    border-top: 1px solid var(--line); font-variant-numeric: tabular-nums;
+  }
+  th[scope="row"], thead th:first-child, tfoot th { text-align: left; font-weight: 400; }
+  thead th { border-top: 0; color: var(--muted); font-size: .8rem; font-weight: 400; }
+  tfoot th, tfoot td { font-weight: 600; border-top-width: 2px; }
+  td.none { color: var(--muted); }
+  .pct { color: var(--muted); }
+  tfoot .pct { color: inherit; }
+  .bar {
+    display: block; height: 3px; margin-top: .3rem; border-radius: 2px;
+    background: linear-gradient(to right, var(--have) var(--p), var(--line) var(--p));
+  }
 </style>
 </head>
 <body>
@@ -84,6 +103,7 @@
 <nav role="tablist" aria-label="Views">
   <button role="tab" id="tab-search" aria-controls="panel-search" aria-selected="true">Do I have this card?</button>
   <button role="tab" id="tab-decks" aria-controls="panel-decks" aria-selected="false">Decks</button>
+  <button role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false">Summary</button>
 </nav>
 
 <section role="tabpanel" id="panel-search" aria-labelledby="tab-search">
@@ -95,6 +115,21 @@
 <section role="tabpanel" id="panel-decks" aria-labelledby="tab-decks" hidden>
   <p id="decks-status" class="status">Loading decks&hellip;</p>
   <div id="decks"></div>
+</section>
+
+<section role="tabpanel" id="panel-summary" aria-labelledby="tab-summary" hidden>
+  <p id="summary-status" class="status">Loading summary&hellip;</p>
+  <div class="scroll">
+    <table id="summary">
+      <thead>
+        <tr>
+          <th>Set</th><th>Cards</th><th>Alt art</th><th>Overnumbered</th><th>Signature</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
 </section>
 
 <script>
@@ -181,15 +216,18 @@ function select(tab) {
   }
   // The open tab lives in the URL, so a view can be linked to and survives
   // a reload. Guarded, since assigning the hash fires hashchange straight back.
-  const hash = tab.id === "tab-decks" ? "#decks" : "#search";
+  const hash = "#" + tab.id.replace("tab-", "");
   if (location.hash !== hash) location.hash = hash;
   if (tab.id === "tab-decks") loadDecks();
+  if (tab.id === "tab-summary") loadSummary();
   if (tab.id === "tab-search" && !q.disabled) q.focus();
 }
 for (const t of tabs) t.addEventListener("click", () => select(t));
 
+// An unknown hash falls back to the search tab rather than leaving no panel up.
 const fromHash = () =>
-  document.getElementById(location.hash === "#decks" ? "tab-decks" : "tab-search");
+  tabs.find(t => t.id === "tab-" + location.hash.slice(1)) ||
+  document.getElementById("tab-search");
 window.addEventListener("hashchange", () => select(fromHash()));
 
 /* Decks */
@@ -289,6 +327,78 @@ function render(report) {
     deck.append(ul);
     decksEl.append(deck);
   }
+}
+
+/* Summary */
+const summaryStatus = document.getElementById("summary-status");
+const summaryBody = document.querySelector("#summary tbody");
+const summaryFoot = document.querySelector("#summary tfoot");
+let summaryLoaded = false;
+
+function loadSummary() {
+  if (summaryLoaded) return;
+  summaryLoaded = true;
+  fetch("./collection/collection-stats-result.json")
+    .then(r => r.json())
+    .then(renderSummary)
+    .catch(err => {
+      // Written by `just collection-stats`, so a missing file means it hasn't
+      // been run since the collection last changed.
+      summaryStatus.textContent = "Failed to load the collection summary: " + err;
+    });
+}
+
+// Truncated, not rounded, so a percentage matches the one `rb collection-stats`
+// prints for the same tally.
+const percent = t => Math.floor(t.owned * 100 / t.total);
+
+// A tally is null for a set that prints none of that kind at all, which is a
+// different thing from owning none of the ones it does print.
+function tallyCell(t, bar) {
+  const td = document.createElement("td");
+  if (!t) {
+    td.className = "none";
+    td.textContent = "—";
+    return td;
+  }
+  const pct = document.createElement("span");
+  pct.className = "pct";
+  pct.textContent = ` ${percent(t)}%`;
+  td.append(`${t.owned}/${t.total}`, pct);
+  if (bar) {
+    const b = document.createElement("span");
+    b.className = "bar";
+    b.style.setProperty("--p", percent(t) + "%");
+    td.append(b);
+  }
+  return td;
+}
+
+function summaryRow(s, name) {
+  const tr = document.createElement("tr");
+  const th = document.createElement("th");
+  th.scope = "row";
+  th.textContent = name;
+  if (s.set) {
+    const id = document.createElement("span");
+    id.className = "set";
+    id.textContent = " " + s.set;
+    th.append(id);
+  }
+  tr.append(th, tallyCell(s.cards, true), tallyCell(s.alternate_art),
+    tallyCell(s.overnumbered), tallyCell(s.signature));
+  return tr;
+}
+
+function renderSummary(data) {
+  const t = data.total.cards;
+  summaryStatus.textContent =
+    `${t.owned} of ${t.total} cards — ${percent(t)}% of everything printed. ` +
+    "Any printing of a card completes its entry; the alternate arts, " +
+    "overnumbered copies and signatures are then counted again on their own.";
+
+  for (const s of data.sets) summaryBody.append(summaryRow(s, s.label || s.set));
+  summaryFoot.append(summaryRow(data.total, "All sets"));
 }
 
 select(fromHash());

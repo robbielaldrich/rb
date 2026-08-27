@@ -45,7 +45,8 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 	case "collection-stats":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
-		return func() error { return collectionStats(*collectionFile, *catalogFile) }
+		dataFile := fs.String("json-out", "collection/collection-stats-result.json", "file to leave the summary data in for the collection page, or \"\" to leave none")
+		return func() error { return collectionStats(*collectionFile, *catalogFile, *dataFile) }
 
 	case "add-decks":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
@@ -168,8 +169,8 @@ func validate(collectionFile, setID string) error {
 	return nil
 }
 
-func collectionStats(collectionFile, catalogFile string) error {
-	if err := collection.Stats(collectionFile, catalogFile, os.Stdout); err != nil {
+func collectionStats(collectionFile, catalogFile, dataFile string) error {
+	if err := collection.Stats(collectionFile, catalogFile, dataFile, os.Stdout); err != nil {
 		return fmt.Errorf("failed to summarise the collection: %w", err)
 	}
 	return nil

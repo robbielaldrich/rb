@@ -1,0 +1,149 @@
+{
+  "sets": [
+    {
+      "set": "JDG",
+      "label": "Riftbound Judge Promotional Cards",
+      "cards": {
+        "owned": 0,
+        "total": 3
+      },
+      "alternate_art": null,
+      "overnumbered": null,
+      "signature": null
+    },
+    {
+      "set": "OGN",
+      "label": "Origins",
+      "cards": {
+        "owned": 34,
+        "total": 298
+      },
+      "alternate_art": {
+        "owned": 0,
+        "total": 30
+      },
+      "overnumbered": {
+        "owned": 0,
+        "total": 12
+      },
+      "signature": {
+        "owned": 0,
+        "total": 12
+      }
+    },
+    {
+      "set": "OGS",
+      "label": "Proving Grounds",
+      "cards": {
+        "owned": 0,
+        "total": 24
+      },
+      "alternate_art": null,
+      "overnumbered": null,
+      "signature": null
+    },
+    {
+      "set": "OPP",
+      "label": "Riftbound Organized Play Promotional Cards",
+      "cards": {
+        "owned": 0,
+        "total": 116
+      },
+      "alternate_art": {
+        "owned": 0,
+        "total": 1
+      },
+      "overnumbered": null,
+      "signature": null
+    },
+    {
+      "set": "PR",
+      "label": "Riftbound Promotional Cards",
+      "cards": {
+        "owned": 0,
+        "total": 4
+      },
+      "alternate_art": {
+        "owned": 0,
+        "total": 9
+      },
+      "overnumbered": null,
+      "signature": null
+    },
+    {
+      "set": "SFD",
+      "label": "Spiritforged",
+      "cards": {
+        "owned": 114,
+        "total": 222
+      },
+      "alternate_art": {
+        "owned": 2,
+        "total": 24
+      },
+      "overnumbered": {
+        "owned": 1,
+        "total": 30
+      },
+      "signature": {
+        "owned": 0,
+        "total": 12
+      }
+    },
+    {
+      "set": "UNL",
+      "label": "Unleashed",
+      "cards": {
+        "owned": 112,
+        "total": 219
+      },
+      "alternate_art": {
+        "owned": 0,
+        "total": 30
+      },
+      "overnumbered": {
+        "owned": 0,
+        "total": 18
+      },
+      "signature": {
+        "owned": 0,
+        "total": 12
+      }
+    },
+    {
+      "set": "VEN",
+      "label": "Vendetta",
+      "cards": {
+        "owned": 113,
+        "total": 188
+      },
+      "alternate_art": {
+        "owned": 2,
+        "total": 18
+      },
+      "overnumbered": {
+        "owned": 0,
+        "total": 12
+      },
+      "signature": null
+    }
+  ],
+  "total": {
+    "cards": {
+      "owned": 373,
+      "total": 1074
+    },
+    "alternate_art": {
+      "owned": 4,
+      "total": 112
+    },
+    "overnumbered": {
+      "owned": 1,
+      "total": 72
+    },
+    "signature": {
+      "owned": 0,
+      "total": 36
+    }
+  }
+}

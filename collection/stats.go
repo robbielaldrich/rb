@@ -16,7 +16,10 @@ import (
 // are the same card to play with, so any printing completes the entry; they
 // are then counted again on their own, printing by printing, as the chase
 // cards they are.
-func Stats(collectionPath, catalogPath string, w io.Writer) error {
+//
+// dataPath, when set, also receives the same numbers as JSON for the
+// collection page to read.
+func Stats(collectionPath, catalogPath, dataPath string, w io.Writer) error {
 	coll, err := load(collectionPath)
 	if err != nil {
 		return fmt.Errorf("failed to load collection: %w", err)
@@ -27,7 +30,14 @@ func Stats(collectionPath, catalogPath string, w io.Writer) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	writeStats(w, summarise(cs, coll))
+	sets := summarise(cs, coll)
+	writeStats(w, sets)
+
+	if dataPath != "" {
+		if err := writeStatsData(dataPath, sets); err != nil {
+			return fmt.Errorf("failed to write the summary data: %w", err)
+		}
+	}
 	return nil
 }
 
@@ -114,19 +124,27 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 	return out
 }
 
-func writeStats(w io.Writer, sets []setStats) {
-	tw := tabwriter.NewWriter(w, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(tw, "set\t\tcards\talt art\tovernumbered\tsignature")
-
+// totals folds every set into the one row that stands for the whole game.
+func totals(sets []setStats) setStats {
 	var all setStats
 	for _, s := range sets {
-		fmt.Fprintf(tw, "%s\t%s\t%v\t%v\t%v\t%v\n", s.setID, s.label, s.named, s.alt, s.over, s.sig)
 		all.named.add(s.named)
 		all.alt.add(s.alt)
 		all.over.add(s.over)
 		all.sig.add(s.sig)
 	}
+	return all
+}
 
+func writeStats(w io.Writer, sets []setStats) {
+	tw := tabwriter.NewWriter(w, 0, 0, 2, ' ', 0)
+	fmt.Fprintln(tw, "set\t\tcards\talt art\tovernumbered\tsignature")
+
+	for _, s := range sets {
+		fmt.Fprintf(tw, "%s\t%s\t%v\t%v\t%v\t%v\n", s.setID, s.label, s.named, s.alt, s.over, s.sig)
+	}
+
+	all := totals(sets)
 	fmt.Fprintf(tw, "all\t\t%v\t%v\t%v\t%v\n", all.named, all.alt, all.over, all.sig)
 	tw.Flush()
 }

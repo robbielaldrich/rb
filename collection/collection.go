@@ -119,8 +119,7 @@ func (c *collection) set(card cards.Card, qty int, now time.Time) {
 	})
 }
 
-// save writes the collection atomically so an interrupted write can't leave a
-// truncated file behind.
+// save writes the collection out, sorted, so the file stays diffable.
 func (c *collection) save(path string) error {
 	sorted := slices.Clone(c.Cards)
 	slices.SortFunc(sorted, func(a, b collectedCard) int {
@@ -134,8 +133,12 @@ func (c *collection) save(path string) error {
 	if err != nil {
 		return fmt.Errorf("failed to marshal collection: %w", err)
 	}
-	data = append(data, '\n')
+	return writeFile(path, append(data, '\n'))
+}
 
+// writeFile writes a file atomically, so an interrupted write can't leave a
+// truncated one behind.
+func writeFile(path string, data []byte) error {
 	tmp := path + ".tmp"
 	if err := os.WriteFile(tmp, data, 0o644); err != nil {
 		return fmt.Errorf("failed to write %s: %w", tmp, err)
