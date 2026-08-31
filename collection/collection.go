@@ -16,9 +16,10 @@ import (
 // RunEditor loads the catalog and collection and hands them to the
 // interactive editor, which writes each change through as it is made.
 //
-// An empty setID searches the whole catalog; naming a set narrows the search
-// to it, for the common case of entering a stack of cards from one box.
-func RunEditor(collectionPath, catalogPath, setID string) error {
+// With no filters the whole catalog is searched; a set label or a domain
+// narrows the search to it, for the common case of entering a stack of cards
+// from one box or one pile.
+func RunEditor(collectionPath, catalogPath string, filters []string) error {
 	coll, err := load(collectionPath)
 	if err != nil {
 		return fmt.Errorf("failed to load collection: %w", err)
@@ -29,35 +30,69 @@ func RunEditor(collectionPath, catalogPath, setID string) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	if setID != "" {
-		if cs, err = filterSet(cs, setID); err != nil {
-			return err
-		}
+	cs, scope, err := narrow(cs, filters)
+	if err != nil {
+		return err
 	}
 
-	if err := newEditor(coll, cs, collectionPath, setID).run(os.Stdin, os.Stdout); err != nil {
+	if err := newEditor(coll, cs, collectionPath, scope).run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to run the collection editor: %w", err)
 	}
 	return nil
 }
 
-// filterSet keeps only the cards printed in the named set. An unknown label
-// is refused here, before the editor opens, rather than leaving the user to
-// wonder why nothing they type matches.
-func filterSet(cs []cards.Card, setID string) ([]cards.Card, error) {
-	var out []cards.Card
-	known := map[string]bool{}
+// narrow keeps only the cards matching every filter, each of which names
+// either a set or a domain, in whichever order they were given. It returns
+// the surviving cards and a label for the prompt.
+//
+// A filter matching neither is refused here, before the editor opens, rather
+// than leaving the user to wonder why nothing they type matches.
+func narrow(cs []cards.Card, filters []string) ([]cards.Card, string, error) {
+	sets, domains := map[string]bool{}, map[string]bool{}
 	for _, c := range cs {
-		known[strings.ToUpper(c.Set.SetID)] = true
-		if strings.EqualFold(c.Set.SetID, setID) {
+		sets[strings.ToUpper(c.Set.SetID)] = true
+		for _, d := range c.Classification.Domain {
+			domains[strings.ToUpper(d)] = true
+		}
+	}
+
+	var scope []string
+	for _, f := range filters {
+		f = strings.ToUpper(f)
+		switch {
+		case sets[f]:
+			cs = keep(cs, func(c cards.Card) bool { return strings.EqualFold(c.Set.SetID, f) })
+		case domains[f]:
+			cs = keep(cs, func(c cards.Card) bool {
+				return slices.ContainsFunc(c.Classification.Domain, func(d string) bool {
+					return strings.EqualFold(d, f)
+				})
+			})
+		default:
+			return nil, "", fmt.Errorf("%q is neither a set nor a domain, known sets: %s, known domains: %s",
+				f, labels(sets), labels(domains))
+		}
+		scope = append(scope, f)
+	}
+
+	if len(cs) == 0 {
+		return nil, "", fmt.Errorf("no cards match %s", strings.Join(scope, " and "))
+	}
+	return cs, strings.Join(scope, " "), nil
+}
+
+func keep(cs []cards.Card, ok func(cards.Card) bool) []cards.Card {
+	var out []cards.Card
+	for _, c := range cs {
+		if ok(c) {
 			out = append(out, c)
 		}
 	}
-	if len(out) == 0 {
-		return nil, fmt.Errorf("no cards in set %q, known sets: %s",
-			setID, strings.Join(slices.Sorted(maps.Keys(known)), " "))
-	}
-	return out, nil
+	return out
+}
+
+func labels(set map[string]bool) string {
+	return strings.Join(slices.Sorted(maps.Keys(set)), " ")
 }
 
 // collectedCard is one owned card. Cards are keyed by riftbound_id; the name, number

@@ -1,8 +1,9 @@
 download-cards:
     go run ./cmd/rb download-cards -out cards/
 
-collect set="":
-    go run ./cmd/rb collect -catalog-file cards/cards.json -collection-file collection/collection.json {{set}}
+# filters are set labels and domains, in any order: `just collect VEN chaos`
+collect *filters:
+    go run ./cmd/rb collect -catalog-file cards/cards.json -collection-file collection/collection.json {{filters}}
 
 validate set="":
     go run ./cmd/rb validate -collection-file collection/collection.json {{set}}

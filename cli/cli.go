@@ -26,12 +26,7 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 	case "collect":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to search (cards.json)")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read and write")
-		return func() error {
-			if fs.NArg() > 1 {
-				return fmt.Errorf("collect takes one optional set label, got %d arguments", fs.NArg())
-			}
-			return collect(*collectionFile, *catalogFile, fs.Arg(0))
-		}
+		return func() error { return collect(*collectionFile, *catalogFile, fs.Args()) }
 
 	case "validate":
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to check and correct")
@@ -155,8 +150,8 @@ func downloadCards(outDir string, images bool, concurrency int) error {
 	return nil
 }
 
-func collect(collectionFile, catalogFile, setID string) error {
-	if err := collection.RunEditor(collectionFile, catalogFile, setID); err != nil {
+func collect(collectionFile, catalogFile string, filters []string) error {
+	if err := collection.RunEditor(collectionFile, catalogFile, filters); err != nil {
 		return fmt.Errorf("failed to run editor: %w", err)
 	}
 	return nil

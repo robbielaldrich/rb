@@ -28,9 +28,9 @@ type editor struct {
 	index      *cardIndex
 	collection *collection
 	path       string
-	// setID is the set the search is confined to, upper case, or empty when
-	// the whole catalog is in play.
-	setID string
+	// scope names the set and domain the search is confined to, upper case,
+	// or is empty when the whole catalog is in play.
+	scope string
 
 	mode    mode
 	query   string
@@ -54,8 +54,8 @@ type change struct {
 	qty  int
 }
 
-func newEditor(coll *collection, cs []cards.Card, path, setID string) *editor {
-	return &editor{index: buildIndex(cs), collection: coll, path: path, setID: strings.ToUpper(setID)}
+func newEditor(coll *collection, cs []cards.Card, path, scope string) *editor {
+	return &editor{index: buildIndex(cs), collection: coll, path: path, scope: strings.ToUpper(scope)}
 }
 
 func (e *editor) run(in, out *os.File) error {
