@@ -86,3 +86,29 @@ func TestSurplusReportSaysWhenNothingIsSpare(t *testing.T) {
 		t.Errorf("got %q, want the empty-report line", b.String())
 	}
 }
+
+// A spare is labelled with the rarity the set prints the card at, even when
+// the copies past the playset are the Showcase reprints.
+func TestSurplusShowsThePrintedRarity(t *testing.T) {
+	cs := []cards.Card{
+		rarityPrinting("ven-020-166", "Sand Soldier", "ven", "Rare", cards.Metadata{}),
+		rarityPrinting("ven-020a-166", "Sand Soldier (Alternate Art)", "ven", "Showcase", cards.Metadata{AlternateArt: true}),
+	}
+	got := sparesFor(t, cs, map[string]int{"ven-020-166": 3, "ven-020a-166": 2})
+	if len(got) != 1 || got[0].rarity != "Rare" {
+		t.Fatalf("got %+v, want one Rare spare", got)
+	}
+}
+
+// Where every copy held is a chase printing there is no printed rarity to
+// show, so the report says what is actually in the box.
+func TestSurplusFallsBackToTheHeldRarity(t *testing.T) {
+	cs := []cards.Card{
+		rarityPrinting("ven-020-166", "Sand Soldier", "ven", "Rare", cards.Metadata{}),
+		rarityPrinting("ven-020a-166", "Sand Soldier (Alternate Art)", "ven", "Showcase", cards.Metadata{AlternateArt: true}),
+	}
+	got := sparesFor(t, cs, map[string]int{"ven-020a-166": 4})
+	if len(got) != 1 || got[0].rarity != "Showcase" {
+		t.Fatalf("got %+v, want one Showcase spare", got)
+	}
+}

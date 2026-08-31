@@ -88,6 +88,13 @@ func (c Card) IsAlternateArt() bool {
 	return m != nil && strings.HasSuffix(m[2], "a")
 }
 
+// IsChasePrinting reports whether this printing is a chase one — an alternate
+// art, an overnumbered copy or a signature — rather than the plain printing
+// the set gives a card at its own number.
+func (c Card) IsChasePrinting() bool {
+	return c.IsAlternateArt() || c.Metadata.Overnumbered || c.Metadata.Signature
+}
+
 // Label renders a card the way it is written on paper, e.g.
 // "Astral Heron 44/166 VEN".
 func (c Card) Label() string {

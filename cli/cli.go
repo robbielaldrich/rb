@@ -13,7 +13,7 @@ import (
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "surplus"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "surplus", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -47,6 +47,11 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to read the card types and names through")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
 		return func() error { return surplus(*collectionFile, *catalogFile) }
+
+	case "missing":
+		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
+		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
+		return func() error { return missing(*collectionFile, *catalogFile, fs.Args()) }
 
 	case "add-decks":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
@@ -179,6 +184,13 @@ func collectionStats(collectionFile, catalogFile, dataFile string) error {
 func surplus(collectionFile, catalogFile string) error {
 	if err := collection.Surplus(collectionFile, catalogFile, os.Stdout); err != nil {
 		return fmt.Errorf("failed to list the surplus cards: %w", err)
+	}
+	return nil
+}
+
+func missing(collectionFile, catalogFile string, filters []string) error {
+	if err := collection.Missing(collectionFile, catalogFile, filters, os.Stdout); err != nil {
+		return fmt.Errorf("failed to list the missing cards: %w", err)
 	}
 	return nil
 }

@@ -38,6 +38,7 @@ func Surplus(collectionPath, catalogPath string, w io.Writer) error {
 type spare struct {
 	setID   string
 	name    string
+	rarity  string
 	copies  int
 	playset int
 }
@@ -66,6 +67,12 @@ func spares(cs []cards.Card, coll *collection) []spare {
 		if !ok {
 			s = &spare{setID: id, name: c.BaseName(), playset: c.PlaysetSize()}
 			held[k] = s
+		}
+		// The rarity shown is the one the set prints the card at; only where
+		// every copy held is a chase printing does the report fall back to the
+		// rarity of what is actually in the box.
+		if s.rarity == "" || !c.IsChasePrinting() {
+			s.rarity = c.Classification.Rarity
 		}
 		s.copies += n
 	}
@@ -96,12 +103,12 @@ func writeSurplus(w io.Writer, out []spare) {
 	}
 
 	tw := tabwriter.NewWriter(w, 0, 0, 2, ' ', 0)
-	fmt.Fprintln(tw, "set\tcard\thave\tplayset\tspare")
+	fmt.Fprintln(tw, "set\trarity\tcard\thave\tplayset\tspare")
 	total := 0
 	for _, s := range out {
 		total += s.over()
-		fmt.Fprintf(tw, "%s\t%s\t%d\t%d\t+%d\n", s.setID, s.name, s.copies, s.playset, s.over())
+		fmt.Fprintf(tw, "%s\t%s\t%s\t%d\t%d\t+%d\n", s.setID, s.rarity, s.name, s.copies, s.playset, s.over())
 	}
-	fmt.Fprintf(tw, "\t%d cards\t\t\t+%d\n", len(out), total)
+	fmt.Fprintf(tw, "\t\t%d cards\t\t\t+%d\n", len(out), total)
 	tw.Flush()
 }
