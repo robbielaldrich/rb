@@ -109,6 +109,18 @@ func (c Card) BaseName() string {
 // Keywords are printed at the head of the rules text and run together in
 // brackets, e.g. "[Hidden][Ganking]"; a few cards are missing the brackets in
 // the API data and read "Hidden (Hide now for ...". Position is what
+// PlaysetSize is how many copies of a card one deck can use: three of an
+// ordinary card, but a single battlefield or legend, which a deck fields one
+// of rather than in repeats. Copies past it are spares, however playable.
+func (c Card) PlaysetSize() int {
+	switch c.Classification.Type {
+	case TypeBattlefield, TypeLegend:
+		return 1
+	default:
+		return 3
+	}
+}
+
 // distinguishes having a keyword from merely naming one: Teemo - Swift Scout
 // lets you "hide a card with [Hidden]" without being Hidden itself.
 func (c Card) HasKeyword(name string) bool {

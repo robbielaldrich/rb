@@ -7,6 +7,10 @@
         "owned": 0,
         "total": 3
       },
+      "playset": {
+        "owned": 0,
+        "total": 3
+      },
       "alternate_art": null,
       "overnumbered": null,
       "signature": null
@@ -17,6 +21,10 @@
       "cards": {
         "owned": 34,
         "total": 298
+      },
+      "playset": {
+        "owned": 14,
+        "total": 262
       },
       "alternate_art": {
         "owned": 0,
@@ -38,6 +46,10 @@
         "owned": 0,
         "total": 24
       },
+      "playset": {
+        "owned": 0,
+        "total": 20
+      },
       "alternate_art": null,
       "overnumbered": null,
       "signature": null
@@ -48,6 +60,10 @@
       "cards": {
         "owned": 0,
         "total": 116
+      },
+      "playset": {
+        "owned": 0,
+        "total": 88
       },
       "alternate_art": {
         "owned": 0,
@@ -60,6 +76,10 @@
       "set": "PR",
       "label": "Riftbound Promotional Cards",
       "cards": {
+        "owned": 0,
+        "total": 4
+      },
+      "playset": {
         "owned": 0,
         "total": 4
       },
@@ -76,6 +96,10 @@
       "cards": {
         "owned": 114,
         "total": 222
+      },
+      "playset": {
+        "owned": 12,
+        "total": 195
       },
       "alternate_art": {
         "owned": 2,
@@ -97,6 +121,10 @@
         "owned": 112,
         "total": 219
       },
+      "playset": {
+        "owned": 8,
+        "total": 192
+      },
       "alternate_art": {
         "owned": 0,
         "total": 30
@@ -114,8 +142,12 @@
       "set": "VEN",
       "label": "Vendetta",
       "cards": {
-        "owned": 113,
+        "owned": 135,
         "total": 188
+      },
+      "playset": {
+        "owned": 65,
+        "total": 168
       },
       "alternate_art": {
         "owned": 2,
@@ -130,8 +162,12 @@
   ],
   "total": {
     "cards": {
-      "owned": 373,
+      "owned": 395,
       "total": 1074
+    },
+    "playset": {
+      "owned": 99,
+      "total": 932
     },
     "alternate_art": {
       "owned": 4,

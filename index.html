@@ -162,7 +162,7 @@
     <table id="summary">
       <thead>
         <tr>
-          <th>Set</th><th>Cards</th><th>Alt art</th><th>Overnumbered</th><th>Signature</th>
+          <th>Set</th><th>Cards</th><th>Playsets</th><th>Alt art</th><th>Overnumbered</th><th>Signature</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -440,8 +440,8 @@ function summaryRow(s, name) {
     id.textContent = " " + s.set;
     th.append(id);
   }
-  tr.append(th, tallyCell(s.cards, true), tallyCell(s.alternate_art),
-    tallyCell(s.overnumbered), tallyCell(s.signature));
+  tr.append(th, tallyCell(s.cards, true), tallyCell(s.playset, true),
+    tallyCell(s.alternate_art), tallyCell(s.overnumbered), tallyCell(s.signature));
   return tr;
 }
 
@@ -450,7 +450,9 @@ function renderSummary(data) {
   summaryStatus.textContent =
     `${t.owned} of ${t.total} cards — ${percent(t)}% of everything printed. ` +
     "Any printing of a card completes its entry; the alternate arts, " +
-    "overnumbered copies and signatures are then counted again on their own.";
+    "overnumbered copies and signatures are then counted again on their own. " +
+    "Playsets ask for the three copies a deck may run, over every printing, " +
+    "and leave out battlefields and legends, which a deck fields one of.";
 
   for (const s of data.sets) summaryBody.append(summaryRow(s, s.label || s.set));
   summaryFoot.append(summaryRow(data.total, "All sets"));

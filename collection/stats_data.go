@@ -20,6 +20,7 @@ type setData struct {
 	Label string `json:"label,omitempty"`
 
 	Cards        tallyData  `json:"cards"`
+	Playset      *tallyData `json:"playset"`
 	AlternateArt *tallyData `json:"alternate_art"`
 	Overnumbered *tallyData `json:"overnumbered"`
 	Signature    *tallyData `json:"signature"`
@@ -30,10 +31,10 @@ type tallyData struct {
 	Total int `json:"total"`
 }
 
-// chase reports an extra-printing tally, or nil for a set that prints none of
-// that kind at all. The page then shows the same "-" the text report does,
-// rather than a 0/0 it would have to render as 0%.
-func chase(t tally) *tallyData {
+// optional reports a tally, or nil for a set with none of that kind of card at
+// all. The page then shows the same "-" the text report does, rather than a
+// 0/0 it would have to render as 0%.
+func optional(t tally) *tallyData {
 	if t.total == 0 {
 		return nil
 	}
@@ -45,9 +46,10 @@ func row(s setStats) setData {
 		SetID:        s.setID,
 		Label:        s.label,
 		Cards:        tallyData{Owned: s.named.owned, Total: s.named.total},
-		AlternateArt: chase(s.alt),
-		Overnumbered: chase(s.over),
-		Signature:    chase(s.sig),
+		Playset:      optional(s.playset),
+		AlternateArt: optional(s.alt),
+		Overnumbered: optional(s.over),
+		Signature:    optional(s.sig),
 	}
 }
 

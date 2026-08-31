@@ -27,6 +27,13 @@ type Attributes struct {
 	Power  *int `json:"power"`
 }
 
+// The two card types a deck takes one of. Every other type — Unit, Spell,
+// Gear, Rune — is repeatable and shares a single limit, so none is named here.
+const (
+	TypeBattlefield = "Battlefield"
+	TypeLegend      = "Legend"
+)
+
 // Classification describes what kind of card this is.
 type Classification struct {
 	Type      string   `json:"type"`

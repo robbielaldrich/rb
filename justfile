@@ -11,6 +11,9 @@ validate set="":
 collection-stats:
     go run ./cmd/rb collection-stats -catalog-file cards/cards.json -collection-file collection/collection.json
 
+surplus:
+    go run ./cmd/rb surplus -catalog-file cards/cards.json -collection-file collection/collection.json
+
 gen-anki:
     go run ./cmd/rb gen-anki -catalog-file cards/cards.json -image-dir cards/images -out anki/
 
