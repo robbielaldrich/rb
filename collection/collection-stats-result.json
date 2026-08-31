@@ -19,11 +19,11 @@
       "set": "OGN",
       "label": "Origins",
       "cards": {
-        "owned": 34,
+        "owned": 69,
         "total": 298
       },
       "playset": {
-        "owned": 14,
+        "owned": 43,
         "total": 262
       },
       "alternate_art": {
@@ -43,11 +43,11 @@
       "set": "OGS",
       "label": "Proving Grounds",
       "cards": {
-        "owned": 0,
+        "owned": 24,
         "total": 24
       },
       "playset": {
-        "owned": 0,
+        "owned": 7,
         "total": 20
       },
       "alternate_art": null,
@@ -162,11 +162,11 @@
   ],
   "total": {
     "cards": {
-      "owned": 395,
+      "owned": 454,
       "total": 1074
     },
     "playset": {
-      "owned": 99,
+      "owned": 135,
       "total": 932
     },
     "alternate_art": {
