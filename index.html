@@ -95,6 +95,44 @@
     display: block; height: 3px; margin-top: .3rem; border-radius: 2px;
     background: linear-gradient(to right, var(--have) var(--p), var(--line) var(--p));
   }
+
+  /* Rules */
+  .filters { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0 0 .5rem; }
+  .filters button {
+    appearance: none; background: none; font: inherit; font-size: .8rem;
+    color: var(--muted); border: 1px solid var(--line); border-radius: 999px;
+    padding: .2rem .6rem; cursor: pointer;
+  }
+  .filters button:hover { color: var(--fg); }
+  .filters button[aria-pressed="true"] { color: var(--fg); border-color: var(--accent); font-weight: 600; }
+  .topic {
+    margin: 1.25rem 0 0; font-size: .8rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .ruling { border-top: 1px solid var(--line); }
+  .ruling > summary {
+    display: flex; gap: .75rem; align-items: baseline;
+    padding: .6rem .25rem; cursor: pointer; list-style: none;
+  }
+  .ruling > summary::-webkit-details-marker { display: none; }
+  .ruling > summary::before { content: "▸"; color: var(--muted); font-size: .8rem; }
+  .ruling[open] > summary::before { content: "▾"; }
+  .question { flex: 1; }
+  .answer { padding: 0 .25rem .75rem 1.5rem; font-size: .875rem; max-width: 40rem; }
+  .answer p { margin: 0 0 .5rem; }
+  .answer ul { margin: 0 0 .5rem; padding-left: 1.25rem; }
+  .answer li { margin-bottom: .25rem; }
+  .refs { display: flex; flex-wrap: wrap; gap: .3rem; align-items: baseline; }
+  .ref {
+    font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums;
+    border: 1px solid var(--line); border-radius: .25rem; padding: 0 .3rem;
+  }
+  .thread { font-size: .75rem; color: var(--short); }
+  .source { font-size: .75rem; color: var(--accent); text-decoration: none; }
+  .source:hover { text-decoration: underline; }
+  /* Share-alike requires the attribution to travel with the page, not just the repo. */
+  .credit { border-top: 1px solid var(--line); padding-top: .75rem; margin-top: 1.5rem; max-width: 40rem; }
+  .credit a { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -104,6 +142,7 @@
   <button role="tab" id="tab-search" aria-controls="panel-search" aria-selected="true">Do I have this card?</button>
   <button role="tab" id="tab-decks" aria-controls="panel-decks" aria-selected="false">Decks</button>
   <button role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false">Summary</button>
+  <button role="tab" id="tab-rules" aria-controls="panel-rules" aria-selected="false">Rules</button>
 </nav>
 
 <section role="tabpanel" id="panel-search" aria-labelledby="tab-search">
@@ -130,6 +169,21 @@
       <tfoot></tfoot>
     </table>
   </div>
+</section>
+
+<section role="tabpanel" id="panel-rules" aria-labelledby="tab-rules" hidden>
+  <input id="rules-q" type="search" placeholder="Search rulings, cards, keywords&hellip;" disabled>
+  <p id="rules-status" class="status">Loading rulings&hellip;</p>
+  <div class="filters" id="rules-filters" role="group" aria-label="Filter rulings by category"></div>
+  <div id="rulings"></div>
+  <p class="status credit">
+    Card, keyword and core-systems rulings adapted from the community
+    <a href="https://www.riftboundfaq.com/">Riftbound FAQ</a>
+    under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>,
+    reviewed against Core Rules 1.4; field notes are from r/Riftbound threads.
+    None of it is official Riot rules text — check anything tournament-critical
+    against the <a href="https://playriftbound.com/en-us/rules-hub/">Rules Hub</a>.
+  </p>
 </section>
 
 <script>
@@ -220,6 +274,7 @@ function select(tab) {
   if (location.hash !== hash) location.hash = hash;
   if (tab.id === "tab-decks") loadDecks();
   if (tab.id === "tab-summary") loadSummary();
+  if (tab.id === "tab-rules") loadRules();
   if (tab.id === "tab-search" && !q.disabled) q.focus();
 }
 for (const t of tabs) t.addEventListener("click", () => select(t));
@@ -400,6 +455,169 @@ function renderSummary(data) {
   for (const s of data.sets) summaryBody.append(summaryRow(s, s.label || s.set));
   summaryFoot.append(summaryRow(data.total, "All sets"));
 }
+
+/* Rules */
+const rulesQ = document.getElementById("rules-q");
+const rulesStatus = document.getElementById("rules-status");
+const rulesFilters = document.getElementById("rules-filters");
+const rulingsEl = document.getElementById("rulings");
+let rulings = [];
+let rulesCat = "all";
+let rulesLoaded = false;
+
+// Ordered widest-to-narrowest, which is also roughly least-to-most numerous.
+const RULE_CATS = [
+  ["all", "Everything"],
+  ["reddit-field-notes", "Field notes"],
+  ["general-rules", "Core systems"],
+  ["mechanics", "Keywords"],
+  ["cards", "Card rulings"],
+];
+
+function loadRules() {
+  if (rulesLoaded) return;
+  rulesLoaded = true;
+  fetch("./rules/rulings.json")
+    .then(r => r.json())
+    .then(data => {
+      rulings = data;
+      buildFilters();
+      rulesQ.disabled = false;
+      renderRulings();
+    })
+    .catch(err => {
+      rulesStatus.textContent = "Failed to load the rulings: " + err;
+    });
+}
+
+function buildFilters() {
+  const counts = { all: rulings.length };
+  for (const r of rulings) counts[r.category] = (counts[r.category] || 0) + 1;
+  for (const [id, label] of RULE_CATS) {
+    if (!counts[id]) continue;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = `${label} ${counts[id]}`;
+    b.setAttribute("aria-pressed", String(id === rulesCat));
+    b.addEventListener("click", () => {
+      rulesCat = id;
+      for (const other of rulesFilters.children) {
+        other.setAttribute("aria-pressed", String(other === b));
+      }
+      renderRulings();
+    });
+    rulesFilters.append(b);
+  }
+}
+
+// Answers are plain text: blank lines separate paragraphs, a run of "- " lines
+// is a bullet list, and **…** marks the phrase carrying the actual ruling.
+function withEmphasis(el, text) {
+  // Splitting on the delimiter leaves the emphasised runs at the odd indices.
+  text.split("**").forEach((part, i) => {
+    if (!part) return;
+    if (i % 2) {
+      const strong = document.createElement("strong");
+      strong.textContent = part;
+      el.append(strong);
+    } else {
+      el.append(part);
+    }
+  });
+}
+
+function renderAnswer(text) {
+  const frag = document.createDocumentFragment();
+  for (const block of text.split(/\n\n+/)) {
+    const lines = block.split("\n");
+    if (lines.every(l => l.startsWith("- "))) {
+      const ul = document.createElement("ul");
+      for (const line of lines) {
+        const li = document.createElement("li");
+        withEmphasis(li, line.slice(2));
+        ul.append(li);
+      }
+      frag.append(ul);
+    } else {
+      const p = document.createElement("p");
+      withEmphasis(p, block.replace(/\n/g, " "));
+      frag.append(p);
+    }
+  }
+  return frag;
+}
+
+function renderRulings() {
+  const term = rulesQ.value.trim().toLowerCase();
+  const shown = rulings.filter(r => {
+    if (rulesCat !== "all" && r.category !== rulesCat) return false;
+    if (!term) return true;
+    const hay = `${r.question} ${r.answer} ${r.topic} ${r.rules.join(" ")}`;
+    return hay.toLowerCase().includes(term);
+  });
+
+  rulesStatus.textContent = shown.length === 0
+    ? `No ruling mentions "${rulesQ.value.trim()}".`
+    : `${shown.length} ruling${shown.length === 1 ? "" : "s"}` +
+      (shown.length < rulings.length ? ` of ${rulings.length}.` : ". Open one to see the answer.");
+
+  rulingsEl.innerHTML = "";
+  let topic = null;
+  for (const r of shown) {
+    // The list arrives grouped by topic already, so a heading each time the
+    // topic changes is enough to section it without regrouping.
+    if (r.topic !== topic) {
+      topic = r.topic;
+      const h = document.createElement("p");
+      h.className = "topic";
+      h.textContent = topic;
+      rulingsEl.append(h);
+    }
+
+    const ruling = document.createElement("details");
+    ruling.className = "ruling";
+    const summary = document.createElement("summary");
+    const question = document.createElement("span");
+    question.className = "question";
+    question.textContent = r.question;
+    summary.append(question);
+    ruling.append(summary);
+
+    const answer = document.createElement("div");
+    answer.className = "answer";
+    answer.append(renderAnswer(r.answer));
+
+    const refs = document.createElement("p");
+    refs.className = "refs";
+    for (const n of r.rules) {
+      const ref = document.createElement("span");
+      ref.className = "ref";
+      ref.textContent = n;
+      refs.append(ref);
+    }
+    // Forum threads are community consensus, not an official ruling, so they
+    // say so next to the link rather than looking like the cited rules above.
+    if (r.category === "reddit-field-notes") {
+      const tag = document.createElement("span");
+      tag.className = "thread";
+      tag.textContent = "community thread";
+      refs.append(tag);
+    }
+    const src = document.createElement("a");
+    src.className = "source";
+    src.href = r.source;
+    src.target = "_blank";
+    src.rel = "noreferrer";
+    src.textContent = "source";
+    refs.append(src);
+    answer.append(refs);
+
+    ruling.append(answer);
+    rulingsEl.append(ruling);
+  }
+}
+
+rulesQ.addEventListener("input", renderRulings);
 
 select(fromHash());
 </script>

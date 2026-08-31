@@ -1,0 +1,65 @@
+# Riftbound rules threads not yet scraped
+# The fetchlayer scraper hit its 30-request free-trial cap mid-collection.
+# Direct reddit JSON returns 403 and WebFetch is domain-blocked, so these need a
+# topped-up scraper (or manual reading) to finish.
+
+## r/Riftbound - identified as rules threads, not yet read
+https://www.reddit.com/r/Riftbound/comments/1n3qjct/
+https://www.reddit.com/r/Riftbound/comments/1ongpkb/rules_clarifications_after_prerelease_general/
+https://www.reddit.com/r/Riftbound/comments/1pt08d2/
+https://www.reddit.com/r/Riftbound/comments/1q04gbb/
+https://www.reddit.com/r/Riftbound/comments/1r3qnv8/double_trouble_format/
+https://www.reddit.com/r/Riftbound/comments/1r45lha/
+https://www.reddit.com/r/Riftbound/comments/1r4gvd4/switcheroo_doesnt_work_as_its_written/
+https://www.reddit.com/r/Riftbound/comments/1rcfccv/psa_for_newer_players_addressing_common_concerns/
+https://www.reddit.com/r/Riftbound/comments/1rjea7x/dumb_question_does_hostile_takeover_always_return/
+https://www.reddit.com/r/Riftbound/comments/1rki33a/
+https://www.reddit.com/r/Riftbound/comments/1rmc7c3/
+https://www.reddit.com/r/Riftbound/comments/1rn0gh7/
+https://www.reddit.com/r/Riftbound/comments/1rpuc77/
+https://www.reddit.com/r/Riftbound/comments/1s0d28b/
+https://www.reddit.com/r/Riftbound/comments/1sb12t3/
+https://www.reddit.com/r/Riftbound/comments/1t80cxn/
+https://www.reddit.com/r/Riftbound/comments/1ta564g/
+https://www.reddit.com/r/Riftbound/comments/1tdcdjr/
+https://www.reddit.com/r/Riftbound/comments/1tdej6g/
+https://www.reddit.com/r/Riftbound/comments/1tey9uh/
+https://www.reddit.com/r/Riftbound/comments/1tf1l7t/
+https://www.reddit.com/r/Riftbound/comments/1tf6nco/
+https://www.reddit.com/r/Riftbound/comments/1tsoq5h/
+https://www.reddit.com/r/Riftbound/comments/1tw2u7w/
+https://www.reddit.com/r/Riftbound/comments/1twtru4/
+https://www.reddit.com/r/Riftbound/comments/1u2o99j/
+https://www.reddit.com/r/Riftbound/comments/1u9wg57/
+https://www.reddit.com/r/Riftbound/comments/1ubqg8z/
+https://www.reddit.com/r/Riftbound/comments/1uk4kvd/basic_question/
+https://www.reddit.com/r/Riftbound/comments/1un5vd2/
+https://www.reddit.com/r/Riftbound/comments/1v3cvfm/
+https://www.reddit.com/r/Riftbound/comments/1v614fx/
+https://www.reddit.com/r/Riftbound/comments/1v7awje/can_we_finally_get_the_official_result_regarding/
+https://www.reddit.com/r/Riftbound/comments/1va1yjo/first_time_playing_riftbound_ever_my_impressions/
+https://www.reddit.com/r/Riftbound/comments/1vd7iuw/reaction_question/
+https://www.reddit.com/r/Riftbound/comments/1vg7xh0/just_out_of_curiosity/
+https://www.reddit.com/r/Riftbound/comments/1vha3ee/shady_spectacles_help/
+https://www.reddit.com/r/Riftbound/comments/1vhfv7u/wtf_is_this_floating_concept/
+https://www.reddit.com/r/Riftbound/comments/1vju1ls/darius_trifarian_ready_mechanic_question/
+https://www.reddit.com/r/Riftbound/comments/1vnppzf/escaped_greyback_self_sacrifice/
+https://www.reddit.com/r/Riftbound/comments/1vsuzb0/leblanc_deck_mirror_image_question/
+https://www.reddit.com/r/Riftbound/comments/1vszkhb/fellow_kennen_players_help_settle_a_debate_with/
+https://www.reddit.com/r/Riftbound/comments/1vuo5xi/question_can_my_opponent_take_akali_silent_out_of/
+https://www.reddit.com/r/Riftbound/comments/1vuoh7d/hello_i_am_new_to_riftbound_and_want_to_build_a/
+https://www.reddit.com/r/Riftbound/comments/1vxjloo/card_question/
+https://www.reddit.com/r/Riftbound/comments/1vxsmex/i_dont_think_this_guy_knows_how_leona_works/
+https://www.reddit.com/r/Riftbound/comments/1vxzb43/am_i_playing_the_legend_wrong_or_am_i_just_too/
+https://www.reddit.com/r/Riftbound/comments/1w0dkzs/question/
+https://www.reddit.com/r/Riftbound/comments/1w0kkwo/from_5_to_8_points_in_one_turn_with_rengar/
+
+## r/riftboundtcg - surfaced by search before the cap, never listed in full
+# This sub is 178K members and far denser in rules content than r/Riftbound.
+https://www.reddit.com/r/riftboundtcg/comments/1w1pcgy/
+https://www.reddit.com/r/riftboundtcg/comments/1w0qt3e/
+https://www.reddit.com/r/riftboundtcg/comments/1vyldqn/
+https://www.reddit.com/r/riftboundtcg/comments/1vy7hym/
+https://www.reddit.com/r/riftboundtcg/comments/1vy4907/
+https://www.reddit.com/r/riftboundtcg/comments/1vxq31l/
+https://www.reddit.com/r/riftboundtcg/comments/1vyre8u/
