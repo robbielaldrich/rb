@@ -2467,6 +2467,482 @@
           ]
         }
       ]
+    },
+    {
+      "name": "tropickyle",
+      "added_at": "2026-08-31T21:23:15.324540133-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Annie, Dark Child"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Annie, Stubborn"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 3,
+              "name": "Traveling Merchant"
+            },
+            {
+              "quantity": 3,
+              "name": "Flash"
+            },
+            {
+              "quantity": 3,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 3,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 3,
+              "name": "Up from the Deep"
+            },
+            {
+              "quantity": 2,
+              "name": "Ride the Wind"
+            },
+            {
+              "quantity": 2,
+              "name": "Overzealous Fan"
+            },
+            {
+              "quantity": 2,
+              "name": "Heedless Resurrection"
+            },
+            {
+              "quantity": 1,
+              "name": "Gust"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 1,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 1,
+              "name": "Rage Amplifier"
+            },
+            {
+              "quantity": 3,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 3,
+              "name": "Illaoi, Prophet of the Great Kraken"
+            },
+            {
+              "quantity": 2,
+              "name": "Rek'Sai, Breacher"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Trifarian War Camp"
+            },
+            {
+              "quantity": 1,
+              "name": "Zaun Warrens"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Ravenbloom Prefect"
+            },
+            {
+              "quantity": 1,
+              "name": "Thermo Beam"
+            },
+            {
+              "quantity": 1,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 1,
+              "name": "Rebuke"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 1,
+              "name": "Switcheroo"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "deuce jinx",
+      "added_at": "2026-08-31T21:24:48.588477791-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Jinx, Loose Cannon"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Jinx, Rebel"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Traveling Merchant"
+            },
+            {
+              "quantity": 3,
+              "name": "Super Mega Death Rocket!"
+            },
+            {
+              "quantity": 3,
+              "name": "Punching Poro"
+            },
+            {
+              "quantity": 3,
+              "name": "Shadow Order Disciple"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 2,
+              "name": "Unlicensed Armory"
+            },
+            {
+              "quantity": 2,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 2,
+              "name": "Seal of Rage"
+            },
+            {
+              "quantity": 2,
+              "name": "Gust"
+            },
+            {
+              "quantity": 2,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 2,
+              "name": "Long Sword"
+            },
+            {
+              "quantity": 2,
+              "name": "Dunebreaker"
+            },
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Perfect Execution"
+            },
+            {
+              "quantity": 1,
+              "name": "Ride the Wind"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 2,
+              "name": "Vi, Destructive"
+            },
+            {
+              "quantity": 2,
+              "name": "Zed, From the Shadows"
+            },
+            {
+              "quantity": 1,
+              "name": "Fizz, Trickster"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Void Gate"
+            },
+            {
+              "quantity": 1,
+              "name": "Zaun Warrens"
+            },
+            {
+              "quantity": 1,
+              "name": "Minefield"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 2,
+              "name": "Up from the Deep"
+            },
+            {
+              "quantity": 2,
+              "name": "Ravenbloom Prefect"
+            },
+            {
+              "quantity": 1,
+              "name": "Thermo Beam"
+            },
+            {
+              "quantity": 1,
+              "name": "Piercing Light"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "khazix  dan mclure",
+      "added_at": "2026-08-31T21:25:17.292709152-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Kha'Zix, Voidreaver"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Kha'Zix, Evolving Hunter"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Seal of Strength"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 3,
+              "name": "Boots of Swiftness"
+            },
+            {
+              "quantity": 3,
+              "name": "Spirit Wheel"
+            },
+            {
+              "quantity": 3,
+              "name": "Grim Resolve"
+            },
+            {
+              "quantity": 3,
+              "name": "Arachnoid Horror"
+            },
+            {
+              "quantity": 3,
+              "name": "Void Assault"
+            },
+            {
+              "quantity": 2,
+              "name": "Trinity Force"
+            },
+            {
+              "quantity": 2,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 2,
+              "name": "Hunter's Machete"
+            },
+            {
+              "quantity": 1,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 3,
+              "name": "Lucian, Merciless"
+            },
+            {
+              "quantity": 2,
+              "name": "Miss Fortune, Buccaneer"
+            },
+            {
+              "quantity": 2,
+              "name": "Yone, Blademaster"
+            },
+            {
+              "quantity": 2,
+              "name": "Jax, Unrelenting"
+            },
+            {
+              "quantity": 2,
+              "name": "Rengar, Trophy Hunter"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Forge of the Fluft"
+            },
+            {
+              "quantity": 1,
+              "name": "Sunken Temple"
+            },
+            {
+              "quantity": 1,
+              "name": "Sandswept Tomb"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 8,
+              "name": "Body Rune"
+            },
+            {
+              "quantity": 4,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Unyielding Spirit"
+            },
+            {
+              "quantity": 3,
+              "name": "Gust"
+            },
+            {
+              "quantity": 3,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
