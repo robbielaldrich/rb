@@ -64,7 +64,6 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.StringVar(&opts.CollectionPath, "collection-file", "collection/collection.json", "collection to build the decks out of")
 		fs.StringVar(&opts.DecksPath, "decks-file", "decks/decks.json", "deck register to measure")
 		fs.StringVar(&opts.ReportPath, "out", "decks/match-decks-result.txt", "file to keep a copy of the report in, or \"\" to keep none")
-		fs.StringVar(&opts.DataPath, "json-out", "decks/match-decks-result.json", "file to leave the report data in for the collection page, or \"\" to leave none")
 		fs.BoolVar(&opts.Sideboard, "sideboard", false, "count the sideboard as part of the deck")
 		return func() error { return matchDecks(opts) }
 

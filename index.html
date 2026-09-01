@@ -187,34 +187,78 @@
 </section>
 
 <script>
+/* Shared data
+   Every tab is a different reading of the same few files, so each one is
+   fetched at most once and whoever asks next is handed the same promise —
+   the catalog alone is a couple of megabytes. */
+function fetchJSON(path) {
+  return fetch(path).then(r => {
+    // A file that isn't there comes back as the 404 page, whose parse error
+    // says nothing about which fetch failed.
+    if (!r.ok) throw new Error(`${path}: ${r.status} ${r.statusText}`);
+    return r.json();
+  });
+}
+
+function once(load) {
+  let pending;
+  return () => (pending ??= load());
+}
+
+// cmp orders two strings by their code units, which is how Go's sorts order
+// them too — the page and `rb match-decks` have to agree on the order.
+const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+
+const catalog = once(() => fetchJSON("./cards/cards.json").then(dedupe));
+const collection = once(() => fetchJSON("./collection/collection.json"));
+const register = once(() => fetchJSON("./decks/decks.json"));
+
+// dedupe keeps one record per printing, the way cards.Load does: the API
+// returns more than one record for some cards, a stale one and a refreshed
+// one, and the download keeps both, so the newest updated_on wins.
+function dedupe(cs) {
+  const newest = new Map();
+  for (const c of cs) {
+    const prev = newest.get(c.riftbound_id);
+    if (prev && prev.metadata.updated_on >= c.metadata.updated_on) continue;
+    newest.set(c.riftbound_id, c);
+  }
+  // Sorted as cards.Load sorts, since the first printing filed under a name
+  // decides the spelling reported for it and the order its sets are listed
+  // in. Alternate arts share a collector number with their plain printing, so
+  // the id breaks the tie.
+  return [...newest.values()].sort((a, b) =>
+    cmp(a.set.set_id, b.set.set_id) ||
+    a.collector_number - b.collector_number ||
+    cmp(a.riftbound_id, b.riftbound_id));
+}
+
+// ownedByID is how many copies of each printing the collection holds.
+function ownedByID(coll) {
+  const owned = new Map();
+  for (const c of coll.cards || []) owned.set(c.riftbound_id, c.quantity);
+  return owned;
+}
+
+/* Card search */
 const q = document.getElementById("q");
 const status = document.getElementById("status");
 const results = document.getElementById("results");
 let cards = [];
 
-Promise.all([
-  fetch("./cards/cards.json").then(r => r.json()),
-  fetch("./collection/collection.json").then(r => r.json()),
-]).then(([catalog, coll]) => {
-  const owned = new Map();
-  for (const c of coll.cards || []) owned.set(c.riftbound_id, c.quantity);
-  // The catalog lists some printings twice under one riftbound_id; keep one row each.
-  const byID = new Map();
-  for (const c of catalog) {
-    if (byID.has(c.riftbound_id)) continue;
-    byID.set(c.riftbound_id, {
-      name: c.name,
-      id: c.riftbound_id,
-      set: c.set.set_id,
-      number: c.collector_number,
-      image: c.media.image_url,
-      landscape: c.orientation === "landscape",
-      qty: owned.get(c.riftbound_id) || 0,
-    });
-  }
-  cards = [...byID.values()];
-  const have = cards.filter(c => c.qty > 0).length;
-  status.textContent = `${have} of ${cards.length} cards in the collection.`;
+Promise.all([catalog(), collection()]).then(([cs, coll]) => {
+  const owned = ownedByID(coll);
+  cards = cs.map(c => ({
+    name: c.name,
+    id: c.riftbound_id,
+    set: c.set.set_id,
+    number: c.collector_number,
+    image: c.media.image_url,
+    landscape: c.orientation === "landscape",
+    qty: owned.get(c.riftbound_id) || 0,
+  }));
+  const held = cards.filter(c => c.qty > 0).length;
+  status.textContent = `${held} of ${cards.length} cards in the collection.`;
   q.disabled = false;
   q.focus();
 }).catch(err => {
@@ -285,7 +329,262 @@ const fromHash = () =>
   document.getElementById("tab-search");
 window.addEventListener("hashchange", () => select(fromHash()));
 
-/* Decks */
+/* Decks
+   The report is worked out here, off the catalog, the collection and the deck
+   register, rather than read from one `rb match-decks` left behind: a file of
+   results goes stale the moment a card is collected, and this way the page is
+   right as soon as collection.json changes.
+
+   What follows is a port of decks/pool.go and decks/match.go, and has to stay
+   one — the terminal report and this page are the same answer read two ways. */
+
+const APOSTROPHE = /['’]/g;
+const PUNCTUATION = /[^a-z0-9]+/g;
+const VARIANT = /\s*\([^()]*\)$/;
+
+// `rb match-decks` counts the sideboard only when asked to, and the page
+// asks the same way it does by default: a deck can be taken to a table
+// without one.
+const SIDEBOARD = false;
+
+// normalize reduces a card name to the words in it. Decklists don't spell
+// names quite the way the catalog does — champions take a comma where the
+// catalog prints a dash, "Fizz, Trickster" against "Fizz - Trickster" — and
+// punctuation is all that differs, so dropping it lines the two up.
+//
+// An apostrophe goes rather than becoming a space, so that the "Rek'Sai" the
+// catalog prints and the "Reksai" a list types stay one word either way.
+const normalize = name =>
+  name.toLowerCase().replace(APOSTROPHE, "").replace(PUNCTUATION, " ").trim();
+
+// squash drops the word breaks as well, leaving the letters alone. It is the
+// last word on whether two spellings are the same name, since it doesn't care
+// where the punctuation fell.
+const squash = normalized => normalized.replaceAll(" ", "");
+
+// baseName is a card's name with any printing-variant suffix removed, e.g.
+// "Teemo - Scout (Alternate Art)", so every printing of one card shares it.
+const baseName = name => name.replace(VARIANT, "");
+
+function addUnique(xs, x) {
+  if (x && !xs.includes(x)) xs.push(x);
+}
+
+// newPool counts how many copies of each card the collection holds, keyed by
+// a normalised card name. Every printing counts towards the same key —
+// alternate arts, overnumbered copies and reprints in a later set are all the
+// same card to build a deck with. Alongside the counts it keeps the spelling
+// each card is sold under, the sets and domains it is filed with, and which
+// keys the catalog calls runes.
+function newPool(cs, owned) {
+  const p = {
+    owned: new Map(),
+    // squashed indexes the same cards with the spaces taken out as well, so a
+    // name that breaks into different words — "Rek-Sai" against "Rek'Sai" —
+    // still finds them.
+    squashed: new Map(),
+    printed: new Map(),
+    runes: new Set(),
+    filed: new Map(),
+  };
+  for (const c of cs) {
+    // Cards nobody owns are keyed too, so a name the catalog knows can be
+    // told apart from one nothing prints.
+    const name = baseName(c.name);
+    const k = normalize(name);
+    const s = squash(k);
+    const qty = owned.get(c.riftbound_id) || 0;
+    p.owned.set(k, (p.owned.get(k) || 0) + qty);
+    p.squashed.set(s, (p.squashed.get(s) || 0) + qty);
+    if (!p.printed.has(k)) p.printed.set(k, name);
+
+    const d = file(p, k, s);
+    addUnique(d.sets, c.set.label);
+    for (const domain of c.classification.domain || []) addUnique(d.domains, domain);
+
+    if (c.classification.type === "Rune") p.runes.add(k).add(s);
+  }
+  return p;
+}
+
+// file returns the details filed under a key — every set the card is printed
+// in, and the domains it belongs to — opening a record if the key is new. The
+// squashed spelling only fills a gap, so a name a card is really printed
+// under is never displaced by another card's fallback.
+function file(p, k, s) {
+  let d = p.filed.get(k);
+  if (!d) {
+    d = { sets: [], domains: [] };
+    p.filed.set(k, d);
+  }
+  if (!p.filed.has(s)) p.filed.set(s, d);
+  return d;
+}
+
+// have reports how many copies of the named card the collection holds, and
+// whether any card is printed under that name at all.
+function have(p, name) {
+  const want = normalize(name);
+  if (p.owned.has(want)) return [p.owned.get(want), true];
+  if (p.squashed.has(squash(want))) return [p.squashed.get(squash(want)), true];
+
+  // Fall back to the names that end the same way, and add up what they hold:
+  // where more than one matches, they are printings of a single card that the
+  // catalog names inconsistently.
+  let qty = 0;
+  let known = false;
+  for (const [k, held] of p.owned) {
+    if (sharesTail(k, want)) {
+      qty += held;
+      known = true;
+    }
+  }
+  return [qty, known];
+}
+
+// details reports what the catalog prints the named card as. It walks the
+// same three steps as have — the name as filed, the name with its word breaks
+// gone, then the keys it shares a tail with — so the sets and domains come
+// off whichever printings answered for the count.
+function details(p, name) {
+  const want = normalize(name);
+  if (p.filed.has(want)) return p.filed.get(want);
+  if (p.filed.has(squash(want))) return p.filed.get(squash(want));
+
+  // Tail matches are gathered out of a map, so they are sorted before merging
+  // to keep the report the same from one reading to the next.
+  const keys = [...p.owned.keys()].filter(k => sharesTail(k, want)).sort(cmp);
+  const out = { sets: [], domains: [] };
+  for (const k of keys) {
+    const d = p.filed.get(k);
+    if (!d) continue;
+    for (const set of d.sets) addUnique(out.sets, set);
+    for (const domain of d.domains) addUnique(out.domains, domain);
+  }
+  return out;
+}
+
+// sharesTail reports whether one of the names ends in the other, on a whole
+// word and over at least two words.
+//
+// A legend carries the champion's species in front of it in the catalog —
+// "Yordle, Kennen - Heart of the Tempest" — which decklists leave off, so the
+// tail is what the two spellings have in common. The two-word floor keeps a
+// one-word card like Shadow from answering for every card it ends.
+function sharesTail(a, b) {
+  const [long, short] = a.length >= b.length ? [a, b] : [b, a];
+  if (!short.includes(" ")) return false;
+  return long === short || long.endsWith(" " + short);
+}
+
+// isRune reports whether the catalog files the named card as a rune.
+const isRune = (p, name) =>
+  p.runes.has(normalize(name)) || p.runes.has(squash(normalize(name)));
+
+// nearest picks the catalog name closest in spelling to the one asked for, so
+// a typo in a pasted list can be told from a card the catalog hasn't caught
+// up with. It gives up rather than reach for a name that is nothing like it.
+function nearest(p, name) {
+  const want = normalize(name);
+  let limit = Math.max(Math.floor(want.length / 4), 1);
+  let best = null;
+  for (const k of p.owned.keys()) {
+    const d = editDistance(want, k);
+    if (d <= limit) {
+      best = k;
+      limit = d - 1;
+    }
+  }
+  return best === null ? "" : p.printed.get(best);
+}
+
+// editDistance counts the single-character edits between two names, over one
+// row of the matrix at a time since only the count is wanted.
+function editDistance(a, b) {
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  let curr = new Array(b.length + 1);
+  for (let i = 1; i <= a.length; i++) {
+    curr[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const sub = prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1);
+      curr[j] = Math.min(sub, prev[j] + 1, curr[j - 1] + 1);
+    }
+    [prev, curr] = [curr, prev];
+  }
+  return prev[b.length];
+}
+
+const isSideboard = name => name.trim().toLowerCase() === "sideboard";
+
+// isRunePool reports whether a heading names the runes a deck brings. Runes
+// aren't collected the way cards are — every product ships a pile of them and
+// no list is held up for want of one — so they are read but left out of what
+// the collection has to cover.
+const isRunePool = name => name.toLowerCase().includes("rune");
+
+// deckCards totals how many copies of each card the collection has to cover,
+// in name order. A card listed in both the main deck and the sideboard needs
+// the two counts added up, so the sections are summed rather than merged.
+function deckCards(deck, sideboard) {
+  const want = new Map();
+  for (const s of deck.sections) {
+    if (!sideboard && isSideboard(s.name)) continue;
+    if (isRunePool(s.name)) continue;
+    for (const e of s.cards) want.set(e.name, (want.get(e.name) || 0) + e.quantity);
+  }
+  return [...want]
+    .sort(([a], [b]) => cmp(a, b))
+    .map(([name, quantity]) => ({ name, quantity }));
+}
+
+// check measures one deck against the pool, listing every card it asks for
+// that the collection can't cover.
+function check(deck, p, sideboard) {
+  const missing = [];
+  let size = 0;
+  for (const e of deckCards(deck, sideboard)) {
+    if (isRune(p, e.name)) continue;
+    size += e.quantity;
+
+    const [held, known] = have(p, e.name);
+    if (known && held >= e.quantity) continue;
+    const m = {
+      name: e.name,
+      need: e.quantity,
+      have: held,
+      short: e.quantity - held,
+      // unknown marks a name no card in the catalog is printed under, usually
+      // a typo in the pasted list or a set the catalog hasn't caught up with.
+      unknown: !known,
+    };
+    if (known) {
+      const d = details(p, e.name);
+      m.sets = d.sets;
+      m.domains = d.domains;
+    } else {
+      m.nearest = nearest(p, e.name);
+    }
+    missing.push(m);
+  }
+  return {
+    name: deck.name,
+    size,
+    short: missing.reduce((n, m) => n + m.short, 0),
+    buildable: missing.length === 0,
+    missing,
+  };
+}
+
+// evaluate ranks the decks by how far from buildable they are.
+function evaluate(ds, p, sideboard) {
+  return ds.map(d => check(d, p, sideboard)).sort((a, b) =>
+    // Copies come first: a deck four short of one card is nearer to built
+    // than one a card short of four.
+    a.short - b.short ||
+    a.missing.length - b.missing.length ||
+    cmp(a.name.toLowerCase(), b.name.toLowerCase()));
+}
+
 const decksStatus = document.getElementById("decks-status");
 const decksEl = document.getElementById("decks");
 let decksLoaded = false;
@@ -293,13 +592,20 @@ let decksLoaded = false;
 function loadDecks() {
   if (decksLoaded) return;
   decksLoaded = true;
-  fetch("./decks/match-decks-result.json")
-    .then(r => r.json())
-    .then(render)
+  Promise.all([catalog(), collection(), register()])
+    .then(([cs, coll, reg]) => {
+      const ds = reg.decks || [];
+      if (ds.length === 0) {
+        decksStatus.textContent = "No decks registered yet — run `just add-decks`.";
+        return;
+      }
+      render({
+        sideboard: SIDEBOARD,
+        decks: evaluate(ds, newPool(cs, ownedByID(coll)), SIDEBOARD),
+      });
+    })
     .catch(err => {
-      // The report is generated by `just match-decks`, so a missing file
-      // means it hasn't been run since the decks were registered.
-      decksStatus.textContent = "Failed to load the deck report: " + err;
+      decksStatus.textContent = "Failed to work out the deck report: " + err;
     });
 }
 

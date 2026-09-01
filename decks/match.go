@@ -73,9 +73,6 @@ type Options struct {
 	// ReportPath is where to keep a copy of the report to read later; no copy
 	// is kept when it is empty.
 	ReportPath string
-	// DataPath is where to leave the same results as JSON for the collection
-	// page to lay out; nothing is written when it is empty.
-	DataPath string
 	// Sideboard requires the sideboard as well, which a deck can be taken to
 	// a table without.
 	Sideboard bool
@@ -115,11 +112,6 @@ func Match(opts Options, w io.Writer) error {
 	if opts.ReportPath != "" {
 		if err := writeFile(opts.ReportPath, report.Bytes()); err != nil {
 			return fmt.Errorf("failed to keep a copy of the report: %w", err)
-		}
-	}
-	if opts.DataPath != "" {
-		if err := writeData(opts.DataPath, res, opts.Sideboard); err != nil {
-			return fmt.Errorf("failed to write the report data: %w", err)
 		}
 	}
 	return nil
