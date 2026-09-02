@@ -2943,6 +2943,174 @@
           ]
         }
       ]
+    },
+    {
+      "name": "annie s4 tropickyle",
+      "added_at": "2026-09-01T18:17:08.64037664-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Annie, Dark Child"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Annie, Stubborn"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 3,
+              "name": "Traveling Merchant"
+            },
+            {
+              "quantity": 3,
+              "name": "Flash"
+            },
+            {
+              "quantity": 3,
+              "name": "Long Sword"
+            },
+            {
+              "quantity": 3,
+              "name": "Gust Monk"
+            },
+            {
+              "quantity": 2,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 2,
+              "name": "Gust"
+            },
+            {
+              "quantity": 2,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Up from the Deep"
+            },
+            {
+              "quantity": 1,
+              "name": "Ride the Wind"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 3,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 2,
+              "name": "Darius, Trifarian"
+            },
+            {
+              "quantity": 2,
+              "name": "Rek'Sai, Breacher"
+            },
+            {
+              "quantity": 2,
+              "name": "Fizz, Trickster"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Zaun Warrens"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            },
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Chaos Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Fury Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Ravenbloom Prefect"
+            },
+            {
+              "quantity": 1,
+              "name": "Thermo Beam"
+            },
+            {
+              "quantity": 1,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 1,
+              "name": "Rebuke"
+            },
+            {
+              "quantity": 1,
+              "name": "Against the Odds"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 1,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Rage"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
