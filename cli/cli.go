@@ -13,7 +13,7 @@ import (
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "surplus", "missing"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "surplus", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -79,6 +79,15 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
 		return func() error { return genAnki(opts) }
+
+	case "gen-rules-anki":
+		var opts ankigen.RulesOptions
+		fs.StringVar(&opts.RulingsPath, "rulings-file", "rules/rulings.json", "ruling dataset to draft the notes from")
+		fs.StringVar(&opts.ReviewPath, "review-file", "rules/anki-review.json", "record of what has been approved, reworded or skipped")
+		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck file into")
+		fs.StringVar(&opts.DeckName, "deck", "Riftbound::Rulings", "name of the deck to import into")
+		fs.BoolVar(&opts.Revisit, "revisit", false, "offer the rulings already decided on again")
+		return func() error { return genRulesAnki(opts) }
 	}
 	return nil
 }
@@ -233,6 +242,30 @@ to import:
   3. import %s the same way for the companion deck
 `, res.Notes, res.Images, res.MediaDir, res.CostDeckFile, res.EffectDeckFile)
 	return nil
+}
+
+func genRulesAnki(opts ankigen.RulesOptions) error {
+	res, err := ankigen.ReviewRulings(opts, os.Stdin, os.Stdout)
+	if err != nil {
+		return fmt.Errorf("failed to review the rulings: %w", err)
+	}
+
+	fmt.Printf(`
+%d %s this pass · %d approved · %d skipped · %d left
+
+wrote %s
+
+to import:
+  in Anki, File > Import and choose %s
+`, res.Decided, plural(res.Decided, "ruling"), res.Notes, res.Skipped, res.Left, res.DeckFile, res.DeckFile)
+	return nil
+}
+
+func plural(n int, word string) string {
+	if n == 1 {
+		return word
+	}
+	return word + "s"
 }
 
 type usageError struct{ msg string }

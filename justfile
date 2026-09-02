@@ -26,3 +26,7 @@ add-decks:
 
 match-decks *flags:
     go run ./cmd/rb match-decks -catalog-file cards/cards.json -collection-file collection/collection.json -decks-file decks/decks.json -out decks/match-decks-result.txt {{flags}}
+
+# review the rulings one by one, keeping or rewording the note drafted from each
+gen-rules-anki *flags:
+    go run ./cmd/rb gen-rules-anki -rulings-file rules/rulings.json -review-file rules/anki-review.json -out anki/ {{flags}}

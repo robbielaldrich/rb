@@ -23,6 +23,25 @@ Each entry:
 }
 ```
 
+## Anki notes
+
+`rb gen-rules-anki` (`just gen-rules-anki`) walks the rulings one at a time and
+drafts a short question and a short answer from each: the ruling's own
+question, and the sentences that open its answer. Drafting is mechanical, since
+a ruling explains itself over several paragraphs and a note has to say the same
+thing in a sentence — so each draft is shown under the whole ruling and kept,
+reworded or skipped by hand.
+
+Every decision is written through to `anki-review.json` as it is made, so a
+pass can stop at any point (`q`, or ctrl+d) and pick up where it left off, and
+a note reworded once stays reworded. `-revisit` offers the settled rulings
+again, each prefilled with the note it was given. The approved notes are
+written to `../anki/riftbound-rulings.txt` at the end of every pass, tagged by
+category and topic, with the Core Rules citation added to the back.
+
+Decisions are filed under a ruling's slug and anchor, so rewording a ruling
+keeps its note; moving it under another anchor makes it a new one to review.
+
 ## Where it came from
 
 **165 — community Riftbound FAQ** (<https://www.riftboundfaq.com/>, source at
@@ -42,7 +61,9 @@ chain resolves.
 The FAQ content is **CC BY-SA 4.0**, and this repo and its Pages site are
 public, so that redistribution is live: attribution and the licence are shown in
 the Rules tab itself, and share-alike binds anyone who takes the dataset onward.
-Keep the credit line in `index.html` if you rework the tab.
+Keep the credit line in `index.html` if you rework the tab. `anki-review.json`
+and the deck built from it are derived from that content as well, so
+share-alike follows them into this repo.
 
 ## Unfinished
 
@@ -53,4 +74,5 @@ but never read, including all of r/riftboundtcg — 178K members and denser in
 rules content than r/Riftbound, never enumerated at all. Resuming needs only a
 working scraper.
 
-Next per `../PLANNING.md`: cluster these into Anki notes via `rb gen-anki`.
+Anki notes are drafted a ruling at a time by `rb gen-rules-anki`; nothing has
+been reviewed yet, so `anki-review.json` doesn't exist until the first pass.
