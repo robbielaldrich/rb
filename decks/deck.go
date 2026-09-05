@@ -44,6 +44,23 @@ type Deck struct {
 	Sections  []Section `json:"sections"`
 }
 
+// Title heads a deck the way it is talked about: the legend it plays, then
+// the name it was filed under where that says something the legend doesn't,
+// then the set it was pasted under. Several lists are filed under one event
+// name, so the legend leads and the name follows it.
+func (d Deck) Title() string {
+	parts := []string{d.Legend}
+	if d.Legend == "" {
+		parts = []string{d.Name}
+	} else if d.Name != "" && !strings.EqualFold(d.Name, d.Legend) {
+		parts = append(parts, d.Name)
+	}
+	if d.LatestSet != "" {
+		parts = append(parts, d.LatestSet)
+	}
+	return strings.Join(parts, " · ")
+}
+
 func isSideboard(section string) bool {
 	return strings.EqualFold(strings.TrimSpace(section), "sideboard")
 }

@@ -133,7 +133,12 @@ func evaluate(ds []Deck, p *pool, sideboard bool) []Result {
 		if n := cmp.Compare(len(a.Missing), len(b.Missing)); n != 0 {
 			return n
 		}
-		return cmp.Compare(strings.ToLower(a.Deck.Name), strings.ToLower(b.Deck.Name))
+		if n := cmp.Compare(strings.ToLower(a.Deck.Name), strings.ToLower(b.Deck.Name)); n != 0 {
+			return n
+		}
+		// Several lists are filed under one event name, so the legend is what
+		// holds them in a fixed order.
+		return cmp.Compare(strings.ToLower(a.Deck.Legend), strings.ToLower(b.Deck.Legend))
 	})
 	return out
 }
@@ -177,10 +182,10 @@ func writeReport(w io.Writer, res []Result, sideboard bool) {
 
 	for _, r := range res {
 		if r.Buildable() {
-			fmt.Fprintf(w, "\n  ✓ %s · %d %s\n", r.Deck.Name, r.Size, plural(r.Size, "card"))
+			fmt.Fprintf(w, "\n  ✓ %s · %d %s\n", r.Deck.Title(), r.Size, plural(r.Size, "card"))
 			continue
 		}
-		fmt.Fprintf(w, "\n  ✗ %s · %d of %d %s missing\n", r.Deck.Name, r.Short(), r.Size, plural(r.Size, "card"))
+		fmt.Fprintf(w, "\n  ✗ %s · %d of %d %s missing\n", r.Deck.Title(), r.Short(), r.Size, plural(r.Size, "card"))
 		for _, line := range shortfallLines(r.Missing) {
 			fmt.Fprintf(w, "      %s\n", line)
 		}

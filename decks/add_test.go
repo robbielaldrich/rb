@@ -55,11 +55,11 @@ func TestAddRecordsEachPastedDeck(t *testing.T) {
 	if got := a.registry.Decks[0].LatestSet; got != "VEN" {
 		t.Errorf("first deck was filed under set %q, want the newest in print", got)
 	}
-	if !strings.Contains(out, `saved "Worlds T1" · Kennen, Heart of the Tempest · 17 cards, 3 in the sideboard · VEN`) {
+	if !strings.Contains(out, "saved Kennen, Heart of the Tempest · Worlds T1 · VEN · 17 cards, 3 in the sideboard") {
 		t.Errorf("the session doesn't report what it saved:\n%s", out)
 	}
 	// A deck filed under its own legend doesn't say it twice.
-	if !strings.Contains(out, `saved "Shadow" · 1 cards, 0 in the sideboard · VEN`) {
+	if !strings.Contains(out, "saved Shadow · VEN · 1 cards, 0 in the sideboard") {
 		t.Errorf("the session repeats a legend that is already the name:\n%s", out)
 	}
 

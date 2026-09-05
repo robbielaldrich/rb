@@ -101,3 +101,30 @@ func TestRegistryRoundTrips(t *testing.T) {
 		t.Errorf("the register came back as %+v", back.Decks)
 	}
 }
+
+func TestTitle(t *testing.T) {
+	for _, tc := range []struct {
+		name string
+		deck Deck
+		want string
+	}{
+		{
+			"filed under an event name",
+			Deck{Name: "wuhan top", Legend: "Vex, Gloomist", LatestSet: "VEN"},
+			"Vex, Gloomist · wuhan top · VEN",
+		},
+		// A deck left under the name it gave itself doesn't say it twice.
+		{
+			"filed under its legend",
+			Deck{Name: "Vex, Gloomist", Legend: "Vex, Gloomist", LatestSet: "VEN"},
+			"Vex, Gloomist · VEN",
+		},
+		// Decks registered before the register carried either.
+		{"no legend", Deck{Name: "wuhan top", LatestSet: "VEN"}, "wuhan top · VEN"},
+		{"no set", Deck{Name: "wuhan top", Legend: "Vex, Gloomist"}, "Vex, Gloomist · wuhan top"},
+	} {
+		if got := tc.deck.Title(); got != tc.want {
+			t.Errorf("%s: Title() = %q, want %q", tc.name, got, tc.want)
+		}
+	}
+}

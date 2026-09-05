@@ -1505,6 +1505,3310 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Viktor, Herald of the Arcane",
+      "legend": "Viktor, Herald of the Arcane",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:21:26.585554119-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Viktor, Herald of the Arcane"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Viktor, Innovator"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Noxian Emissary"
+            },
+            {
+              "quantity": 2,
+              "name": "Eclipse"
+            },
+            {
+              "quantity": 2,
+              "name": "Deadly Flourish"
+            },
+            {
+              "quantity": 3,
+              "name": "Sprite Fountain"
+            },
+            {
+              "quantity": 2,
+              "name": "Shadow's Call"
+            },
+            {
+              "quantity": 3,
+              "name": "Wages of Pain"
+            },
+            {
+              "quantity": 3,
+              "name": "Bellows Breath"
+            },
+            {
+              "quantity": 2,
+              "name": "Honest Broker"
+            },
+            {
+              "quantity": 1,
+              "name": "Blood Money"
+            },
+            {
+              "quantity": 3,
+              "name": "Stupefy"
+            },
+            {
+              "quantity": 2,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Time Warp"
+            },
+            {
+              "quantity": 3,
+              "name": "Cull the Weak"
+            },
+            {
+              "quantity": 3,
+              "name": "Hidden Blade"
+            },
+            {
+              "quantity": 3,
+              "name": "Imperial Decree"
+            },
+            {
+              "quantity": 2,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Sprite Burst"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Heisho, Shell of the World"
+            },
+            {
+              "quantity": 1,
+              "name": "Dusk Rose Lab"
+            },
+            {
+              "quantity": 1,
+              "name": "Rockfall Path"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Mind Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Decree of Insight"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Unity"
+            },
+            {
+              "quantity": 1,
+              "name": "Sprite Burst"
+            },
+            {
+              "quantity": 2,
+              "name": "Vi, Peacekeeper"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 1,
+              "name": "Vengeance"
+            },
+            {
+              "quantity": 1,
+              "name": "Ki Barrier"
+            },
+            {
+              "quantity": 1,
+              "name": "Deadly Flourish"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan top",
+      "legend": "Jax, Grandmaster at Arms",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:21:51.938136224-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Jax, Grandmaster at Arms"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Jax, Unmatched"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Twilight Shroud"
+            },
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 2,
+              "name": "Rengar, Trophy Hunter"
+            },
+            {
+              "quantity": 3,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 2,
+              "name": "Irresistible Faefolk"
+            },
+            {
+              "quantity": 2,
+              "name": "Lonely Poro"
+            },
+            {
+              "quantity": 3,
+              "name": "Brutalizer"
+            },
+            {
+              "quantity": 3,
+              "name": "Guardian Angel"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 2,
+              "name": "Ruin Runner"
+            },
+            {
+              "quantity": 1,
+              "name": "Lucian, Merciless"
+            },
+            {
+              "quantity": 2,
+              "name": "Counter Strike"
+            },
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 2,
+              "name": "Irelia, Fervent"
+            },
+            {
+              "quantity": 1,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 1,
+              "name": "Back Off"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Sandswept Tomb"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandoned Hall"
+            },
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 5,
+              "name": "Calm Rune"
+            },
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Decree of Strength"
+            },
+            {
+              "quantity": 2,
+              "name": "Disposal Order"
+            },
+            {
+              "quantity": 2,
+              "name": "Lucian, Merciless"
+            },
+            {
+              "quantity": 1,
+              "name": "Charm"
+            },
+            {
+              "quantity": 1,
+              "name": "Irelia, Fervent"
+            },
+            {
+              "quantity": 1,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 1,
+              "name": "Onslaught"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan top",
+      "legend": "Renekton, Butcher of the Sands",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:22:15.675035598-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Renekton, Butcher of the Sands"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Renekton, Rage Fueled"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 3,
+              "name": "Rengar, Trophy Hunter"
+            },
+            {
+              "quantity": 2,
+              "name": "Kinkou Initiate"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 1,
+              "name": "Grim Apothecary"
+            },
+            {
+              "quantity": 3,
+              "name": "Irresistible Faefolk"
+            },
+            {
+              "quantity": 3,
+              "name": "Pit Rookie"
+            },
+            {
+              "quantity": 3,
+              "name": "Nidalee, Cat Form"
+            },
+            {
+              "quantity": 2,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 1,
+              "name": "Darius, Trifarian"
+            },
+            {
+              "quantity": 3,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 2,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 1,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            },
+            {
+              "quantity": 1,
+              "name": "Protective Sands"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 5,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Strength"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 1,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 1,
+              "name": "Against the Odds"
+            },
+            {
+              "quantity": 2,
+              "name": "Disposal Order"
+            },
+            {
+              "quantity": 1,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 1,
+              "name": "Kinkou Initiate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Ambessa, Matriarch of War",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:22:25.93188347-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ambessa, Matriarch of War"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ambessa, The Wolf"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ambessa, Respected and Feared"
+            },
+            {
+              "quantity": 2,
+              "name": "Dragonsoul Sage"
+            },
+            {
+              "quantity": 3,
+              "name": "Elder Dragon"
+            },
+            {
+              "quantity": 3,
+              "name": "Gentle Gemdragon"
+            },
+            {
+              "quantity": 2,
+              "name": "Rift Herald"
+            },
+            {
+              "quantity": 1,
+              "name": "Direwing"
+            },
+            {
+              "quantity": 1,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Herald of Scales"
+            },
+            {
+              "quantity": 3,
+              "name": "Soaring Scout"
+            },
+            {
+              "quantity": 3,
+              "name": "Harnessed Dragon"
+            },
+            {
+              "quantity": 2,
+              "name": "Guttural Roar"
+            },
+            {
+              "quantity": 1,
+              "name": "Sacrifice"
+            },
+            {
+              "quantity": 1,
+              "name": "Deathgrip"
+            },
+            {
+              "quantity": 1,
+              "name": "Flurry of Blades"
+            },
+            {
+              "quantity": 2,
+              "name": "Mobilize"
+            },
+            {
+              "quantity": 1,
+              "name": "Catalyst of Aeons"
+            },
+            {
+              "quantity": 1,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 2,
+              "name": "Wild Claw"
+            },
+            {
+              "quantity": 3,
+              "name": "Legion Marauder"
+            },
+            {
+              "quantity": 1,
+              "name": "Public Execution"
+            },
+            {
+              "quantity": 2,
+              "name": "Show of Strength"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Dragon Roost"
+            },
+            {
+              "quantity": 1,
+              "name": "Risen Altar"
+            },
+            {
+              "quantity": 1,
+              "name": "The Papertree"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 5,
+              "name": "Order Rune"
+            },
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ashe, Focused"
+            },
+            {
+              "quantity": 1,
+              "name": "Corrupted Dragon"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Unity"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Strength"
+            },
+            {
+              "quantity": 2,
+              "name": "Disposal Order"
+            },
+            {
+              "quantity": 1,
+              "name": "Divine Judgment"
+            },
+            {
+              "quantity": 1,
+              "name": "Unyielding Spirit"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Leona, Radiant Dawn",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:22:34.820529323-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Leona, Radiant Dawn"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Leona, Determined"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Nami, Headstrong"
+            },
+            {
+              "quantity": 3,
+              "name": "Vi, Peacekeeper"
+            },
+            {
+              "quantity": 2,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 3,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 3,
+              "name": "Call to Glory"
+            },
+            {
+              "quantity": 3,
+              "name": "Zhonya's Hourglass"
+            },
+            {
+              "quantity": 3,
+              "name": "Affectionate Poro"
+            },
+            {
+              "quantity": 3,
+              "name": "Kennen, Keeper of Balance"
+            },
+            {
+              "quantity": 3,
+              "name": "Meditation"
+            },
+            {
+              "quantity": 1,
+              "name": "Thwonk!"
+            },
+            {
+              "quantity": 3,
+              "name": "Mournful Witness"
+            },
+            {
+              "quantity": 1,
+              "name": "Zenith Blade"
+            },
+            {
+              "quantity": 1,
+              "name": "Rift Herald"
+            },
+            {
+              "quantity": 2,
+              "name": "Emperor's Divide"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Amateur Recital"
+            },
+            {
+              "quantity": 1,
+              "name": "Monastery of Hirana"
+            },
+            {
+              "quantity": 1,
+              "name": "Sunken Temple"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Order Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Calm Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Ashe, Focused"
+            },
+            {
+              "quantity": 2,
+              "name": "Whiteflame Protector"
+            },
+            {
+              "quantity": 1,
+              "name": "Ambessa, Respected and Feared"
+            },
+            {
+              "quantity": 3,
+              "name": "Akali, Silent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Poppy, Keeper of the Hammer",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:22:43.404658345-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Poppy, Keeper of the Hammer"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Poppy, Paragon"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Elder Dragon"
+            },
+            {
+              "quantity": 1,
+              "name": "Rift Herald"
+            },
+            {
+              "quantity": 3,
+              "name": "Harnessed Dragon"
+            },
+            {
+              "quantity": 3,
+              "name": "Sacrifice"
+            },
+            {
+              "quantity": 2,
+              "name": "The Ruination"
+            },
+            {
+              "quantity": 2,
+              "name": "Blood Money"
+            },
+            {
+              "quantity": 3,
+              "name": "Mobilize"
+            },
+            {
+              "quantity": 3,
+              "name": "Confront"
+            },
+            {
+              "quantity": 3,
+              "name": "Flurry of Blades"
+            },
+            {
+              "quantity": 3,
+              "name": "Catalyst of Aeons"
+            },
+            {
+              "quantity": 2,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 2,
+              "name": "Cull the Weak"
+            },
+            {
+              "quantity": 3,
+              "name": "Dazzling Aurora"
+            },
+            {
+              "quantity": 3,
+              "name": "Forge of the Future"
+            },
+            {
+              "quantity": 2,
+              "name": "Vanguard Armory"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Sigil of the Storm"
+            },
+            {
+              "quantity": 1,
+              "name": "Forgotten Monument"
+            },
+            {
+              "quantity": 1,
+              "name": "Dragon Roost"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Body Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Keeper's Verdict"
+            },
+            {
+              "quantity": 1,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 2,
+              "name": "Unyielding Spirit"
+            },
+            {
+              "quantity": 3,
+              "name": "Rengar, Trophy Hunter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Sivir, Battle Mistress",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:22:53.437135131-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Sivir, Battle Mistress"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Sivir, Mercenary"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Dazzling Aurora"
+            },
+            {
+              "quantity": 3,
+              "name": "Elder Dragon"
+            },
+            {
+              "quantity": 1,
+              "name": "Mindsplitter"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 3,
+              "name": "Flurry of Blades"
+            },
+            {
+              "quantity": 3,
+              "name": "Mobilize"
+            },
+            {
+              "quantity": 3,
+              "name": "Catalyst of Aeons"
+            },
+            {
+              "quantity": 3,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 3,
+              "name": "Treasure Trove"
+            },
+            {
+              "quantity": 2,
+              "name": "Scryer's Bloom"
+            },
+            {
+              "quantity": 1,
+              "name": "Invert Timelines"
+            },
+            {
+              "quantity": 3,
+              "name": "Lunar Boon"
+            },
+            {
+              "quantity": 2,
+              "name": "Gust"
+            },
+            {
+              "quantity": 2,
+              "name": "Platewyrm Egg"
+            },
+            {
+              "quantity": 1,
+              "name": "Pack of Wonders"
+            },
+            {
+              "quantity": 1,
+              "name": "Challenge"
+            },
+            {
+              "quantity": 2,
+              "name": "Last Rites"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Dragon Roost"
+            },
+            {
+              "quantity": 1,
+              "name": "Forgotten Monument"
+            },
+            {
+              "quantity": 1,
+              "name": "Sigil of the Storm"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Body Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Baron Nashor"
+            },
+            {
+              "quantity": 1,
+              "name": "Mindsplitter"
+            },
+            {
+              "quantity": 1,
+              "name": "Up from the Deep"
+            },
+            {
+              "quantity": 2,
+              "name": "Disposal Order"
+            },
+            {
+              "quantity": 1,
+              "name": "Repulse"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 1,
+              "name": "Boots of Swiftness"
+            },
+            {
+              "quantity": 1,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Reksai, Void Burrower",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:23:00.981673669-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Reksai, Void Burrower"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Rek'Sai, Breacher"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 3,
+              "name": "Carrion Dredger"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 2,
+              "name": "Honest Broker"
+            },
+            {
+              "quantity": 2,
+              "name": "Undertitan"
+            },
+            {
+              "quantity": 3,
+              "name": "Faithful Manufactor"
+            },
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 3,
+              "name": "Blood Rush"
+            },
+            {
+              "quantity": 2,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 2,
+              "name": "Cull the Weak"
+            },
+            {
+              "quantity": 3,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 3,
+              "name": "Void Rush"
+            },
+            {
+              "quantity": 2,
+              "name": "Shadow Fiend"
+            },
+            {
+              "quantity": 2,
+              "name": "Sharkling"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 1,
+              "name": "Vi, Peacekeeper"
+            },
+            {
+              "quantity": 2,
+              "name": "Zed, From the Shadows"
+            },
+            {
+              "quantity": 1,
+              "name": "Dragon Form"
+            },
+            {
+              "quantity": 1,
+              "name": "Lacerate"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            },
+            {
+              "quantity": 1,
+              "name": "Zaun Warrens"
+            },
+            {
+              "quantity": 1,
+              "name": "The Candlelit Sanctum"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Ashe, Focused"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Unity"
+            },
+            {
+              "quantity": 1,
+              "name": "Against the Odds"
+            },
+            {
+              "quantity": 1,
+              "name": "Hidden Blade"
+            },
+            {
+              "quantity": 1,
+              "name": "Escaped Grayback"
+            },
+            {
+              "quantity": 1,
+              "name": "Imperial Decree"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Pyke, Bloodharbor Ripper",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:23:09.310060972-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Pyke, Bloodharbor Ripper"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Pyke, Dockside Butcher"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Traveling Merchant"
+            },
+            {
+              "quantity": 3,
+              "name": "Treasure Hunter"
+            },
+            {
+              "quantity": 3,
+              "name": "Bewitching Spirit"
+            },
+            {
+              "quantity": 2,
+              "name": "Fizz, Trickster"
+            },
+            {
+              "quantity": 2,
+              "name": "Ezreal, Prodigy"
+            },
+            {
+              "quantity": 2,
+              "name": "Vex, Apathetic"
+            },
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Blood Rush"
+            },
+            {
+              "quantity": 2,
+              "name": "Switcheroo"
+            },
+            {
+              "quantity": 2,
+              "name": "Void Seeker"
+            },
+            {
+              "quantity": 3,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 2,
+              "name": "Piercing Light"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 3,
+              "name": "Gust Monk"
+            },
+            {
+              "quantity": 2,
+              "name": "Tornado Warrior"
+            },
+            {
+              "quantity": 2,
+              "name": "Tail-Cloaked Matriarch"
+            },
+            {
+              "quantity": 1,
+              "name": "Invert Timelines"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 1,
+              "name": "Kharox"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Void Gate"
+            },
+            {
+              "quantity": 1,
+              "name": "Ripper's Bay"
+            },
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Baron Nashor"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Rage"
+            },
+            {
+              "quantity": 2,
+              "name": "Angler Beast"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Downwell"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 1,
+              "name": "Star-Crossed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Shen, Eye of Twilight",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:23:17.336728371-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Shen, Eye of Twilight"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Shen, Kinkou"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Ki Barrier"
+            },
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 2,
+              "name": "Charm"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 3,
+              "name": "Keeper of Law"
+            },
+            {
+              "quantity": 2,
+              "name": "Vi, Peacekeeper"
+            },
+            {
+              "quantity": 2,
+              "name": "Hidden Blade"
+            },
+            {
+              "quantity": 2,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 2,
+              "name": "Mutated Mouser"
+            },
+            {
+              "quantity": 3,
+              "name": "Stalwart Poro"
+            },
+            {
+              "quantity": 2,
+              "name": "Meditation"
+            },
+            {
+              "quantity": 3,
+              "name": "Sona, Harmonious"
+            },
+            {
+              "quantity": 3,
+              "name": "Trusty Ramhound"
+            },
+            {
+              "quantity": 3,
+              "name": "Noxian Drummer"
+            },
+            {
+              "quantity": 2,
+              "name": "Emperor's Divide"
+            },
+            {
+              "quantity": 2,
+              "name": "Kennen, Keeper of Balance"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Kinkou Temple"
+            },
+            {
+              "quantity": 1,
+              "name": "Hallowed Tomb"
+            },
+            {
+              "quantity": 1,
+              "name": "Startipped Peak"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Calm Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Decree of Focus"
+            },
+            {
+              "quantity": 2,
+              "name": "Not So Fast"
+            },
+            {
+              "quantity": 2,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Allay, Eager Admirer"
+            },
+            {
+              "quantity": 2,
+              "name": "Ahri, Alluring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Vi, Piltover Enforcer",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:23:52.753561427-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Vi, Piltover Enforcer"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Vi, Peacekeeper"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Perfect Execution"
+            },
+            {
+              "quantity": 2,
+              "name": "Jhin, Murderous Artist"
+            },
+            {
+              "quantity": 3,
+              "name": "Rengar, Unseen"
+            },
+            {
+              "quantity": 3,
+              "name": "Carrion Dredger"
+            },
+            {
+              "quantity": 2,
+              "name": "Sacrifice"
+            },
+            {
+              "quantity": 2,
+              "name": "Tactical Retreat"
+            },
+            {
+              "quantity": 3,
+              "name": "Hextech Gauntlets"
+            },
+            {
+              "quantity": 2,
+              "name": "Gem Jammer"
+            },
+            {
+              "quantity": 2,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 1,
+              "name": "Long Sword"
+            },
+            {
+              "quantity": 2,
+              "name": "B.F. Sword"
+            },
+            {
+              "quantity": 1,
+              "name": "Deathgrip"
+            },
+            {
+              "quantity": 3,
+              "name": "Unsung Hero"
+            },
+            {
+              "quantity": 2,
+              "name": "Seal of Rage"
+            },
+            {
+              "quantity": 1,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 2,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 2,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 2,
+              "name": "Hidden Blade"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 1,
+              "name": "Vault Breaker"
+            },
+            {
+              "quantity": 1,
+              "name": "Brynhir Thundersong"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Forge of the Fluft"
+            },
+            {
+              "quantity": 1,
+              "name": "Sunken Temple"
+            },
+            {
+              "quantity": 1,
+              "name": "Trapping Grounds"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Against the Odds"
+            },
+            {
+              "quantity": 2,
+              "name": "Forge of the Future"
+            },
+            {
+              "quantity": 1,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Cull the Weak"
+            },
+            {
+              "quantity": 2,
+              "name": "Ashe, Focused"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Unity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Draven, Glorious Executioner",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:03.803948181-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Draven, Glorious Executioner"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Draven, Showboat"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Jhin, Murderous Artist"
+            },
+            {
+              "quantity": 2,
+              "name": "Evelynn, Entrancing"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 2,
+              "name": "Switcheroo"
+            },
+            {
+              "quantity": 2,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 2,
+              "name": "Ride the Wind"
+            },
+            {
+              "quantity": 2,
+              "name": "Rebuke"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 2,
+              "name": "Overzealous Fan"
+            },
+            {
+              "quantity": 3,
+              "name": "Tideturner"
+            },
+            {
+              "quantity": 1,
+              "name": "Vex, Apathetic"
+            },
+            {
+              "quantity": 2,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 1,
+              "name": "Perfect Execution"
+            },
+            {
+              "quantity": 3,
+              "name": "Spinning Axe"
+            },
+            {
+              "quantity": 2,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 2,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 1,
+              "name": "Gust Monk"
+            },
+            {
+              "quantity": 2,
+              "name": "Zed, Without a Sound"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 1,
+              "name": "Brynhir Thundersong"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Amateur Recital"
+            },
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            },
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Ravenbloom Prefect"
+            },
+            {
+              "quantity": 1,
+              "name": "Hard Bargain"
+            },
+            {
+              "quantity": 1,
+              "name": "Against the Odds"
+            },
+            {
+              "quantity": 2,
+              "name": "Pyke, Returned"
+            },
+            {
+              "quantity": 1,
+              "name": "Flash"
+            },
+            {
+              "quantity": 1,
+              "name": "Mindsplitter"
+            },
+            {
+              "quantity": 1,
+              "name": "Vex, Apathetic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Mel, Soul's Reflection",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:11.770731795-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Mel, Soul's Reflection"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Mel, Newly Awakened"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Tideturner"
+            },
+            {
+              "quantity": 3,
+              "name": "Ravenbloom Student"
+            },
+            {
+              "quantity": 2,
+              "name": "Traveling Merchant"
+            },
+            {
+              "quantity": 2,
+              "name": "Apprentice Mage"
+            },
+            {
+              "quantity": 3,
+              "name": "Hwei, Brooding Painter"
+            },
+            {
+              "quantity": 1,
+              "name": "Pyke, Returned"
+            },
+            {
+              "quantity": 2,
+              "name": "Fizz, Trickster"
+            },
+            {
+              "quantity": 1,
+              "name": "Zed, Without a Sound"
+            },
+            {
+              "quantity": 3,
+              "name": "Rebuttal"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 2,
+              "name": "Gust"
+            },
+            {
+              "quantity": 3,
+              "name": "Ride the Wind"
+            },
+            {
+              "quantity": 3,
+              "name": "Stupefy"
+            },
+            {
+              "quantity": 1,
+              "name": "Eclipse"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Flash"
+            },
+            {
+              "quantity": 2,
+              "name": "Sprite Fountain"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Abandoned Hall"
+            },
+            {
+              "quantity": 1,
+              "name": "Threshold of the Gray"
+            },
+            {
+              "quantity": 1,
+              "name": "Targon's Peak"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Mind Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Wages of Pain"
+            },
+            {
+              "quantity": 1,
+              "name": "Mel, Defiant Soul"
+            },
+            {
+              "quantity": 2,
+              "name": "Ravenbloom Prefect"
+            },
+            {
+              "quantity": 1,
+              "name": "Switcheroo"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Acceptable Losses"
+            },
+            {
+              "quantity": 1,
+              "name": "Angler Beast"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Ezreal, Prodigal Explorer",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:19.571275887-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ezreal, Prodigal Explorer"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ezreal, Prodigy"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Bewitching Spirit"
+            },
+            {
+              "quantity": 3,
+              "name": "Fizz, Trickster"
+            },
+            {
+              "quantity": 2,
+              "name": "Vex, Apathetic"
+            },
+            {
+              "quantity": 1,
+              "name": "Pickpocket"
+            },
+            {
+              "quantity": 2,
+              "name": "Thousand-Tailed Watcher"
+            },
+            {
+              "quantity": 2,
+              "name": "The List"
+            },
+            {
+              "quantity": 3,
+              "name": "Pack of Wonders"
+            },
+            {
+              "quantity": 2,
+              "name": "Treasure Trove"
+            },
+            {
+              "quantity": 1,
+              "name": "Sprite Fountain"
+            },
+            {
+              "quantity": 3,
+              "name": "Bellows Breath"
+            },
+            {
+              "quantity": 3,
+              "name": "Stacked Deck"
+            },
+            {
+              "quantity": 3,
+              "name": "Stupefy"
+            },
+            {
+              "quantity": 1,
+              "name": "Turn to Dust"
+            },
+            {
+              "quantity": 2,
+              "name": "Star-Crossed"
+            },
+            {
+              "quantity": 2,
+              "name": "Wages of Pain"
+            },
+            {
+              "quantity": 3,
+              "name": "Deadly Flourish"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            },
+            {
+              "quantity": 1,
+              "name": "Whirlwind"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Heisho, Shell of the World"
+            },
+            {
+              "quantity": 1,
+              "name": "Frozen Fortress"
+            },
+            {
+              "quantity": 1,
+              "name": "Sigil of the Storm"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 6,
+              "name": "Mind Rune"
+            },
+            {
+              "quantity": 6,
+              "name": "Chaos Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Acceptable Losses"
+            },
+            {
+              "quantity": 1,
+              "name": "Turn to Dust"
+            },
+            {
+              "quantity": 1,
+              "name": "Sprite Fountain"
+            },
+            {
+              "quantity": 1,
+              "name": "Pickpocket"
+            },
+            {
+              "quantity": 1,
+              "name": "Mindsplitter"
+            },
+            {
+              "quantity": 2,
+              "name": "Kha'Zix, Mutating Horror"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Invert Timelines"
+            },
+            {
+              "quantity": 1,
+              "name": "Abandon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Lillia, Bashful Bloom",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:27.779983493-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Lillia, Bashful Bloom"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Lillia, Fae Fawn"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Akali, Silent"
+            },
+            {
+              "quantity": 2,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 3,
+              "name": "Ravenbloom Student"
+            },
+            {
+              "quantity": 2,
+              "name": "Thousand-Tailed Watcher"
+            },
+            {
+              "quantity": 3,
+              "name": "Sprite Burst"
+            },
+            {
+              "quantity": 2,
+              "name": "Smoke and Mirrors"
+            },
+            {
+              "quantity": 3,
+              "name": "Stupefy"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Unchecked Power"
+            },
+            {
+              "quantity": 1,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 3,
+              "name": "Charm"
+            },
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "En Garde"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 1,
+              "name": "Heart of Dark Ice"
+            },
+            {
+              "quantity": 2,
+              "name": "Mask of Foresight"
+            },
+            {
+              "quantity": 3,
+              "name": "Sprite Fountain"
+            },
+            {
+              "quantity": 1,
+              "name": "Lilting Lullaby"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Dusk Rose Lab"
+            },
+            {
+              "quantity": 1,
+              "name": "Black Flame Altar"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 5,
+              "name": "Calm Rune"
+            },
+            {
+              "quantity": 7,
+              "name": "Mind Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Tomb-Raider Barbara"
+            },
+            {
+              "quantity": 2,
+              "name": "Pickpocket"
+            },
+            {
+              "quantity": 2,
+              "name": "Riptide Rex"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Insight"
+            },
+            {
+              "quantity": 1,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 1,
+              "name": "Lilting Lullaby"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Ornn, Fire Below the Mountain",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:36.468963504-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ornn, Fire Below the Mountain"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Ornn, Forge God"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 3,
+              "name": "Time Warp"
+            },
+            {
+              "quantity": 3,
+              "name": "Sprite Fountain"
+            },
+            {
+              "quantity": 3,
+              "name": "Guardian Angel"
+            },
+            {
+              "quantity": 3,
+              "name": "Seal of Insight"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 3,
+              "name": "Hwei, Brooding Painter"
+            },
+            {
+              "quantity": 1,
+              "name": "Shurelya's Requiem"
+            },
+            {
+              "quantity": 2,
+              "name": "Forgotten Signpost"
+            },
+            {
+              "quantity": 1,
+              "name": "Svellsongur"
+            },
+            {
+              "quantity": 3,
+              "name": "Stellacorn Herder"
+            },
+            {
+              "quantity": 2,
+              "name": "Emperor's Divide"
+            },
+            {
+              "quantity": 2,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "Patched Porobot"
+            },
+            {
+              "quantity": 2,
+              "name": "Resonating Strike"
+            },
+            {
+              "quantity": 2,
+              "name": "Jayce, Brilliant Inventor"
+            },
+            {
+              "quantity": 1,
+              "name": "Ornn, Blacksmith"
+            },
+            {
+              "quantity": 1,
+              "name": "Seal of Focus"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Rockfall Path"
+            },
+            {
+              "quantity": 1,
+              "name": "Dusk Rose Lab"
+            },
+            {
+              "quantity": 1,
+              "name": "Veiled Temple"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 5,
+              "name": "Calm Rune"
+            },
+            {
+              "quantity": 7,
+              "name": "Mind Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Defy"
+            },
+            {
+              "quantity": 1,
+              "name": "Rocket Barrage"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 1,
+              "name": "Bellows Breath"
+            },
+            {
+              "quantity": 2,
+              "name": "Tomb-Raider Barbara"
+            },
+            {
+              "quantity": 1,
+              "name": "Crumbling Sands"
+            },
+            {
+              "quantity": 1,
+              "name": "Not So Fast"
+            },
+            {
+              "quantity": 1,
+              "name": "Janna, Savior"
+            },
+            {
+              "quantity": 1,
+              "name": "Unchecked Power"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Master Yi, Wuju Bladesman",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:46.39245581-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Master Yi, Wuju Bladesman"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Master Yi, Tempered"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Rengar, Trophy Hunter"
+            },
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "Charm"
+            },
+            {
+              "quantity": 3,
+              "name": "En Garde"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 3,
+              "name": "Zhonya's Hourglass"
+            },
+            {
+              "quantity": 3,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 1,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 1,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 3,
+              "name": "Lonely Poro"
+            },
+            {
+              "quantity": 2,
+              "name": "Clockwork Keeper"
+            },
+            {
+              "quantity": 2,
+              "name": "Ruin Runner"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Emperor's Dais"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            },
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Calm Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 1,
+              "name": "Ruin Runner"
+            },
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Focus"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Strength"
+            },
+            {
+              "quantity": 3,
+              "name": "Fiora, Peerless"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Rengar, Pridestalker",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:24:54.534592556-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Rengar, Pridestalker"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Rengar, Trophy Hunter"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Thrill of the Hunt"
+            },
+            {
+              "quantity": 3,
+              "name": "Irresistible Faefolk"
+            },
+            {
+              "quantity": 3,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 3,
+              "name": "Pit Rookie"
+            },
+            {
+              "quantity": 2,
+              "name": "Kinkou Initiate"
+            },
+            {
+              "quantity": 3,
+              "name": "Nidalee, Cat Form"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Grim Apothecary"
+            },
+            {
+              "quantity": 3,
+              "name": "Pyke, Dockside Butcher"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 2,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 2,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 2,
+              "name": "Ferrous Forerunner"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            },
+            {
+              "quantity": 1,
+              "name": "Emperor's Dais"
+            },
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 4,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 8,
+              "name": "Body Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 3,
+              "name": "Decree of Strength"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxian Demolitionist"
+            },
+            {
+              "quantity": 1,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 2,
+              "name": "Ruin Runner"
+            },
+            {
+              "quantity": 1,
+              "name": "Darius, Trifarian"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Kai'sa, Daughter of the Void",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:25:02.303176977-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Kai'sa, Daughter of the Void"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Kai'Sa, Survivor"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Watchful Sentry"
+            },
+            {
+              "quantity": 3,
+              "name": "Plundering Poro"
+            },
+            {
+              "quantity": 3,
+              "name": "Lecturing Yordle"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 2,
+              "name": "Brynhir Thundersong"
+            },
+            {
+              "quantity": 3,
+              "name": "Thousand-Tailed Watcher"
+            },
+            {
+              "quantity": 3,
+              "name": "Stupefy"
+            },
+            {
+              "quantity": 3,
+              "name": "Hextech Ray"
+            },
+            {
+              "quantity": 2,
+              "name": "Bellows Breath"
+            },
+            {
+              "quantity": 1,
+              "name": "Retreat"
+            },
+            {
+              "quantity": 3,
+              "name": "Falling Star"
+            },
+            {
+              "quantity": 3,
+              "name": "Temporal Breach"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Perfect Execution"
+            },
+            {
+              "quantity": 2,
+              "name": "Progress Day"
+            },
+            {
+              "quantity": 1,
+              "name": "Singularity"
+            },
+            {
+              "quantity": 3,
+              "name": "Time Warp"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Rockfall Path"
+            },
+            {
+              "quantity": 1,
+              "name": "Startipped Peak"
+            },
+            {
+              "quantity": 1,
+              "name": "Frozen Fortress"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Fury Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Mind Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Pickpocket"
+            },
+            {
+              "quantity": 2,
+              "name": "Decree of Insight"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Rage"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Thermo Beam"
+            },
+            {
+              "quantity": 1,
+              "name": "Garbage Grabber"
+            },
+            {
+              "quantity": 1,
+              "name": "Unchecked Power"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wuhan",
+      "legend": "Lucian, Purifier",
+      "latest_set": "VEN",
+      "added_at": "2026-09-05T13:25:10.031627498-07:00",
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Lucian, Purifier"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Lucian, Merciless"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 3,
+              "name": "Irresistible Faefolk"
+            },
+            {
+              "quantity": 3,
+              "name": "Pit Rookie"
+            },
+            {
+              "quantity": 3,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 3,
+              "name": "Kinkou Initiate"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 1,
+              "name": "Relentless Pursuit"
+            },
+            {
+              "quantity": 2,
+              "name": "Blighted Battleaxe"
+            },
+            {
+              "quantity": 3,
+              "name": "Long Sword"
+            },
+            {
+              "quantity": 3,
+              "name": "Doran's Blade"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 3,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 1,
+              "name": "Akshan, Mischievous"
+            },
+            {
+              "quantity": 1,
+              "name": "Brynhir Thundersong"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Windswept Hillock"
+            },
+            {
+              "quantity": 1,
+              "name": "Forge of the Fluft"
+            },
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            }
+          ]
+        },
+        {
+          "name": "Rune Pool",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Fury Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Ruin Runner"
+            },
+            {
+              "quantity": 1,
+              "name": "Pendulum Blade"
+            },
+            {
+              "quantity": 2,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Unyielding Spirit"
+            },
+            {
+              "quantity": 2,
+              "name": "Noxian Demolitionist"
+            },
+            {
+              "quantity": 1,
+              "name": "Lucian, Merciless"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

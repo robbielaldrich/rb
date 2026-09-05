@@ -121,15 +121,8 @@ func (a *adder) record(sc *bufio.Scanner, out io.Writer, text string) error {
 	}
 	a.added++
 
-	// The legend is only worth repeating when the deck was filed under
-	// something else, which is the case for the lists named after a player or
-	// an event.
-	legend := ""
-	if d.Legend != "" && !strings.EqualFold(d.Legend, d.Name) {
-		legend = d.Legend + " · "
-	}
-	fmt.Fprintf(out, "  saved %q · %s%d cards, %d in the sideboard · %s\n",
-		d.Name, legend, d.Size(false), d.Size(true)-d.Size(false), d.LatestSet)
+	fmt.Fprintf(out, "  saved %s · %d cards, %d in the sideboard\n",
+		d.Title(), d.Size(false), d.Size(true)-d.Size(false))
 	return nil
 }
 

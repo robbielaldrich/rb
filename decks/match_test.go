@@ -87,6 +87,10 @@ func TestReportSaysWhatCanBeBuilt(t *testing.T) {
 	p := testPool(map[string]int{"ven-042-166": 1, "ven-156-166": 1})
 	ds := []Deck{parse(t, "MainDeck:\n1 Shadow\n"), parse(t, "MainDeck:\n3 Lightning Rush\n")}
 	ds[0].Name, ds[1].Name = "Shadow Aggro", "Rush Combo"
+	// A deck is headed by the legend it plays and the set it was pasted
+	// under, not by the name alone: several lists are filed under one event.
+	ds[0].Legend, ds[1].Legend = "Shadow", "Lightning"
+	ds[0].LatestSet, ds[1].LatestSet = "VEN", "VEN"
 
 	var b strings.Builder
 	writeReport(&b, evaluate(ds, p, false), false)
@@ -94,8 +98,8 @@ func TestReportSaysWhatCanBeBuilt(t *testing.T) {
 	got := b.String()
 	for _, want := range []string{
 		"2 decks · 1 you can build · runes ignored · sideboards excluded",
-		"✓ Shadow Aggro · 1 card",
-		"✗ Rush Combo · 2 of 3 cards missing",
+		"✓ Shadow · Shadow Aggro · VEN · 1 card",
+		"✗ Lightning · Rush Combo · VEN · 2 of 3 cards missing",
 		"2 Lightning Rush   have 1 of 3   Fury · Vendetta, Origins",
 	} {
 		if !strings.Contains(got, want) {
