@@ -21,8 +21,9 @@ const endOfDeck = "."
 //
 // The catalog is read only to warn about names no card is printed under; a
 // list is recorded as pasted either way, since the catalog may simply be
-// behind the format.
-func RunAdder(decksPath, catalogPath string) error {
+// behind the format. The set list is read to date each deck by the set it
+// was pasted under.
+func RunAdder(decksPath, catalogPath, setsPath string) error {
 	reg, err := loadRegistry(decksPath)
 	if err != nil {
 		return fmt.Errorf("failed to load the deck register: %w", err)
@@ -33,7 +34,16 @@ func RunAdder(decksPath, catalogPath string) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	a := &adder{registry: reg, path: decksPath, pool: newPool(cs, nil)}
+	sets, err := cards.LoadSets(setsPath)
+	if err != nil {
+		return fmt.Errorf("failed to load the sets: %w", err)
+	}
+	latest, err := cards.Latest(sets, time.Now())
+	if err != nil {
+		return fmt.Errorf("failed to work out the latest set: %w", err)
+	}
+
+	a := &adder{registry: reg, path: decksPath, pool: newPool(cs, nil), latestSet: latest.SetID}
 	if err := a.run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to read the pasted decks: %w", err)
 	}
@@ -46,7 +56,10 @@ type adder struct {
 	registry *registry
 	pool     *pool
 	path     string
-	added    int
+	// latestSet is the newest set in print, stamped on every deck registered
+	// in this run.
+	latestSet string
+	added     int
 }
 
 func (a *adder) run(in io.Reader, out io.Writer) error {
@@ -99,6 +112,7 @@ func (a *adder) record(sc *bufio.Scanner, out io.Writer, text string) error {
 	if name := readLine(sc); name != "" {
 		d.Name = name
 	}
+	d.LatestSet = a.latestSet
 	d.AddedAt = time.Now()
 
 	a.registry.Decks = append(a.registry.Decks, d)
@@ -107,8 +121,15 @@ func (a *adder) record(sc *bufio.Scanner, out io.Writer, text string) error {
 	}
 	a.added++
 
-	fmt.Fprintf(out, "  saved %q · %d cards, %d in the sideboard\n",
-		d.Name, d.Size(false), d.Size(true)-d.Size(false))
+	// The legend is only worth repeating when the deck was filed under
+	// something else, which is the case for the lists named after a player or
+	// an event.
+	legend := ""
+	if d.Legend != "" && !strings.EqualFold(d.Legend, d.Name) {
+		legend = d.Legend + " · "
+	}
+	fmt.Fprintf(out, "  saved %q · %s%d cards, %d in the sideboard · %s\n",
+		d.Name, legend, d.Size(false), d.Size(true)-d.Size(false), d.LatestSet)
 	return nil
 }
 

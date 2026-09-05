@@ -30,9 +30,18 @@ type Section struct {
 
 // Deck is one registered decklist.
 type Deck struct {
-	Name     string    `json:"name"`
-	AddedAt  time.Time `json:"added_at"`
-	Sections []Section `json:"sections"`
+	// Name is what the deck is filed under: whatever the pile is called when
+	// it's talked about, e.g. "wuhan top akali".
+	Name string `json:"name"`
+	// Legend is the legend the deck is built around, which is what identifies
+	// a deck at a glance however it was filed.
+	Legend string `json:"legend"`
+	// LatestSet is the newest set in print when the deck was registered. A
+	// list is only as good as the format it was played in, so the set it was
+	// pasted under dates it.
+	LatestSet string    `json:"latest_set"`
+	AddedAt   time.Time `json:"added_at"`
+	Sections  []Section `json:"sections"`
 }
 
 func isSideboard(section string) bool {

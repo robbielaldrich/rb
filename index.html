@@ -60,7 +60,10 @@
   .deck > summary::-webkit-details-marker { display: none; }
   .deck > summary::before { content: "▸"; color: var(--muted); font-size: .8rem; }
   .deck[open] > summary::before { content: "▾"; }
-  .deck-name { flex: 1; font-weight: 600; }
+  .deck-title { flex: 1; display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; min-width: 0; }
+  .deck-legend { font-weight: 600; }
+  .deck-note { color: var(--muted); font-size: .85rem; }
+  .deck-set { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
   .badge { font-size: .8rem; font-variant-numeric: tabular-nums; color: var(--short); }
   .badge.ok { color: var(--have); }
   .deck-size { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -568,6 +571,8 @@ function check(deck, p, sideboard) {
   }
   return {
     name: deck.name,
+    legend: deck.legend,
+    set: deck.latest_set,
     size,
     short: missing.reduce((n, m) => n + m.short, 0),
     buildable: missing.length === 0,
@@ -582,7 +587,10 @@ function evaluate(ds, p, sideboard) {
     // than one a card short of four.
     a.short - b.short ||
     a.missing.length - b.missing.length ||
-    cmp(a.name.toLowerCase(), b.name.toLowerCase()));
+    cmp(a.name.toLowerCase(), b.name.toLowerCase()) ||
+    // Several lists are filed under one event name, so the legend is what
+    // holds them in a fixed order.
+    cmp((a.legend || "").toLowerCase(), (b.legend || "").toLowerCase()));
 }
 
 const decksStatus = document.getElementById("decks-status");
@@ -621,9 +629,29 @@ function render(report) {
     deck.className = "deck";
 
     const summary = document.createElement("summary");
-    const name = document.createElement("span");
-    name.className = "deck-name";
-    name.textContent = d.name;
+
+    // The legend leads: several lists are filed under the same event name,
+    // and the legend is what tells them apart. The name the deck was filed
+    // under follows it, unless it is the legend over again.
+    const title = document.createElement("span");
+    title.className = "deck-title";
+    const legend = document.createElement("span");
+    legend.className = "deck-legend";
+    legend.textContent = d.legend || d.name;
+    title.append(legend);
+    if (d.legend && d.name && d.name !== d.legend) {
+      const note = document.createElement("span");
+      note.className = "deck-note";
+      note.textContent = d.name;
+      title.append(note);
+    }
+
+    // The set in print when the list was registered, which says what format
+    // it was played in.
+    const set = document.createElement("span");
+    set.className = "deck-set";
+    set.textContent = d.set || "";
+
     const badge = document.createElement("span");
     badge.className = d.buildable ? "badge ok" : "badge";
     badge.textContent = d.buildable
@@ -632,7 +660,7 @@ function render(report) {
     const size = document.createElement("span");
     size.className = "deck-size";
     size.textContent = `${d.size} cards`;
-    summary.append(name, badge, size);
+    summary.append(title, set, badge, size);
     deck.append(summary);
 
     if (d.buildable) {

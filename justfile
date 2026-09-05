@@ -22,7 +22,7 @@ gen-anki:
     go run ./cmd/rb gen-anki -catalog-file cards/cards.json -image-dir cards/images -out anki/
 
 add-decks:
-    go run ./cmd/rb add-decks -catalog-file cards/cards.json -decks-file decks/decks.json
+    go run ./cmd/rb add-decks -catalog-file cards/cards.json -sets-file cards/sets.json -decks-file decks/decks.json
 
 match-decks *flags:
     go run ./cmd/rb match-decks -catalog-file cards/cards.json -collection-file collection/collection.json -decks-file decks/decks.json -out decks/match-decks-result.txt {{flags}}

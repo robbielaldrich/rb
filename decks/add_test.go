@@ -11,9 +11,10 @@ func script(parts ...string) string { return strings.Join(parts, "") }
 func newAdder(t *testing.T) *adder {
 	t.Helper()
 	return &adder{
-		registry: &registry{},
-		pool:     testPool(nil),
-		path:     t.TempDir() + "/decks.json",
+		registry:  &registry{},
+		pool:      testPool(nil),
+		path:      t.TempDir() + "/decks.json",
+		latestSet: "VEN",
 	}
 }
 
@@ -46,8 +47,20 @@ func TestAddRecordsEachPastedDeck(t *testing.T) {
 	if a.registry.Decks[0].AddedAt.IsZero() {
 		t.Error("the deck was filed without a date")
 	}
-	if !strings.Contains(out, `saved "Worlds T1" · 17 cards, 3 in the sideboard`) {
+	// The legend and the set the deck was pasted under are what tell two
+	// lists filed under event names apart, so both are recorded.
+	if got := a.registry.Decks[0].Legend; got != "Kennen, Heart of the Tempest" {
+		t.Errorf("first deck's legend is %q, want the legend it plays", got)
+	}
+	if got := a.registry.Decks[0].LatestSet; got != "VEN" {
+		t.Errorf("first deck was filed under set %q, want the newest in print", got)
+	}
+	if !strings.Contains(out, `saved "Worlds T1" · Kennen, Heart of the Tempest · 17 cards, 3 in the sideboard · VEN`) {
 		t.Errorf("the session doesn't report what it saved:\n%s", out)
+	}
+	// A deck filed under its own legend doesn't say it twice.
+	if !strings.Contains(out, `saved "Shadow" · 1 cards, 0 in the sideboard · VEN`) {
+		t.Errorf("the session repeats a legend that is already the name:\n%s", out)
 	}
 
 	// Each deck is written through as it is taken, not at the end.

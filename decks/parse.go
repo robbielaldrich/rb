@@ -57,17 +57,27 @@ func Parse(text string) (Deck, error) {
 	if d.Size(true) == 0 {
 		return Deck{}, errors.New("no cards in this list")
 	}
+	d.Legend = d.legend()
 	d.Name = d.defaultName()
 	return d, nil
+}
+
+// legend is the legend the list is built around, empty for a list that
+// carries no legend block.
+func (d Deck) legend() string {
+	for _, s := range d.Sections {
+		if strings.EqualFold(s.Name, "legend") && len(s.Cards) > 0 {
+			return s.Cards[0].Name
+		}
+	}
+	return ""
 }
 
 // defaultName names a deck after its legend, the way players talk about
 // decks, falling back to the first card listed for a list with no legend.
 func (d Deck) defaultName() string {
-	for _, s := range d.Sections {
-		if strings.EqualFold(s.Name, "legend") && len(s.Cards) > 0 {
-			return s.Cards[0].Name
-		}
+	if legend := d.legend(); legend != "" {
+		return legend
 	}
 	for _, s := range d.Sections {
 		if len(s.Cards) > 0 {

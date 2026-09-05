@@ -55,8 +55,9 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 
 	case "add-decks":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
+		setsFile := fs.String("sets-file", "cards/sets.json", "set list to date each deck by the newest set in print")
 		decksFile := fs.String("decks-file", "decks/decks.json", "deck register to append to")
-		return func() error { return addDecks(*decksFile, *catalogFile) }
+		return func() error { return addDecks(*decksFile, *catalogFile, *setsFile) }
 
 	case "match-decks":
 		var opts decks.Options
@@ -203,8 +204,8 @@ func missing(collectionFile, catalogFile string, filters []string) error {
 	return nil
 }
 
-func addDecks(decksFile, catalogFile string) error {
-	if err := decks.RunAdder(decksFile, catalogFile); err != nil {
+func addDecks(decksFile, catalogFile, setsFile string) error {
+	if err := decks.RunAdder(decksFile, catalogFile, setsFile); err != nil {
 		return fmt.Errorf("failed to register the decks: %w", err)
 	}
 	return nil
