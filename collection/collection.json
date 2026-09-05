@@ -25,12 +25,44 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-026-298",
+      "name": "Brynhir Thundersong",
+      "number": "26/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:02:56.723249681-07:00"
+    },
+    {
+      "riftbound_id": "ogn-029-298",
+      "name": "Falling Star",
+      "number": "29/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:02:52.395920819-07:00"
+    },
+    {
+      "riftbound_id": "ogn-039-298",
+      "name": "Kai'Sa - Survivor",
+      "number": "39/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:05:16.287441379-07:00"
+    },
+    {
       "riftbound_id": "ogn-042-298",
       "name": "Calm Rune",
       "number": "42/298",
       "set_id": "OGN",
       "quantity": 6,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-043-298",
+      "name": "Charm",
+      "number": "43/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T12:59:39.318012873-07:00"
     },
     {
       "riftbound_id": "ogn-045-298",
@@ -87,6 +119,22 @@
       "set_id": "OGN",
       "quantity": 3,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-058-298",
+      "name": "Discipline",
+      "number": "58/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:02:13.799191056-07:00"
+    },
+    {
+      "riftbound_id": "ogn-075-298",
+      "name": "Tasty Faefolk",
+      "number": "75/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:00:45.873042529-07:00"
     },
     {
       "riftbound_id": "ogn-083-298",
@@ -273,6 +321,14 @@
       "updated_at": "2026-08-23T20:40:39.857898662-07:00"
     },
     {
+      "riftbound_id": "ogn-116-298",
+      "name": "Thousand-Tailed Watcher",
+      "number": "116/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:04:34.746926118-07:00"
+    },
+    {
       "riftbound_id": "ogn-117-298",
       "name": "Viktor - Innovator",
       "number": "117/298",
@@ -287,6 +343,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-08-23T20:41:04.418756578-07:00"
+    },
+    {
+      "riftbound_id": "ogn-122-298",
+      "name": "Time Warp",
+      "number": "122/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:05:31.925912993-07:00"
     },
     {
       "riftbound_id": "ogn-126-298",
@@ -377,6 +441,22 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-156-298",
+      "name": "Sabotage",
+      "number": "156/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:04:29.011715663-07:00"
+    },
+    {
+      "riftbound_id": "ogn-160-298",
+      "name": "Dazzling Aurora",
+      "number": "160/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:05:26.638474005-07:00"
+    },
+    {
       "riftbound_id": "ogn-166-298",
       "name": "Chaos Rune",
       "number": "166/298",
@@ -417,6 +497,14 @@
       "updated_at": "2026-08-23T20:39:22.81528667-07:00"
     },
     {
+      "riftbound_id": "ogn-173-298",
+      "name": "Ride The Wind",
+      "number": "173/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:05:00.208600991-07:00"
+    },
+    {
       "riftbound_id": "ogn-174-298",
       "name": "Sai Scout",
       "number": "174/298",
@@ -431,6 +519,14 @@
       "set_id": "OGN",
       "quantity": 6,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-183-298",
+      "name": "Stacked Deck",
+      "number": "183/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:04:51.993303285-07:00"
     },
     {
       "riftbound_id": "ogn-185-298",
@@ -489,6 +585,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-213-298",
+      "name": "Hidden Blade",
+      "number": "213/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:03:50.15868958-07:00"
+    },
+    {
       "riftbound_id": "ogn-214-298",
       "name": "Order Rune",
       "number": "214/298",
@@ -521,6 +625,30 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-234-298",
+      "name": "Harnessed Dragon",
+      "number": "234/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:00:54.279991488-07:00"
+    },
+    {
+      "riftbound_id": "ogn-236-298",
+      "name": "Karthus - Eternal",
+      "number": "236/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:04:04.837459229-07:00"
+    },
+    {
+      "riftbound_id": "ogn-264-298",
+      "name": "Guerilla Warfare",
+      "number": "264/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:03:00.339022219-07:00"
+    },
+    {
       "riftbound_id": "ogn-279-298",
       "name": "Fortified Position",
       "number": "279/298",
@@ -529,12 +657,28 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-282-298",
+      "name": "Monastery of Hirana",
+      "number": "282/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:01:23.260271345-07:00"
+    },
+    {
       "riftbound_id": "ogn-288-298",
       "name": "Startipped Peak",
       "number": "288/298",
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-289-298",
+      "name": "Targon's Peak",
+      "number": "289/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:01:27.403661994-07:00"
     },
     {
       "riftbound_id": "ogn-294-298",
@@ -557,8 +701,8 @@
       "name": "Annie - Fiery",
       "number": "1/024",
       "set_id": "OGS",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:53:00.975433-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:03:45.384267002-07:00"
     },
     {
       "riftbound_id": "ogs-002-024",
@@ -637,8 +781,8 @@
       "name": "Flash",
       "number": "11/024",
       "set_id": "OGS",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:53:00.975433-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:05:04.736705344-07:00"
     },
     {
       "riftbound_id": "ogs-012-024",
@@ -745,6 +889,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "pr-197-298",
+      "name": "Teemo - Scout",
+      "number": "197/298",
+      "set_id": "PR",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:04:45.57828633-07:00"
+    },
+    {
       "riftbound_id": "sfd-001-221",
       "name": "Against the Odds",
       "number": "1/221",
@@ -797,8 +949,8 @@
       "name": "Gem Jammer",
       "number": "7/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:10:39.321966647-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:01:42.794667328-07:00"
     },
     {
       "riftbound_id": "sfd-009-221",
@@ -847,6 +999,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:02:12.501441428-07:00"
+    },
+    {
+      "riftbound_id": "sfd-021-221",
+      "name": "Ferrous Forerunner",
+      "number": "21/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:05:20.574787621-07:00"
     },
     {
       "riftbound_id": "sfd-023-221",
@@ -949,8 +1109,8 @@
       "name": "Stellacorn Herder",
       "number": "48/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:01:27.485905247-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-05T12:59:54.870450237-07:00"
     },
     {
       "riftbound_id": "sfd-049-221",
@@ -959,6 +1119,22 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:08:47.423308405-07:00"
+    },
+    {
+      "riftbound_id": "sfd-050-221",
+      "name": "Azir - Ascendant",
+      "number": "50/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:04:01.293763048-07:00"
+    },
+    {
+      "riftbound_id": "sfd-051-221",
+      "name": "Guardian Angel",
+      "number": "51/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-09-05T12:59:32.507049095-07:00"
     },
     {
       "riftbound_id": "sfd-052-221",
@@ -1079,6 +1255,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:11:12.754007253-07:00"
+    },
+    {
+      "riftbound_id": "sfd-080-221",
+      "name": "Bellows Breath",
+      "number": "80/221",
+      "set_id": "SFD",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:02:48.572181933-07:00"
     },
     {
       "riftbound_id": "sfd-082-221",
@@ -1313,6 +1497,14 @@
       "updated_at": "2026-08-23T15:07:54.322023066-07:00"
     },
     {
+      "riftbound_id": "sfd-133-221",
+      "name": "Boots of Swiftness",
+      "number": "133/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:03:56.246289398-07:00"
+    },
+    {
       "riftbound_id": "sfd-134-221",
       "name": "Cull",
       "number": "134/221",
@@ -1341,8 +1533,8 @@
       "name": "Switcheroo",
       "number": "145/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:03:18.756047809-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T13:01:47.345948198-07:00"
     },
     {
       "riftbound_id": "sfd-146-221",
@@ -1905,6 +2097,22 @@
       "updated_at": "2026-08-23T14:18:30.033121059-07:00"
     },
     {
+      "riftbound_id": "unl-053-219",
+      "name": "Scuttle Crab",
+      "number": "53/219",
+      "set_id": "UNL",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:01:06.795182053-07:00"
+    },
+    {
+      "riftbound_id": "unl-058a-219",
+      "name": "Lillia - Protector of Dreams (Alternate Art)",
+      "number": "58a/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:03:28.656611613-07:00"
+    },
+    {
       "riftbound_id": "unl-061-219",
       "name": "Downstage Dramatics",
       "number": "61/219",
@@ -2001,6 +2209,14 @@
       "updated_at": "2026-08-23T14:19:47.968786566-07:00"
     },
     {
+      "riftbound_id": "unl-078-219",
+      "name": "Sprite Fountain",
+      "number": "78/219",
+      "set_id": "UNL",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:01:52.945237564-07:00"
+    },
+    {
       "riftbound_id": "unl-079-219",
       "name": "Diana - Lunari",
       "number": "79/219",
@@ -2009,12 +2225,28 @@
       "updated_at": "2026-08-23T14:21:42.570291566-07:00"
     },
     {
+      "riftbound_id": "unl-080-219",
+      "name": "Hwei - Brooding Painter",
+      "number": "80/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:00:20.093718172-07:00"
+    },
+    {
       "riftbound_id": "unl-082-219",
       "name": "Lillia - Fae Fawn",
       "number": "82/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:25:53.708437887-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T12:59:22.724042538-07:00"
+    },
+    {
+      "riftbound_id": "unl-083-219",
+      "name": "Smoke and Mirrors",
+      "number": "83/219",
+      "set_id": "UNL",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:01:18.17300775-07:00"
     },
     {
       "riftbound_id": "unl-087-219",
@@ -2149,8 +2381,8 @@
       "name": "Irresistible Faefolk",
       "number": "112/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:19:28.838574563-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T13:00:32.011363053-07:00"
     },
     {
       "riftbound_id": "unl-113-219",
@@ -2159,6 +2391,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T13:57:26.944230663-07:00"
+    },
+    {
+      "riftbound_id": "unl-118-219",
+      "name": "Elder Dragon",
+      "number": "118/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:01:36.530874114-07:00"
     },
     {
       "riftbound_id": "unl-120-219",
@@ -2417,6 +2657,14 @@
       "updated_at": "2026-08-23T13:50:46.509969817-07:00"
     },
     {
+      "riftbound_id": "unl-177a-219",
+      "name": "Ivern - Friend to All (Alternate Art)",
+      "number": "177a/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:03:15.505776421-07:00"
+    },
+    {
       "riftbound_id": "unl-179-219",
       "name": "Rift Herald",
       "number": "179/219",
@@ -2457,6 +2705,14 @@
       "updated_at": "2026-08-23T13:56:01.887141151-07:00"
     },
     {
+      "riftbound_id": "unl-190-219",
+      "name": "Lilting Lullaby",
+      "number": "190/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:00:58.471264192-07:00"
+    },
+    {
       "riftbound_id": "unl-191-219",
       "name": "Master Yi - Wuju Master",
       "number": "191/219",
@@ -2471,6 +2727,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T14:25:46.32262616-07:00"
+    },
+    {
+      "riftbound_id": "unl-196-219",
+      "name": "Daisy!",
+      "number": "196/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:00:37.419140582-07:00"
     },
     {
       "riftbound_id": "unl-201-219",
@@ -2865,6 +3129,30 @@
       "updated_at": "2026-08-30T21:20:25.184036463-07:00"
     },
     {
+      "riftbound_id": "ven-044-166",
+      "name": "Astral Heron",
+      "number": "44/166",
+      "set_id": "VEN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T13:04:10.397057412-07:00"
+    },
+    {
+      "riftbound_id": "ven-045-166",
+      "name": "Helm of Suppression",
+      "number": "45/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:01:58.496596947-07:00"
+    },
+    {
+      "riftbound_id": "ven-046-166",
+      "name": "Nasus, Ascended",
+      "number": "46/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:03:37.27203455-07:00"
+    },
+    {
       "riftbound_id": "ven-046a-166",
       "name": "Nasus, Ascended (Alternate Art)",
       "number": "46a/166",
@@ -3245,8 +3533,8 @@
       "name": "Tail-Cloaked Matriarch",
       "number": "104/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-08-30T21:34:02.990795363-07:00"
+      "quantity": 5,
+      "updated_at": "2026-09-05T12:59:14.668436043-07:00"
     },
     {
       "riftbound_id": "ven-105-166",
@@ -3311,6 +3599,14 @@
       "set_id": "VEN",
       "quantity": 1,
       "updated_at": "2026-08-23T13:21:39.818754-07:00"
+    },
+    {
+      "riftbound_id": "ven-114-166",
+      "name": "Kharox",
+      "number": "114/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T13:02:07.727933327-07:00"
     },
     {
       "riftbound_id": "ven-115-166",
