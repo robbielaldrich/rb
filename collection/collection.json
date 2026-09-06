@@ -1,6 +1,14 @@
 {
   "cards": [
     {
+      "riftbound_id": "ogn-004-298",
+      "name": "Cleave",
+      "number": "4/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:20:36.830096222-07:00"
+    },
+    {
       "riftbound_id": "ogn-005-298",
       "name": "Disintegrate",
       "number": "5/298",
@@ -17,12 +25,20 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-009-298",
+      "name": "Hextech Ray",
+      "number": "9/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:24:36.762531741-07:00"
+    },
+    {
       "riftbound_id": "ogn-013-298",
       "name": "Pouty Poro",
       "number": "13/298",
       "set_id": "OGN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:53:00.975433-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-05T17:20:55.189325474-07:00"
     },
     {
       "riftbound_id": "ogn-026-298",
@@ -39,6 +55,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T13:02:52.395920819-07:00"
+    },
+    {
+      "riftbound_id": "ogn-033-298",
+      "name": "Shakedown",
+      "number": "33/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:12:07.495843133-07:00"
     },
     {
       "riftbound_id": "ogn-039-298",
@@ -113,12 +137,28 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-053-298",
+      "name": "Stand United",
+      "number": "53/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:20:13.430154478-07:00"
+    },
+    {
       "riftbound_id": "ogn-055-298",
       "name": "Wielder of Water",
       "number": "55/298",
       "set_id": "OGN",
       "quantity": 3,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-056-298",
+      "name": "Adaptatron",
+      "number": "56/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:20:04.206513133-07:00"
     },
     {
       "riftbound_id": "ogn-058-298",
@@ -129,12 +169,36 @@
       "updated_at": "2026-09-05T13:02:13.799191056-07:00"
     },
     {
+      "riftbound_id": "ogn-069-298",
+      "name": "Last Stand",
+      "number": "69/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:10:38.324635061-07:00"
+    },
+    {
+      "riftbound_id": "ogn-073-298",
+      "name": "Sona - Harmonious",
+      "number": "73/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:06:59.868696159-07:00"
+    },
+    {
       "riftbound_id": "ogn-075-298",
       "name": "Tasty Faefolk",
       "number": "75/298",
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T13:00:45.873042529-07:00"
+    },
+    {
+      "riftbound_id": "ogn-077-298",
+      "name": "Zhonya's Hourglass",
+      "number": "77/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:07:22.090581328-07:00"
     },
     {
       "riftbound_id": "ogn-083-298",
@@ -205,8 +269,8 @@
       "name": "Riptide Rex",
       "number": "92/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T20:33:03.400298511-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:19:16.728087631-07:00"
     },
     {
       "riftbound_id": "ogn-093-298",
@@ -253,8 +317,8 @@
       "name": "Garbage Grabber",
       "number": "99/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T20:31:58.532474303-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:19:42.359459372-07:00"
     },
     {
       "riftbound_id": "ogn-102-298",
@@ -305,6 +369,14 @@
       "updated_at": "2026-08-23T20:41:00.234441481-07:00"
     },
     {
+      "riftbound_id": "ogn-110-298",
+      "name": "Ekko - Recurrent",
+      "number": "110/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:09:45.802622341-07:00"
+    },
+    {
       "riftbound_id": "ogn-111-298",
       "name": "Heimerdinger - Inventor",
       "number": "111/298",
@@ -351,6 +423,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T13:05:31.925912993-07:00"
+    },
+    {
+      "riftbound_id": "ogn-123-298",
+      "name": "Unchecked Power",
+      "number": "123/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:25.053425384-07:00"
     },
     {
       "riftbound_id": "ogn-126-298",
@@ -545,12 +625,20 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-194-298",
+      "name": "Nocturne - Horrifying",
+      "number": "194/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:33.165682123-07:00"
+    },
+    {
       "riftbound_id": "ogn-199-298",
       "name": "Tideturner",
       "number": "199/298",
       "set_id": "OGN",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:18:01.852295329-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:10:24.988238398-07:00"
     },
     {
       "riftbound_id": "ogn-206-298",
@@ -585,6 +673,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-212-298",
+      "name": "Forge of the Future",
+      "number": "212/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:17:28.698675709-07:00"
+    },
+    {
       "riftbound_id": "ogn-213-298",
       "name": "Hidden Blade",
       "number": "213/298",
@@ -609,6 +705,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-216-298",
+      "name": "Soaring Scout",
+      "number": "216/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:09:08.298234998-07:00"
+    },
+    {
       "riftbound_id": "ogn-219-298",
       "name": "Vanguard Sergeant",
       "number": "219/298",
@@ -617,12 +721,36 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-221-298",
+      "name": "Imperial Decree",
+      "number": "221/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:17:51.218802065-07:00"
+    },
+    {
       "riftbound_id": "ogn-222-298",
       "name": "Noxian Drummer",
       "number": "222/298",
       "set_id": "OGN",
       "quantity": 3,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-224-298",
+      "name": "Salvage",
+      "number": "224/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:07:13.7015302-07:00"
+    },
+    {
+      "riftbound_id": "ogn-233-298",
+      "name": "Grand Strategem",
+      "number": "233/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:09:11.769542058-07:00"
     },
     {
       "riftbound_id": "ogn-234-298",
@@ -639,6 +767,22 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T13:04:04.837459229-07:00"
+    },
+    {
+      "riftbound_id": "ogn-238-298",
+      "name": "Leona - Determined",
+      "number": "238/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:11:07.901978193-07:00"
+    },
+    {
+      "riftbound_id": "ogn-241-298",
+      "name": "Shen - Kinkou",
+      "number": "241/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:43.534307152-07:00"
     },
     {
       "riftbound_id": "ogn-264-298",
@@ -663,6 +807,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T13:01:23.260271345-07:00"
+    },
+    {
+      "riftbound_id": "ogn-283-298",
+      "name": "Navori Fighting Pit",
+      "number": "283/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:09:55.296460965-07:00"
     },
     {
       "riftbound_id": "ogn-288-298",
@@ -695,6 +847,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-298-298",
+      "name": "Zaun Warrens",
+      "number": "298/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:16:06.112094175-07:00"
     },
     {
       "riftbound_id": "ogs-001-024",
@@ -889,6 +1049,78 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "opp-009-219",
+      "name": "Upstage Comedy",
+      "number": "9/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:24:47.674261284-07:00"
+    },
+    {
+      "riftbound_id": "opp-016-219",
+      "name": "Scorchclaw",
+      "number": "16/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:27.330102157-07:00"
+    },
+    {
+      "riftbound_id": "opp-036-219",
+      "name": "Mutated Mouser",
+      "number": "36/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:55.170015535-07:00"
+    },
+    {
+      "riftbound_id": "opp-065-219",
+      "name": "Icevale Archer",
+      "number": "65/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:35.849815763-07:00"
+    },
+    {
+      "riftbound_id": "opp-075-219",
+      "name": "Gustwalker",
+      "number": "75/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:46.713860974-07:00"
+    },
+    {
+      "riftbound_id": "opp-093-219",
+      "name": "Dragonsoul Sage",
+      "number": "93/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:26:10.857699152-07:00"
+    },
+    {
+      "riftbound_id": "opp-107-219",
+      "name": "Stare Down",
+      "number": "107/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:18.826239013-07:00"
+    },
+    {
+      "riftbound_id": "opp-127-219",
+      "name": "Mister Root",
+      "number": "127/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:24:56.83418173-07:00"
+    },
+    {
+      "riftbound_id": "opp-137-219",
+      "name": "Sinister Poro",
+      "number": "137/219",
+      "set_id": "OPP",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:25:09.194263125-07:00"
+    },
+    {
       "riftbound_id": "pr-197-298",
       "name": "Teemo - Scout",
       "number": "197/298",
@@ -949,8 +1181,8 @@
       "name": "Gem Jammer",
       "number": "7/221",
       "set_id": "SFD",
-      "quantity": 3,
-      "updated_at": "2026-09-05T13:01:42.794667328-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-05T17:20:26.405995204-07:00"
     },
     {
       "riftbound_id": "sfd-009-221",
@@ -1025,12 +1257,20 @@
       "updated_at": "2026-08-23T15:06:33.931650156-07:00"
     },
     {
+      "riftbound_id": "sfd-028a-221",
+      "name": "Lucian - Gunslinger (Alternate Art)",
+      "number": "28a/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:11:36.119208298-07:00"
+    },
+    {
       "riftbound_id": "sfd-031-221",
       "name": "Desert's Call",
       "number": "31/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:12:17.210095984-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:19:55.174383668-07:00"
     },
     {
       "riftbound_id": "sfd-032-221",
@@ -1133,8 +1373,8 @@
       "name": "Guardian Angel",
       "number": "51/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-09-05T12:59:32.507049095-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:26:21.209126359-07:00"
     },
     {
       "riftbound_id": "sfd-052-221",
@@ -1341,8 +1581,8 @@
       "name": "Sea Monkey",
       "number": "98/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:08:15.24195197-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:18:44.880699008-07:00"
     },
     {
       "riftbound_id": "sfd-100-221",
@@ -1357,8 +1597,8 @@
       "name": "Fae Dragon",
       "number": "101/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:04:37.41905918-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:19:04.600443987-07:00"
     },
     {
       "riftbound_id": "sfd-102-221",
@@ -1377,6 +1617,14 @@
       "updated_at": "2026-08-23T15:13:53.090591181-07:00"
     },
     {
+      "riftbound_id": "sfd-105-221",
+      "name": "Ruin Runner",
+      "number": "105/221",
+      "set_id": "SFD",
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:18:02.818416781-07:00"
+    },
+    {
       "riftbound_id": "sfd-108-221",
       "name": "Warmog's Armor",
       "number": "108/221",
@@ -1385,12 +1633,20 @@
       "updated_at": "2026-08-23T15:10:20.754483913-07:00"
     },
     {
+      "riftbound_id": "sfd-109-221",
+      "name": "Akshan - Mischievous",
+      "number": "109/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:57.52402437-07:00"
+    },
+    {
       "riftbound_id": "sfd-113-221",
       "name": "Lucian - Merciless",
       "number": "113/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:12:46.306474129-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:11:22.918206564-07:00"
     },
     {
       "riftbound_id": "sfd-115-221",
@@ -1407,6 +1663,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:03:15.397058855-07:00"
+    },
+    {
+      "riftbound_id": "sfd-118-221",
+      "name": "Boneshiver",
+      "number": "118/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:09:33.114400651-07:00"
     },
     {
       "riftbound_id": "sfd-120-221",
@@ -1501,16 +1765,16 @@
       "name": "Boots of Swiftness",
       "number": "133/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-09-05T13:03:56.246289398-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:16:21.416509629-07:00"
     },
     {
       "riftbound_id": "sfd-134-221",
       "name": "Cull",
       "number": "134/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:06:50.866210204-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:17:01.482170468-07:00"
     },
     {
       "riftbound_id": "sfd-135-221",
@@ -1519,6 +1783,22 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:03:27.604177495-07:00"
+    },
+    {
+      "riftbound_id": "sfd-136-221",
+      "name": "Hard Bargain",
+      "number": "136/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:16:56.782745675-07:00"
+    },
+    {
+      "riftbound_id": "sfd-139-221",
+      "name": "Edge of Night",
+      "number": "139/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:10:14.659887465-07:00"
     },
     {
       "riftbound_id": "sfd-144-221",
@@ -1685,8 +1965,8 @@
       "name": "Undertitan",
       "number": "175/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:04:18.051258457-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:08:13.077415565-07:00"
     },
     {
       "riftbound_id": "sfd-177-221",
@@ -1695,6 +1975,14 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:14:53.531241743-07:00"
+    },
+    {
+      "riftbound_id": "sfd-180-221",
+      "name": "Fiora - Worthy",
+      "number": "180/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:53.923739635-07:00"
     },
     {
       "riftbound_id": "sfd-181-221",
@@ -1711,6 +1999,22 @@
       "set_id": "SFD",
       "quantity": 1,
       "updated_at": "2026-08-23T15:08:35.602478765-07:00"
+    },
+    {
+      "riftbound_id": "sfd-183-221",
+      "name": "Lucian - Purifier",
+      "number": "183/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:07:48.062484759-07:00"
+    },
+    {
+      "riftbound_id": "sfd-184-221",
+      "name": "Relentless Pursuit",
+      "number": "184/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:12:32.624787763-07:00"
     },
     {
       "riftbound_id": "sfd-185-221",
@@ -1741,8 +2045,8 @@
       "name": "Jax - Grandmaster At Arms",
       "number": "193/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:04:06.539660689-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:10:52.741410375-07:00"
     },
     {
       "riftbound_id": "sfd-198-221",
@@ -1781,8 +2085,16 @@
       "name": "Forge of the Fluft",
       "number": "208/221",
       "set_id": "SFD",
-      "quantity": 2,
-      "updated_at": "2026-08-23T15:06:47.170216841-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-05T17:16:01.903884846-07:00"
+    },
+    {
+      "riftbound_id": "sfd-209-221",
+      "name": "Forgotten Monument",
+      "number": "209/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:12:37.384706317-07:00"
     },
     {
       "riftbound_id": "sfd-210-221",
@@ -1837,8 +2149,8 @@
       "name": "Sunken Temple",
       "number": "218/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:02:28.892831483-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:15:35.687112822-07:00"
     },
     {
       "riftbound_id": "sfd-221-221",
@@ -3093,8 +3405,16 @@
       "name": "Akali, Silent",
       "number": "38/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-05T17:07:37.59033055-07:00"
+    },
+    {
+      "riftbound_id": "ven-038a-166",
+      "name": "Akali, Silent (Alternate Art)",
+      "number": "38a/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-30T21:20:04.848950417-07:00"
+      "updated_at": "2026-09-05T17:07:29.710640131-07:00"
     },
     {
       "riftbound_id": "ven-039-166",
@@ -3127,6 +3447,14 @@
       "set_id": "VEN",
       "quantity": 2,
       "updated_at": "2026-08-30T21:20:25.184036463-07:00"
+    },
+    {
+      "riftbound_id": "ven-043-166",
+      "name": "Steel Paws",
+      "number": "43/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:12:14.376055611-07:00"
     },
     {
       "riftbound_id": "ven-044-166",
@@ -3417,6 +3745,14 @@
       "updated_at": "2026-08-30T21:29:18.081646612-07:00"
     },
     {
+      "riftbound_id": "ven-085-166",
+      "name": "Decree of Strength",
+      "number": "85/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-05T17:09:36.490212185-07:00"
+    },
+    {
       "riftbound_id": "ven-087-166",
       "name": "Hextech Disc",
       "number": "87/166",
@@ -3477,8 +3813,8 @@
       "name": "Spiderling",
       "number": "97/166",
       "set_id": "VEN",
-      "quantity": 8,
-      "updated_at": "2026-08-30T21:33:48.837798281-07:00"
+      "quantity": 11,
+      "updated_at": "2026-09-05T17:17:07.793756198-07:00"
     },
     {
       "riftbound_id": "ven-098-166",
