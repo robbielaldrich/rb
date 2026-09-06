@@ -89,6 +89,14 @@
       "updated_at": "2026-09-05T12:59:39.318012873-07:00"
     },
     {
+      "riftbound_id": "ogn-044-298",
+      "name": "Clockwork Keeper",
+      "number": "44/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-06T12:52:40.911679268-07:00"
+    },
+    {
       "riftbound_id": "ogn-045-298",
       "name": "Defy",
       "number": "45/298",
@@ -157,8 +165,16 @@
       "name": "Adaptatron",
       "number": "56/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T17:20:04.206513133-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-06T12:52:26.65922481-07:00"
+    },
+    {
+      "riftbound_id": "ogn-057-298",
+      "name": "Block",
+      "number": "57/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-09-06T12:52:09.795907424-07:00"
     },
     {
       "riftbound_id": "ogn-058-298",
@@ -341,8 +357,8 @@
       "name": "Singularity",
       "number": "105/298",
       "set_id": "OGN",
-      "quantity": 3,
-      "updated_at": "2026-08-30T21:53:00.975433-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-06T12:53:28.327912241-07:00"
     },
     {
       "riftbound_id": "ogn-106-298",
@@ -1481,6 +1497,14 @@
       "updated_at": "2026-08-23T15:12:51.074224349-07:00"
     },
     {
+      "riftbound_id": "sfd-074-221",
+      "name": "Pickpocket",
+      "number": "74/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-09-06T12:53:13.526813082-07:00"
+    },
+    {
       "riftbound_id": "sfd-077-221",
       "name": "Rocket Barrage",
       "number": "77/221",
@@ -2477,8 +2501,8 @@
       "name": "Ruined Rex",
       "number": "67/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:20:15.514620166-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-06T12:52:57.037969266-07:00"
     },
     {
       "riftbound_id": "unl-068-219",
@@ -2493,8 +2517,8 @@
       "name": "Sprite Burst",
       "number": "69/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:07:35.212213956-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-06T12:53:34.184374684-07:00"
     },
     {
       "riftbound_id": "unl-071-219",
@@ -3081,6 +3105,14 @@
       "updated_at": "2026-08-23T13:57:50.135427207-07:00"
     },
     {
+      "riftbound_id": "unl-209-219",
+      "name": "Dusk Rose Lab",
+      "number": "209/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-06T12:47:39.482775623-07:00"
+    },
+    {
       "riftbound_id": "unl-210-219",
       "name": "Forbidding Waste",
       "number": "210/219",
@@ -3103,6 +3135,14 @@
       "set_id": "UNL",
       "quantity": 2,
       "updated_at": "2026-08-23T14:18:49.050683488-07:00"
+    },
+    {
+      "riftbound_id": "unl-215-219",
+      "name": "Star Spring",
+      "number": "215/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-06T12:47:46.963977536-07:00"
     },
     {
       "riftbound_id": "unl-216-219",
