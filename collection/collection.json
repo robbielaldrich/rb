@@ -185,12 +185,28 @@
       "updated_at": "2026-09-05T13:02:13.799191056-07:00"
     },
     {
+      "riftbound_id": "ogn-060-298",
+      "name": "Mask of Foresight",
+      "number": "60/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-06T22:05:04.344732885-07:00"
+    },
+    {
       "riftbound_id": "ogn-069-298",
       "name": "Last Stand",
       "number": "69/298",
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T17:10:38.324635061-07:00"
+    },
+    {
+      "riftbound_id": "ogn-071-298",
+      "name": "Party Favors",
+      "number": "71/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-06T22:04:54.480006739-07:00"
     },
     {
       "riftbound_id": "ogn-073-298",
@@ -2577,6 +2593,14 @@
       "updated_at": "2026-09-05T12:59:22.724042538-07:00"
     },
     {
+      "riftbound_id": "unl-082a-219",
+      "name": "Lillia - Fae Fawn (Alternate Art)",
+      "number": "82a/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-09-06T22:04:23.73420723-07:00"
+    },
+    {
       "riftbound_id": "unl-083-219",
       "name": "Smoke and Mirrors",
       "number": "83/219",
@@ -3637,8 +3661,8 @@
       "name": "Decree of Insight",
       "number": "61/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:05:36.350613363-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-06T22:04:47.335675086-07:00"
     },
     {
       "riftbound_id": "ven-062-166",
@@ -3789,8 +3813,8 @@
       "name": "Decree of Strength",
       "number": "85/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T17:09:36.490212185-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-06T22:04:31.354536771-07:00"
     },
     {
       "riftbound_id": "ven-087-166",
@@ -4109,8 +4133,8 @@
       "name": "Decree of Unity",
       "number": "131/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:37:07.599611657-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-06T22:04:10.278499682-07:00"
     },
     {
       "riftbound_id": "ven-132-166",
