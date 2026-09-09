@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"rb/ankigen"
 	"rb/collection"
@@ -72,14 +73,16 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		var opts ankigen.Options
 		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to build the deck from")
 		fs.StringVar(&opts.ImageDir, "image-dir", "cards/images", "directory holding the downloaded card scans")
-		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck file and its media into")
+		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck files and their media into")
 		fs.StringVar(&opts.DeckName, "deck", "Riftbound::Hidden Costs", "name of the deck to import into")
 		fs.StringVar(&opts.EffectDeckName, "effect-deck", "Riftbound::Hidden Effects", "name of the companion deck asking what a card does")
+		fs.StringVar(&opts.ReactionDeckName, "reaction-deck", "Riftbound::Reaction Spells", "name of the deck listing each domain's Reaction spells")
 		fs.Float64Var(&opts.MaskFraction, "mask", 0.25, "fraction of the card height to paint out, from the top")
 		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out, from the bottom")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
-		return func() error { return genAnki(opts) }
+		only := fs.String("only", "", "comma-separated blocks to generate, or empty for all (available: "+ankigen.BlockNames()+")")
+		return func() error { return genAnki(opts, *only) }
 
 	case "gen-rules-anki":
 		var opts ankigen.RulesOptions
@@ -221,7 +224,7 @@ func matchDecks(opts decks.Options) error {
 	return nil
 }
 
-func genAnki(opts ankigen.Options) error {
+func genAnki(opts ankigen.Options, only string) error {
 	if opts.MaskFraction <= 0 || opts.MaskFraction > 1 {
 		return fmt.Errorf("-mask must be between 0 and 1, got %v", opts.MaskFraction)
 	}
@@ -229,19 +232,40 @@ func genAnki(opts ankigen.Options) error {
 		return fmt.Errorf("-effect-mask must be between 0 and 1, got %v", opts.EffectMaskFraction)
 	}
 
-	res, err := ankigen.GenerateHiddenCosts(opts)
-	if err != nil {
-		return fmt.Errorf("failed to generate deck: %w", err)
+	blocks := ankigen.Blocks
+	if only != "" {
+		blocks = nil
+		for _, name := range strings.Split(only, ",") {
+			b, err := ankigen.BlockByName(strings.TrimSpace(name))
+			if err != nil {
+				return err
+			}
+			blocks = append(blocks, b)
+		}
 	}
 
-	fmt.Printf(`wrote %d notes and %d images
+	var files []string
+	notes := 0
+	for _, b := range blocks {
+		res, err := b.Run(opts)
+		if err != nil {
+			return fmt.Errorf("failed to generate the %s block: %w", b.Name, err)
+		}
+		files = append(files, res.Files...)
+		notes += res.Notes
+	}
 
+	fmt.Printf("wrote %d notes across %d deck files:\n", notes, len(files))
+	for _, f := range files {
+		fmt.Printf("  %s\n", f)
+	}
+	fmt.Printf(`
 to import:
-  1. copy %s/* into your Anki collection.media folder
+  1. copy %s/media/* into your Anki collection.media folder, if it holds any
      (Anki: Tools > Check Media > View Files)
-  2. in Anki, File > Import and choose %s
-  3. import %s the same way for the companion deck
-`, res.Notes, res.Images, res.MediaDir, res.CostDeckFile, res.EffectDeckFile)
+  2. in Anki, File > Import, and choose whichever deck files above you want —
+     each imports independently, so pick and choose
+`, opts.OutDir)
 	return nil
 }
 

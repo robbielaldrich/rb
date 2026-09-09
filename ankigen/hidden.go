@@ -32,6 +32,8 @@ type Options struct {
 	// made per card, since alternate arts and reprints of the same card would
 	// otherwise ask the same question several times.
 	AllPrintings bool
+	// ReactionDeckName is the deck the reaction-spells block imports into.
+	ReactionDeckName string
 }
 
 // Result reports what a run produced, so the caller can tell the user where
