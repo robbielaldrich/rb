@@ -9,42 +9,16 @@ import (
 	"rb/cards"
 )
 
-// Stats writes a set-by-set completion summary to w.
-//
-// The headline is the named cards: one copy of every card a set prints,
-// whatever art it wears. Alternate arts, overnumbered copies and signatures
-// are the same card to play with, so any printing completes the entry; they
-// are then counted again on their own, printing by printing, as the chase
-// cards they are.
+// summarise's headline is the named cards: one copy of every card a set
+// prints, whatever art it wears. Alternate arts, overnumbered copies and
+// signatures are the same card to play with, so any printing completes the
+// entry; they are then counted again on their own, printing by printing, as
+// the chase cards they are.
 //
 // Playsets ask the harder question beside it: not whether a card is in the
 // collection at all, but whether it is there in the three copies a deck may
 // run. Battlefields and legends stay out of that count, being cards a deck
 // fields one of rather than in repeats.
-//
-// dataPath, when set, also receives the same numbers as JSON for the
-// collection page to read.
-func Stats(collectionPath, catalogPath, dataPath string, w io.Writer) error {
-	coll, err := load(collectionPath)
-	if err != nil {
-		return fmt.Errorf("failed to load collection: %w", err)
-	}
-
-	cs, err := cards.Load(catalogPath)
-	if err != nil {
-		return fmt.Errorf("failed to load catalog: %w", err)
-	}
-
-	sets := summarise(cs, coll)
-	writeStats(w, sets)
-
-	if dataPath != "" {
-		if err := writeStatsData(dataPath, sets); err != nil {
-			return fmt.Errorf("failed to write the summary data: %w", err)
-		}
-	}
-	return nil
-}
 
 // tally is a count of what is owned out of what exists.
 type tally struct{ owned, total int }

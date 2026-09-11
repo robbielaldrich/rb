@@ -179,8 +179,9 @@ func paint(s, code string) string {
 	return "\x1b[" + code + "m" + s + "\x1b[0m"
 }
 
-func dim(s string) string  { return paint(s, "2") }
-func bold(s string) string { return paint(s, "1") }
+func dim(s string) string     { return paint(s, "2") }
+func bold(s string) string    { return paint(s, "1") }
+func reverse(s string) string { return paint(s, "7") }
 
 // truncate cuts a string to at most n columns, marking the cut with an
 // ellipsis. It counts runes rather than display cells, which is exact for the

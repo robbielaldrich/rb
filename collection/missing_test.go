@@ -13,7 +13,7 @@ func wantsFor(t *testing.T, cs []cards.Card, held map[string]int) []want {
 	for id, n := range held {
 		coll.Cards = append(coll.Cards, collectedCard{RiftboundID: id, Quantity: n})
 	}
-	return wants(cs, &coll)
+	return wants(cs, &coll, AxisPlayset)
 }
 
 func wantFor(t *testing.T, out []want, name string) want {
@@ -76,7 +76,7 @@ func TestMissingWantsOneBattlefieldOrLegend(t *testing.T) {
 	got := wantsFor(t, cs, map[string]int{"ven-011-166": 1})
 
 	hall := wantFor(t, got, "Abandoned Hall")
-	if hall.playset != 1 || hall.short() != 1 {
+	if hall.target != 1 || hall.short() != 1 {
 		t.Errorf("got %+v, want one copy of the battlefield wanted", hall)
 	}
 	for _, w := range got {
@@ -100,6 +100,37 @@ func TestMissingSortsInBinderOrder(t *testing.T) {
 	}
 	if got, want := strings.Join(names, " "), "Two Twelve Fury Rune"; got != want {
 		t.Errorf("order = %q, want %q", got, want)
+	}
+}
+
+// On the set-completion axis a card is wanted only until one copy is held,
+// however many a deck could run.
+func TestMissingSetAxisWantsOneCopy(t *testing.T) {
+	var coll collection
+	got := wants(statsCards(), &coll, AxisSet)
+
+	raider := wantFor(t, got, "Oasis Raider")
+	if raider.target != 1 || raider.short() != 1 {
+		t.Errorf("got %+v, want one copy wanted", raider)
+	}
+
+	coll.Cards = append(coll.Cards, collectedCard{RiftboundID: "ven-002-166", Quantity: 1})
+	for _, w := range wants(statsCards(), &coll, AxisSet) {
+		if w.name == "Oasis Raider" {
+			t.Errorf("got %+v, want a single copy to satisfy the set axis", w)
+		}
+	}
+}
+
+func TestParseAxis(t *testing.T) {
+	for s, want := range map[string]Axis{"": AxisPlayset, "playset": AxisPlayset, "set": AxisSet} {
+		got, err := ParseAxis(s)
+		if err != nil || got != want {
+			t.Errorf("ParseAxis(%q) = %v, %v, want %v, nil", s, got, err, want)
+		}
+	}
+	if _, err := ParseAxis("bogus"); err == nil {
+		t.Error("ParseAxis(\"bogus\") returned no error")
 	}
 }
 

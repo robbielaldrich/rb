@@ -52,7 +52,14 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 	case "missing":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
-		return func() error { return missing(*collectionFile, *catalogFile, fs.Args()) }
+		axisFlag := fs.String("axis", "playset", "which axis to measure short against: \"set\" (own a copy at all) or \"playset\" (own three)")
+		return func() error {
+			axis, err := collection.ParseAxis(*axisFlag)
+			if err != nil {
+				return err
+			}
+			return missing(*collectionFile, *catalogFile, fs.Args(), axis)
+		}
 
 	case "add-decks":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
@@ -187,8 +194,8 @@ func validate(collectionFile, setID string) error {
 }
 
 func collectionStats(collectionFile, catalogFile, dataFile string) error {
-	if err := collection.Stats(collectionFile, catalogFile, dataFile, os.Stdout); err != nil {
-		return fmt.Errorf("failed to summarise the collection: %w", err)
+	if err := collection.RunStats(collectionFile, catalogFile, dataFile); err != nil {
+		return fmt.Errorf("failed to show the collection stats: %w", err)
 	}
 	return nil
 }
@@ -200,8 +207,8 @@ func surplus(collectionFile, catalogFile string) error {
 	return nil
 }
 
-func missing(collectionFile, catalogFile string, filters []string) error {
-	if err := collection.Missing(collectionFile, catalogFile, filters, os.Stdout); err != nil {
+func missing(collectionFile, catalogFile string, filters []string, axis collection.Axis) error {
+	if err := collection.Missing(collectionFile, catalogFile, filters, axis, os.Stdout); err != nil {
 		return fmt.Errorf("failed to list the missing cards: %w", err)
 	}
 	return nil
