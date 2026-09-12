@@ -25,9 +25,10 @@ func TestUsageDescribesEveryCommand(t *testing.T) {
 	}
 
 	for _, want := range []string{
-		`  -out string        directory to write downloaded card data into (default "cards")`,
-		`  -images            also download card images (default true)`,
-		`  -concurrency int   number of concurrent image downloads (default 8)`,
+		`  -out string            directory to write downloaded card data into (default "cards")`,
+		`  -images                also download card images (default true)`,
+		`  -concurrency int       number of concurrent image downloads (default 8)`,
+		`  -missing-file string   cards Riftcodex does not carry, to add to the download (default "cards/missing-from-riftcodex.json")`,
 		`  -all-printings          make a note per printing rather than per card`,
 	} {
 		if !strings.Contains(out.String(), want) {

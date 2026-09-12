@@ -27,7 +27,11 @@ type cardMedia struct {
 // to outDir as sets.json, cards.json, and one image per card under images/.
 // Image downloads are idempotent: cards whose image file already exists on
 // disk are skipped.
-func DownloadCards(outDir string, downloadImages bool, concurrency int) error {
+//
+// missingPath names the hand-maintained file of cards Riftcodex does not carry
+// (see mergeMissing); they are added to cards.json after the download, and the
+// download fails if the dataset has meanwhile caught up with any of them.
+func DownloadCards(outDir, missingPath string, downloadImages bool, concurrency int) error {
 	client := &http.Client{Timeout: requestTimeout}
 
 	if err := os.MkdirAll(outDir, 0o755); err != nil {
@@ -51,6 +55,19 @@ func DownloadCards(outDir string, downloadImages bool, concurrency int) error {
 		}
 		allCards = append(allCards, setCards...)
 		log.Printf("set %-6s (%s): %d cards", s.SetID, s.Name, len(setCards))
+	}
+
+	downloaded := len(allCards)
+	extra, err := loadMissing(missingPath)
+	if err != nil {
+		return fmt.Errorf("failed to load the cards missing from Riftcodex: %w", err)
+	}
+	allCards, err = mergeMissing(allCards, extra, missingPath)
+	if err != nil {
+		return err
+	}
+	if n := len(allCards) - downloaded; n > 0 {
+		log.Printf("added %d cards missing from Riftcodex, from %s", n, missingPath)
 	}
 
 	if err := writeJSON(filepath.Join(outDir, "cards.json"), allCards); err != nil {

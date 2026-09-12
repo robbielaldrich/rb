@@ -1,0 +1,320 @@
+{
+  "note": "Cards that are in print but absent from the Riftcodex dataset, added to cards.json by `rb download-cards`. Riftcodex keeps organized-play promos in the OPP set, numbered with the size of the set they reprint, but has ingested none for Vendetta: OPP carries -298, -221, -219 and -024 promos and no -166 ones at all. The cards below are filed the way Riftcodex would file them, so that a download can tell when it has caught up: download-cards refuses to merge any entry whose set, card name and reprinted-set number have appeared in the dump, whatever id Riftcodex gives it. Delete an entry once that happens — the download fails until you do. Game data is copied from each card's Vendetta printing; only the identifiers, set, rarity and name differ, and no image is published for these printings. Seven of the reported 25-card Nexus Night cycle are confirmed; the rest are not yet documented well enough to add.",
+  "sources": [
+    "https://riftcompare.com/blog/riftbound-vendetta-nexus-night-promo-cards",
+    "https://riftbound.gg/cards/ven-069b-p-mel-newly-awakened-vendetta-nexus-night-promo/"
+  ],
+  "cards": [
+    {
+      "id": "",
+      "name": "Mel, Newly Awakened (Nexus Night Promo)",
+      "riftbound_id": "opp-069b-166",
+      "tcgplayer_id": null,
+      "collector_number": 69,
+      "attributes": {
+        "energy": 4,
+        "might": 4,
+        "power": 1
+      },
+      "classification": {
+        "type": "Unit",
+        "supertype": "Champion",
+        "rarity": "Promo",
+        "domain": [
+          "Mind"
+        ]
+      },
+      "text": {
+        "rich": "<p>When you play me, draw 1.<br />[Empower] :rb_energy_3: (:rb_energy_3:: Empower me. Use only if not Empowered.)<br />[Empowered][&gt;] Your spells and abilities can't be countered. If a spell or ability you control would give -:rb_might: to a unit it chooses, it gives an additional -1 :rb_might:.</p>",
+        "plain": "When you play me, draw 1.[Empower] :rb_energy_3: (:rb_energy_3:: Empower me. Use only if not Empowered.)[Empowered][&gt;] Your spells and abilities can't be countered. If a spell or ability you control would give -:rb_might: to a unit it chooses, it gives an additional -1 :rb_might:.",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Pandart Studio",
+        "accessibility_text": ""
+      },
+      "tags": [
+        "Noxus",
+        "Mel"
+      ],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Fury Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r01b-166",
+      "tcgplayer_id": null,
+      "collector_number": 1,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Fury"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Calm Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r02b-166",
+      "tcgplayer_id": null,
+      "collector_number": 2,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Calm"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Mind Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r03b-166",
+      "tcgplayer_id": null,
+      "collector_number": 3,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Mind"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Body Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r04b-166",
+      "tcgplayer_id": null,
+      "collector_number": 4,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Body"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Chaos Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r05b-166",
+      "tcgplayer_id": null,
+      "collector_number": 5,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Chaos"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    },
+    {
+      "id": "",
+      "name": "Order Rune (Nexus Night Promo)",
+      "riftbound_id": "opp-r06b-166",
+      "tcgplayer_id": null,
+      "collector_number": 6,
+      "attributes": {
+        "energy": null,
+        "might": null,
+        "power": null
+      },
+      "classification": {
+        "type": "Rune",
+        "supertype": "Basic",
+        "rarity": "Promo",
+        "domain": [
+          "Order"
+        ]
+      },
+      "text": {
+        "rich": "<p>[NO TEXT]</p>",
+        "plain": "[NO TEXT]",
+        "flavour": null
+      },
+      "set": {
+        "set_id": "OPP",
+        "label": "Riftbound Organized Play Promotional Cards"
+      },
+      "media": {
+        "image_url": "",
+        "artist": "Greg Ghielmetti & Leah Chen",
+        "accessibility_text": ""
+      },
+      "tags": [],
+      "orientation": "portrait",
+      "metadata": {
+        "clean_name": null,
+        "updated_on": "2026-09-12T00:00:00+00:00",
+        "alternate_art": false,
+        "overnumbered": false,
+        "signature": false
+      },
+      "new": false
+    }
+  ]
+}
