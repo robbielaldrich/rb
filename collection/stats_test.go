@@ -139,6 +139,30 @@ func promoPrinting(id, name, setID string) cards.Card {
 	return c
 }
 
+// A promo set holds promos of several sets at once, so two promos of the same
+// card are two cards to collect: only the set size they are numbered out of
+// tells the Origins Fury Rune from the Vendetta one.
+func TestPromosOfDifferentSetsAreCountedApart(t *testing.T) {
+	cs := []cards.Card{
+		promoPrinting("opp-007b-298", "Fury Rune", "opp"),
+		promoPrinting("opp-r01b-166", "Fury Rune (Nexus Night Promo)", "opp"),
+	}
+	s := playsetFor(t, cs, map[string]int{"opp-007b-298": 1})
+
+	if s.named != (tally{owned: 1, total: 2}) {
+		t.Errorf("named = %v, want 1/2 — one Fury Rune promo owned of two", s.named)
+	}
+}
+
+// Printings of one card within a set still fold together: the set size is only
+// there to tell a promo set's reprints of different sets apart.
+func TestPrintingsOfOneCardStillFold(t *testing.T) {
+	s := statsFor(t, "ven-001a-166")
+	if s.named != (tally{owned: 1, total: 3}) {
+		t.Errorf("named = %v, want 1/3, the alternate art folding into its card", s.named)
+	}
+}
+
 // A promo set's cards are reprints of cards a main set already prints, so they
 // are counted as cards to own but never measured against a playset: the deck's
 // three copies are asked for once, where the card itself lives.

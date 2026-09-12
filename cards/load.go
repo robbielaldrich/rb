@@ -59,7 +59,12 @@ func Load(path string) ([]Card, error) {
 // riftIDRe matches the common riftbound_id shape, e.g. ven-044-166 or
 // ven-044a-166, whose parts are the set, the collector number (with an
 // optional variant letter), and the printed set size.
-var riftIDRe = regexp.MustCompile(`^([a-z]+)-([0-9]+[a-z*]?)-([0-9]+)$`)
+//
+// The number is matched loosely enough to cover the series lettered rather
+// than numbered — ven-sp1-006, opp-r01b-166 — so that they are printed as the
+// number and set size they carry instead of falling back to a bare collector
+// number that several cards in a set share.
+var riftIDRe = regexp.MustCompile(`^([a-z]+)-([0-9a-z*]+)-([0-9]+)$`)
 
 // Number renders a card's printed number, e.g. "44/166". Cards whose
 // riftbound_id doesn't carry a set size (runes, some promos) fall back to
@@ -73,6 +78,29 @@ func (c Card) Number() string {
 		return num + "/" + m[3]
 	}
 	return strconv.Itoa(c.CollectorNumber)
+}
+
+// SetSize is the printed set size a card's number is quoted out of — "166" for
+// ven-044-166 — or empty for an id carrying none.
+//
+// In a promo set that is the size of the set being reprinted rather than of
+// the set the card is filed under, which is what tells one promo of a card
+// from another: OPP holds an Origins Fury Rune numbered out of 298 and a
+// Vendetta one numbered out of 166. It is read off the end of the id rather
+// than through riftIDRe, since the printings numbered outside the main run —
+// r01b, sp1 — carry a set size that the collector-number pattern won't match.
+func (c Card) SetSize() string {
+	i := strings.LastIndex(c.RiftboundID, "-")
+	if i < 0 {
+		return ""
+	}
+	size := c.RiftboundID[i+1:]
+	for _, r := range size {
+		if r < '0' || r > '9' {
+			return ""
+		}
+	}
+	return size
 }
 
 // IsAlternateArt reports whether this printing is an alternate art.

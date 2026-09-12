@@ -101,3 +101,18 @@ func TestIsAlternateArt(t *testing.T) {
 		}
 	}
 }
+
+func TestSetSize(t *testing.T) {
+	for id, want := range map[string]string{
+		"ven-044-166":  "166", // the main run
+		"ven-044a-166": "166", // an alternate art of it
+		"opp-007b-298": "298", // a promo of an Origins card
+		"opp-r01b-166": "166", // a promo of a Vendetta rune, numbered outside the main run
+		"ven-r01":      "",    // a printing whose id carries no set size
+		"ven-sp1-006":  "006",
+	} {
+		if got := (Card{RiftboundID: id}).SetSize(); got != want {
+			t.Errorf("%s: SetSize() = %q, want %q", id, got, want)
+		}
+	}
+}

@@ -99,14 +99,14 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 		}
 	}
 
-	// Keyed by set and base name so every printing of a card folds into the
-	// one entry, the way Stats counts them: three copies make a playset
-	// whether or not they wear the same art.
-	type nameKey struct{ set, name string }
+	// Keyed by set, base name and the set size each is numbered out of, the
+	// way Stats counts them: every printing of a card folds into the one
+	// entry, but a promo set's promos of different sets stay apart.
+	type nameKey struct{ set, name, size string }
 	held := map[nameKey]*want{}
 	for _, c := range cs {
 		id := strings.ToUpper(c.Set.SetID)
-		k := nameKey{id, c.BaseName()}
+		k := nameKey{id, c.BaseName(), c.SetSize()}
 		e, ok := held[k]
 		if !ok {
 			target := c.PlaysetSize()

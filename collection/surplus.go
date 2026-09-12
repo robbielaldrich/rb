@@ -54,7 +54,10 @@ func spares(cs []cards.Card, coll *collection) []spare {
 		}
 	}
 
-	type nameKey struct{ set, name string }
+	// Keyed the way Stats and Missing key theirs, so that the spares counted
+	// against a card are the copies of that card and not of a promo set's
+	// other printing of the same name.
+	type nameKey struct{ set, name, size string }
 	held := map[nameKey]*spare{}
 	for _, c := range cs {
 		n := qty[c.RiftboundID]
@@ -62,7 +65,7 @@ func spares(cs []cards.Card, coll *collection) []spare {
 			continue
 		}
 		id := strings.ToUpper(c.Set.SetID)
-		k := nameKey{id, c.BaseName()}
+		k := nameKey{id, c.BaseName(), c.SetSize()}
 		s, ok := held[k]
 		if !ok {
 			s = &spare{setID: id, name: c.BaseName(), playset: c.PlaysetSize()}
