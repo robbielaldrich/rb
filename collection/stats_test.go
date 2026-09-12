@@ -131,6 +131,40 @@ func TestUnflaggedAlternateArtStillCounts(t *testing.T) {
 	}
 }
 
+// promoPrinting is a printing handed out at an event, as the promo sets are
+// made up of entirely.
+func promoPrinting(id, name, setID string) cards.Card {
+	c := printing(id, name, setID, cards.Metadata{})
+	c.Classification.Rarity = cards.RarityPromo
+	return c
+}
+
+// A promo set's cards are reprints of cards a main set already prints, so they
+// are counted as cards to own but never measured against a playset: the deck's
+// three copies are asked for once, where the card itself lives.
+func TestPromosAreCollectedButNotPlaysetted(t *testing.T) {
+	cs := []cards.Card{
+		promoPrinting("opp-052-298", "Stalwart Poro", "opp"),
+		promoPrinting("opp-007b-298", "Fury Rune", "opp"),
+	}
+	s := playsetFor(t, cs, map[string]int{"opp-052-298": 1})
+
+	if s.named != (tally{owned: 1, total: 2}) {
+		t.Errorf("named = %v, want 1/2 — promos are still cards to collect", s.named)
+	}
+	if s.playset != (tally{}) {
+		t.Errorf("playset = %v, want an empty tally for a promo set", s.playset)
+	}
+}
+
+// The main sets keep their playset share, promos being the exception rather
+// than the rule.
+func TestMainSetsStillCountPlaysets(t *testing.T) {
+	if got := playsetFor(t, statsCards(), map[string]int{"ven-002-166": 3}).playset; got != (tally{owned: 1, total: 3}) {
+		t.Errorf("playset = %v, want 1/3", got)
+	}
+}
+
 // typedPrinting is a plain printing of a card whose type decides its playset,
 // which the ordinary helper leaves empty for the repeatable majority.
 func typedPrinting(id, name, setID, cardType string) cards.Card {

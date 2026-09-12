@@ -34,6 +34,19 @@ const (
 	TypeLegend      = "Legend"
 )
 
+// RarityPromo marks a printing handed out at an event rather than pulled from
+// a pack. The promo sets — organized play, judge, launch — are made of nothing
+// else, and the sets sold in packs hold none of it.
+const RarityPromo = "Promo"
+
+// IsPromo reports whether this printing is a promo.
+//
+// A promo is another printing of a card a main set already prints, so it is
+// something to collect rather than something a deck is short of: a deck that
+// wants three of the card counts them wherever they came from. Measuring
+// promos against a playset of their own would ask for three of each keepsake.
+func (c Card) IsPromo() bool { return c.Classification.Rarity == RarityPromo }
+
 // Classification describes what kind of card this is.
 type Classification struct {
 	Type      string   `json:"type"`

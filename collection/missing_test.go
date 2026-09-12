@@ -122,6 +122,21 @@ func TestMissingSetAxisWantsOneCopy(t *testing.T) {
 	}
 }
 
+// A promo is never what a deck is short of, but it is still worth owning, so
+// it leaves the playset axis and stays on the set one.
+func TestMissingLeavesPromosOffThePlaysetAxis(t *testing.T) {
+	cs := []cards.Card{promoPrinting("opp-052-298", "Stalwart Poro", "opp")}
+
+	if got := wants(cs, &collection{}, AxisPlayset); len(got) != 0 {
+		t.Errorf("playset axis wants %+v, want nothing from a promo set", got)
+	}
+
+	got := wants(cs, &collection{}, AxisSet)
+	if len(got) != 1 || got[0].short() != 1 {
+		t.Fatalf("set axis wants %+v, want the one promo asked for once", got)
+	}
+}
+
 func TestParseAxis(t *testing.T) {
 	for s, want := range map[string]Axis{"": AxisPlayset, "playset": AxisPlayset, "set": AxisSet} {
 		got, err := ParseAxis(s)

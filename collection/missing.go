@@ -85,6 +85,7 @@ type want struct {
 	rarity string
 	copies int
 	target int
+	promo  bool
 }
 
 // short is how many copies are still needed to reach the target.
@@ -123,6 +124,7 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 		// reprint of it wears.
 		if !c.IsChasePrinting() {
 			e.number, e.sortID, e.rarity = c.Number(), c.RiftboundID, c.Classification.Rarity
+			e.promo = c.IsPromo()
 		}
 	}
 
@@ -130,9 +132,17 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 	for _, e := range held {
 		// An entry with no number is one the filtered catalog shows only in
 		// chase printings, so there is no plain card to go looking for.
-		if e.number != "" && e.short() > 0 {
-			out = append(out, *e)
+		if e.number == "" || e.short() <= 0 {
+			continue
 		}
+		// A promo is another printing of a card a main set already prints, so
+		// it is never what a deck is short of — the playset is asked for once,
+		// where the card itself lives. It is still worth owning, so the set
+		// axis goes on asking for it.
+		if axis == AxisPlayset && e.promo {
+			continue
+		}
+		out = append(out, *e)
 	}
 
 	// Binder order: by set, then by riftbound_id, whose zero-padded numbers
