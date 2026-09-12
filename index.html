@@ -79,6 +79,33 @@
   .count { color: var(--muted); font-variant-numeric: tabular-nums; }
   .where { grid-column: 2 / -1; color: var(--muted); font-size: .8rem; }
   .unknown { grid-column: 2 / -1; color: var(--short); font-size: .8rem; }
+  /* A card the collection covers, which only the pasted-list report shows:
+     the registered decks list what is missing and nothing else. */
+  .need.ok { color: var(--have); }
+  .missing li.held .card { color: var(--fg); }
+
+  /* Paste a list */
+  .paste { border: 1px solid var(--line); border-radius: .5rem; margin-bottom: 1.25rem; }
+  .paste > summary { padding: .6rem .75rem; cursor: pointer; font-size: .95rem; }
+  .paste > :not(summary) { margin-left: .75rem; margin-right: .75rem; }
+  .hint { color: var(--muted); font-size: .8rem; max-width: 40rem; }
+  .hint code { font-size: .95em; }
+  #paste-list {
+    width: calc(100% - 1.5rem); box-sizing: border-box; padding: .6rem .75rem;
+    border: 1px solid var(--line); border-radius: .5rem;
+    background: transparent; color: inherit;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem;
+    resize: vertical;
+  }
+  .paste-actions { display: flex; gap: .5rem; margin-top: .5rem; }
+  .paste-actions button {
+    appearance: none; padding: .4rem .9rem; font: inherit; font-size: .85rem;
+    border: 1px solid var(--line); border-radius: .5rem;
+    background: transparent; color: inherit; cursor: pointer;
+  }
+  .paste-actions button:hover { border-color: var(--accent); color: var(--accent); }
+  .paste-error { color: var(--short); }
+  .group { color: var(--muted); font-size: .8rem; margin: .75rem 0 .25rem; }
 
   /* Summary */
   /* Six columns don't fit a phone, so the table scrolls rather than the page. */
@@ -155,6 +182,22 @@
 </section>
 
 <section role="tabpanel" id="panel-decks" aria-labelledby="tab-decks" hidden>
+  <details class="paste">
+    <summary>Check a list against the collection</summary>
+    <p class="hint">
+      Paste a decklist the way <code>just add-decks</code> takes one: a heading
+      line ending in a colon, then <code>&lt;count&gt; &lt;card name&gt;</code>
+      lines under it. Nothing is registered — the list is only measured.
+    </p>
+    <textarea id="paste-list" rows="8" spellcheck="false" aria-label="Decklist"
+      placeholder="Legend:&#10;1 Irelia, Blade Dancer&#10;&#10;MainDeck:&#10;3 Lightning Rush&#10;3 Vi, Piltover Enforcer"></textarea>
+    <div class="paste-actions">
+      <button type="button" id="paste-check">Check</button>
+      <button type="button" id="paste-clear">Clear</button>
+    </div>
+    <p id="paste-status" class="status"></p>
+    <div id="paste-result"></div>
+  </details>
   <p id="decks-status" class="status">Loading decks&hellip;</p>
   <div id="decks"></div>
 </section>
@@ -540,22 +583,20 @@ function deckCards(deck, sideboard) {
     .map(([name, quantity]) => ({ name, quantity }));
 }
 
-// check measures one deck against the pool, listing every card it asks for
-// that the collection can't cover.
-function check(deck, p, sideboard) {
-  const missing = [];
-  let size = 0;
+// entries measures every card a deck asks for against the pool, the ones the
+// collection covers as well as the ones it doesn't. The deck report shows only
+// the shortfall, but a list pasted in to be checked wants the whole answer.
+function entries(deck, p, sideboard) {
+  const out = [];
   for (const e of deckCards(deck, sideboard)) {
     if (isRune(p, e.name)) continue;
-    size += e.quantity;
 
     const [held, known] = have(p, e.name);
-    if (known && held >= e.quantity) continue;
     const m = {
       name: e.name,
       need: e.quantity,
       have: held,
-      short: e.quantity - held,
+      short: Math.max(e.quantity - held, 0),
       // unknown marks a name no card in the catalog is printed under, usually
       // a typo in the pasted list or a set the catalog hasn't caught up with.
       unknown: !known,
@@ -567,13 +608,26 @@ function check(deck, p, sideboard) {
     } else {
       m.nearest = nearest(p, e.name);
     }
-    missing.push(m);
+    out.push(m);
   }
+  return out;
+}
+
+// covered reports whether the collection can field a card the list asks for.
+// A name the catalog doesn't know never counts as covered, however many cards
+// happened to answer for it.
+const covered = m => !m.unknown && m.have >= m.need;
+
+// check measures one deck against the pool, listing every card it asks for
+// that the collection can't cover.
+function check(deck, p, sideboard) {
+  const all = entries(deck, p, sideboard);
+  const missing = all.filter(m => !covered(m));
   return {
     name: deck.name,
     legend: deck.legend,
     set: deck.latest_set,
-    size,
+    size: all.reduce((n, m) => n + m.need, 0),
     short: missing.reduce((n, m) => n + m.short, 0),
     buildable: missing.length === 0,
     missing,
@@ -593,6 +647,11 @@ function evaluate(ds, p, sideboard) {
     cmp((a.legend || "").toLowerCase(), (b.legend || "").toLowerCase()));
 }
 
+// The pool is shared by the registered decks and by any list pasted in to be
+// checked, so the catalog is walked once however the tab is used.
+const deckPool = once(() =>
+  Promise.all([catalog(), collection()]).then(([cs, coll]) => newPool(cs, ownedByID(coll))));
+
 const decksStatus = document.getElementById("decks-status");
 const decksEl = document.getElementById("decks");
 let decksLoaded = false;
@@ -600,8 +659,8 @@ let decksLoaded = false;
 function loadDecks() {
   if (decksLoaded) return;
   decksLoaded = true;
-  Promise.all([catalog(), collection(), register()])
-    .then(([cs, coll, reg]) => {
+  Promise.all([deckPool(), register()])
+    .then(([p, reg]) => {
       const ds = reg.decks || [];
       if (ds.length === 0) {
         decksStatus.textContent = "No decks registered yet — run `just add-decks`.";
@@ -609,7 +668,7 @@ function loadDecks() {
       }
       render({
         sideboard: SIDEBOARD,
-        decks: evaluate(ds, newPool(cs, ownedByID(coll)), SIDEBOARD),
+        decks: evaluate(ds, p, SIDEBOARD),
       });
     })
     .catch(err => {
@@ -669,53 +728,203 @@ function render(report) {
       continue;
     }
 
-    const ul = document.createElement("ul");
-    ul.className = "missing";
-    for (const m of d.missing) {
-      const li = document.createElement("li");
-
-      const need = document.createElement("span");
-      need.className = "need";
-      need.textContent = `${m.short}×`;
-
-      // The name jumps to the search tab, since the next question after
-      // "what am I missing" is usually "what does it look like".
-      const card = document.createElement("button");
-      card.className = "card";
-      card.type = "button";
-      card.textContent = m.name;
-      card.addEventListener("click", () => {
-        select(document.getElementById("tab-search"));
-        q.value = m.name;
-        q.dispatchEvent(new Event("input"));
-      });
-
-      const count = document.createElement("span");
-      count.className = "count";
-      count.textContent = `have ${m.have} of ${m.need}`;
-      li.append(need, card, count);
-
-      if (m.unknown) {
-        const note = document.createElement("span");
-        note.className = "unknown";
-        note.textContent = m.nearest
-          ? `no such card in the catalog — did you mean “${m.nearest}”?`
-          : "no such card in the catalog";
-        li.append(note);
-      } else {
-        const where = document.createElement("span");
-        where.className = "where";
-        where.textContent = [
-          (m.domains || []).join("/"),
-          (m.sets || []).join(", "),
-        ].filter(Boolean).join(" · ");
-        if (where.textContent) li.append(where);
-      }
-      ul.append(li);
-    }
-    deck.append(ul);
+    deck.append(list(d.missing));
     decksEl.append(deck);
   }
+}
+
+/* Paste a list
+   A port of decks/parse.go, so that a list reads here exactly as it does when
+   `just add-decks` takes it and nothing is accepted in one place that the
+   other would turn away. */
+
+// entryRe matches a decklist line: a count, then the card name. The optional
+// "x" covers the "3x Lightning Rush" spelling some builders export; it can't
+// swallow the first letter of a name, since a space has to follow it.
+const entryRe = /^([0-9]+)\s*[xX]?\s+(.+)$/;
+
+// sectionOf returns the named section, opening one if the list hasn't used it
+// yet. Headings are matched without regard to case, so a list that writes
+// "Maindeck" under "MainDeck" goes on filling the same block.
+function sectionOf(deck, name) {
+  let s = deck.sections.find(x => x.name.toLowerCase() === name.toLowerCase());
+  if (!s) {
+    s = { name, cards: [] };
+    deck.sections.push(s);
+  }
+  return s;
+}
+
+// addEntry files a card under a heading, adding to the count already there if
+// the list names the card twice.
+function addEntry(deck, section, name, quantity) {
+  const s = sectionOf(deck, section);
+  const e = s.cards.find(c => c.name.toLowerCase() === name.toLowerCase());
+  if (e) {
+    e.quantity += quantity;
+    return;
+  }
+  s.cards.push({ quantity, name });
+}
+
+// parseList reads a pasted decklist: headed blocks of "<count> <card name>"
+// lines. Blank lines are separators and carry no meaning, so a list can be
+// pasted exactly as it was copied. It throws on the first line it can't read,
+// naming the line the way the terminal does.
+function parseList(text) {
+  const deck = { name: "", legend: "", sections: [] };
+  let section = "";
+
+  const lines = text.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    if (line.endsWith(":")) {
+      section = line.slice(0, -1).trim();
+      if (!section) throw new Error(`line ${i + 1}: a section heading with no name`);
+      sectionOf(deck, section);
+      continue;
+    }
+
+    const m = entryRe.exec(line);
+    if (!m) {
+      throw new Error(`line ${i + 1}: “${line}” is neither a section heading nor a “<count> <card>” line`);
+    }
+    if (!section) throw new Error(`line ${i + 1}: “${line}” comes before any section heading`);
+    const quantity = parseInt(m[1], 10);
+    if (quantity === 0) throw new Error(`line ${i + 1}: “${line}” asks for no copies`);
+    addEntry(deck, section, m[2].trim(), quantity);
+  }
+
+  const filled = deck.sections.filter(s => s.cards.length > 0);
+  if (filled.length === 0) throw new Error("no cards in this list");
+
+  // The deck is named after its legend, the way players talk about decks,
+  // falling back to the first card listed for a list that carries none.
+  const legend = deck.sections.find(s => s.name.toLowerCase() === "legend" && s.cards.length > 0);
+  deck.legend = legend ? legend.cards[0].name : "";
+  deck.name = deck.legend || filled[0].cards[0].name;
+  return deck;
+}
+
+const pasteList = document.getElementById("paste-list");
+const pasteStatus = document.getElementById("paste-status");
+const pasteResult = document.getElementById("paste-result");
+
+document.getElementById("paste-clear").addEventListener("click", () => {
+  pasteList.value = "";
+  pasteStatus.textContent = "";
+  pasteStatus.className = "status";
+  pasteResult.replaceChildren();
+  pasteList.focus();
+});
+
+document.getElementById("paste-check").addEventListener("click", () => {
+  pasteResult.replaceChildren();
+  pasteStatus.className = "status";
+
+  const text = pasteList.value;
+  if (!text.trim()) {
+    pasteStatus.textContent = "Paste a list first.";
+    return;
+  }
+
+  let deck;
+  try {
+    deck = parseList(text);
+  } catch (err) {
+    pasteStatus.className = "status paste-error";
+    pasteStatus.textContent = String(err.message || err);
+    return;
+  }
+
+  pasteStatus.textContent = "Measuring against the collection…";
+  deckPool()
+    .then(p => renderPasted(deck, entries(deck, p, SIDEBOARD)))
+    .catch(err => {
+      pasteStatus.className = "status paste-error";
+      pasteStatus.textContent = "Failed to measure the list: " + err;
+    });
+});
+
+// renderPasted lists every card the list asks for, what is short of it first,
+// since that is the question a list is pasted in to answer.
+function renderPasted(deck, all) {
+  const short = all.filter(m => !covered(m));
+  const held = all.filter(covered);
+  const size = all.reduce((n, m) => n + m.need, 0);
+  const shortCopies = short.reduce((n, m) => n + m.short, 0);
+
+  const scope = SIDEBOARD ? "sideboards included" : "sideboards excluded";
+  pasteStatus.textContent =
+    `${deck.name} · ${size} card${size === 1 ? "" : "s"} · ` +
+    (short.length === 0
+      ? "you can build this"
+      : `${shortCopies} short across ${short.length} card${short.length === 1 ? "" : "s"}`) +
+    ` · ${held.length} of ${all.length} covered · runes ignored · ${scope}.`;
+
+  if (short.length > 0) pasteResult.append(group("Missing"), list(short));
+  if (held.length > 0) pasteResult.append(group("In the collection"), list(held));
+}
+
+function group(text) {
+  const p = document.createElement("p");
+  p.className = "group";
+  p.textContent = text;
+  return p;
+}
+
+// list renders the card rows, reusing the deck report's markup so a card reads
+// the same whichever report it turns up in.
+function list(ms) {
+  const ul = document.createElement("ul");
+  ul.className = "missing";
+  for (const m of ms) {
+    const li = document.createElement("li");
+    const ok = covered(m);
+    if (ok) li.className = "held";
+
+    const need = document.createElement("span");
+    need.className = ok ? "need ok" : "need";
+    need.textContent = ok ? "✓" : `${m.short}×`;
+
+    // The name jumps to the search tab, since the next question after "what am
+    // I missing" is usually "what does it look like".
+    const card = document.createElement("button");
+    card.className = "card";
+    card.type = "button";
+    card.textContent = m.name;
+    card.addEventListener("click", () => {
+      select(document.getElementById("tab-search"));
+      q.value = m.name;
+      q.dispatchEvent(new Event("input"));
+    });
+
+    const count = document.createElement("span");
+    count.className = "count";
+    count.textContent = `have ${m.have} of ${m.need}`;
+    li.append(need, card, count);
+
+    if (m.unknown) {
+      const note = document.createElement("span");
+      note.className = "unknown";
+      note.textContent = m.nearest
+        ? `no such card in the catalog — did you mean “${m.nearest}”?`
+        : "no such card in the catalog";
+      li.append(note);
+    } else {
+      const where = document.createElement("span");
+      where.className = "where";
+      where.textContent = [
+        (m.domains || []).join("/"),
+        (m.sets || []).join(", "),
+      ].filter(Boolean).join(" · ");
+      if (where.textContent) li.append(where);
+    }
+    ul.append(li);
+  }
+  return ul;
 }
 
 /* Summary */
