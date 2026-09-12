@@ -86,16 +86,26 @@
 
   /* Paste a list */
   .paste { border: 1px solid var(--line); border-radius: .5rem; margin-bottom: 1.25rem; }
-  .paste > summary { padding: .6rem .75rem; cursor: pointer; font-size: .95rem; }
-  .paste > :not(summary) { margin-left: .75rem; margin-right: .75rem; }
-  .hint { color: var(--muted); font-size: .8rem; max-width: 40rem; }
+  #paste-toggle {
+    appearance: none; display: flex; gap: .5rem; align-items: baseline; width: 100%;
+    box-sizing: border-box; padding: .6rem .75rem; font: inherit; font-size: .95rem;
+    background: none; border: 0; color: inherit; text-align: left; cursor: pointer;
+  }
+  #paste-toggle::before { content: "▸"; color: var(--muted); font-size: .8rem; }
+  #paste-toggle[aria-expanded="true"]::before { content: "▾"; }
+  #paste-body { padding: 0 .75rem .75rem; }
+  .hint { color: var(--muted); font-size: .8rem; max-width: 40rem; margin-top: 0; }
   .hint code { font-size: .95em; }
   #paste-list {
-    width: calc(100% - 1.5rem); box-sizing: border-box; padding: .6rem .75rem;
+    width: 100%; box-sizing: border-box; padding: .6rem .75rem;
     border: 1px solid var(--line); border-radius: .5rem;
     background: transparent; color: inherit;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem;
     resize: vertical;
+    /* iOS offers its paste callout only where a long press can select, and
+       suppresses it wherever the surrounding chrome has turned either off, so
+       the box asks for both rather than inheriting whatever it is given. */
+    -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
   }
   .paste-actions { display: flex; gap: .5rem; margin-top: .5rem; }
   .paste-actions button {
@@ -182,22 +192,30 @@
 </section>
 
 <section role="tabpanel" id="panel-decks" aria-labelledby="tab-decks" hidden>
-  <details class="paste">
-    <summary>Check a list against the collection</summary>
-    <p class="hint">
-      Paste a decklist the way <code>just add-decks</code> takes one: a heading
-      line ending in a colon, then <code>&lt;count&gt; &lt;card name&gt;</code>
-      lines under it. Nothing is registered — the list is only measured.
-    </p>
-    <textarea id="paste-list" rows="8" spellcheck="false" aria-label="Decklist"
-      placeholder="Legend:&#10;1 Irelia, Blade Dancer&#10;&#10;MainDeck:&#10;3 Lightning Rush&#10;3 Vi, Piltover Enforcer"></textarea>
-    <div class="paste-actions">
-      <button type="button" id="paste-check">Check</button>
-      <button type="button" id="paste-clear">Clear</button>
+  <!-- A button and a panel rather than <details>: Safari on iOS hands taps on a
+       form control inside one to the disclosure triangle often enough that the
+       box could never be typed into. -->
+  <div class="paste">
+    <button type="button" id="paste-toggle" aria-expanded="false" aria-controls="paste-body">
+      Check a list against the collection
+    </button>
+    <div id="paste-body" hidden>
+      <p class="hint">
+        Paste a decklist the way <code>just add-decks</code> takes one: a heading
+        line ending in a colon, then <code>&lt;count&gt; &lt;card name&gt;</code>
+        lines under it. Nothing is registered — the list is only measured.
+      </p>
+      <textarea id="paste-list" rows="8" spellcheck="false" aria-label="Decklist"
+        placeholder="Legend:&#10;1 Irelia, Blade Dancer&#10;&#10;MainDeck:&#10;3 Lightning Rush&#10;3 Vi, Piltover Enforcer"></textarea>
+      <div class="paste-actions">
+        <button type="button" id="paste-paste" hidden>Paste</button>
+        <button type="button" id="paste-check">Check</button>
+        <button type="button" id="paste-clear">Clear</button>
+      </div>
+      <p id="paste-status" class="status"></p>
+      <div id="paste-result"></div>
     </div>
-    <p id="paste-status" class="status"></p>
-    <div id="paste-result"></div>
-  </details>
+  </div>
   <p id="decks-status" class="status">Loading decks&hellip;</p>
   <div id="decks"></div>
 </section>
@@ -811,6 +829,38 @@ function parseList(text) {
 const pasteList = document.getElementById("paste-list");
 const pasteStatus = document.getElementById("paste-status");
 const pasteResult = document.getElementById("paste-result");
+const pasteBody = document.getElementById("paste-body");
+const pasteToggle = document.getElementById("paste-toggle");
+
+pasteToggle.addEventListener("click", () => {
+  const open = pasteToggle.getAttribute("aria-expanded") === "true";
+  pasteToggle.setAttribute("aria-expanded", String(!open));
+  pasteBody.hidden = open;
+  // Opening puts the caret in the box, so a long press has something to paste
+  // into rather than needing a tap of its own first.
+  if (!open) pasteList.focus();
+});
+
+// Reading the clipboard needs a secure context and a gesture, both of which a
+// click on the page gives it. Where the browser won't offer it the button
+// stays hidden and the box is typed or pasted into as usual.
+const pasteButton = document.getElementById("paste-paste");
+if (navigator.clipboard && navigator.clipboard.readText) {
+  pasteButton.hidden = false;
+  pasteButton.addEventListener("click", () => {
+    navigator.clipboard.readText()
+      .then(text => {
+        if (!text) return;
+        pasteList.value = text;
+        pasteList.focus();
+      })
+      .catch(() => {
+        pasteStatus.className = "status paste-error";
+        pasteStatus.textContent =
+          "Couldn't read the clipboard — paste into the box by hand instead.";
+      });
+  });
+}
 
 document.getElementById("paste-clear").addEventListener("click", () => {
   pasteList.value = "";
