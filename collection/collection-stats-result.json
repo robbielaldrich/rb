@@ -19,11 +19,11 @@
       "set": "OGN",
       "label": "Origins",
       "cards": {
-        "owned": 69,
+        "owned": 123,
         "total": 298
       },
       "playset": {
-        "owned": 43,
+        "owned": 60,
         "total": 262
       },
       "alternate_art": {
@@ -47,7 +47,7 @@
         "total": 24
       },
       "playset": {
-        "owned": 7,
+        "owned": 9,
         "total": 20
       },
       "alternate_art": null,
@@ -58,7 +58,7 @@
       "set": "OPP",
       "label": "Riftbound Organized Play Promotional Cards",
       "cards": {
-        "owned": 0,
+        "owned": 9,
         "total": 116
       },
       "playset": {
@@ -76,7 +76,7 @@
       "set": "PR",
       "label": "Riftbound Promotional Cards",
       "cards": {
-        "owned": 0,
+        "owned": 1,
         "total": 4
       },
       "playset": {
@@ -94,15 +94,15 @@
       "set": "SFD",
       "label": "Spiritforged",
       "cards": {
-        "owned": 114,
+        "owned": 130,
         "total": 222
       },
       "playset": {
-        "owned": 12,
+        "owned": 21,
         "total": 195
       },
       "alternate_art": {
-        "owned": 2,
+        "owned": 3,
         "total": 24
       },
       "overnumbered": {
@@ -118,15 +118,15 @@
       "set": "UNL",
       "label": "Unleashed",
       "cards": {
-        "owned": 112,
+        "owned": 123,
         "total": 219
       },
       "playset": {
-        "owned": 8,
+        "owned": 14,
         "total": 192
       },
       "alternate_art": {
-        "owned": 0,
+        "owned": 3,
         "total": 30
       },
       "overnumbered": {
@@ -142,15 +142,15 @@
       "set": "VEN",
       "label": "Vendetta",
       "cards": {
-        "owned": 135,
+        "owned": 145,
         "total": 188
       },
       "playset": {
-        "owned": 65,
+        "owned": 74,
         "total": 168
       },
       "alternate_art": {
-        "owned": 2,
+        "owned": 4,
         "total": 18
       },
       "overnumbered": {
@@ -162,15 +162,15 @@
   ],
   "total": {
     "cards": {
-      "owned": 454,
+      "owned": 555,
       "total": 1074
     },
     "playset": {
-      "owned": 135,
+      "owned": 178,
       "total": 932
     },
     "alternate_art": {
-      "owned": 4,
+      "owned": 10,
       "total": 112
     },
     "overnumbered": {
