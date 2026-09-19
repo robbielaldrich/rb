@@ -6,23 +6,7 @@ import (
 	"testing"
 )
 
-// typing drives the validator the same way it drives the editor.
-func (v *validator) typing(t *testing.T, s string) {
-	t.Helper()
-	for len(s) > 0 {
-		var k key
-		if strings.HasPrefix(s, "<") {
-			end := strings.Index(s, ">")
-			k, s = key{name: s[1:end]}, s[end+1:]
-		} else {
-			r := []rune(s)[0]
-			k, s = key{r: r}, s[len(string(r)):]
-		}
-		if _, err := v.handle(k); err != nil {
-			t.Fatalf("handle(%v): %v", k, err)
-		}
-	}
-}
+func (v *validator) typing(t *testing.T, s string) { typeKeys(t, v.handle, s) }
 
 func newTestValidator(t *testing.T) *validator {
 	t.Helper()

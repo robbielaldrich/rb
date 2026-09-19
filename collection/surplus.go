@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"slices"
-	"strings"
 	"text/tabwriter"
 
 	"rb/cards"
@@ -47,28 +46,21 @@ type spare struct {
 func (s spare) over() int { return s.copies - s.playset }
 
 func spares(cs []cards.Card, coll *collection) []spare {
-	qty := make(map[string]int, len(coll.Cards))
-	for _, e := range coll.Cards {
-		if e.Quantity > 0 {
-			qty[e.RiftboundID] = e.Quantity
-		}
-	}
+	qty := coll.quantities()
 
-	// Keyed the way Stats and Missing key theirs, so that the spares counted
-	// against a card are the copies of that card and not of a promo set's
-	// other printing of the same name.
-	type nameKey struct{ set, name, size string }
+	// Printings fold onto nameKey, the way Stats and Missing fold theirs, so
+	// that the spares counted against a card are the copies of that card and
+	// not of a promo set's other printing of the same name.
 	held := map[nameKey]*spare{}
 	for _, c := range cs {
 		n := qty[c.RiftboundID]
 		if n == 0 {
 			continue
 		}
-		id := strings.ToUpper(c.Set.SetID)
-		k := nameKey{id, c.BaseName(), c.SetSize()}
+		k := cardKey(c)
 		s, ok := held[k]
 		if !ok {
-			s = &spare{setID: id, name: c.BaseName(), playset: c.PlaysetSize()}
+			s = &spare{setID: k.set, name: k.name, playset: c.PlaysetSize()}
 			held[k] = s
 		}
 		// The rarity shown is the one the set prints the card at; only where

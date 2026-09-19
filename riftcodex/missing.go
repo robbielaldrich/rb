@@ -28,9 +28,10 @@ type cardID struct {
 
 // riftIDRe matches the riftbound_id shape, e.g. opp-069b-166, whose parts are
 // the set, the collector number, and the size of the set being printed or
-// reprinted. The middle part is left loose where package cards pins it to a
-// number, so that the runes and promos numbered outside the main run — r01b,
-// sp1 — are read for their set size too rather than falling through with none.
+// reprinted. It is a copy of the one in package cards rather than a call into
+// it, so that fetching the data doesn't depend on the package that reads it
+// back; the two are expected to agree, and the tests here pin the shapes that
+// matter.
 var riftIDRe = regexp.MustCompile(`^([a-z]+)-([0-9a-z*]+)-([0-9]+)$`)
 
 // printing identifies the card a record is a printing of, rather than the

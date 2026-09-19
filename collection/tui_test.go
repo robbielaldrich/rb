@@ -9,24 +9,7 @@ import (
 	"rb/cards"
 )
 
-// typing drives the editor the way a terminal would, feeding decoded
-// keystrokes one at a time. Named keys are written as "<enter>".
-func (e *editor) typing(t *testing.T, s string) {
-	t.Helper()
-	for len(s) > 0 {
-		var k key
-		if strings.HasPrefix(s, "<") {
-			end := strings.Index(s, ">")
-			k, s = key{name: s[1:end]}, s[end+1:]
-		} else {
-			r := []rune(s)[0]
-			k, s = key{r: r}, s[len(string(r)):]
-		}
-		if _, err := e.handle(k); err != nil {
-			t.Fatalf("handle(%v): %v", k, err)
-		}
-	}
-}
+func (e *editor) typing(t *testing.T, s string) { typeKeys(t, e.handle, s) }
 
 func newTestEditor(t *testing.T) *editor {
 	t.Helper()

@@ -3,7 +3,6 @@ package collection
 import (
 	"fmt"
 	"io"
-	"strings"
 	"text/tabwriter"
 
 	"rb/cards"
@@ -52,23 +51,11 @@ type setStats struct {
 }
 
 func summarise(cs []cards.Card, coll *collection) []setStats {
-	qty := make(map[string]int, len(coll.Cards))
-	for _, e := range coll.Cards {
-		if e.Quantity > 0 {
-			qty[e.RiftboundID] = e.Quantity
-		}
-	}
+	qty := coll.quantities()
 
-	// Named cards are keyed by set and base name so that every printing of a
-	// card — plain, alternate art, overnumbered — folds into the one entry.
-	// Copies are summed over those printings too: three of a card make a
+	// Printings fold onto nameKey, so that every printing of a card counts
+	// once and copies are summed over all of them: three of a card make a
 	// playset whether or not they wear the same art.
-	//
-	// The set size each is numbered out of joins the key, because a promo set
-	// holds promos of several sets at once: OPP's Origins Fury Rune and its
-	// Vendetta one are two cards to collect, not one, and only the 298 and the
-	// 166 they are numbered out of tell them apart.
-	type nameKey struct{ set, name, size string }
 	type card struct {
 		printed bool // the set prints this card at its own number
 		owned   bool // some printing of it is in the collection
@@ -81,15 +68,14 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 	var order []string
 	stats := map[string]*setStats{}
 	for _, c := range cs {
-		id := strings.ToUpper(c.Set.SetID)
-		s, ok := stats[id]
+		k := cardKey(c)
+		s, ok := stats[k.set]
 		if !ok {
-			s = &setStats{setID: id, label: c.Set.Label}
-			stats[id] = s
-			order = append(order, id)
+			s = &setStats{setID: k.set, label: c.Set.Label}
+			stats[k.set] = s
+			order = append(order, k.set)
 		}
 
-		k := nameKey{id, c.BaseName(), c.SetSize()}
 		e, ok := byName[k]
 		if !ok {
 			e = &card{playset: c.PlaysetSize()}

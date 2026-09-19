@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"slices"
-	"strings"
 	"text/tabwriter"
 
 	"rb/cards"
@@ -92,28 +91,20 @@ type want struct {
 func (w want) short() int { return w.target - w.copies }
 
 func wants(cs []cards.Card, coll *collection, axis Axis) []want {
-	qty := make(map[string]int, len(coll.Cards))
-	for _, e := range coll.Cards {
-		if e.Quantity > 0 {
-			qty[e.RiftboundID] = e.Quantity
-		}
-	}
+	qty := coll.quantities()
 
-	// Keyed by set, base name and the set size each is numbered out of, the
-	// way Stats counts them: every printing of a card folds into the one
-	// entry, but a promo set's promos of different sets stay apart.
-	type nameKey struct{ set, name, size string }
+	// Printings fold onto nameKey, the way Stats folds them, so that the two
+	// reports are short of and complete on the same cards.
 	held := map[nameKey]*want{}
 	for _, c := range cs {
-		id := strings.ToUpper(c.Set.SetID)
-		k := nameKey{id, c.BaseName(), c.SetSize()}
+		k := cardKey(c)
 		e, ok := held[k]
 		if !ok {
 			target := c.PlaysetSize()
 			if axis == AxisSet {
 				target = 1
 			}
-			e = &want{setID: id, name: c.BaseName(), target: target}
+			e = &want{setID: k.set, name: k.name, target: target}
 			held[k] = e
 		}
 		e.copies += qty[c.RiftboundID]
@@ -124,7 +115,10 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 		// reprint of it wears.
 		if !c.IsChasePrinting() {
 			e.number, e.sortID, e.rarity = c.Number(), c.RiftboundID, c.Classification.Rarity
-			e.promo = c.IsPromo()
+			// Accumulated rather than taken from the last printing, the way
+			// Stats does it: a card any printing of which is a promo is one
+			// the playset is asked for somewhere else.
+			e.promo = e.promo || c.IsPromo()
 		}
 	}
 

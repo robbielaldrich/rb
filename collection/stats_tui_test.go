@@ -6,24 +6,7 @@ import (
 	"testing"
 )
 
-// typing drives the viewer the way a terminal would, feeding decoded
-// keystrokes one at a time. Named keys are written as "<esc>".
-func (v *statsViewer) typing(t *testing.T, s string) {
-	t.Helper()
-	for len(s) > 0 {
-		var k key
-		if strings.HasPrefix(s, "<") {
-			end := strings.Index(s, ">")
-			k, s = key{name: s[1:end]}, s[end+1:]
-		} else {
-			r := []rune(s)[0]
-			k, s = key{r: r}, s[len(string(r)):]
-		}
-		if _, err := v.handle(k); err != nil {
-			t.Fatalf("handle(%v): %v", k, err)
-		}
-	}
-}
+func (v *statsViewer) typing(t *testing.T, s string) { typeKeys(t, v.handle, s) }
 
 func newTestStatsViewer(t *testing.T) *statsViewer {
 	t.Helper()

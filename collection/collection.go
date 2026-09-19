@@ -95,6 +95,34 @@ func labels(set map[string]bool) string {
 	return strings.Join(slices.Sorted(maps.Keys(set)), " ")
 }
 
+// nameKey identifies the card a printing is of, rather than the printing
+// itself: the set it is filed under, the card it shows, and the size of the
+// set it is numbered out of.
+//
+// Stats, Missing and Surplus all fold their printings onto it, which is what
+// makes them count the same cards as one another. Every printing of a card —
+// plain, alternate art, overnumbered — shares a key, while a promo set's
+// promos of different sets keep theirs apart, since only the set size they are
+// numbered out of tells an Origins Fury Rune from a Vendetta one.
+type nameKey struct{ set, name, size string }
+
+func cardKey(c cards.Card) nameKey {
+	return nameKey{strings.ToUpper(c.Set.SetID), c.BaseName(), c.SetSize()}
+}
+
+// quantities is how many copies of each printing the collection holds, keyed
+// by riftbound_id. Printings held in no copies are left out, so a lookup
+// answers 0 for them either way.
+func (c *collection) quantities() map[string]int {
+	qty := make(map[string]int, len(c.Cards))
+	for _, e := range c.Cards {
+		if e.Quantity > 0 {
+			qty[e.RiftboundID] = e.Quantity
+		}
+	}
+	return qty
+}
+
 // collectedCard is one owned card. Cards are keyed by riftbound_id; the name, number
 // and set are denormalised so the file stays readable on its own.
 type collectedCard struct {
@@ -192,9 +220,5 @@ func Owned(path string) (map[string]int, error) {
 		return nil, fmt.Errorf("failed to load collection: %w", err)
 	}
 
-	owned := make(map[string]int, len(c.Cards))
-	for _, e := range c.Cards {
-		owned[e.RiftboundID] += e.Quantity
-	}
-	return owned, nil
+	return c.quantities(), nil
 }

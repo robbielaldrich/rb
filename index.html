@@ -673,11 +673,7 @@ const deckPool = once(() =>
 
 const decksStatus = document.getElementById("decks-status");
 const decksEl = document.getElementById("decks");
-let decksLoaded = false;
-
-function loadDecks() {
-  if (decksLoaded) return;
-  decksLoaded = true;
+const loadDecks = once(() =>
   Promise.all([deckPool(), register()])
     .then(([p, reg]) => {
       const ds = reg.decks || [];
@@ -692,8 +688,7 @@ function loadDecks() {
     })
     .catch(err => {
       decksStatus.textContent = "Failed to work out the deck report: " + err;
-    });
-}
+    }));
 
 function render(report) {
   const buildable = report.decks.filter(d => d.buildable).length;
@@ -982,20 +977,14 @@ function list(ms) {
 const summaryStatus = document.getElementById("summary-status");
 const summaryBody = document.querySelector("#summary tbody");
 const summaryFoot = document.querySelector("#summary tfoot");
-let summaryLoaded = false;
-
-function loadSummary() {
-  if (summaryLoaded) return;
-  summaryLoaded = true;
-  fetch("./collection/collection-stats-result.json")
-    .then(r => r.json())
+const loadSummary = once(() =>
+  fetchJSON("./collection/collection-stats-result.json")
     .then(renderSummary)
     .catch(err => {
       // Written by `just collection-stats`, so a missing file means it hasn't
       // been run since the collection last changed.
       summaryStatus.textContent = "Failed to load the collection summary: " + err;
-    });
-}
+    }));
 
 // Truncated, not rounded, so a percentage matches the one `rb collection-stats`
 // prints for the same tally.
@@ -1059,7 +1048,6 @@ const rulesFilters = document.getElementById("rules-filters");
 const rulingsEl = document.getElementById("rulings");
 let rulings = [];
 let rulesCat = "all";
-let rulesLoaded = false;
 
 // Ordered widest-to-narrowest, which is also roughly least-to-most numerous.
 const RULE_CATS = [
@@ -1070,11 +1058,8 @@ const RULE_CATS = [
   ["cards", "Card rulings"],
 ];
 
-function loadRules() {
-  if (rulesLoaded) return;
-  rulesLoaded = true;
-  fetch("./rules/rulings.json")
-    .then(r => r.json())
+const loadRules = once(() =>
+  fetchJSON("./rules/rulings.json")
     .then(data => {
       rulings = data;
       buildFilters();
@@ -1083,8 +1068,7 @@ function loadRules() {
     })
     .catch(err => {
       rulesStatus.textContent = "Failed to load the rulings: " + err;
-    });
-}
+    }));
 
 function buildFilters() {
   const counts = { all: rulings.length };

@@ -116,10 +116,10 @@ func downloadAllImages(client *http.Client, imagesDir string, rawCards []json.Ra
 
 	for riftboundID, imageURL := range byRiftboundID {
 		dest := filepath.Join(imagesDir, riftboundID+imageExt(imageURL))
+		// Counted on the dispatching goroutine, so unlike the tallies the
+		// workers keep it needs no lock of its own.
 		if fileExists(dest) {
-			mu.Lock()
 			skip++
-			mu.Unlock()
 			continue
 		}
 
