@@ -85,6 +85,76 @@ func maskBottom(src *image.RGBA, frac float64) *image.RGBA {
 	return maskBand(src, max(h-bandHeight(h, frac), 0), h)
 }
 
+// maskBelowKeywords returns a copy painted out from just under the first
+// keyword badge, leaving the keyword line itself readable. It is how the
+// effect deck asks what a Hidden card does: the [Hidden] line says only that
+// the card can be hidden, which is the premise of the question rather than
+// its answer, while everything below it — the other keywords, and the rules
+// text proper — is what has to be recalled.
+//
+// A fixed fraction can't do this. The rules box sits at a different height on
+// a full-art printing than on an ordinary one, and cards carry different
+// numbers of keyword lines, so any one fraction either swallows the [Hidden]
+// line on some cards or leaves the effect text showing on others. frac is the
+// fraction to fall back to on a card whose badge can't be found.
+func maskBelowKeywords(src *image.RGBA, frac float64) *image.RGBA {
+	y, ok := keywordBandBottom(src)
+	if !ok {
+		return maskBottom(src, frac)
+	}
+	return maskBand(src, y, src.Bounds().Dy())
+}
+
+// Keyword badges are a dark teal pill with the keyword set in white inside
+// it. The two sets of scans differ a little in the red channel — Vendetta
+// prints [0 115 97] where the earlier sets print [36 112 95] — so the test is
+// loose there and tight on the green and blue that make the colour.
+func isBadgeTeal(r, g, b uint8) bool {
+	return r < 70 && g > 93 && g < 133 && b > 76 && b < 116
+}
+
+// keywordBandBottom finds where the first keyword badge ends, in pixels from
+// the top, and reports whether one was found at all.
+//
+// The badge is looked for down the left edge of the rules box, where every
+// keyword line starts, and only over the lower half of the card, so that the
+// teal a piece of art happens to contain can't be mistaken for one. Art that
+// does fall in the colour still leaves streaks a row or two tall, so a run
+// only counts as a badge at something like the height one is printed at.
+func keywordBandBottom(src *image.RGBA) (int, bool) {
+	b := src.Bounds()
+	w, h := b.Dx(), b.Dy()
+
+	// A badge stands about 3% of the card tall; the bounds either side of that
+	// separate one from both the streaks art leaves and any larger teal panel.
+	minRun, maxRun := h*23/1000, h*45/1000
+	// White letters interrupt the pill, so a row is counted on a handful of
+	// teal pixels rather than a solid line of them.
+	minPixels := max(w/80, 3)
+
+	open := -1
+	for y := h / 2; y < h; y++ {
+		n := 0
+		for x := w / 10; x < w*28/100; x++ {
+			o := src.PixOffset(x, y)
+			if isBadgeTeal(src.Pix[o], src.Pix[o+1], src.Pix[o+2]) {
+				n++
+			}
+		}
+		switch {
+		case n >= minPixels && open < 0:
+			open = y
+		case n < minPixels && open >= 0:
+			if y-open >= minRun && y-open <= maxRun {
+				// Cleared by a hair so the pill's own edge doesn't survive.
+				return min(y+h*7/1000, h), true
+			}
+			open = -1
+		}
+	}
+	return 0, false
+}
+
 func bandHeight(height int, frac float64) int {
 	return int(math.Round(float64(height) * frac))
 }

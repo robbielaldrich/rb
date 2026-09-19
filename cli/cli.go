@@ -86,7 +86,7 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.StringVar(&opts.EffectDeckName, "effect-deck", "Riftbound::Hidden Effects", "name of the companion deck asking what a card does")
 		fs.StringVar(&opts.ReactionDeckName, "reaction-deck", "Riftbound::Reaction Spells", "name of the deck listing each domain's Reaction spells")
 		fs.Float64Var(&opts.MaskFraction, "mask", 0.25, "fraction of the card height to paint out, from the top")
-		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out, from the bottom")
+		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out from the bottom, for cards whose keyword badge can't be found")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
 		only := fs.String("only", "", "comma-separated blocks to generate, or empty for all (available: "+ankigen.BlockNames()+")")

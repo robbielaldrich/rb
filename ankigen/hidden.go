@@ -23,7 +23,9 @@ type Options struct {
 	// rather than what it costs.
 	EffectDeckName string
 	// EffectMaskFraction is how much of the card's height to paint out for
-	// that deck, measured from the bottom edge.
+	// that deck, measured from the bottom edge. It is only a fallback: the
+	// mask normally starts just under the card's first keyword badge, wherever
+	// the printing happens to put it.
 	EffectMaskFraction float64
 	// ImageWidth caps the pixel width of the generated images; 0 keeps the
 	// scans at their original size.
@@ -43,7 +45,6 @@ type Result struct {
 	EffectDeckFile string
 	MediaDir       string
 	Notes          int
-	Images         int
 }
 
 // mediaPrefix namespaces the generated files inside Anki's collection.media,
@@ -73,14 +74,11 @@ func GenerateHiddenCosts(opts Options) (Result, error) {
 
 	costs := deck{name: opts.DeckName, notetype: "Basic"}
 	effects := deck{name: opts.EffectDeckName, notetype: "Basic"}
-	images := 0
 	for _, c := range hidden {
 		r, err := renderCard(c, mediaDir, opts)
 		if err != nil {
 			return Result{}, err
 		}
-		images += 3
-
 		costs.notes = append(costs.notes, note{
 			front: img(r.costMasked) + "<br>What is the cost?",
 			back:  img(r.full),
@@ -107,7 +105,6 @@ func GenerateHiddenCosts(opts Options) (Result, error) {
 		EffectDeckFile: effectFile,
 		MediaDir:       mediaDir,
 		Notes:          len(costs.notes) + len(effects.notes),
-		Images:         images,
 	}, nil
 }
 
@@ -166,7 +163,7 @@ func renderCard(c cards.Card, mediaDir string, opts Options) (rendered, error) {
 	if err := writeJPEG(filepath.Join(mediaDir, r.costMasked), maskTop(img, opts.MaskFraction)); err != nil {
 		return rendered{}, fmt.Errorf("failed to write the cost-masked image of %s: %w", c.Label(), err)
 	}
-	if err := writeJPEG(filepath.Join(mediaDir, r.textMasked), maskBottom(img, opts.EffectMaskFraction)); err != nil {
+	if err := writeJPEG(filepath.Join(mediaDir, r.textMasked), maskBelowKeywords(img, opts.EffectMaskFraction)); err != nil {
 		return rendered{}, fmt.Errorf("failed to write the text-masked image of %s: %w", c.Label(), err)
 	}
 	return r, nil
