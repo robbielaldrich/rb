@@ -1,0 +1,23 @@
+# Notes these decks used to generate and no longer do.
+#
+# Re-importing can't remove them: Anki only updates the notes a file mentions,
+# so these are still in the collection, still scheduled, and no longer correct.
+# Search Anki for the question, delete the note, then delete the line.
+#
+# Written by `rb gen-anki`. A question that comes back — a new set can
+# make a dropped one worth asking again — is taken off this list by the run
+# that starts asking it.
+#
+# date	deck	question
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Body that cost 2 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Body that cost 3 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Calm that cost 3 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Chaos that cost 1 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Chaos that cost 2 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Chaos that cost 3 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Fury that cost 1 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Fury that cost 2 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Fury that cost 3 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Mind that cost 3 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Order that cost 2 Power or less?
+2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Order that cost 3 Power or less?
