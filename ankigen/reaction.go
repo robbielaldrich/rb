@@ -2,6 +2,7 @@ package ankigen
 
 import (
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
 	"slices"
@@ -14,24 +15,24 @@ import (
 // ReactionResult reports what GenerateReactionSpells produced.
 type ReactionResult struct {
 	DeckFile string
+	MediaDir string
 	Notes    int
 }
 
-// reactionSpell is one Reaction spell, reduced to what the deck below needs
-// to know about it.
-type reactionSpell struct {
-	name    string
-	domains []string
-	power   int
-}
-
-// GenerateReactionSpells builds a deck for learning which spells in each
-// domain can be played as a Reaction at or under a given Power cost. Power,
-// not Energy, is what a domain's own runes pay for, so it's the number a
-// player actually has on hand to spend within one domain; the deck asks about
-// it in bands — "2 Power or less" — rather than card by card, since knowing
-// what's available within a budget is the skill worth drilling, not the exact
-// cost of any one card.
+// GenerateReactionSpells builds a deck for learning what each domain can
+// answer with at instant speed.
+//
+// Each domain gets its whole roster, the question an open rune actually
+// raises: they have Calm up, what can they be holding? Under it come the
+// Power bands — "2 Power or less" — because Power, not Energy, is what a
+// domain's own runes pay for, so it is the number a player has on hand to
+// spend within one domain, and what is affordable is a narrower read than
+// what exists.
+//
+// A band is only worth a note where it answers differently from the one below
+// it and from the roster above it. Three of the four bands printed cover every
+// Chaos spell there is, and a note whose answer is another note's answer is
+// two cards to keep in step and one thing learnt.
 func GenerateReactionSpells(opts Options) (ReactionResult, error) {
 	cs, err := cards.Load(opts.CatalogPath)
 	if err != nil {
@@ -43,16 +44,42 @@ func GenerateReactionSpells(opts Options) (ReactionResult, error) {
 		return ReactionResult{}, fmt.Errorf("no Reaction spells in %s", opts.CatalogPath)
 	}
 
+	mediaDir := filepath.Join(opts.OutDir, "media")
+	if err := os.MkdirAll(mediaDir, 0o755); err != nil {
+		return ReactionResult{}, fmt.Errorf("failed to create %s: %w", mediaDir, err)
+	}
+	images, err := renderScans(spells, mediaDir, opts)
+	if err != nil {
+		return ReactionResult{}, err
+	}
+
 	d := deck{name: opts.ReactionDeckName, notetype: "Basic"}
-	for _, domain := range domainsOf(spells) {
+	rosters := byDomain(spells)
+	for _, domain := range slices.Sorted(maps.Keys(rosters)) {
+		all := rosters[domain]
+		d.notes = append(d.notes, note{
+			front: fmt.Sprintf("What are all the Reaction spells in %s?", domain),
+			back:  roster(all, images),
+			tags: []string{
+				"riftbound::reaction-spells",
+				"riftbound::domain::" + strings.ToLower(domain),
+			},
+		})
+
+		var last int
 		for _, threshold := range powerBuckets(spells) {
-			names := namesAtOrUnder(spells, domain, threshold)
-			if len(names) == 0 {
+			within := atOrUnder(all, threshold)
+			// Nothing to ask where the band is empty, where it holds what the
+			// band below it held, or where it holds the whole roster already
+			// asked for above.
+			if len(within) == 0 || len(within) == last || len(within) == len(all) {
 				continue
 			}
+			last = len(within)
+
 			d.notes = append(d.notes, note{
 				front: fmt.Sprintf("What are all the Reaction spells in %s that cost %d Power or less?", domain, threshold),
-				back:  spellList(names),
+				back:  roster(within, images),
 				tags: []string{
 					"riftbound::reaction-spells",
 					"riftbound::domain::" + strings.ToLower(domain),
@@ -62,31 +89,38 @@ func GenerateReactionSpells(opts Options) (ReactionResult, error) {
 		}
 	}
 
-	if err := os.MkdirAll(opts.OutDir, 0o755); err != nil {
-		return ReactionResult{}, fmt.Errorf("failed to create %s: %w", opts.OutDir, err)
-	}
 	deckFile := filepath.Join(opts.OutDir, "riftbound-reaction-spells.txt")
 	if err := d.write(deckFile); err != nil {
 		return ReactionResult{}, fmt.Errorf("failed to write deck: %w", err)
 	}
-	return ReactionResult{DeckFile: deckFile, Notes: len(d.notes)}, nil
+	return ReactionResult{DeckFile: deckFile, MediaDir: mediaDir, Notes: len(d.notes)}, nil
 }
 
 // reactionSpells collects every Reaction spell, one entry per card: the same
 // spell printed twice would otherwise land in a domain's list under both its
 // alternate art and its plain printing.
-func reactionSpells(cs []cards.Card) []reactionSpell {
-	var out []reactionSpell
-	seen := map[string]bool{}
+//
+// Which printing stands for the card matters, because the roster names the
+// set beside it. A card handed out as an organized-play promo is kept as the
+// printing from the set it belongs to: Lunar Boon is an Unleashed card that
+// was also given away, and reading it as an OPP card says nothing about where
+// to find it.
+func reactionSpells(cs []cards.Card) []cards.Card {
+	var out []cards.Card
+	at := map[string]int{}
 	for _, c := range cs {
 		if c.Classification.Type != "Spell" || !c.HasKeyword("Reaction") {
 			continue
 		}
-		if seen[c.BaseName()] {
+		i, ok := at[c.BaseName()]
+		if !ok {
+			at[c.BaseName()] = len(out)
+			out = append(out, c)
 			continue
 		}
-		seen[c.BaseName()] = true
-		out = append(out, reactionSpell{name: c.BaseName(), domains: c.Classification.Domain, power: powerCost(c)})
+		if out[i].IsPromo() && !c.IsPromo() {
+			out[i] = c
+		}
 	}
 	return out
 }
@@ -100,32 +134,15 @@ func powerCost(c cards.Card) int {
 	return *c.Attributes.Power
 }
 
-// domainsOf lists, in sorted order, every domain at least one Reaction spell
-// belongs to.
-func domainsOf(spells []reactionSpell) []string {
-	seen := map[string]bool{}
-	for _, s := range spells {
-		for _, domain := range s.domains {
-			seen[domain] = true
-		}
-	}
-	domains := make([]string, 0, len(seen))
-	for domain := range seen {
-		domains = append(domains, domain)
-	}
-	slices.Sort(domains)
-	return domains
-}
-
 // powerBuckets lists, in ascending order, every Power cost a Reaction spell
 // is actually printed at. The thresholds a deck quizzes on come from the
 // cards themselves rather than a fixed scale, so a set that never prints a
 // 3-Power Reaction spell doesn't get an empty "3 or less" band for every
 // domain.
-func powerBuckets(spells []reactionSpell) []int {
+func powerBuckets(spells []cards.Card) []int {
 	seen := map[int]bool{}
 	for _, s := range spells {
-		seen[s.power] = true
+		seen[powerCost(s)] = true
 	}
 	buckets := make([]int, 0, len(seen))
 	for p := range seen {
@@ -135,27 +152,14 @@ func powerBuckets(spells []reactionSpell) []int {
 	return buckets
 }
 
-// namesAtOrUnder lists, sorted, the Reaction spells in domain that cost
-// threshold Power or less.
-func namesAtOrUnder(spells []reactionSpell, domain string, threshold int) []string {
-	var names []string
+// atOrUnder keeps the spells costing threshold Power or less, in the order
+// they were given.
+func atOrUnder(spells []cards.Card, threshold int) []cards.Card {
+	var out []cards.Card
 	for _, s := range spells {
-		if s.power > threshold || !slices.Contains(s.domains, domain) {
-			continue
+		if powerCost(s) <= threshold {
+			out = append(out, s)
 		}
-		names = append(names, s.name)
 	}
-	slices.Sort(names)
-	return names
-}
-
-// spellList renders a note's back as a bulleted list of card names.
-func spellList(names []string) string {
-	var b strings.Builder
-	b.WriteString("<ul>")
-	for _, n := range names {
-		b.WriteString("<li>" + n + "</li>")
-	}
-	b.WriteString("</ul>")
-	return b.String()
+	return out
 }

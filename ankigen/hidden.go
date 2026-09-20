@@ -118,18 +118,28 @@ func GenerateHiddenCosts(opts Options) (Result, error) {
 // nothing extra.
 func selectHidden(cs []cards.Card, allPrintings bool) []cards.Card {
 	var out []cards.Card
-	seen := map[string]bool{}
+	at := map[string]int{}
 	for _, c := range cs {
 		if !c.HasKeyword("Hidden") {
 			continue
 		}
-		if !allPrintings {
-			if seen[c.BaseName()] {
-				continue
-			}
-			seen[c.BaseName()] = true
+		if allPrintings {
+			out = append(out, c)
+			continue
 		}
-		out = append(out, c)
+
+		i, ok := at[c.BaseName()]
+		if !ok {
+			at[c.BaseName()] = len(out)
+			out = append(out, c)
+			continue
+		}
+		// Where a card was also handed out as a promo, the printing kept is
+		// the one from the set it belongs to, since that is the set a reader
+		// would go looking for it in.
+		if out[i].IsPromo() && !c.IsPromo() {
+			out[i] = c
+		}
 	}
 	// Studying in name order beats studying in set order: the deck reads as a
 	// list of cards rather than a walk through a release.
