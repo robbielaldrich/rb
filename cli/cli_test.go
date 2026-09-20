@@ -29,7 +29,7 @@ func TestUsageDescribesEveryCommand(t *testing.T) {
 		`  -images                also download card images (default true)`,
 		`  -concurrency int       number of concurrent image downloads (default 8)`,
 		`  -missing-file string   cards Riftcodex does not carry, to add to the download (default "cards/missing-from-riftcodex.json")`,
-		`  -all-printings          make a note per printing rather than per card`,
+		`  -all-printings               make a note per printing rather than per card`,
 	} {
 		if !strings.Contains(out.String(), want) {
 			t.Errorf("usage is missing:\n%s\ngot:\n%s", want, out.String())

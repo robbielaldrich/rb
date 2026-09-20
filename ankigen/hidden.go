@@ -2,6 +2,7 @@ package ankigen
 
 import (
 	"fmt"
+	"image"
 	"os"
 	"path/filepath"
 	"slices"
@@ -36,6 +37,9 @@ type Options struct {
 	AllPrintings bool
 	// ReactionDeckName is the deck the reaction-spells block imports into.
 	ReactionDeckName string
+	// HiddenDomainDeckName is the deck asking which Hidden cards each domain
+	// holds, rather than what any one of them does.
+	HiddenDomainDeckName string
 }
 
 // Result reports what a run produced, so the caller can tell the user where
@@ -143,14 +147,39 @@ type rendered struct {
 	textMasked string
 }
 
-// renderCard writes the intact and masked images for one card.
-func renderCard(c cards.Card, mediaDir string, opts Options) (rendered, error) {
+// cardScan reads a card's scan at the size the decks show it at.
+func cardScan(c cards.Card, opts Options) (*image.RGBA, error) {
 	src := filepath.Join(opts.ImageDir, c.RiftboundID+".png")
 	img, err := loadCardImage(src)
 	if err != nil {
-		return rendered{}, fmt.Errorf("failed to read the scan of %s: %w", c.Label(), err)
+		return nil, fmt.Errorf("failed to read the scan of %s: %w", c.Label(), err)
 	}
-	img = scaleToWidth(img, opts.ImageWidth)
+	return scaleToWidth(img, opts.ImageWidth), nil
+}
+
+// renderFull writes just the intact scan of a card and reports what it was
+// filed under, for the decks that show a card without asking anything of it.
+// The name is the one renderCard uses, so the two share the one file in
+// collection.media rather than each keeping a copy.
+func renderFull(c cards.Card, mediaDir string, opts Options) (string, error) {
+	img, err := cardScan(c, opts)
+	if err != nil {
+		return "", err
+	}
+
+	name := mediaName(c, "")
+	if err := writeJPEG(filepath.Join(mediaDir, name), img); err != nil {
+		return "", fmt.Errorf("failed to write the image of %s: %w", c.Label(), err)
+	}
+	return name, nil
+}
+
+// renderCard writes the intact and masked images for one card.
+func renderCard(c cards.Card, mediaDir string, opts Options) (rendered, error) {
+	img, err := cardScan(c, opts)
+	if err != nil {
+		return rendered{}, err
+	}
 
 	r := rendered{
 		full:       mediaName(c, ""),

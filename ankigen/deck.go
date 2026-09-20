@@ -68,3 +68,11 @@ func field(s string) string {
 func img(name string) string {
 	return fmt.Sprintf("<img src='%s'>", name)
 }
+
+// thumb renders the same reference shown small, for a note carrying a row of
+// cards rather than one. The width is asked for in the tag rather than by
+// scaling the file, so the note shares the full-size image every other deck
+// uses instead of adding a second copy to collection.media.
+func thumb(name string, width int) string {
+	return fmt.Sprintf("<img src='%s' width='%d'>", name, width)
+}

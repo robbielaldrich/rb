@@ -23,6 +23,7 @@ type BlockResult struct {
 // Blocks lists every block gen-anki can produce, in the order they run.
 var Blocks = []Block{
 	{Name: "hidden", Run: runHidden},
+	{Name: "hidden-domains", Run: runHiddenDomains},
 	{Name: "reaction-spells", Run: runReactionSpells},
 }
 
@@ -56,6 +57,14 @@ func runHidden(opts Options) (BlockResult, error) {
 		return BlockResult{}, err
 	}
 	return BlockResult{Files: []string{res.CostDeckFile, res.EffectDeckFile}, Notes: res.Notes}, nil
+}
+
+func runHiddenDomains(opts Options) (BlockResult, error) {
+	res, err := GenerateHiddenDomains(opts)
+	if err != nil {
+		return BlockResult{}, err
+	}
+	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
 }
 
 func runReactionSpells(opts Options) (BlockResult, error) {
