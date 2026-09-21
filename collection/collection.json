@@ -41,6 +41,14 @@
       "updated_at": "2026-09-05T17:24:36.762531741-07:00"
     },
     {
+      "riftbound_id": "ogn-012-298",
+      "name": "Noxus Hopeful",
+      "number": "12/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:25:30.450826-07:00"
+    },
+    {
       "riftbound_id": "ogn-013-298",
       "name": "Pouty Poro",
       "number": "13/298",
@@ -93,8 +101,8 @@
       "name": "Kai'Sa - Survivor",
       "number": "39/298",
       "set_id": "OGN",
-      "quantity": 2,
-      "updated_at": "2026-09-05T20:00:50.811482154-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:25:40.993869-07:00"
     },
     {
       "riftbound_id": "ogn-042-298",
@@ -221,8 +229,8 @@
       "name": "Mask of Foresight",
       "number": "60/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-09-06T22:05:04.344732885-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-20T20:25:55.89586-07:00"
     },
     {
       "riftbound_id": "ogn-069-298",
@@ -653,8 +661,8 @@
       "name": "Ride The Wind",
       "number": "173/298",
       "set_id": "OGN",
-      "quantity": 2,
-      "updated_at": "2026-09-05T20:03:30.918589328-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:25:59.563739-07:00"
     },
     {
       "riftbound_id": "ogn-174-298",
@@ -693,8 +701,8 @@
       "name": "Stacked Deck",
       "number": "183/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T13:04:51.993303285-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:26:12.821374-07:00"
     },
     {
       "riftbound_id": "ogn-185-298",
@@ -981,8 +989,8 @@
       "name": "Zaun Warrens",
       "number": "298/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T17:16:06.112094175-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-20T20:26:17.829387-07:00"
     },
     {
       "riftbound_id": "ogs-001-024",
@@ -1365,8 +1373,8 @@
       "name": "Ferrous Forerunner",
       "number": "21/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-09-05T13:05:20.574787621-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:25:37.828886-07:00"
     },
     {
       "riftbound_id": "sfd-023-221",
@@ -2317,8 +2325,8 @@
       "name": "Inferna",
       "number": "2/219",
       "set_id": "UNL",
-      "quantity": 2,
-      "updated_at": "2026-08-23T14:18:19.055605649-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:25:24.949402-07:00"
     },
     {
       "riftbound_id": "unl-003-219",
@@ -3425,6 +3433,14 @@
       "updated_at": "2026-08-30T21:14:13.355568841-07:00"
     },
     {
+      "riftbound_id": "ven-018-166",
+      "name": "Rage Amplifier",
+      "number": "18/166",
+      "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-20T20:25:45.966438-07:00"
+    },
+    {
       "riftbound_id": "ven-019-166",
       "name": "Renekton, Rage Fueled",
       "number": "19/166",
@@ -4077,8 +4093,8 @@
       "name": "Illaoi, Prophet of the Great Kraken",
       "number": "109/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:21:39.818754-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-20T20:26:08.051905-07:00"
     },
     {
       "riftbound_id": "ven-110-166",
