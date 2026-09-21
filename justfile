@@ -11,15 +11,16 @@ validate set="":
 collection-stats:
     go run ./cmd/rb collection-stats -catalog-file cards/cards.json -collection-file collection/collection.json
 
-surplus:
-    go run ./cmd/rb surplus -catalog-file cards/cards.json -collection-file collection/collection.json
-
 # filters are set labels and domains, in any order: `just missing VEN chaos`
 missing *filters:
     go run ./cmd/rb missing -catalog-file cards/cards.json -collection-file collection/collection.json {{filters}}
 
 gen-anki:
     go run ./cmd/rb gen-anki -catalog-file cards/cards.json -image-dir cards/images -out anki/
+
+# copy the generated card images into Anki's media folder, before importing the decks
+add-anki-media *flags:
+    go run ./cmd/rb add-anki-media -media-dir anki/media {{flags}}
 
 add-decks:
     go run ./cmd/rb add-decks -catalog-file cards/cards.json -sets-file cards/sets.json -decks-file decks/decks.json

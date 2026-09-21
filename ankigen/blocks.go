@@ -24,7 +24,8 @@ type BlockResult struct {
 var Blocks = []Block{
 	{Name: "hidden", Run: runHidden},
 	{Name: "hidden-domains", Run: runHiddenDomains},
-	{Name: "reaction-spells", Run: runReactionSpells},
+	{Name: "reaction-cards", Run: runReactionCards},
+	{Name: "action-cards", Run: runActionCards},
 }
 
 // BlockByName finds a block by name, for a caller that wants to run less than
@@ -52,11 +53,11 @@ func BlockNames() string {
 }
 
 func runHidden(opts Options) (BlockResult, error) {
-	res, err := GenerateHiddenCosts(opts)
+	res, err := GenerateHiddenEffects(opts)
 	if err != nil {
 		return BlockResult{}, err
 	}
-	return BlockResult{Files: []string{res.CostDeckFile, res.EffectDeckFile}, Notes: res.Notes}, nil
+	return BlockResult{Files: []string{res.EffectDeckFile}, Notes: res.Notes}, nil
 }
 
 func runHiddenDomains(opts Options) (BlockResult, error) {
@@ -67,8 +68,16 @@ func runHiddenDomains(opts Options) (BlockResult, error) {
 	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
 }
 
-func runReactionSpells(opts Options) (BlockResult, error) {
-	res, err := GenerateReactionSpells(opts)
+func runReactionCards(opts Options) (BlockResult, error) {
+	res, err := GenerateReactionCards(opts)
+	if err != nil {
+		return BlockResult{}, err
+	}
+	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
+}
+
+func runActionCards(opts Options) (BlockResult, error) {
+	res, err := GenerateActionCards(opts)
 	if err != nil {
 		return BlockResult{}, err
 	}

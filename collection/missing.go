@@ -44,8 +44,7 @@ func ParseAxis(s string) (Axis, error) {
 
 // Missing writes every card the collection is still short of to w, along the
 // given axis: every card no copy of is held (AxisSet), or every card held in
-// fewer than the copies a deck may run (AxisPlayset). It is the mirror of
-// Surplus — what to look for rather than what to trade away.
+// fewer than the copies a deck may run (AxisPlayset).
 //
 // With no filters the whole catalog is measured; a set label or a domain
 // narrows it, for the common case of finishing off one set.

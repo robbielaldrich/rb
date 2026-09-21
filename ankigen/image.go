@@ -69,14 +69,6 @@ func scaleToWidth(src *image.RGBA, width int) *image.RGBA {
 	return dst
 }
 
-// maskTop returns a copy with the top frac of the image painted out, hiding
-// the cost and might printed along a card's upper edge while leaving the art,
-// name and rules text below it readable.
-func maskTop(src *image.RGBA, frac float64) *image.RGBA {
-	h := src.Bounds().Dy()
-	return maskBand(src, 0, min(bandHeight(h, frac), h))
-}
-
 // maskBottom returns a copy with the bottom frac of the image painted out,
 // hiding the rules text printed across a card's lower half while leaving the
 // name, cost and art above it readable.

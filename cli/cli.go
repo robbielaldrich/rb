@@ -14,7 +14,7 @@ import (
 	"rb/riftcodex"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "surplus", "missing"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "add-anki-media", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -44,11 +44,6 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
 		dataFile := fs.String("json-out", "collection/collection-stats-result.json", "file to leave the summary data in for the collection page, or \"\" to leave none")
 		return func() error { return collectionStats(*collectionFile, *catalogFile, *dataFile) }
-
-	case "surplus":
-		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to read the card types and names through")
-		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read")
-		return func() error { return surplus(*collectionFile, *catalogFile) }
 
 	case "missing":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to measure the collection against")
@@ -82,16 +77,22 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to build the deck from")
 		fs.StringVar(&opts.ImageDir, "image-dir", "cards/images", "directory holding the downloaded card scans")
 		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck files and their media into")
-		fs.StringVar(&opts.DeckName, "deck", "Riftbound::Hidden Costs", "name of the deck to import into")
 		fs.StringVar(&opts.EffectDeckName, "effect-deck", "Riftbound::Hidden Effects", "name of the companion deck asking what a card does")
-		fs.StringVar(&opts.ReactionDeckName, "reaction-deck", "Riftbound::Reaction Spells", "name of the deck listing each domain's Reaction spells")
+		fs.StringVar(&opts.ReactionDeckName, "reaction-deck", "Riftbound::Reaction Cards", "name of the deck listing each domain's Reaction cards")
+		fs.StringVar(&opts.ActionDeckName, "action-deck", "Riftbound::Action Cards", "name of the deck listing each domain's Action cards")
 		fs.StringVar(&opts.HiddenDomainDeckName, "hidden-domain-deck", "Riftbound::Hidden by Domain", "name of the deck asking which Hidden cards each domain holds")
-		fs.Float64Var(&opts.MaskFraction, "mask", 0.25, "fraction of the card height to paint out, from the top")
 		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out from the bottom, for cards whose keyword badge can't be found")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
 		only := fs.String("only", "", "comma-separated blocks to generate, or empty for all (available: "+ankigen.BlockNames()+")")
 		return func() error { return genAnki(opts, *only) }
+
+	case "add-anki-media":
+		defaultDir, _ := ankigen.DefaultAnkiDir()
+		mediaDir := fs.String("media-dir", "anki/media", "directory holding the generated card images")
+		ankiDir := fs.String("anki-dir", defaultDir, "Anki's data folder, holding one folder per profile")
+		profile := fs.String("profile", "", "Anki profile to copy into, or empty to use the only one")
+		return func() error { return addAnkiMedia(*mediaDir, *ankiDir, *profile) }
 
 	case "gen-rules-anki":
 		var opts ankigen.RulesOptions
@@ -202,13 +203,6 @@ func collectionStats(collectionFile, catalogFile, dataFile string) error {
 	return nil
 }
 
-func surplus(collectionFile, catalogFile string) error {
-	if err := collection.Surplus(collectionFile, catalogFile, os.Stdout); err != nil {
-		return fmt.Errorf("failed to list the surplus cards: %w", err)
-	}
-	return nil
-}
-
 func missing(collectionFile, catalogFile string, filters []string, axis collection.Axis) error {
 	if err := collection.Missing(collectionFile, catalogFile, filters, axis, os.Stdout); err != nil {
 		return fmt.Errorf("failed to list the missing cards: %w", err)
@@ -234,9 +228,6 @@ func matchDecks(opts decks.Options) error {
 }
 
 func genAnki(opts ankigen.Options, only string) error {
-	if opts.MaskFraction <= 0 || opts.MaskFraction > 1 {
-		return fmt.Errorf("-mask must be between 0 and 1, got %v", opts.MaskFraction)
-	}
 	if opts.EffectMaskFraction <= 0 || opts.EffectMaskFraction > 1 {
 		return fmt.Errorf("-effect-mask must be between 0 and 1, got %v", opts.EffectMaskFraction)
 	}
@@ -270,11 +261,17 @@ func genAnki(opts ankigen.Options, only string) error {
 	}
 	fmt.Printf(`
 to import:
-  1. copy %s/media/* into your Anki collection.media folder, if it holds any
-     (Anki: Tools > Check Media > View Files)
+  1. run: just add-anki-media   (copies %s/media/* into Anki's collection.media)
   2. in Anki, File > Import, and choose whichever deck files above you want —
      each imports independently, so pick and choose
 `, opts.OutDir)
+	return nil
+}
+
+func addAnkiMedia(mediaDir, ankiDir, profile string) error {
+	if err := ankigen.AddMedia(mediaDir, ankiDir, profile, os.Stdout); err != nil {
+		return fmt.Errorf("failed to add the media to Anki: %w", err)
+	}
 	return nil
 }
 

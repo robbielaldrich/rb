@@ -21,7 +21,7 @@ type HiddenDomainResult struct {
 // GenerateHiddenDomains builds a deck for learning which cards in each domain
 // carry Hidden.
 //
-// The Costs and Effects decks ask about one card at a time, which teaches
+// The Effects deck asks about one card at a time, which teaches
 // recognition: shown a card, you recall what it does. At a table the question
 // runs the other way. An opponent holds a face-down card and leaves a domain's
 // runes open, and what matters is the whole set of things it could be, not

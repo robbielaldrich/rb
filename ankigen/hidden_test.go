@@ -41,8 +41,6 @@ func fixture(t *testing.T, cards []cards.Card) Options {
 		CatalogPath:          catPath,
 		ImageDir:             imgDir,
 		OutDir:               filepath.Join(dir, "out"),
-		DeckName:             "Riftbound::Hidden Costs",
-		MaskFraction:         0.25,
 		EffectDeckName:       "Riftbound::Hidden Effects",
 		EffectMaskFraction:   0.4,
 		HiddenDomainDeckName: "Riftbound::Hidden by Domain",
@@ -97,107 +95,11 @@ func readDeck(t *testing.T, path string) (headers []string, rows [][]string) {
 	return headers, rows
 }
 
-func TestGenerateHiddenCosts(t *testing.T) {
-	opts := fixture(t, []cards.Card{
-		hiddenCard("unl-003-219", "Mischievous Marai"),
-		{
-			Name: "Arena Kingpin", RiftboundID: "unl-001-219", CollectorNumber: 1,
-			Set:  cards.CardSet{SetID: "unl"},
-			Text: cards.Text{Plain: "I enter ready."},
-		},
-	})
-
-	res, err := GenerateHiddenCosts(opts)
-	if err != nil {
-		t.Fatalf("GenerateHiddenCosts: %v", err)
-	}
-	if res.Notes != 2 {
-		t.Fatalf("Notes = %d, want 2 (a cost and an effect note for the one Hidden card)", res.Notes)
-	}
-
-	headers, rows := readDeck(t, res.CostDeckFile)
-	wantHeaders := []string{
-		"#separator:Tab", "#html:true", "#notetype:Basic",
-		"#deck:Riftbound::Hidden Costs", "#tags column:3",
-	}
-	if strings.Join(headers, "\n") != strings.Join(wantHeaders, "\n") {
-		t.Errorf("headers = %v, want %v", headers, wantHeaders)
-	}
-	if len(rows) != 1 {
-		t.Fatalf("got %d note rows, want 1: %v", len(rows), rows)
-	}
-
-	front, back, tags := rows[0][0], rows[0][1], rows[0][2]
-	if len(rows[0]) != 3 {
-		t.Fatalf("row has %d fields, want 3: %v", len(rows[0]), rows[0])
-	}
-	if !strings.Contains(front, "What is the cost?") {
-		t.Errorf("front lacks the prompt: %q", front)
-	}
-	if !strings.Contains(front, "rb-unl-003-219-cost-masked.jpg") {
-		t.Errorf("front does not show the masked image: %q", front)
-	}
-	if !strings.Contains(back, "rb-unl-003-219.jpg") || strings.Contains(back, "masked") {
-		t.Errorf("back should show the intact card, got %q", back)
-	}
-	if !strings.Contains(tags, "riftbound::hidden") || !strings.Contains(tags, "riftbound::set::UNL") {
-		t.Errorf("tags = %q", tags)
-	}
-	// Double quotes in the fields would need CSV escaping; single-quoted HTML
-	// attributes keep them out entirely.
-	if strings.Contains(front+back, `"`) {
-		t.Errorf("fields contain a double quote and would need escaping: %q", front+back)
-	}
-
-	// Only the Hidden card's three images were written.
-	entries, err := os.ReadDir(res.MediaDir)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if len(entries) != 3 {
-		t.Fatalf("media dir holds %d files, want 3", len(entries))
-	}
-}
-
-func TestMaskedImageHidesOnlyTheTop(t *testing.T) {
-	opts := fixture(t, []cards.Card{hiddenCard("unl-003-219", "Mischievous Marai")})
-	res, err := GenerateHiddenCosts(opts)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	img := readJPEG(t, filepath.Join(res.MediaDir, "rb-unl-003-219-cost-masked.jpg"))
-	b := img.Bounds()
-	if b.Dx() != 60 {
-		t.Errorf("width = %d, want the image scaled to 60", b.Dx())
-	}
-
-	mid := b.Dx() / 2
-	if !dark(img, mid, b.Dy()/6) {
-		t.Error("the top band was not painted out")
-	}
-	if !dark(img, mid, b.Dy()/4-2) {
-		t.Error("the band stops short of a quarter of the height")
-	}
-	if dark(img, mid, b.Dy()/4+4) {
-		t.Error("the band reaches past a quarter of the height")
-	}
-	if dark(img, mid, b.Dy()-4) {
-		t.Error("the bottom of the card was painted out")
-	}
-
-	// The answer image keeps the whole card.
-	full := readJPEG(t, filepath.Join(res.MediaDir, "rb-unl-003-219.jpg"))
-	if dark(full, mid, full.Bounds().Dy()/6) {
-		t.Error("the answer image is masked, it should show the intact card")
-	}
-}
-
 func TestGenerateHiddenEffects(t *testing.T) {
 	opts := fixture(t, []cards.Card{hiddenCard("unl-003-219", "Mischievous Marai")})
-	res, err := GenerateHiddenCosts(opts)
+	res, err := GenerateHiddenEffects(opts)
 	if err != nil {
-		t.Fatalf("GenerateHiddenCosts: %v", err)
+		t.Fatalf("GenerateHiddenEffects: %v", err)
 	}
 
 	headers, rows := readDeck(t, res.EffectDeckFile)
@@ -231,7 +133,7 @@ func TestGenerateHiddenEffects(t *testing.T) {
 
 func TestTextMaskedImageHidesOnlyTheBottom(t *testing.T) {
 	opts := fixture(t, []cards.Card{hiddenCard("unl-003-219", "Mischievous Marai")})
-	res, err := GenerateHiddenCosts(opts)
+	res, err := GenerateHiddenEffects(opts)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -263,22 +165,22 @@ func TestAllPrintingsFlag(t *testing.T) {
 	}
 
 	opts := fixture(t, cards)
-	res, err := GenerateHiddenCosts(opts)
+	res, err := GenerateHiddenEffects(opts)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if res.Notes != 2 {
-		t.Errorf("Notes = %d, want the reprints collapsed into one card per deck", res.Notes)
+	if res.Notes != 1 {
+		t.Errorf("Notes = %d, want the reprints collapsed into one card", res.Notes)
 	}
 
 	opts = fixture(t, cards)
 	opts.AllPrintings = true
-	res, err = GenerateHiddenCosts(opts)
+	res, err = GenerateHiddenEffects(opts)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if res.Notes != 4 {
-		t.Errorf("Notes = %d with -all-printings, want both printings in both decks", res.Notes)
+	if res.Notes != 2 {
+		t.Errorf("Notes = %d with -all-printings, want both printings", res.Notes)
 	}
 }
 
@@ -288,14 +190,14 @@ func TestNoHiddenCardsIsAnError(t *testing.T) {
 		Set:  cards.CardSet{SetID: "unl"},
 		Text: cards.Text{Plain: "I enter ready."},
 	}})
-	if _, err := GenerateHiddenCosts(opts); err == nil {
+	if _, err := GenerateHiddenEffects(opts); err == nil {
 		t.Fatal("want an error when the catalog holds no Hidden cards")
 	}
 }
 
 func TestMediaNameAvoidsIllegalCharacters(t *testing.T) {
 	c := cards.Card{RiftboundID: "sfd-230*-221"}
-	if got := mediaName(c, "-cost-masked"); strings.ContainsAny(got, `*/\`) {
+	if got := mediaName(c, "-text-masked"); strings.ContainsAny(got, `*/\`) {
 		t.Errorf("mediaName = %q, want no characters illegal in a filename", got)
 	}
 }

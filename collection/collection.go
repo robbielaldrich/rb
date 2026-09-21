@@ -99,7 +99,7 @@ func labels(set map[string]bool) string {
 // itself: the set it is filed under, the card it shows, and the size of the
 // set it is numbered out of.
 //
-// Stats, Missing and Surplus all fold their printings onto it, which is what
+// Stats and Missing both fold their printings onto it, which is what
 // makes them count the same cards as one another. Every printing of a card —
 // plain, alternate art, overnumbered — shares a key, while a promo set's
 // promos of different sets keep theirs apart, since only the set size they are
