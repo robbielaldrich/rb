@@ -1,0 +1,54 @@
+#separator:Tab
+#html:true
+#notetype:Basic
+#deck:Riftbound::Signature Cards
+#tags column:3
+What is the signature card of Ahri - Nine-Tailed Fox?	<b>1 card</b><ul><li>Fox-Fire <i>(OGN)</i></li></ul><img src='rb-ogn-256-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Akali - Rogue Assassin?	<b>1 card</b><ul><li>Shuriken Flip <i>(VEN)</i></li></ul><img src='rb-ven-140-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Ambessa - Matriarch of War?	<b>1 card</b><ul><li>Public Execution <i>(VEN)</i></li></ul><img src='rb-ven-154-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Annie - Dark Child?	<b>1 card</b><ul><li>Tibbers <i>(OGS)</i></li></ul><img src='rb-ogs-018-024.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGS
+What is the signature card of Azir - Emperor of the Sands?	<b>1 card</b><ul><li>Arise! <i>(SFD)</i></li></ul><img src='rb-sfd-198-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Darius - Hand of Noxus?	<b>1 card</b><ul><li>Noxian Guillotine <i>(OGN)</i></li></ul><img src='rb-ogn-254-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Diana - Scorn of the Moon?	<b>1 card</b><ul><li>Moonfall <i>(UNL)</i></li></ul><img src='rb-unl-198-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Draven - Glorious Executioner?	<b>1 card</b><ul><li>Spinning Axe <i>(SFD)</i></li></ul><img src='rb-sfd-186-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Ezreal - Prodigal Explorer?	<b>1 card</b><ul><li>Arcane Shift <i>(SFD)</i></li></ul><img src='rb-sfd-200-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Fiora - Grand Duelist?	<b>1 card</b><ul><li>Riposte <i>(SFD)</i></li></ul><img src='rb-sfd-206-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Garen - Might of Demacia?	<b>1 card</b><ul><li>Decisive Strike <i>(OGS)</i></li></ul><img src='rb-ogs-024-024.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGS
+What is the signature card of Irelia - Blade Dancer?	<b>1 card</b><ul><li>Defiant Dance <i>(SFD)</i></li></ul><img src='rb-sfd-196-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Ivern - Green Father?	<b>1 card</b><ul><li>Daisy! <i>(UNL)</i></li></ul><img src='rb-unl-196-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Jax - Grandmaster At Arms?	<b>1 card</b><ul><li>Counter Strike <i>(SFD)</i></li></ul><img src='rb-sfd-194-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Jayce - Defender of Tomorrow?	<b>1 card</b><ul><li>Acceleration Gate <i>(VEN)</i></li></ul><img src='rb-ven-150-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Jhin - Virtuoso?	<b>1 card</b><ul><li>Curtain Call <i>(UNL)</i></li></ul><img src='rb-unl-182-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Jinx - Loose Cannon?	<b>1 card</b><ul><li>Super Mega Death Rocket! <i>(OGN)</i></li></ul><img src='rb-ogn-252-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Kai'Sa - Daughter of the Void?	<b>1 card</b><ul><li>Icathian Rain <i>(OGN)</i></li></ul><img src='rb-ogn-248-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Kha'Zix - Voidreaver?	<b>1 card</b><ul><li>Void Assault <i>(UNL)</i></li></ul><img src='rb-unl-202-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of LeBlanc - Deceiver?	<b>1 card</b><ul><li>Mirror Image <i>(UNL)</i></li></ul><img src='rb-unl-200-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Lee Sin - Blind Monk?	<b>1 card</b><ul><li>Dragon's Rage <i>(OGN)</i></li></ul><img src='rb-ogn-258-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Leona - Radiant Dawn?	<b>1 card</b><ul><li>Zenith Blade <i>(OGN)</i></li></ul><img src='rb-ogn-262-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Lillia - Bashful Bloom?	<b>1 card</b><ul><li>Lilting Lullaby <i>(UNL)</i></li></ul><img src='rb-unl-190-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Lucian - Purifier?	<b>1 card</b><ul><li>Relentless Pursuit <i>(SFD)</i></li></ul><img src='rb-sfd-184-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Lux - Lady of Luminosity?	<b>1 card</b><ul><li>Final Spark <i>(OGS)</i></li></ul><img src='rb-ogs-022-024.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGS
+What is the signature card of Master Yi - Wuju Bladesman?	<b>2 cards</b><ul><li>Alpha Strike <i>(UNL)</i></li><li>Highlander <i>(OGS)</i></li></ul><img src='rb-unl-192-219.jpg' width='180'><img src='rb-ogs-020-024.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGS
+What is the signature card of Master Yi - Wuju Master?	<b>2 cards</b><ul><li>Alpha Strike <i>(UNL)</i></li><li>Highlander <i>(OGS)</i></li></ul><img src='rb-unl-192-219.jpg' width='180'><img src='rb-ogs-020-024.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Mel - Soul's Reflection?	<b>1 card</b><ul><li>Rebuttal <i>(VEN)</i></li></ul><img src='rb-ven-152-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Miss Fortune - Bounty Hunter?	<b>1 card</b><ul><li>Bullet Time <i>(OGN)</i></li></ul><img src='rb-ogn-268-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Nasus - Curator of the Sands?	<b>1 card</b><ul><li>Siphoning Strike <i>(VEN)</i></li></ul><img src='rb-ven-146-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Ornn - Fire Below the Mountain?	<b>3 cards</b><ul><li>Forgefire Cape <i>(SFD)</i></li><li>Rabadon's Deathcrown <i>(SFD)</i></li><li>Shurelya's Requiem <i>(SFD)</i></li></ul><img src='rb-sfd-190-221.jpg' width='180'><img src='rb-sfd-191-221.jpg' width='180'><img src='rb-sfd-192-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Poppy - Keeper of the Hammer?	<b>1 card</b><ul><li>Keeper's Verdict <i>(UNL)</i></li></ul><img src='rb-unl-204-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Pyke - Bloodharbor Ripper?	<b>1 card</b><ul><li>Death from Below <i>(UNL)</i></li></ul><img src='rb-unl-186-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Rek'sai - Void Burrower?	<b>1 card</b><ul><li>Void Rush <i>(SFD)</i></li></ul><img src='rb-sfd-188-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Renata Glasc - Chem-Baroness?	<b>1 card</b><ul><li>Hostile Takeover <i>(SFD)</i></li></ul><img src='rb-sfd-202-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Renekton - Butcher of the Sands?	<b>1 card</b><ul><li>Dominus <i>(VEN)</i></li></ul><img src='rb-ven-142-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Rengar - Pridestalker?	<b>1 card</b><ul><li>Thrill of the Hunt <i>(UNL)</i></li></ul><img src='rb-unl-184-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Rumble - Mechanized Menace?	<b>1 card</b><ul><li>Danger Zone <i>(SFD)</i></li></ul><img src='rb-sfd-182-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Sett - The Boss?	<b>1 card</b><ul><li>Showstopper <i>(OGN)</i></li></ul><img src='rb-ogn-270-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Shen - Eye of Twilight?	<b>1 card</b><ul><li>Shadow Dash <i>(VEN)</i></li></ul><img src='rb-ven-148-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Sivir - Battle Mistress?	<b>1 card</b><ul><li>On the Hunt <i>(SFD)</i></li></ul><img src='rb-sfd-204-221.jpg' width='180'>	riftbound::signature-cards riftbound::set::SFD
+What is the signature card of Teemo - Swift Scout?	<b>1 card</b><ul><li>Guerilla Warfare <i>(OGN)</i></li></ul><img src='rb-ogn-264-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Vex - Gloomist?	<b>1 card</b><ul><li>Shadow <i>(UNL)</i></li></ul><img src='rb-unl-194-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Vi - Piltover Enforcer?	<b>1 card</b><ul><li>Hextech Gauntlets <i>(UNL)</i></li></ul><img src='rb-unl-188-219.jpg' width='180'>	riftbound::signature-cards riftbound::set::UNL
+What is the signature card of Viktor - Herald of the Arcane?	<b>1 card</b><ul><li>Siphon Power <i>(OGN)</i></li></ul><img src='rb-ogn-266-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Volibear - Relentless Storm?	<b>1 card</b><ul><li>Stormbringer <i>(OGN)</i></li></ul><img src='rb-ogn-250-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Yasuo - Unforgiven?	<b>1 card</b><ul><li>Last Breath <i>(OGN)</i></li></ul><img src='rb-ogn-260-298.jpg' width='180'>	riftbound::signature-cards riftbound::set::OGN
+What is the signature card of Yordle, Kennen - Heart of the Tempest?	<b>1 card</b><ul><li>Lightning Rush <i>(VEN)</i></li></ul><img src='rb-ven-156-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN
+What is the signature card of Zed - Master of Shadows?	<b>1 card</b><ul><li>Death Mark <i>(VEN)</i></li></ul><img src='rb-ven-144-166.jpg' width='180'>	riftbound::signature-cards riftbound::set::VEN

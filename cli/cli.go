@@ -80,6 +80,7 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.StringVar(&opts.EffectDeckName, "effect-deck", "Riftbound::Hidden Effects", "name of the companion deck asking what a card does")
 		fs.StringVar(&opts.ReactionDeckName, "reaction-deck", "Riftbound::Reaction Cards", "name of the deck listing each domain's Reaction cards")
 		fs.StringVar(&opts.ActionDeckName, "action-deck", "Riftbound::Action Cards", "name of the deck listing each domain's Action cards")
+		fs.StringVar(&opts.SignatureDeckName, "signature-deck", "Riftbound::Signature Cards", "name of the deck asking which card each legend brings")
 		fs.StringVar(&opts.HiddenDomainDeckName, "hidden-domain-deck", "Riftbound::Hidden by Domain", "name of the deck asking which Hidden cards each domain holds")
 		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out from the bottom, for cards whose keyword badge can't be found")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")

@@ -26,6 +26,7 @@ var Blocks = []Block{
 	{Name: "hidden-domains", Run: runHiddenDomains},
 	{Name: "reaction-cards", Run: runReactionCards},
 	{Name: "action-cards", Run: runActionCards},
+	{Name: "signature-cards", Run: runSignatureCards},
 }
 
 // BlockByName finds a block by name, for a caller that wants to run less than
@@ -78,6 +79,14 @@ func runReactionCards(opts Options) (BlockResult, error) {
 
 func runActionCards(opts Options) (BlockResult, error) {
 	res, err := GenerateActionCards(opts)
+	if err != nil {
+		return BlockResult{}, err
+	}
+	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
+}
+
+func runSignatureCards(opts Options) (BlockResult, error) {
+	res, err := GenerateSignatureCards(opts)
 	if err != nil {
 		return BlockResult{}, err
 	}

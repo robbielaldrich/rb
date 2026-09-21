@@ -43,7 +43,10 @@ func GenerateActionCards(opts Options) (SpeedResult, error) {
 //
 // It is cards rather than spells because the speed isn't a spell's alone: a
 // gear or a unit can carry the keyword too. Legends are left out, since a
-// legend is never played from hand.
+// legend is never played from hand, and so are signature cards: one may only
+// be run by a deck whose legend is that champion, so it is not among the
+// things a domain can answer with — it is something one deck in that domain
+// brought with it.
 func generateSpeedCards(speed, deckName, fileName string, opts Options) (SpeedResult, error) {
 	cs, err := cards.Load(opts.CatalogPath)
 	if err != nil {
@@ -113,7 +116,7 @@ func speedCards(cs []cards.Card, keyword string) []cards.Card {
 	var out []cards.Card
 	at := map[string]int{}
 	for _, c := range cs {
-		if c.Classification.Type == cards.TypeLegend || !c.HasKeyword(keyword) {
+		if c.Classification.Type == cards.TypeLegend || c.IsSignature() || !c.HasKeyword(keyword) {
 			continue
 		}
 		i, ok := at[c.BaseName()]

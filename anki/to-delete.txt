@@ -21,3 +21,9 @@
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Mind that cost 2 Power or less?
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Order that cost 0 Power or less?
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Order that cost 1 Power or less?
+2026-09-21	Riftbound::Reaction Cards	What are all the Reaction cards in Fury that cost 1 Energy or less?
+2026-09-21	Riftbound::Action Cards	What are all the Action cards in Mind that cost 6 Energy or less?
+2026-09-21	Riftbound::Action Cards	What are all the Action cards in Mind that cost 7 Energy or less?
+2026-09-21	Riftbound::Action Cards	What are all the Action cards in Mind that cost 8 Energy or less?
+2026-09-21	Riftbound::Action Cards	What are all the Action cards in Order that cost 7 Energy or less?
+2026-09-21	Riftbound::Action Cards	What are all the Action cards in Order that cost 8 Energy or less?

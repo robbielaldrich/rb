@@ -37,6 +37,8 @@ type Options struct {
 	// HiddenDomainDeckName is the deck asking which Hidden cards each domain
 	// holds, rather than what any one of them does.
 	HiddenDomainDeckName string
+	// SignatureDeckName is the deck asking which card each legend brings.
+	SignatureDeckName string
 }
 
 // Result reports what a run produced, so the caller can tell the user where

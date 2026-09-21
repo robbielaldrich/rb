@@ -39,6 +39,16 @@ const (
 // else, and the sets sold in packs hold none of it.
 const RarityPromo = "Promo"
 
+// SupertypeSignature marks a card printed as the signature of a champion. A
+// deck may only run one if its legend is that champion, so a signature card
+// is never generally available the way the rest of a domain's cards are.
+const SupertypeSignature = "Signature"
+
+// IsSignature reports whether this card is a champion's signature card.
+func (c Card) IsSignature() bool {
+	return c.Classification.Supertype != nil && *c.Classification.Supertype == SupertypeSignature
+}
+
 // IsPromo reports whether this printing is a promo.
 //
 // A promo is another printing of a card a main set already prints, so it is
