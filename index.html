@@ -109,12 +109,12 @@
     -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
   }
   .paste-actions { display: flex; gap: .5rem; margin-top: .5rem; }
-  .paste-actions button {
+  .paste-actions button, .quiz-actions button {
     appearance: none; padding: .4rem .9rem; font: inherit; font-size: .85rem;
     border: 1px solid var(--line); border-radius: .5rem;
     background: transparent; color: inherit; cursor: pointer;
   }
-  .paste-actions button:hover { border-color: var(--accent); color: var(--accent); }
+  .paste-actions button:hover, .quiz-actions button:hover { border-color: var(--accent); color: var(--accent); }
   .paste-error { color: var(--short); }
   .group { color: var(--muted); font-size: .8rem; margin: .75rem 0 .25rem; }
 
@@ -150,16 +150,12 @@
     margin: 1.25rem 0 0; font-size: .8rem; color: var(--muted);
     text-transform: uppercase; letter-spacing: .06em;
   }
-  .ruling { border-top: 1px solid var(--line); }
-  .ruling > summary {
-    display: flex; gap: .75rem; align-items: baseline;
-    padding: .6rem .25rem; cursor: pointer; list-style: none;
+  .quiz-question {
+    margin: .5rem 0 1rem; font-size: 1.05rem; line-height: 1.45; max-width: 40rem;
+    border-top: 1px solid var(--line); padding-top: 1rem;
   }
-  .ruling > summary::-webkit-details-marker { display: none; }
-  .ruling > summary::before { content: "▸"; color: var(--muted); font-size: .8rem; }
-  .ruling[open] > summary::before { content: "▾"; }
-  .question { flex: 1; }
-  .answer { padding: 0 .25rem .75rem 1.5rem; font-size: .875rem; max-width: 40rem; }
+  .quiz-actions { display: flex; gap: .5rem; margin-top: 1rem; }
+  .answer { padding: 0 .25rem .75rem 0; font-size: .875rem; max-width: 40rem; }
   .answer p { margin: 0 0 .5rem; }
   .answer ul { margin: 0 0 .5rem; padding-left: 1.25rem; }
   .answer li { margin-bottom: .25rem; }
@@ -237,10 +233,17 @@
 </section>
 
 <section role="tabpanel" id="panel-rules" aria-labelledby="tab-rules" hidden>
-  <input id="rules-q" type="search" placeholder="Search rulings, cards, keywords&hellip;" disabled>
   <p id="rules-status" class="status">Loading rulings&hellip;</p>
-  <div class="filters" id="rules-filters" role="group" aria-label="Filter rulings by category"></div>
-  <div id="rulings"></div>
+  <div class="filters" id="rules-filters" role="group" aria-label="Quiz on one category of rulings"></div>
+  <div id="quiz">
+    <p class="topic" id="quiz-topic"></p>
+    <p class="quiz-question" id="quiz-question"></p>
+    <div class="answer" id="quiz-answer" hidden></div>
+    <div class="quiz-actions">
+      <button type="button" id="quiz-reveal">Show answer</button>
+      <button type="button" id="quiz-next" hidden>Next question</button>
+    </div>
+  </div>
   <p class="status credit">
     Card, keyword and core-systems rulings adapted from the community
     <a href="https://www.riftboundfaq.com/">Riftbound FAQ</a>
@@ -1041,13 +1044,24 @@ function renderSummary(data) {
   summaryFoot.append(summaryRow(data.total, "All sets"));
 }
 
-/* Rules */
-const rulesQ = document.getElementById("rules-q");
+/* Rules
+   A quiz rather than a list: one ruling at a time, answered from memory
+   before it is shown. The rulings are the awkward cases — the ones that come
+   up mid-game, where looking the answer up is exactly what there isn't time
+   for — so being able to find one was never the point. Recalling it is. */
 const rulesStatus = document.getElementById("rules-status");
 const rulesFilters = document.getElementById("rules-filters");
-const rulingsEl = document.getElementById("rulings");
+const quizTopic = document.getElementById("quiz-topic");
+const quizQuestion = document.getElementById("quiz-question");
+const quizAnswer = document.getElementById("quiz-answer");
+const quizReveal = document.getElementById("quiz-reveal");
+const quizNext = document.getElementById("quiz-next");
+
 let rulings = [];
 let rulesCat = "all";
+// asked is the run in progress, shuffled, and at is how far into it we are.
+let asked = [];
+let at = 0;
 
 // Ordered widest-to-narrowest, which is also roughly least-to-most numerous.
 const RULE_CATS = [
@@ -1063,8 +1077,7 @@ const loadRules = once(() =>
     .then(data => {
       rulings = data;
       buildFilters();
-      rulesQ.disabled = false;
-      renderRulings();
+      startRun();
     })
     .catch(err => {
       rulesStatus.textContent = "Failed to load the rulings: " + err;
@@ -1084,10 +1097,101 @@ function buildFilters() {
       for (const other of rulesFilters.children) {
         other.setAttribute("aria-pressed", String(other === b));
       }
-      renderRulings();
+      startRun();
     });
     rulesFilters.append(b);
   }
+}
+
+// startRun draws a fresh run from the chosen category, shuffled.
+//
+// Shuffled because the list arrives grouped by topic, and a run in that order
+// answers half of itself: three questions into the Hidden block you know the
+// fourth is about hiding too. The shuffle is redrawn per run rather than
+// held, so going round again asks them in a new order.
+function startRun() {
+  asked = rulings.filter(r => rulesCat === "all" || r.category === rulesCat);
+  for (let i = asked.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [asked[i], asked[j]] = [asked[j], asked[i]];
+  }
+  at = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  if (at >= asked.length) return showRunEnd();
+
+  const r = asked[at];
+  rulesStatus.textContent = `${at + 1} of ${asked.length}`;
+  quizTopic.textContent = r.topic;
+  quizQuestion.textContent = r.question;
+
+  quizAnswer.replaceChildren();
+  quizAnswer.hidden = true;
+  quizReveal.hidden = false;
+  quizNext.hidden = true;
+}
+
+function revealAnswer() {
+  const r = asked[at];
+  quizAnswer.replaceChildren(renderAnswer(r.answer), refsFor(r));
+  quizAnswer.hidden = false;
+  quizReveal.hidden = true;
+  quizNext.hidden = false;
+  quizNext.textContent = at + 1 < asked.length ? "Next question" : "Finish";
+  quizNext.focus();
+}
+
+// showRunEnd closes a run rather than looping straight back into it, so that
+// going round again is something chosen instead of something that just
+// happens once the last answer is read.
+function showRunEnd() {
+  rulesStatus.textContent = `${asked.length} of ${asked.length}`;
+  quizTopic.textContent = "";
+  quizQuestion.textContent =
+    `That's all ${asked.length} ruling${asked.length === 1 ? "" : "s"} in this pick.`;
+
+  quizAnswer.replaceChildren();
+  quizAnswer.hidden = true;
+  quizReveal.hidden = true;
+  quizNext.hidden = false;
+  quizNext.textContent = "Go round again";
+}
+
+quizReveal.addEventListener("click", revealAnswer);
+quizNext.addEventListener("click", () => {
+  if (at >= asked.length) return startRun();
+  at++;
+  showQuestion();
+});
+
+// refsFor renders the rules a ruling cites and where it came from.
+function refsFor(r) {
+  const refs = document.createElement("p");
+  refs.className = "refs";
+  for (const n of r.rules) {
+    const ref = document.createElement("span");
+    ref.className = "ref";
+    ref.textContent = n;
+    refs.append(ref);
+  }
+  // Forum threads are community consensus, not an official ruling, so they
+  // say so next to the link rather than looking like the cited rules above.
+  if (r.category === "reddit-field-notes") {
+    const tag = document.createElement("span");
+    tag.className = "thread";
+    tag.textContent = "community thread";
+    refs.append(tag);
+  }
+  const src = document.createElement("a");
+  src.className = "source";
+  src.href = r.source;
+  src.target = "_blank";
+  src.rel = "noreferrer";
+  src.textContent = "source";
+  refs.append(src);
+  return refs;
 }
 
 // Answers are plain text: blank lines separate paragraphs, a run of "- " lines
@@ -1127,79 +1231,6 @@ function renderAnswer(text) {
   return frag;
 }
 
-function renderRulings() {
-  const term = rulesQ.value.trim().toLowerCase();
-  const shown = rulings.filter(r => {
-    if (rulesCat !== "all" && r.category !== rulesCat) return false;
-    if (!term) return true;
-    const hay = `${r.question} ${r.answer} ${r.topic} ${r.rules.join(" ")}`;
-    return hay.toLowerCase().includes(term);
-  });
-
-  rulesStatus.textContent = shown.length === 0
-    ? `No ruling mentions "${rulesQ.value.trim()}".`
-    : `${shown.length} ruling${shown.length === 1 ? "" : "s"}` +
-      (shown.length < rulings.length ? ` of ${rulings.length}.` : ". Open one to see the answer.");
-
-  rulingsEl.innerHTML = "";
-  let topic = null;
-  for (const r of shown) {
-    // The list arrives grouped by topic already, so a heading each time the
-    // topic changes is enough to section it without regrouping.
-    if (r.topic !== topic) {
-      topic = r.topic;
-      const h = document.createElement("p");
-      h.className = "topic";
-      h.textContent = topic;
-      rulingsEl.append(h);
-    }
-
-    const ruling = document.createElement("details");
-    ruling.className = "ruling";
-    const summary = document.createElement("summary");
-    const question = document.createElement("span");
-    question.className = "question";
-    question.textContent = r.question;
-    summary.append(question);
-    ruling.append(summary);
-
-    const answer = document.createElement("div");
-    answer.className = "answer";
-    answer.append(renderAnswer(r.answer));
-
-    const refs = document.createElement("p");
-    refs.className = "refs";
-    for (const n of r.rules) {
-      const ref = document.createElement("span");
-      ref.className = "ref";
-      ref.textContent = n;
-      refs.append(ref);
-    }
-    // Forum threads are community consensus, not an official ruling, so they
-    // say so next to the link rather than looking like the cited rules above.
-    if (r.category === "reddit-field-notes") {
-      const tag = document.createElement("span");
-      tag.className = "thread";
-      tag.textContent = "community thread";
-      refs.append(tag);
-    }
-    const src = document.createElement("a");
-    src.className = "source";
-    src.href = r.source;
-    src.target = "_blank";
-    src.rel = "noreferrer";
-    src.textContent = "source";
-    refs.append(src);
-    answer.append(refs);
-
-    ruling.append(answer);
-    rulingsEl.append(ruling);
-  }
-}
-
-rulesQ.addEventListener("input", renderRulings);
-
-select(fromHash());
 </script>
 </body>
 </html>
