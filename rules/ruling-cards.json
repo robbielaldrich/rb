@@ -1,0 +1,641 @@
+{
+  "Are existing equipment bonuses or passive effects counted again after Switcheroo resolves?": [
+    {
+      "name": "Switcheroo",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a4338f495feff5eee46d5349b5fded5e35e76176-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Applied Researchers reduce Shock Blast's cost to zero?": [
+    {
+      "name": "Applied Researchers",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/67a5f67bad4d4201b14760206a34c838d7a1e4dc-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Bone Skewer choose a unit that says it \"can't be chosen by enemy spells and abilities\"?": [
+    {
+      "name": "Bone Skewer",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e06e3e3033640bc8a5bc98acd4e3a0925c6e2c9a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Defy counter a spell whose Flow cost exceeds Defy's limit?": [
+    {
+      "name": "Defy",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/4989bfcc4bd7be77051f0c2c349a981ba9c273e0-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Disarming Rake kill Dazzling Aurora if both are chosen with Promising Future?": [
+    {
+      "name": "Disarming Rake",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/523732db17d8cf3c7c55f57c5dfb397b73e2b116-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Dazzling Aurora",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c023856a50c75058465f283d181277ce265ba108-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Flash target a unit that is already in base?": [
+    {
+      "name": "Flash",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/4d9cc1c13b75933e509e642213f13359350cd3f9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Guardian Angel, Zhonya's Hourglass, or Tactical Retreat save a unit from Smite?": [
+    {
+      "name": "Tactical Retreat",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/cd5abf6c27f5faac247f6044306db3d710fb9d61-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Smite",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f46252e8c65a2eb3f476ea51f214af7651d0622d-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Zhonya's Hourglass",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/dc38172c56f838b407fc9f170ba973da32d7cd4d-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Guardian Angel",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d09a797345659a1853d6d12910cf3c634990ea0c-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can I banish and play Nocturne, Horrifying if Burn or Minefield puts it into my trash?": [
+    {
+      "name": "Nocturne - Horrifying",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/19a751364bc6eb5297596e8733d0d30a1111ac78-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Minefield",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/46614658b08563f07cc81a4f4fa4ec8a067710b9-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "Can I hide cards from my trash while Endless Riches is on the board?": [
+    {
+      "name": "Endless Riches",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e2c33bf55162086acd458775a5db3d976f137b61-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can I pay optional additional costs, like Accelerate, when playing a unit banished by Temporal Breach?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can I play Baron Nashor while an opponent's Mageseeker Warden is at a battlefield?": [
+    {
+      "name": "Baron Nashor",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/59946969e8d21869c3ffe801a3ffbdd8165a873f-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Mageseeker Warden",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/ae844b929f817cdf76fe40c7bf5d5fc02062bdac-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can I use Arcane Shift to banish the only unit I own and control at a battlefield I control, then play it there again?": [
+    {
+      "name": "Arcane Shift",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a5d1d26dee01db24f32a1432639478753d22aa92-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can I use Lux, Crownguard's ability to pay for Hard Bargain?": [
+    {
+      "name": "Hard Bargain",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2b09887a6e0d2f109aefea62ca6744488794c233-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Kha'Zix, Mutating Horror trigger multiple times in the same turn?": [
+    {
+      "name": "Kha'Zix - Mutating Horror",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8306abc5ffce45add8c75c2e215162b2d1aed320-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Lacerate target a unit with more than 3 might?": [
+    {
+      "name": "Lacerate",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f21bbd09545d949f095756281e5506128eb4809d-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Ravenbloom Prefect banish Dazzling Aurora if both are chosen with Promising Future?": [
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Dazzling Aurora",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c023856a50c75058465f283d181277ce265ba108-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Ravenbloom Prefect",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/57ecb26880ea084ea16b785c9a563ff298ee6a42-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Rebuttal redirect a spell played from Hidden to another location?": [
+    {
+      "name": "Rebuttal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2df67fe2ba17f0796ff1f9c03b85d2db48fe954b-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Rockfall Path or Brynhir Thundersong stop the unit from being played after Temporal Breach banishes it?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Rockfall Path",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a1bde66bccf2786e7c0b9d44fcdcdaa6b59f0328-1039x744.png?accountingTag=RB",
+      "landscape": true
+    },
+    {
+      "name": "Brynhir Thundersong",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/44e805aa0f2928acf1156eef692403df319b333a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Switcheroo result in negative might?": [
+    {
+      "name": "Switcheroo",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a4338f495feff5eee46d5349b5fded5e35e76176-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Temporal Breach cause a unit's attack or defend ability to trigger again during the same combat?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can Temporal Breach make me conquer the same battlefield again on my opponent's turn?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can a counterspell chosen with Promising Future counter another chosen card?": [
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can a unit moved into or away from Abandoned Hall by a spell be targeted?": [
+    {
+      "name": "Abandoned Hall",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7447b04d1e78192509e89e5ff3556368ea5c471a-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "Can a unit played for free by Bone Skewer still get an effect for paying an optional additional cost?": [
+    {
+      "name": "Bone Skewer",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e06e3e3033640bc8a5bc98acd4e3a0925c6e2c9a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can a unit survive combat damage that becomes lethal when Baron Nashor dies in the same combat?": [
+    {
+      "name": "Baron Nashor",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/59946969e8d21869c3ffe801a3ffbdd8165a873f-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Can my opponent react before Baited Hook kills my unit?": [
+    {
+      "name": "Baited Hook",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7b4e6a1e32878a7d5fe4e40869c83e47ea08de7c-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Applied Researchers reduce Repeat, Flow, and Deflect costs?": [
+    {
+      "name": "Applied Researchers",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/67a5f67bad4d4201b14760206a34c838d7a1e4dc-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Astral Heron trigger if the first card I play moves Astral Heron to base?": [
+    {
+      "name": "Astral Heron",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b1ce87efc9a1a7e2438c53e034a7f92caaa67ed6-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Baron Nashor move to the Baron Pit when it's created as part of playing him?": [
+    {
+      "name": "Baron Nashor",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/59946969e8d21869c3ffe801a3ffbdd8165a873f-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Bone Skewer stun a unit that can't be chosen by enemy spells or abilities?": [
+    {
+      "name": "Bone Skewer",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e06e3e3033640bc8a5bc98acd4e3a0925c6e2c9a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Brynhir Thundersong stop an opponent's card chosen with Promising Future from being played?": [
+    {
+      "name": "Brynhir Thundersong",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/44e805aa0f2928acf1156eef692403df319b333a-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Brynhir Thundersong stop cards already on the chain?": [
+    {
+      "name": "Brynhir Thundersong",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/44e805aa0f2928acf1156eef692403df319b333a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Fallen Feline stop a named spell already on the chain?": [
+    {
+      "name": "Fallen Feline",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e5d46c6d56dc14670b5e25547eeb1ee3ceca5a80-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Irelia, Fervent get +1 might when she readies during the Awaken Phase?": [
+    {
+      "name": "Irelia - Fervent",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fe05fa55781f8036f8bfc9c10bba94326a0c8cc9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Lotus Trap affect how much damage needs to be assigned in combat?": [
+    {
+      "name": "Lotus Trap",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/9490f8c80da1bf4467e14c39b66ae4262e5f7f7b-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Ravenbloom Conservatory trigger again if Temporal Breach banishes my only defending unit and I play it again?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Ravenbloom Conservatory",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6d820754b197eb5fb2af7567b7a7573e9a076e51-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "Does Shadow Assassin count itself when I play it from my trash?": [
+    {
+      "name": "Shadow Assassin",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/d5c1aed33b6aa109ff2baea8b3e0c146af750dcc-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Sunken Temple trigger if I conquer with a unit that is only Mighty due to Assault?": [
+    {
+      "name": "Sunken Temple",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/06f6d17929d19000006cf281d013ecbe1543af0e-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "Does Vex, Cheerless increase the cost of enemy spells played from Hidden?": [
+    {
+      "name": "Vex - Cheerless",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e9025578c7b5845a1a9c9a83e045bcbe71a76e71-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does Vex, Cheerless reduce Deflect costs when I play spells?": [
+    {
+      "name": "Vex - Cheerless",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e9025578c7b5845a1a9c9a83e045bcbe71a76e71-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does a Reflection token with Temporary lose Temporary after Shady Spectacles makes it a copy of a unit that doesn't have Temporary?": [
+    {
+      "name": "Shady Spectacles",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e49461109a4116c22af9206719f53fb73aee36d0-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does a Repeat spell targeting Irelia, Fervent for both instructions give her +1 might twice?": [
+    {
+      "name": "Irelia - Fervent",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fe05fa55781f8036f8bfc9c10bba94326a0c8cc9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does a single Not So Fast counter both Deathknell triggers when Karthus, Eternal is on the board?": [
+    {
+      "name": "Karthus - Eternal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/df3497ce6a602da554813340f572240675c7f0e2-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Not So Fast",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e576fefdce72ad862a7e374bf8c0fd509f359da9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does a unit keep temporary modifications or statuses when Temporal Breach banishes it and its owner plays it again?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does a unit's Deathknell resolve before or after the unit played by Baited Hook and its triggers?": [
+    {
+      "name": "Baited Hook",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7b4e6a1e32878a7d5fe4e40869c83e47ea08de7c-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does damage from earlier in the turn become lethal when Elder Dragon enters, and can I react?": [
+    {
+      "name": "Elder Dragon",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fcf578e447d4e2785c8b25f3c39928b98e7b44ca-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Does the Deathknell of the unit killed as the cost resolve before Sacrifice draws and channels?": [
+    {
+      "name": "Sacrifice",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/139153ae4b4f786442018c09765c67e35515df24-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "How are targets chosen when playing Alpha Strike?": [
+    {
+      "name": "Alpha Strike",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/154940caa774fd8219625cf051ddcb230ffc7f02-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "How does Aphelios, Exalted interact with Svellsongur and Shady Spectacles?": [
+    {
+      "name": "Aphelios - Exalted",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/df9ccbba2501059e5781a44434745a1f0e33ecae-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Shady Spectacles",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e49461109a4116c22af9206719f53fb73aee36d0-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Svellsongur",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/bc254398dfb5db217327b56862011a2fd6020789-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "How does Promising Future resolve?": [
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "How does Switcheroo work?": [
+    {
+      "name": "Switcheroo",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a4338f495feff5eee46d5349b5fded5e35e76176-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "How long does Endless Riches make me skip my Draw Phase?": [
+    {
+      "name": "Endless Riches",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e2c33bf55162086acd458775a5db3d976f137b61-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Azir, Sovereign is killed or returned to his base before his attack trigger resolves, do token units still move?": [
+    {
+      "name": "Azir - Sovereign",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/088970936fc800bd2c4b36636734e16c83e1c8f9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Baited Hook kills Glasc Mixologist and plays Karthus, Eternal, does Glasc Mixologist's Deathknell trigger twice?": [
+    {
+      "name": "Baited Hook",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7b4e6a1e32878a7d5fe4e40869c83e47ea08de7c-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Karthus - Eternal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/df3497ce6a602da554813340f572240675c7f0e2-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Glasc Mixologist",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e7422fee71796aa61f8d9691d07654b901fc20f2-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Gangplank, Naval replaces one part of a spell or ability, does the rest still resolve?": [
+    {
+      "name": "Gangplank, Naval",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f270a3ecc4850594513c45d145f2b855152e2cb7-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Heedless Resurrection gains Repeat, do I need to kill a friendly unit for each repetition?": [
+    {
+      "name": "Heedless Resurrection",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/92419d138824a7d46155b59f0e5903196d68d9f7-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Heedless Resurrection is countered, is the killed unit returned?": [
+    {
+      "name": "Heedless Resurrection",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/92419d138824a7d46155b59f0e5903196d68d9f7-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If I own and control a unit at a battlefield I control, can Thrill of the Hunt make me conquer that battlefield again on my opponent's turn?": [
+    {
+      "name": "Thrill of the Hunt",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2753c2b3ea4fd55e5225a4451a29736b5c3434a8-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If I play Irresistible Faefolk directly to a battlefield, does its ability trigger?": [
+    {
+      "name": "Irresistible Faefolk",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6834e4b00a22dd6d7476d36884b43cf59b60c611-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If I target Irelia, Fervent with a spell or ability and it gets countered, does she still get +1 might?": [
+    {
+      "name": "Irelia - Fervent",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fe05fa55781f8036f8bfc9c10bba94326a0c8cc9-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Irresistible Faefolk moves to an uncontested, uncontrolled battlefield outside a showdown and pulls an enemy unit there, who is the attacker?": [
+    {
+      "name": "Irresistible Faefolk",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6834e4b00a22dd6d7476d36884b43cf59b60c611-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If Sacrifice is countered, is the killed unit returned?": [
+    {
+      "name": "Sacrifice",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/139153ae4b4f786442018c09765c67e35515df24-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If a unit chosen by Bone Skewer has Hidden, can the opponent hide it instead of playing it?": [
+    {
+      "name": "Bone Skewer",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e06e3e3033640bc8a5bc98acd4e3a0925c6e2c9a-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If an opponent responds to my move trigger by removing Irresistible Faefolk from the battlefield, does the enemy unit still move?": [
+    {
+      "name": "Irresistible Faefolk",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6834e4b00a22dd6d7476d36884b43cf59b60c611-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If my Dazzling Aurora plays Akshan, Mischievous at the end of my turn, will the Dazzling Aurora I take from my opponent trigger that turn?": [
+    {
+      "name": "Dazzling Aurora",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c023856a50c75058465f283d181277ce265ba108-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Akshan - Mischievous",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f9e79f88463c1d516b9f1b053661937676e0e1f4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If my opponent and I each use Akshan, Mischievous to take the same gear, who controls it when either Akshan dies?": [
+    {
+      "name": "Akshan - Mischievous",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f9e79f88463c1d516b9f1b053661937676e0e1f4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If my opponent targets my spell with Lilting Lullaby and I counter my own spell in response, can I still play spells?": [
+    {
+      "name": "Lilting Lullaby",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/272b71b493575e38ff8888ec187cd33e54c0eacc-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "If the unit banished by Temporal Breach has Hidden, can its owner hide it instead of playing it?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Once Astral Heron's triggered ability is on the chain, can I stop the cost reduction by killing or moving Astral Heron?": [
+    {
+      "name": "Astral Heron",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b1ce87efc9a1a7e2438c53e034a7f92caaa67ed6-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What choices can I remake when Rebuttal takes control of a spell?": [
+    {
+      "name": "Rebuttal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2df67fe2ba17f0796ff1f9c03b85d2db48fe954b-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens after Baron Nashor enters the Baron Pit?": [
+    {
+      "name": "Baron Nashor",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/59946969e8d21869c3ffe801a3ffbdd8165a873f-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens if Emperor's Dais leaves before its ability resolves?": [
+    {
+      "name": "Emperor's Dais",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c1ea4f6f58a62fc2b62647aa3459109e3d10297a-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "What happens if Temporal Breach banishes a token unit?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens if a unit's owner can't pay a mandatory additional cost when Temporal Breach instructs them to play it?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens to equipment attached to a unit banished by Temporal Breach?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens when Glasc Mixologist is my only defender and his Deathknell plays a unit where he died?": [
+    {
+      "name": "Glasc Mixologist",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e7422fee71796aa61f8d9691d07654b901fc20f2-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens when Switcheroo would reduce an Empowered Gangplank, Naval's might?": [
+    {
+      "name": "Switcheroo",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a4338f495feff5eee46d5349b5fded5e35e76176-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What happens when equipment detaches or passives stop applying after Switcheroo?": [
+    {
+      "name": "Switcheroo",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a4338f495feff5eee46d5349b5fded5e35e76176-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What if a chosen enemy unit leaves a battlefield or becomes illegal before Alpha Strike resolves?": [
+    {
+      "name": "Alpha Strike",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/154940caa774fd8219625cf051ddcb230ffc7f02-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "What if the chosen friendly unit leaves the board or becomes illegal before Alpha Strike resolves?": [
+    {
+      "name": "Alpha Strike",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/154940caa774fd8219625cf051ddcb230ffc7f02-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When I choose Akshan, Mischievous with Promising Future, do I have to pay his additional cost before knowing whether I can take Dazzling Aurora?": [
+    {
+      "name": "Promising Future",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/1ea5e7e50aaecee0b2ee2657d3c829dff0718fba-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Dazzling Aurora",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c023856a50c75058465f283d181277ce265ba108-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Akshan - Mischievous",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f9e79f88463c1d516b9f1b053661937676e0e1f4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When I play Consuming Curse from my trash, does it count itself for the bonus damage?": [
+    {
+      "name": "Consuming Curse",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/4254a96c88275f09c2c41653d46702125bc24d9f-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When I play Shadowblade Lurker from my trash, does it discount its own cost?": [
+    {
+      "name": "Shadowblade Lurker",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2874318b39f1dd9d1bf2ed21203795688b788413-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When I play Temporal Breach from Hidden, can it banish a unit at a different battlefield?": [
+    {
+      "name": "Temporal Breach",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7c670dc3d997c52b90d67043989b53c67a72f4c4-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When do I choose whether to pay the power for Rebuttal?": [
+    {
+      "name": "Rebuttal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2df67fe2ba17f0796ff1f9c03b85d2db48fe954b-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "When do I pay 1 energy and return a unit for Emperor's Dais?": [
+    {
+      "name": "Emperor's Dais",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c1ea4f6f58a62fc2b62647aa3459109e3d10297a-1039x744.png?accountingTag=RB",
+      "landscape": true
+    }
+  ],
+  "When exactly does Astral Heron trigger, and which card gets its discount?": [
+    {
+      "name": "Astral Heron",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/b1ce87efc9a1a7e2438c53e034a7f92caaa67ed6-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Where does a Flow spell countered by Abandon go?": [
+    {
+      "name": "Abandon",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/89929cfa4417c99576477793529c6808af145919-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Where does a spell played by Fizz, Trickster or Kai'Sa, Evolutionary go while Endless Riches is in play?": [
+    {
+      "name": "Endless Riches",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e2c33bf55162086acd458775a5db3d976f137b61-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Kai'Sa - Evolutionary",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fc4ee60eaedd5c56a9222fd07482b6a86b11baa4-744x1039.png?accountingTag=RB"
+    },
+    {
+      "name": "Fizz - Trickster",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/6d1c6615fb6ef5fb520a35b2ce76f8feee9167dc-744x1039.png?accountingTag=RB"
+    }
+  ],
+  "Whose \"when you play a spell\" abilities trigger for a spell Rebuttal takes control of?": [
+    {
+      "name": "Rebuttal",
+      "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2df67fe2ba17f0796ff1f9c03b85d2db48fe954b-744x1039.png?accountingTag=RB"
+    }
+  ]
+}

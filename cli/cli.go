@@ -12,9 +12,10 @@ import (
 	"rb/collection"
 	"rb/decks"
 	"rb/riftcodex"
+	"rb/rules"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "add-anki-media", "missing"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "gen-rules-cards", "add-anki-media", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -94,6 +95,12 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		ankiDir := fs.String("anki-dir", defaultDir, "Anki's data folder, holding one folder per profile")
 		profile := fs.String("profile", "", "Anki profile to copy into, or empty to use the only one")
 		return func() error { return addAnkiMedia(*mediaDir, *ankiDir, *profile) }
+
+	case "gen-rules-cards":
+		rulingsFile := fs.String("rulings-file", "rules/rulings.json", "ruling dataset to read the questions from")
+		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to find the named cards in")
+		outFile := fs.String("out", "rules/ruling-cards.json", "file to write the cards each question names into")
+		return func() error { return genRulesCards(*rulingsFile, *catalogFile, *outFile) }
 
 	case "gen-rules-anki":
 		var opts ankigen.RulesOptions
@@ -273,6 +280,14 @@ func addAnkiMedia(mediaDir, ankiDir, profile string) error {
 	if err := ankigen.AddMedia(mediaDir, ankiDir, profile, os.Stdout); err != nil {
 		return fmt.Errorf("failed to add the media to Anki: %w", err)
 	}
+	return nil
+}
+
+func genRulesCards(rulingsFile, catalogFile, outFile string) error {
+	if err := rules.LinkCards(rulingsFile, catalogFile, outFile); err != nil {
+		return fmt.Errorf("failed to link the cards each ruling names: %w", err)
+	}
+	fmt.Printf("wrote %s\n", outFile)
 	return nil
 }
 

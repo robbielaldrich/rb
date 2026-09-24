@@ -154,6 +154,12 @@
     margin: .5rem 0 1rem; font-size: 1.05rem; line-height: 1.45; max-width: 40rem;
     border-top: 1px solid var(--line); padding-top: 1rem;
   }
+  .quiz-cards { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+  .quiz-cards img {
+    width: 150px; height: auto; border-radius: .25rem; background: var(--line);
+    aspect-ratio: 744 / 1039;
+  }
+  .quiz-cards img.landscape { aspect-ratio: 1039 / 744; }
   .quiz-actions { display: flex; gap: .5rem; margin-top: 1rem; }
   .answer { padding: 0 .25rem .75rem 0; font-size: .875rem; max-width: 40rem; }
   .answer p { margin: 0 0 .5rem; }
@@ -238,6 +244,7 @@
   <div id="quiz">
     <p class="topic" id="quiz-topic"></p>
     <p class="quiz-question" id="quiz-question"></p>
+    <div class="quiz-cards" id="quiz-cards"></div>
     <div class="answer" id="quiz-answer" hidden></div>
     <div class="quiz-actions">
       <button type="button" id="quiz-reveal">Show answer</button>
@@ -1054,10 +1061,15 @@ const rulesFilters = document.getElementById("rules-filters");
 const quizTopic = document.getElementById("quiz-topic");
 const quizQuestion = document.getElementById("quiz-question");
 const quizAnswer = document.getElementById("quiz-answer");
+const quizCards = document.getElementById("quiz-cards");
 const quizReveal = document.getElementById("quiz-reveal");
 const quizNext = document.getElementById("quiz-next");
 
 let rulings = [];
+// rulingCards maps a question to the cards it names, worked out by
+// `rb gen-rules-cards` rather than here: naming them needs the catalog, and
+// the catalog is 2.3 MB this tab would otherwise never touch.
+let rulingCards = {};
 let rulesCat = "all";
 // asked is the run in progress, shuffled, and at is how far into it we are.
 let asked = [];
@@ -1073,9 +1085,14 @@ const RULE_CATS = [
 ];
 
 const loadRules = once(() =>
-  fetchJSON("./rules/rulings.json")
-    .then(data => {
+  Promise.all([
+    fetchJSON("./rules/rulings.json"),
+    // The cards are a nicety, so a run still starts without them.
+    fetchJSON("./rules/ruling-cards.json").catch(() => ({})),
+  ])
+    .then(([data, named]) => {
       rulings = data;
+      rulingCards = named;
       buildFilters();
       startRun();
     })
@@ -1126,11 +1143,29 @@ function showQuestion() {
   rulesStatus.textContent = `${at + 1} of ${asked.length}`;
   quizTopic.textContent = r.topic;
   quizQuestion.textContent = r.question;
+  showCards(r.question);
 
   quizAnswer.replaceChildren();
   quizAnswer.hidden = true;
   quizReveal.hidden = false;
   quizNext.hidden = true;
+}
+
+// showCards puts the cards a question names beside it. A ruling about how two
+// cards interact is a question about those cards, and answering it from the
+// names alone means holding the text of both in your head before the question
+// has even been read.
+function showCards(question) {
+  quizCards.replaceChildren();
+  for (const c of rulingCards[question] || []) {
+    const img = document.createElement("img");
+    img.src = c.image;
+    img.alt = c.name;
+    img.title = c.name;
+    img.loading = "lazy";
+    if (c.landscape) img.className = "landscape";
+    quizCards.append(img);
+  }
 }
 
 function revealAnswer() {
@@ -1149,6 +1184,7 @@ function revealAnswer() {
 function showRunEnd() {
   rulesStatus.textContent = `${asked.length} of ${asked.length}`;
   quizTopic.textContent = "";
+  showCards(null);
   quizQuestion.textContent =
     `That's all ${asked.length} ruling${asked.length === 1 ? "" : "s"} in this pick.`;
 
