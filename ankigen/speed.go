@@ -48,7 +48,7 @@ func GenerateActionCards(opts Options) (SpeedResult, error) {
 // things a domain can answer with — it is something one deck in that domain
 // brought with it.
 func generateSpeedCards(speed, deckName, fileName string, opts Options) (SpeedResult, error) {
-	cs, err := cards.Load(opts.CatalogPath)
+	cs, err := loadLegal(opts.CatalogPath)
 	if err != nil {
 		return SpeedResult{}, fmt.Errorf("failed to load catalog: %w", err)
 	}

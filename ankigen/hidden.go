@@ -57,7 +57,7 @@ const mediaPrefix = "rb-"
 // Hidden keyword do, from a scan with its rules text painted out. It answers
 // with the card intact.
 func GenerateHiddenEffects(opts Options) (Result, error) {
-	cs, err := cards.Load(opts.CatalogPath)
+	cs, err := loadLegal(opts.CatalogPath)
 	if err != nil {
 		return Result{}, fmt.Errorf("failed to load catalog: %w", err)
 	}

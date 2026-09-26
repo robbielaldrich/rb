@@ -14,6 +14,16 @@ import (
 // them carry the detail, and the image only has to bring the card to mind.
 const rosterThumbWidth = 180
 
+// loadLegal reads the catalog without its banned cards. Every deck here is
+// about what an opponent can be holding, and a banned card is one they can't.
+func loadLegal(path string) ([]cards.Card, error) {
+	cs, err := cards.Load(path)
+	if err != nil {
+		return nil, err
+	}
+	return cards.Legal(cs), nil
+}
+
 // byDomain groups cards by the domains they belong to, each list in name order
 // so that a regenerated deck doesn't reshuffle a list the reader has half
 // learnt. A card of two domains is listed under both, being playable out of

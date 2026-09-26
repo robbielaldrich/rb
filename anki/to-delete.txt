@@ -27,3 +27,4 @@
 2026-09-21	Riftbound::Action Cards	What are all the Action cards in Mind that cost 8 Energy or less?
 2026-09-21	Riftbound::Action Cards	What are all the Action cards in Order that cost 7 Energy or less?
 2026-09-21	Riftbound::Action Cards	What are all the Action cards in Order that cost 8 Energy or less?
+2026-09-25	Riftbound::Hidden Effects	<img src='rb-ogn-168-298-text-masked.jpg'><br>What does this hidden card do?

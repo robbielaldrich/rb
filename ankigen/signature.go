@@ -32,7 +32,7 @@ type SignatureResult struct {
 // gears rather than a card, which is why the question asks for a card and the
 // answer counts them.
 func GenerateSignatureCards(opts Options) (SignatureResult, error) {
-	cs, err := cards.Load(opts.CatalogPath)
+	cs, err := loadLegal(opts.CatalogPath)
 	if err != nil {
 		return SignatureResult{}, fmt.Errorf("failed to load catalog: %w", err)
 	}

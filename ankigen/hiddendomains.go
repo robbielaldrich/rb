@@ -7,8 +7,6 @@ import (
 	"path/filepath"
 	"slices"
 	"strings"
-
-	"rb/cards"
 )
 
 // HiddenDomainResult reports what GenerateHiddenDomains produced.
@@ -38,7 +36,7 @@ type HiddenDomainResult struct {
 // that has not changed — the note keeps its scheduling instead of coming back
 // as a new card with the old one left beside it.
 func GenerateHiddenDomains(opts Options) (HiddenDomainResult, error) {
-	cs, err := cards.Load(opts.CatalogPath)
+	cs, err := loadLegal(opts.CatalogPath)
 	if err != nil {
 		return HiddenDomainResult{}, fmt.Errorf("failed to load catalog: %w", err)
 	}
