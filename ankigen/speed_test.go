@@ -77,7 +77,7 @@ func fronts(rows [][]string) []string {
 }
 
 // Each domain gets a band for every Energy cost from 1 to its dearest card,
-// each holding everything at or under it.
+// one per Energy cost the domain prints at, each holding only that cost.
 func TestGenerateReactionCards(t *testing.T) {
 	opts := reactionOpts(t, []cards.Card{
 		reactionCard("unl-001-219", "Zap", 1, "Body"),
@@ -108,40 +108,39 @@ func TestGenerateReactionCards(t *testing.T) {
 	}
 
 	want := []string{
-		"What are all the Reaction cards in Body that cost 1 Energy or less?",
-		"What are all the Reaction cards in Body that cost 2 Energy or less?",
-		"What are all the Reaction cards in Body that cost 3 Energy or less?",
-		"What are all the Reaction cards in Body that cost 4 Energy or less?",
-		// Chaos's only card costs 2, so its "1 or less" band is empty and skipped.
-		"What are all the Reaction cards in Chaos that cost 2 Energy or less?",
+		// A free card is asked for at nothing rather than folded into every
+		// band above it, and 2 and 3 go unasked because Body prints nothing
+		// at either.
+		"What are all the Reaction cards in Body that cost 0 Energy?",
+		"What are all the Reaction cards in Body that cost 1 Energy?",
+		"What are all the Reaction cards in Body that cost 4 Energy?",
+		"What are all the Reaction cards in Chaos that cost 2 Energy?",
 	}
 	if strings.Join(fronts(rows), "\n") != strings.Join(want, "\n") {
 		t.Fatalf("fronts =\n%s\nwant\n%s", strings.Join(fronts(rows), "\n"), strings.Join(want, "\n"))
 	}
 
-	one, top := rows[0], rows[3]
-	if !strings.Contains(one[1], "<b>3 cards</b>") {
-		t.Errorf("1-or-less back = %q, want the two 1-Energy cards and the free one", one[1])
+	free, one, four := rows[0], rows[1], rows[2]
+	if !strings.Contains(free[1], "<b>1 card</b>") || !strings.Contains(free[1], "Free Swing") {
+		t.Errorf("0-Energy back = %q, want the free card alone", free[1])
 	}
-	if !strings.Contains(top[1], "<b>4 cards</b>") {
-		t.Errorf("top band back = %q, want the whole roster", top[1])
+	// The cheap cards are not repeated in the bands above them, which is the
+	// whole of the change: each is read once, where it costs.
+	if !strings.Contains(one[1], "<b>2 cards</b>") || strings.Contains(one[1], "Free Swing") {
+		t.Errorf("1-Energy back = %q, want the two 1-Energy cards and nothing cheaper", one[1])
 	}
-	// Cheapest first, then by name.
-	order := []string{"Free Swing", "Bash", "Zap", "Anvil"}
-	last := -1
-	for _, name := range order {
-		i := strings.Index(top[1], "<li>"+name+" ")
-		if i <= last {
-			t.Errorf("back = %q, want %v in that order", top[1], order)
-			break
-		}
-		last = i
+	if !strings.Contains(four[1], "<b>1 card</b>") || !strings.Contains(four[1], "Anvil") {
+		t.Errorf("4-Energy back = %q, want Anvil alone rather than the whole roster", four[1])
 	}
-	if !strings.Contains(top[1], "<i>(UNL)</i>") || !strings.Contains(top[1], "<img src='rb-unl-002-219.jpg' width='180'>") {
-		t.Errorf("back = %q, want the set named and the scan shown", top[1])
+	// Within a cost, by name.
+	if strings.Index(one[1], "<li>Bash ") > strings.Index(one[1], "<li>Zap ") {
+		t.Errorf("back = %q, want the two named in name order", one[1])
 	}
-	if !strings.Contains(top[2], "riftbound::domain::body") || !strings.Contains(top[2], "riftbound::energy::4") {
-		t.Errorf("tags = %q", top[2])
+	if !strings.Contains(four[1], "<i>(UNL)</i>") || !strings.Contains(four[1], "<img src='rb-unl-002-219.jpg' width='180'>") {
+		t.Errorf("back = %q, want the set named and the scan shown", four[1])
+	}
+	if !strings.Contains(four[2], "riftbound::domain::body") || !strings.Contains(four[2], "riftbound::energy::4") {
+		t.Errorf("tags = %q", four[2])
 	}
 }
 
@@ -163,18 +162,23 @@ func TestActionCardsShareThePathAndKeepToTheirOwnKeyword(t *testing.T) {
 	}
 	_, rows := readDeck(t, res.DeckFile)
 	want := []string{
-		"What are all the Action cards in Body that cost 1 Energy or less?",
-		"What are all the Action cards in Body that cost 2 Energy or less?",
+		"What are all the Action cards in Body that cost 1 Energy?",
+		"What are all the Action cards in Body that cost 2 Energy?",
 	}
 	if strings.Join(fronts(rows), "\n") != strings.Join(want, "\n") {
 		t.Fatalf("fronts = %v, want %v", fronts(rows), want)
 	}
-	back := rows[1][1]
-	if !strings.Contains(back, "Long Sword") || !strings.Contains(back, "Void Seeker") {
-		t.Errorf("back = %q, want the gear as well as the spell", back)
+	// The gear costs 2 and the spell 1, so each is now in its own band.
+	if back := rows[1][1]; !strings.Contains(back, "Long Sword") {
+		t.Errorf("2-Energy back = %q, want the gear as well as the spells", back)
 	}
-	if strings.Contains(back, "Flash") || strings.Contains(back, "Eye of Twilight") {
-		t.Errorf("back = %q, want no Reaction card and no legend", back)
+	if back := rows[0][1]; !strings.Contains(back, "Void Seeker") {
+		t.Errorf("1-Energy back = %q, want the spell", back)
+	}
+	for _, r := range rows {
+		if strings.Contains(r[1], "Flash") || strings.Contains(r[1], "Eye of Twilight") {
+			t.Errorf("%q answers %q, want no Reaction card and no legend", r[0], r[1])
+		}
 	}
 }
 

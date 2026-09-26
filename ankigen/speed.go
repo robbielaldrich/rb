@@ -1,7 +1,6 @@
 package ankigen
 
 import (
-	"cmp"
 	"fmt"
 	"maps"
 	"os"
@@ -35,11 +34,15 @@ func GenerateActionCards(opts Options) (SpeedResult, error) {
 // generateSpeedCards builds a deck for learning which cards a domain can play
 // at a given speed, the keyword being Action or Reaction.
 //
-// Each domain gets one question per Energy cost, from 1 up to the dearest
-// card it holds at that speed: "cards that cost 3 Energy or less". The top
-// band is the whole roster, the question an open rune actually raises — they
-// have Calm up, what can they be holding? — and the bands under it are the
-// narrower read of what is affordable. A free card is in every band.
+// Each domain gets one question per Energy cost it actually prints at that
+// speed: "cards that cost 3 Energy". Exactly 3, whatever Power they also ask
+// for — Power is paid from a domain's own runes and doesn't change which card
+// this is.
+//
+// The costs don't nest. A cumulative band — "3 Energy or less" — repeats every
+// cheaper band inside itself, so the dearest one carries the whole roster and
+// the cheap cards are re-read at every level above their own. The lists grow
+// with the set and most of what grows is the repetition.
 //
 // It is cards rather than spells because the speed isn't a spell's alone: a
 // gear or a unit can carry the keyword too. Legends are left out, since a
@@ -70,22 +73,16 @@ func generateSpeedCards(speed, deckName, fileName string, opts Options) (SpeedRe
 	d := deck{name: deckName, notetype: "Basic"}
 	rosters := byDomain(found)
 	for _, domain := range slices.Sorted(maps.Keys(rosters)) {
-		// Cheapest first, and by name among equals, so a band's list
-		// is the one below it with the dearer cards added.
 		all := rosters[domain]
-		slices.SortStableFunc(all, func(a, b cards.Card) int {
-			if c := cmp.Compare(energyCost(a), energyCost(b)); c != 0 {
-				return c
-			}
+		slices.SortFunc(all, func(a, b cards.Card) int {
 			return strings.Compare(a.BaseName(), b.BaseName())
 		})
-		for energy := 1; energy <= max(maxEnergy(all), 1); energy++ {
-			within := atOrUnder(all, energy)
-			if len(within) == 0 {
-				continue
-			}
+		// Only the costs the domain prints at: asking for 4 Energy where it
+		// has nothing at 4 is a question with no answer.
+		for _, energy := range energyCosts(all) {
+			within := atCost(all, energy)
 			d.notes = append(d.notes, note{
-				front: fmt.Sprintf("What are all the %s cards in %s that cost %d Energy or less?", speed, domain, energy),
+				front: fmt.Sprintf("What are all the %s cards in %s that cost %d Energy?", speed, domain, energy),
 				back:  roster(within, images),
 				tags: []string{
 					"riftbound::" + strings.ToLower(speed) + "-cards",
@@ -141,21 +138,22 @@ func energyCost(c cards.Card) int {
 	return *c.Attributes.Energy
 }
 
-// maxEnergy is the dearest Energy cost among the cards.
-func maxEnergy(cs []cards.Card) int {
-	top := 0
+// energyCosts lists, in ascending order, every Energy cost the cards are
+// actually printed at.
+func energyCosts(cs []cards.Card) []int {
+	seen := map[int]bool{}
 	for _, c := range cs {
-		top = max(top, energyCost(c))
+		seen[energyCost(c)] = true
 	}
-	return top
+	return slices.Sorted(maps.Keys(seen))
 }
 
-// atOrUnder keeps the cards costing threshold Energy or less, in the order
-// they were given.
-func atOrUnder(cs []cards.Card, threshold int) []cards.Card {
+// atCost keeps the cards costing exactly that much Energy, in the order they
+// were given.
+func atCost(cs []cards.Card, energy int) []cards.Card {
 	var out []cards.Card
 	for _, c := range cs {
-		if energyCost(c) <= threshold {
+		if energyCost(c) == energy {
 			out = append(out, c)
 		}
 	}
