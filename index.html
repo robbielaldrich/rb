@@ -137,6 +137,42 @@
     background: linear-gradient(to right, var(--have) var(--p), var(--line) var(--p));
   }
 
+  /* Collection guide */
+  .guide-heading { font-size: 1rem; margin: 2rem 0 .75rem; font-weight: 600; }
+  .guide-toggle {
+    display: inline-flex; gap: .4rem; align-items: center;
+    font-size: .85rem; color: var(--muted); cursor: pointer;
+  }
+  .guide-toggle input { width: auto; }
+  .guide-set {
+    margin: 1.25rem 0 .5rem; font-size: .8rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .guide-grid {
+    display: grid; gap: .35rem;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  }
+  .guide-card { position: relative; display: block; border-radius: .25rem; overflow: hidden; }
+  .guide-card img {
+    display: block; width: 100%; height: auto;
+    background: var(--line); aspect-ratio: 744 / 1039;
+  }
+  .guide-card img.landscape { aspect-ratio: 1039 / 744; }
+  /* A card not in the collection is dulled and washed red. Both, rather than
+     either: the tint alone is easy to miss on red artwork, and greying alone
+     reads as "loading" rather than "missing". */
+  .guide-card.missing img { filter: grayscale(.8) brightness(.75); }
+  .guide-card.missing::after {
+    content: ""; position: absolute; inset: 0;
+    background: rgba(200, 30, 30, .45);
+  }
+  .guide-qty {
+    position: absolute; right: .15rem; bottom: .15rem;
+    padding: 0 .25rem; border-radius: .2rem;
+    background: rgba(0, 0, 0, .65); color: #fff;
+    font-size: .7rem; font-variant-numeric: tabular-nums;
+  }
+
   /* Rules */
   .filters { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0 0 .5rem; }
   .filters button {
@@ -236,6 +272,14 @@
       <tfoot></tfoot>
     </table>
   </div>
+
+  <h2 class="guide-heading">Collection guide</h2>
+  <div class="filters" id="guide-filters" role="group" aria-label="Show one set"></div>
+  <label class="guide-toggle">
+    <input type="checkbox" id="guide-missing"> Only what I'm missing
+  </label>
+  <p id="guide-status" class="status">Loading cards&hellip;</p>
+  <div id="guide"></div>
 </section>
 
 <section role="tabpanel" id="panel-rules" aria-labelledby="tab-rules" hidden>
@@ -392,7 +436,7 @@ function select(tab) {
   const hash = "#" + tab.id.replace("tab-", "");
   if (location.hash !== hash) location.hash = hash;
   if (tab.id === "tab-decks") loadDecks();
-  if (tab.id === "tab-summary") loadSummary();
+  if (tab.id === "tab-summary") { loadSummary(); loadGuide(); }
   if (tab.id === "tab-rules") loadRules();
   if (tab.id === "tab-search" && !q.disabled) q.focus();
 }
@@ -1049,6 +1093,128 @@ function renderSummary(data) {
 
   for (const s of data.sets) summaryBody.append(summaryRow(s, s.label || s.set));
   summaryFoot.append(summaryRow(data.total, "All sets"));
+}
+
+/* Collection guide
+   Every card the catalog prints, in binder order, with the ones not in the
+   collection washed red. The summary above says how far along a set is; this
+   says which cards those are, which is the thing you take to a shop.
+
+   The catalog is already in hand -- the search tab fetches it on load -- so
+   what this costs is images, and those are asked for at thumbnail size and
+   left to load as they are scrolled to. Asking for all 1400 at once would be
+   most of a gigabyte. */
+const guideFilters = document.getElementById("guide-filters");
+const guideMissing = document.getElementById("guide-missing");
+const guideStatus = document.getElementById("guide-status");
+const guideEl = document.getElementById("guide");
+
+let guideCards = [];
+let guideSet = "all";
+
+const loadGuide = once(() =>
+  Promise.all([catalog(), collection()])
+    .then(([cs, coll]) => {
+      const owned = ownedByID(coll);
+      guideCards = cs.map(c => ({
+        name: c.name,
+        id: c.riftbound_id,
+        set: (c.set.set_id || "").toUpperCase(),
+        number: c.collector_number,
+        image: c.media.image_url,
+        landscape: c.orientation === "landscape",
+        qty: owned.get(c.riftbound_id) || 0,
+      })).filter(c => c.image);
+      buildGuideFilters();
+      renderGuide();
+    })
+    .catch(err => {
+      guideStatus.textContent = "Failed to load the collection guide: " + err;
+    }));
+
+function buildGuideFilters() {
+  const sets = [...new Set(guideCards.map(c => c.set))].sort();
+  for (const id of ["all", ...sets]) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = id === "all" ? `Every set ${guideCards.length}` : `${id} ${guideCards.filter(c => c.set === id).length}`;
+    b.setAttribute("aria-pressed", String(id === guideSet));
+    b.addEventListener("click", () => {
+      guideSet = id;
+      for (const other of guideFilters.children) {
+        other.setAttribute("aria-pressed", String(other === b));
+      }
+      renderGuide();
+    });
+    guideFilters.append(b);
+  }
+}
+
+guideMissing.addEventListener("change", renderGuide);
+
+function renderGuide() {
+  const onlyMissing = guideMissing.checked;
+  const shown = guideCards.filter(c =>
+    (guideSet === "all" || c.set === guideSet) && (!onlyMissing || c.qty === 0));
+
+  const held = guideCards.filter(c =>
+    (guideSet === "all" || c.set === guideSet) && c.qty > 0).length;
+  const total = guideCards.filter(c => guideSet === "all" || c.set === guideSet).length;
+
+  guideStatus.textContent = shown.length === 0
+    ? (onlyMissing ? "Nothing missing here." : "No cards.")
+    : `${held} of ${total} held` + (onlyMissing ? `, showing the ${shown.length} missing.` : ".");
+
+  // Binder order: by set, then by the printed number, with the id breaking
+  // ties so an alternate art sits beside the printing it reprints.
+  shown.sort((a, b) =>
+    cmp(a.set, b.set) || a.number - b.number || cmp(a.id, b.id));
+
+  const frag = document.createDocumentFragment();
+  let set = null;
+  let grid = null;
+  for (const c of shown) {
+    if (c.set !== set) {
+      set = c.set;
+      const h = document.createElement("p");
+      h.className = "guide-set";
+      h.textContent = set;
+      frag.append(h);
+      grid = document.createElement("div");
+      grid.className = "guide-grid";
+      frag.append(grid);
+    }
+    grid.append(guideTile(c));
+  }
+  // Built off-screen and attached once: a thousand tiles appended one at a
+  // time is a thousand reflows.
+  guideEl.replaceChildren(frag);
+}
+
+function guideTile(c) {
+  const tile = document.createElement("a");
+  tile.className = c.qty > 0 ? "guide-card" : "guide-card missing";
+  tile.href = c.image;
+  tile.target = "_blank";
+  tile.rel = "noreferrer";
+  tile.title = `${c.name} — ${c.set} ${c.number}` + (c.qty > 0 ? ` (have ${c.qty})` : " (missing)");
+
+  const img = document.createElement("img");
+  img.src = c.image + (c.image.includes("?") ? "&" : "?") + "w=160";
+  img.alt = c.name;
+  img.loading = "lazy";
+  if (c.landscape) img.className = "landscape";
+  tile.append(img);
+
+  // Only counts worth reading: every held card would otherwise carry a "1"
+  // saying nothing the absence of a tint doesn't already say.
+  if (c.qty > 1) {
+    const qty = document.createElement("span");
+    qty.className = "guide-qty";
+    qty.textContent = `\u00d7${c.qty}`;
+    tile.append(qty);
+  }
+  return tile;
 }
 
 /* Rules
