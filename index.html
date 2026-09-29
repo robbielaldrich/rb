@@ -151,20 +151,33 @@
   .guide-grid {
     display: grid; gap: .35rem;
     grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    /* Without this a tile stretches to the height of its row, and a row is as
+       tall as its tallest card. One battlefield -- short and wide -- among a
+       row of upright cards leaves every tile in that row a box taller than the
+       card in it, which the tint below then fills. */
+    align-items: start;
   }
-  .guide-card { position: relative; display: block; border-radius: .25rem; overflow: hidden; }
+  /* The shape belongs to the tile rather than to the image inside it. The tint
+     covers the tile, so anything the tile has that the card doesn't gets
+     painted red. */
+  .guide-card {
+    position: relative; display: block; border-radius: .25rem; overflow: hidden;
+    aspect-ratio: 744 / 1039;
+  }
+  .guide-card.landscape { aspect-ratio: 1039 / 744; }
   .guide-card img {
-    display: block; width: 100%; height: auto;
-    background: var(--line); aspect-ratio: 744 / 1039;
+    display: block; width: 100%; height: 100%;
+    object-fit: cover; background: var(--line);
   }
-  .guide-card img.landscape { aspect-ratio: 1039 / 744; }
   /* A card not in the collection is dulled and washed red. Both, rather than
      either: the tint alone is easy to miss on red artwork, and greying alone
-     reads as "loading" rather than "missing". */
-  .guide-card.missing img { filter: grayscale(.8) brightness(.75); }
+     reads as "loading" rather than "missing". Light enough on both counts to
+     leave the art legible -- you have to be able to tell which card it is you
+     are missing. */
+  .guide-card.missing img { filter: grayscale(.5) brightness(.92); }
   .guide-card.missing::after {
     content: ""; position: absolute; inset: 0;
-    background: rgba(200, 30, 30, .45);
+    background: rgba(198, 40, 40, .3);
   }
   .guide-qty {
     position: absolute; right: .15rem; bottom: .15rem;
@@ -1193,7 +1206,9 @@ function renderGuide() {
 
 function guideTile(c) {
   const tile = document.createElement("a");
-  tile.className = c.qty > 0 ? "guide-card" : "guide-card missing";
+  tile.className = "guide-card"
+    + (c.qty > 0 ? "" : " missing")
+    + (c.landscape ? " landscape" : "");
   tile.href = c.image;
   tile.target = "_blank";
   tile.rel = "noreferrer";
@@ -1203,7 +1218,6 @@ function guideTile(c) {
   img.src = c.image + (c.image.includes("?") ? "&" : "?") + "w=160";
   img.alt = c.name;
   img.loading = "lazy";
-  if (c.landscape) img.className = "landscape";
   tile.append(img);
 
   // Only counts worth reading: every held card would otherwise carry a "1"
