@@ -521,6 +521,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-126a-298",
+      "name": "Body Rune (Alternate Art)",
+      "number": "126a/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:03:14.572175-07:00"
+    },
+    {
       "riftbound_id": "ogn-127-298",
       "name": "Cannon Barrage",
       "number": "127/298",
@@ -3425,36 +3433,52 @@
       "updated_at": "2026-08-30T21:14:05.572829719-07:00"
     },
     {
+      "riftbound_id": "ven-016-166",
+      "name": "Eclipse Dragon",
+      "number": "16/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:05:40.558447-07:00"
+    },
+    {
       "riftbound_id": "ven-017-166",
       "name": "Morgana, Vindictive",
       "number": "17/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:14:13.355568841-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:04:57.902119-07:00"
     },
     {
       "riftbound_id": "ven-018-166",
       "name": "Rage Amplifier",
       "number": "18/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-09-20T20:25:45.966438-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:04:04.927882-07:00"
     },
     {
       "riftbound_id": "ven-019-166",
       "name": "Renekton, Rage Fueled",
       "number": "19/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:14:24.349057613-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:06:31.4826-07:00"
     },
     {
       "riftbound_id": "ven-020-166",
       "name": "Twilight Reveler",
       "number": "20/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-09-10T11:39:33.151501-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:04:31.548415-07:00"
+    },
+    {
+      "riftbound_id": "ven-021-166",
+      "name": "Akali, Deadly Weapon",
+      "number": "21/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:03:23.542667-07:00"
     },
     {
       "riftbound_id": "ven-021a-166",
@@ -3589,8 +3613,8 @@
       "name": "Akali, Silent",
       "number": "38/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-09-05T17:07:37.59033055-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:04:50.344828-07:00"
     },
     {
       "riftbound_id": "ven-038a-166",
@@ -3613,32 +3637,32 @@
       "name": "Decree of Focus",
       "number": "40/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:20:33.441525321-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:14.190074-07:00"
     },
     {
       "riftbound_id": "ven-041-166",
       "name": "Riven, Shattered",
       "number": "41/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:18:32.171668436-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:05:44.131656-07:00"
     },
     {
       "riftbound_id": "ven-042-166",
       "name": "Shen, Scourge of Shadows",
       "number": "42/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:20:25.184036463-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:06:43.1311-07:00"
     },
     {
       "riftbound_id": "ven-043-166",
       "name": "Steel Paws",
       "number": "43/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T17:12:14.376055611-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:06:39.214971-07:00"
     },
     {
       "riftbound_id": "ven-044-166",
@@ -3797,32 +3821,56 @@
       "name": "Hextech Formula",
       "number": "62/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:25:43.682711376-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:07:01.741615-07:00"
     },
     {
       "riftbound_id": "ven-063-166",
       "name": "Nasus, Guardian of Knowledge",
       "number": "63/166",
       "set_id": "VEN",
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:06:04.956328-07:00"
+    },
+    {
+      "riftbound_id": "ven-064-166",
+      "name": "Plaza Guardian",
+      "number": "64/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-23T13:34:55.059577506-07:00"
+      "updated_at": "2026-09-29T21:05:18.65242-07:00"
     },
     {
       "riftbound_id": "ven-065-166",
       "name": "Swain, Visionary",
       "number": "65/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-09-10T11:41:49.946289-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:04:39.712171-07:00"
     },
     {
       "riftbound_id": "ven-066-166",
       "name": "Temporal Breach",
       "number": "66/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:04:54.600441-07:00"
+    },
+    {
+      "riftbound_id": "ven-067-166",
+      "name": "Bottled Constellation",
+      "number": "67/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-23T13:33:53.386404044-07:00"
+      "updated_at": "2026-09-29T21:03:07.633845-07:00"
+    },
+    {
+      "riftbound_id": "ven-069a-166",
+      "name": "Mel, Newly Awakened (Alternate Art)",
+      "number": "69a/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:03:02.751145-07:00"
     },
     {
       "riftbound_id": "ven-070-166",
@@ -3941,40 +3989,56 @@
       "name": "Ambessa, The Wolf",
       "number": "84/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-09-10T11:43:36.393545-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:06:49.981625-07:00"
     },
     {
       "riftbound_id": "ven-085-166",
       "name": "Decree of Strength",
       "number": "85/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-09-06T22:04:31.354536771-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:05:02.441352-07:00"
+    },
+    {
+      "riftbound_id": "ven-086-166",
+      "name": "Gangplank, Naval",
+      "number": "86/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:04:46.828121-07:00"
     },
     {
       "riftbound_id": "ven-087-166",
       "name": "Hextech Disc",
       "number": "87/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:30:09.948079759-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:06:14.359554-07:00"
     },
     {
       "riftbound_id": "ven-088-166",
       "name": "Jayce, Hammer in Hand",
       "number": "88/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:30:33.229334768-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:05:25.371181-07:00"
+    },
+    {
+      "riftbound_id": "ven-088a-166",
+      "name": "Jayce, Hammer in Hand (Alternate Art)",
+      "number": "88a/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:03:38.674632-07:00"
     },
     {
       "riftbound_id": "ven-089-166",
       "name": "Wild Claw",
       "number": "89/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:29:21.27378322-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:03:49.319835-07:00"
     },
     {
       "riftbound_id": "ven-093-166",
@@ -4093,24 +4157,32 @@
       "name": "Decree of Discord",
       "number": "107/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:57.368637-07:00"
+    },
+    {
+      "riftbound_id": "ven-108-166",
+      "name": "Forgotten Relic",
+      "number": "108/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-30T21:32:43.331107062-07:00"
+      "updated_at": "2026-09-29T21:04:08.122508-07:00"
     },
     {
       "riftbound_id": "ven-109-166",
       "name": "Illaoi, Prophet of the Great Kraken",
       "number": "109/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-09-20T20:26:08.051905-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:06:54.535155-07:00"
     },
     {
       "riftbound_id": "ven-110-166",
       "name": "Mel, Defiant Soul",
       "number": "110/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:29:00.765439955-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:07.066453-07:00"
     },
     {
       "riftbound_id": "ven-111-166",
@@ -4125,8 +4197,8 @@
       "name": "Zed, Without a Sound",
       "number": "112/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-09-10T11:39:26.301351-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:05:32.932631-07:00"
     },
     {
       "riftbound_id": "ven-113a-166",
@@ -4269,40 +4341,40 @@
       "name": "Aurok General",
       "number": "130/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:37:45.073612071-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:36.729311-07:00"
     },
     {
       "riftbound_id": "ven-131-166",
       "name": "Decree of Unity",
       "number": "131/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-09-06T22:04:10.278499682-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:06:35.852225-07:00"
     },
     {
       "riftbound_id": "ven-132-166",
       "name": "Fallen Feline",
       "number": "132/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-08-30T21:37:04.151364184-07:00"
+      "quantity": 4,
+      "updated_at": "2026-09-29T21:05:09.573155-07:00"
     },
     {
       "riftbound_id": "ven-133-166",
       "name": "Glowstone",
       "number": "133/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:10:44.080300685-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:07:04.898281-07:00"
     },
     {
       "riftbound_id": "ven-134-166",
       "name": "Kayle, Justified",
       "number": "134/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T12:56:17.970489905-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:48.757543-07:00"
     },
     {
       "riftbound_id": "ven-135-166",
@@ -4317,16 +4389,32 @@
       "name": "Akali - Rogue Assassin",
       "number": "139/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:04:27.935784-07:00"
+    },
+    {
+      "riftbound_id": "ven-140-166",
+      "name": "Shuriken Flip",
+      "number": "140/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-23T13:21:39.818754-07:00"
+      "updated_at": "2026-09-29T21:03:43.075681-07:00"
+    },
+    {
+      "riftbound_id": "ven-141-166",
+      "name": "Renekton - Butcher of the Sands",
+      "number": "141/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:06:17.73009-07:00"
     },
     {
       "riftbound_id": "ven-143-166",
       "name": "Zed - Master of Shadows",
       "number": "143/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:41:38.829383557-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:06:00.530627-07:00"
     },
     {
       "riftbound_id": "ven-144-166",
@@ -4341,16 +4429,16 @@
       "name": "Nasus - Curator of the Sands",
       "number": "145/166",
       "set_id": "VEN",
-      "quantity": 2,
-      "updated_at": "2026-08-30T21:41:36.11739729-07:00"
+      "quantity": 3,
+      "updated_at": "2026-09-29T21:05:29.349844-07:00"
     },
     {
       "riftbound_id": "ven-146-166",
       "name": "Siphoning Strike",
       "number": "146/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-09-10T11:42:04.395153-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:03:32.995268-07:00"
     },
     {
       "riftbound_id": "ven-147-166",
@@ -4365,32 +4453,40 @@
       "name": "Jayce - Defender of Tomorrow",
       "number": "149/166",
       "set_id": "VEN",
-      "quantity": 4,
-      "updated_at": "2026-09-10T11:43:43.181416-07:00"
+      "quantity": 5,
+      "updated_at": "2026-09-29T21:06:58.417288-07:00"
     },
     {
       "riftbound_id": "ven-151-166",
       "name": "Mel - Soul's Reflection",
       "number": "151/166",
       "set_id": "VEN",
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:04:36.54108-07:00"
+    },
+    {
+      "riftbound_id": "ven-152-166",
+      "name": "Rebuttal",
+      "number": "152/166",
+      "set_id": "VEN",
       "quantity": 1,
-      "updated_at": "2026-08-23T12:52:04.174433978-07:00"
+      "updated_at": "2026-09-29T21:03:28.777002-07:00"
     },
     {
       "riftbound_id": "ven-153-166",
       "name": "Ambessa - Matriarch of War",
       "number": "153/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-23T12:59:51.704990051-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:06:10.241816-07:00"
     },
     {
       "riftbound_id": "ven-155-166",
       "name": "Yordle, Kennen - Heart of the Tempest",
       "number": "155/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-08-30T21:41:44.244949518-07:00"
+      "quantity": 2,
+      "updated_at": "2026-09-29T21:05:53.024506-07:00"
     },
     {
       "riftbound_id": "ven-156-166",
@@ -4479,6 +4575,14 @@
       "set_id": "VEN",
       "quantity": 3,
       "updated_at": "2026-09-29T20:52:10.112141-07:00"
+    },
+    {
+      "riftbound_id": "ven-193-166",
+      "name": "Shen - Eye of Twilight (Overnumbered)",
+      "number": "193/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-09-29T21:02:56.715622-07:00"
     },
     {
       "riftbound_id": "ven-r01",
