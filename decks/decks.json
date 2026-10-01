@@ -6911,6 +6911,348 @@
           ]
         }
       ]
+    },
+    {
+      "id": "beaab288",
+      "name": "Shen, Eye of Twilight",
+      "legend": "Shen, Eye of Twilight",
+      "latest_set": "VEN",
+      "added_at": "2026-09-30T20:10:40.509016-07:00",
+      "sets": [
+        "OGN",
+        "SFD",
+        "UNL",
+        "VEN"
+      ],
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Shen, Eye of Twilight"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Shen, Leader of the Kinkou Order"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Defy"
+            },
+            {
+              "quantity": 3,
+              "name": "Discipline"
+            },
+            {
+              "quantity": 3,
+              "name": "Zhonya's Hourglass"
+            },
+            {
+              "quantity": 3,
+              "name": "Stellacorn Herder"
+            },
+            {
+              "quantity": 3,
+              "name": "Scuttle Crab"
+            },
+            {
+              "quantity": 3,
+              "name": "Astral Heron"
+            },
+            {
+              "quantity": 3,
+              "name": "Shadow Dash"
+            },
+            {
+              "quantity": 2,
+              "name": "Back Off"
+            },
+            {
+              "quantity": 2,
+              "name": "Shepherd's Heirloom"
+            },
+            {
+              "quantity": 2,
+              "name": "Divining Shells"
+            },
+            {
+              "quantity": 1,
+              "name": "Block"
+            },
+            {
+              "quantity": 1,
+              "name": "Not So Fast"
+            },
+            {
+              "quantity": 1,
+              "name": "Sterak's Gage"
+            },
+            {
+              "quantity": 1,
+              "name": "Ki Barrier"
+            },
+            {
+              "quantity": 3,
+              "name": "Fiora, Victorious"
+            },
+            {
+              "quantity": 3,
+              "name": "Kayle, Justified"
+            },
+            {
+              "quantity": 2,
+              "name": "Irelia, Fervent"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Forgotten Monument"
+            },
+            {
+              "quantity": 1,
+              "name": "Kinkou Temple"
+            },
+            {
+              "quantity": 1,
+              "name": "Risen Altar"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Calm Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Order Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Salvage"
+            },
+            {
+              "quantity": 2,
+              "name": "Vengeance"
+            },
+            {
+              "quantity": 2,
+              "name": "Tomb-Raider Barbara"
+            },
+            {
+              "quantity": 2,
+              "name": "Akali, Silent"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Focus"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Unity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bf926146",
+      "name": "Renekton, Butcher of the Sands",
+      "legend": "Renekton, Butcher of the Sands",
+      "latest_set": "VEN",
+      "added_at": "2026-09-30T20:11:02.492909-07:00",
+      "sets": [
+        "OGN",
+        "SFD",
+        "UNL",
+        "VEN"
+      ],
+      "sections": [
+        {
+          "name": "Legend",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Renekton, Butcher of the Sands"
+            }
+          ]
+        },
+        {
+          "name": "Champion",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Renekton, Rage Fueled"
+            }
+          ]
+        },
+        {
+          "name": "MainDeck",
+          "cards": [
+            {
+              "quantity": 3,
+              "name": "Noxus Hopeful"
+            },
+            {
+              "quantity": 3,
+              "name": "First Mate"
+            },
+            {
+              "quantity": 3,
+              "name": "Punch First"
+            },
+            {
+              "quantity": 3,
+              "name": "Inferna"
+            },
+            {
+              "quantity": 3,
+              "name": "Irresistible Faefolk"
+            },
+            {
+              "quantity": 2,
+              "name": "Pit Rookie"
+            },
+            {
+              "quantity": 2,
+              "name": "Sabotage"
+            },
+            {
+              "quantity": 2,
+              "name": "Ruin Runner"
+            },
+            {
+              "quantity": 2,
+              "name": "Kinkou Initiate"
+            },
+            {
+              "quantity": 2,
+              "name": "Rampage"
+            },
+            {
+              "quantity": 1,
+              "name": "Cleave"
+            },
+            {
+              "quantity": 1,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 1,
+              "name": "Grim Apothecary"
+            },
+            {
+              "quantity": 1,
+              "name": "Tools of Empire"
+            },
+            {
+              "quantity": 1,
+              "name": "Dominus"
+            },
+            {
+              "quantity": 3,
+              "name": "Kai'Sa, Survivor"
+            },
+            {
+              "quantity": 3,
+              "name": "Rengar, Trophy Hunter"
+            },
+            {
+              "quantity": 2,
+              "name": "Nidalee, Cat Form"
+            },
+            {
+              "quantity": 1,
+              "name": "Darius, Trifarian"
+            }
+          ]
+        },
+        {
+          "name": "Battlefields",
+          "cards": [
+            {
+              "quantity": 1,
+              "name": "Seat of Power"
+            },
+            {
+              "quantity": 1,
+              "name": "Forbidding Waste"
+            },
+            {
+              "quantity": 1,
+              "name": "Star Spring"
+            }
+          ]
+        },
+        {
+          "name": "Runes",
+          "cards": [
+            {
+              "quantity": 7,
+              "name": "Body Rune"
+            },
+            {
+              "quantity": 5,
+              "name": "Fury Rune"
+            }
+          ]
+        },
+        {
+          "name": "Sideboard",
+          "cards": [
+            {
+              "quantity": 2,
+              "name": "Unyielding Spirit"
+            },
+            {
+              "quantity": 2,
+              "name": "Ferrous Forerunner"
+            },
+            {
+              "quantity": 2,
+              "name": "Repulse"
+            },
+            {
+              "quantity": 1,
+              "name": "Thermo Beam"
+            },
+            {
+              "quantity": 1,
+              "name": "Brittle Steel"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Rage"
+            },
+            {
+              "quantity": 1,
+              "name": "Decree of Strength"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
