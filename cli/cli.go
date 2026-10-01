@@ -18,7 +18,7 @@ import (
 	"rb/rules"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "watch-decks", "match-decks", "gen-anki", "gen-rules-anki", "gen-rules-cards", "add-anki-media", "missing"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "watch-decks", "gen-anki", "gen-rules-cards", "add-anki-media", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -61,12 +61,6 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 			return missing(*collectionFile, *catalogFile, fs.Args(), axis)
 		}
 
-	case "add-decks":
-		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to check the pasted card names against")
-		setsFile := fs.String("sets-file", "cards/sets.json", "set list to date each deck by the newest set in print")
-		decksFile := fs.String("decks-file", "decks/decks.json", "deck register to append to")
-		return func() error { return addDecks(*decksFile, *catalogFile, *setsFile) }
-
 	case "watch-decks":
 		opts := decks.WatchOptions{Notify: true}
 		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to check the copied card names against")
@@ -75,15 +69,6 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.DurationVar(&opts.Interval, "interval", 500*time.Millisecond, "how often to read the clipboard")
 		fs.BoolVar(&opts.Notify, "notify", true, "raise a notification for each deck saved")
 		return func() error { return watchDecks(opts) }
-
-	case "match-decks":
-		var opts decks.Options
-		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to read the deck names through")
-		fs.StringVar(&opts.CollectionPath, "collection-file", "collection/collection.json", "collection to build the decks out of")
-		fs.StringVar(&opts.DecksPath, "decks-file", "decks/decks.json", "deck register to measure")
-		fs.StringVar(&opts.ReportPath, "out", "decks/match-decks-result.txt", "file to keep a copy of the report in, or \"\" to keep none")
-		fs.BoolVar(&opts.Sideboard, "sideboard", false, "count the sideboard as part of the deck")
-		return func() error { return matchDecks(opts) }
 
 	case "gen-anki":
 		var opts ankigen.Options
@@ -98,6 +83,10 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		fs.Float64Var(&opts.EffectMaskFraction, "effect-mask", 0.4, "fraction of the card height to paint out from the bottom, for cards whose keyword badge can't be found")
 		fs.IntVar(&opts.ImageWidth, "image-width", 500, "width to scale card images to, or 0 to keep them full size")
 		fs.BoolVar(&opts.AllPrintings, "all-printings", false, "make a note per printing rather than per card")
+		fs.StringVar(&opts.Rules.RulingsPath, "rulings-file", "rules/rulings.json", "ruling dataset to draft the rulings notes from")
+		fs.StringVar(&opts.Rules.ReviewPath, "review-file", "rules/anki-review.json", "record of which rulings have been approved, reworded or skipped")
+		fs.StringVar(&opts.Rules.DeckName, "rulings-deck", "Riftbound::Rulings", "name of the deck the rulings import into")
+		fs.BoolVar(&opts.Rules.Revisit, "revisit", false, "offer the rulings already decided on again")
 		only := fs.String("only", "", "comma-separated blocks to generate, or empty for all (available: "+ankigen.BlockNames()+")")
 		return func() error { return genAnki(opts, *only) }
 
@@ -114,14 +103,6 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		outFile := fs.String("out", "rules/ruling-cards.json", "file to write the cards each question names into")
 		return func() error { return genRulesCards(*rulingsFile, *catalogFile, *outFile) }
 
-	case "gen-rules-anki":
-		var opts ankigen.RulesOptions
-		fs.StringVar(&opts.RulingsPath, "rulings-file", "rules/rulings.json", "ruling dataset to draft the notes from")
-		fs.StringVar(&opts.ReviewPath, "review-file", "rules/anki-review.json", "record of what has been approved, reworded or skipped")
-		fs.StringVar(&opts.OutDir, "out", "anki", "directory to write the deck file into")
-		fs.StringVar(&opts.DeckName, "deck", "Riftbound::Rulings", "name of the deck to import into")
-		fs.BoolVar(&opts.Revisit, "revisit", false, "offer the rulings already decided on again")
-		return func() error { return genRulesAnki(opts) }
 	}
 	return nil
 }
@@ -230,28 +211,11 @@ func missing(collectionFile, catalogFile string, filters []string, axis collecti
 	return nil
 }
 
-func addDecks(decksFile, catalogFile, setsFile string) error {
-	if err := decks.RunAdder(decksFile, catalogFile, setsFile); err != nil {
-		return fmt.Errorf("failed to register the decks: %w", err)
-	}
-	return nil
-}
-
 func watchDecks(opts decks.WatchOptions) error {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
 	if err := decks.RunWatcher(ctx, opts); err != nil {
 		return fmt.Errorf("failed to watch the clipboard for decks: %w", err)
-	}
-	return nil
-}
-
-func matchDecks(opts decks.Options) error {
-	if err := decks.Match(opts, os.Stdout); err != nil {
-		return fmt.Errorf("failed to match the decks against the collection: %w", err)
-	}
-	if opts.ReportPath != "" {
-		fmt.Printf("\nkept a copy in %s\n", opts.ReportPath)
 	}
 	return nil
 }
@@ -309,23 +273,6 @@ func genRulesCards(rulingsFile, catalogFile, outFile string) error {
 		return fmt.Errorf("failed to link the cards each ruling names: %w", err)
 	}
 	fmt.Printf("wrote %s\n", outFile)
-	return nil
-}
-
-func genRulesAnki(opts ankigen.RulesOptions) error {
-	res, err := ankigen.ReviewRulings(opts, os.Stdin, os.Stdout)
-	if err != nil {
-		return fmt.Errorf("failed to review the rulings: %w", err)
-	}
-
-	fmt.Printf(`
-%d %s this pass · %d approved · %d skipped · %d left
-
-wrote %s
-
-to import:
-  in Anki, File > Import and choose %s
-`, res.Decided, plural(res.Decided, "ruling"), res.Notes, res.Skipped, res.Left, res.DeckFile, res.DeckFile)
 	return nil
 }
 

@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	"rb/cards"
 )
 
 // WatchOptions configures RunWatcher.
@@ -53,6 +55,25 @@ func RunWatcher(ctx context.Context, opts WatchOptions) error {
 		case <-tick.C:
 		}
 	}
+}
+
+// loadCatalog reads what registering a deck needs besides the register: the
+// catalog, to check names against and find the sets they're printed in, and
+// the newest set in print, to date the deck by.
+func loadCatalog(catalogPath, setsPath string) (*pool, string, error) {
+	cs, err := cards.Load(catalogPath)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to load catalog: %w", err)
+	}
+	sets, err := cards.LoadSets(setsPath)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to load the sets: %w", err)
+	}
+	latest, err := cards.Latest(sets, time.Now())
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to work out the latest set: %w", err)
+	}
+	return newPool(cs, nil), latest.SetID, nil
 }
 
 type watcher struct {

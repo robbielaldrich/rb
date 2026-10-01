@@ -68,6 +68,14 @@
   .badge { font-size: .8rem; font-variant-numeric: tabular-nums; color: var(--short); }
   .badge.ok { color: var(--have); }
   .deck-size { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .deck-filters { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: .25rem; }
+  .deck-filters input[type="search"] { flex: 1 1 14rem; width: auto; padding: .4rem .6rem; font-size: .9rem; }
+  .deck-filters select {
+    flex: 0 1 auto; max-width: 100%; padding: .4rem .5rem; font: inherit; font-size: .85rem;
+    border: 1px solid var(--line); border-radius: .5rem; background: var(--bg); color: inherit;
+  }
+  .deck-filters label { display: inline-flex; gap: .35rem; align-items: center; font-size: .85rem; color: var(--muted); cursor: pointer; }
+  .deck-filters label input { width: auto; }
   .missing { list-style: none; margin: 0 0 .75rem; padding: 0 .25rem 0 1.5rem; }
   .missing li {
     display: grid; gap: 0 .75rem; align-items: baseline;
@@ -253,7 +261,7 @@
     </button>
     <div id="paste-body" hidden>
       <p class="hint">
-        Paste a decklist the way <code>just add-decks</code> takes one: a heading
+        Paste a decklist the way <code>just watch-decks</code> reads one: a heading
         line ending in a colon, then <code>&lt;count&gt; &lt;card name&gt;</code>
         lines under it. Nothing is registered — the list is only measured.
       </p>
@@ -267,6 +275,17 @@
       <p id="paste-status" class="status"></p>
       <div id="paste-result"></div>
     </div>
+  </div>
+  <div class="deck-filters" id="deck-filters" hidden>
+    <input id="deck-q" type="search" placeholder="Search legend, name or card&hellip;" aria-label="Search decks">
+    <select id="deck-legend" aria-label="Legend"><option value="">All legends</option></select>
+    <select id="deck-set" aria-label="Format"><option value="">All formats</option></select>
+    <select id="deck-sort" aria-label="Sort">
+      <option value="closest">Closest to buildable</option>
+      <option value="newest">Newest first</option>
+      <option value="legend">By legend</option>
+    </select>
+    <label><input type="checkbox" id="deck-buildable"> Only buildable</label>
   </div>
   <p id="decks-status" class="status">Loading decks&hellip;</p>
   <div id="decks"></div>
@@ -338,7 +357,8 @@ function once(load) {
 }
 
 // cmp orders two strings by their code units, which is how Go's sorts order
-// them too — the page and `rb match-decks` have to agree on the order.
+// them too, so a name the page ports from decks/pool.go picks the same
+// spelling and set order the Go does.
 const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
 const catalog = once(() => fetchJSON("./cards/cards.json").then(dedupe));
@@ -463,20 +483,19 @@ window.addEventListener("hashchange", () => select(fromHash()));
 
 /* Decks
    The report is worked out here, off the catalog, the collection and the deck
-   register, rather than read from one `rb match-decks` left behind: a file of
-   results goes stale the moment a card is collected, and this way the page is
-   right as soon as collection.json changes.
+   register, rather than read from a file of results: those go stale the moment
+   a card is collected, and this way the page is right as soon as
+   collection.json changes.
 
-   What follows is a port of decks/pool.go and decks/match.go, and has to stay
-   one — the terminal report and this page are the same answer read two ways. */
+   The card matching is a port of decks/pool.go, and has to stay one — the
+   watcher files a deck's sets by the same matching this page measures it by. */
 
 const APOSTROPHE = /['’]/g;
 const PUNCTUATION = /[^a-z0-9]+/g;
 const VARIANT = /\s*\([^()]*\)$/;
 
-// `rb match-decks` counts the sideboard only when asked to, and the page
-// asks the same way it does by default: a deck can be taken to a table
-// without one.
+// The sideboard is left out of what a deck needs: a deck can be taken to a
+// table without one.
 const SIDEBOARD = false;
 
 // normalize reduces a card name to the words in it. Decklists don't spell
@@ -710,9 +729,14 @@ function check(deck, p, sideboard) {
   const all = entries(deck, p, sideboard);
   const missing = all.filter(m => !covered(m));
   return {
+    id: deck.id,
     name: deck.name,
     legend: deck.legend,
     set: deck.latest_set,
+    addedAt: deck.added_at || "",
+    // Every card name the deck plays, lowercased, so a search can find the
+    // decks running a card as well as the ones named after it.
+    cards: deck.sections.flatMap(s => s.cards.map(c => c.name.toLowerCase())),
     size: all.reduce((n, m) => n + m.need, 0),
     short: missing.reduce((n, m) => n + m.short, 0),
     buildable: missing.length === 0,
@@ -745,7 +769,8 @@ const loadDecks = once(() =>
     .then(([p, reg]) => {
       const ds = reg.decks || [];
       if (ds.length === 0) {
-        decksStatus.textContent = "No decks registered yet — run `just add-decks`.";
+        decksStatus.textContent =
+          "No decks registered yet — run `just watch-decks` and copy a list off a decklist site.";
         return;
       }
       render({
@@ -757,66 +782,162 @@ const loadDecks = once(() =>
       decksStatus.textContent = "Failed to work out the deck report: " + err;
     }));
 
-function render(report) {
-  const buildable = report.decks.filter(d => d.buildable).length;
-  const scope = report.sideboard ? "sideboards included" : "sideboards excluded";
-  decksStatus.textContent =
-    `${report.decks.length} deck${report.decks.length === 1 ? "" : "s"} · ` +
-    `${buildable} you can build · runes ignored · ${scope}.`;
+const deckFilters = document.getElementById("deck-filters");
+const deckQ = document.getElementById("deck-q");
+const deckLegend = document.getElementById("deck-legend");
+const deckSet = document.getElementById("deck-set");
+const deckSort = document.getElementById("deck-sort");
+const deckBuildable = document.getElementById("deck-buildable");
+let deckReport = null;
 
-  for (const d of report.decks) {
-    const deck = document.createElement("details");
-    deck.className = "deck";
+// The filters are kept between visits, since the register only grows and the
+// legend being looked at is usually the one looked at last time. Storage can
+// be missing or refuse, so every touch of it is guarded.
+const FILTER_KEY = "rb.deckFilters";
+function saveFilters() {
+  try {
+    localStorage.setItem(FILTER_KEY, JSON.stringify({
+      legend: deckLegend.value, set: deckSet.value,
+      sort: deckSort.value, buildable: deckBuildable.checked,
+    }));
+  } catch {}
+}
+function restoreFilters() {
+  let f;
+  try { f = JSON.parse(localStorage.getItem(FILTER_KEY) || "null"); } catch {}
+  if (!f) return;
+  // A remembered legend or format the register no longer holds would hide
+  // every deck, so it is only taken back if it is still on offer.
+  const offered = (sel, v) => [...sel.options].some(o => o.value === v);
+  if (offered(deckLegend, f.legend)) deckLegend.value = f.legend;
+  if (offered(deckSet, f.set)) deckSet.value = f.set;
+  if (offered(deckSort, f.sort)) deckSort.value = f.sort;
+  deckBuildable.checked = !!f.buildable;
+}
 
-    const summary = document.createElement("summary");
-
-    // The legend leads: several lists are filed under the same event name,
-    // and the legend is what tells them apart. The name the deck was filed
-    // under follows it, unless it is the legend over again.
-    const title = document.createElement("span");
-    title.className = "deck-title";
-    const legend = document.createElement("span");
-    legend.className = "deck-legend";
-    legend.textContent = d.legend || d.name;
-    title.append(legend);
-    if (d.legend && d.name && d.name !== d.legend) {
-      const note = document.createElement("span");
-      note.className = "deck-note";
-      note.textContent = d.name;
-      title.append(note);
-    }
-
-    // The set in print when the list was registered, which says what format
-    // it was played in.
-    const set = document.createElement("span");
-    set.className = "deck-set";
-    set.textContent = d.set || "";
-
-    const badge = document.createElement("span");
-    badge.className = d.buildable ? "badge ok" : "badge";
-    badge.textContent = d.buildable
-      ? "✓ buildable"
-      : `${d.short} card${d.short === 1 ? "" : "s"} short`;
-    const size = document.createElement("span");
-    size.className = "deck-size";
-    size.textContent = `${d.size} cards`;
-    summary.append(title, set, badge, size);
-    deck.append(summary);
-
-    if (d.buildable) {
-      // Nothing to list, so the row stays a closed line with its tick.
-      decksEl.append(deck);
-      continue;
-    }
-
-    deck.append(list(d.missing));
-    decksEl.append(deck);
+// fillSelect offers each distinct value with how many decks carry it, so a
+// legend with one list can be told from one with a dozen before choosing.
+function fillSelect(sel, values, order) {
+  const counts = new Map();
+  for (const v of values) if (v) counts.set(v, (counts.get(v) || 0) + 1);
+  for (const v of [...counts.keys()].sort(order)) {
+    const o = document.createElement("option");
+    o.value = v;
+    o.textContent = `${v} (${counts.get(v)})`;
+    sel.append(o);
   }
+}
+
+function render(report) {
+  deckReport = report;
+  fillSelect(deckLegend, report.decks.map(d => d.legend || d.name),
+    (a, b) => cmp(a.toLowerCase(), b.toLowerCase()));
+  // Newest format first, which is the one being played.
+  fillSelect(deckSet, report.decks.map(d => d.set), (a, b) => cmp(b, a));
+  restoreFilters();
+  deckFilters.hidden = false;
+  renderDecks();
+}
+
+const SORTS = {
+  // evaluate already ranks the decks this way.
+  closest: () => 0,
+  newest: (a, b) => cmp(b.addedAt, a.addedAt),
+  legend: (a, b) => cmp((a.legend || a.name).toLowerCase(), (b.legend || b.name).toLowerCase()),
+};
+
+function shownDecks() {
+  const term = deckQ.value.trim().toLowerCase();
+  const legend = deckLegend.value;
+  const set = deckSet.value;
+  return deckReport.decks
+    .filter(d => !legend || (d.legend || d.name) === legend)
+    .filter(d => !set || d.set === set)
+    .filter(d => !deckBuildable.checked || d.buildable)
+    .filter(d => !term ||
+      (d.legend || "").toLowerCase().includes(term) ||
+      d.name.toLowerCase().includes(term) ||
+      d.cards.some(c => c.includes(term)))
+    // Array sort is stable, so decks tied on the chosen order keep the
+    // closest-to-buildable ranking between them.
+    .sort(SORTS[deckSort.value] || SORTS.closest);
+}
+
+function renderDecks() {
+  const all = deckReport.decks;
+  const shown = shownDecks();
+  const buildable = shown.filter(d => d.buildable).length;
+  const scope = deckReport.sideboard ? "sideboards included" : "sideboards excluded";
+  const count = shown.length === all.length
+    ? `${all.length} deck${all.length === 1 ? "" : "s"}`
+    : `${shown.length} of ${all.length} decks`;
+  decksStatus.textContent =
+    `${count} · ${buildable} you can build · runes ignored · ${scope}.`;
+
+  decksEl.replaceChildren();
+  for (const d of shown) decksEl.append(deckRow(d));
+}
+
+for (const el of [deckLegend, deckSet, deckSort, deckBuildable]) {
+  el.addEventListener("change", () => { saveFilters(); renderDecks(); });
+}
+deckQ.addEventListener("input", renderDecks);
+
+function deckRow(d) {
+  const deck = document.createElement("details");
+  deck.className = "deck";
+
+  const summary = document.createElement("summary");
+
+  // The legend leads: several lists are filed under the same event name,
+  // and the legend is what tells them apart. The name the deck was filed
+  // under follows it, unless it is the legend over again.
+  const title = document.createElement("span");
+  title.className = "deck-title";
+  const legend = document.createElement("span");
+  legend.className = "deck-legend";
+  legend.textContent = d.legend || d.name;
+  title.append(legend);
+  if (d.legend && d.name && d.name !== d.legend) {
+    const note = document.createElement("span");
+    note.className = "deck-note";
+    note.textContent = d.name;
+    title.append(note);
+  }
+  // The ID is what tells apart the lists the watcher filed under one legend.
+  if (d.id) {
+    const id = document.createElement("span");
+    id.className = "deck-note";
+    id.textContent = d.id;
+    title.append(id);
+  }
+
+  // The set in print when the list was registered, which says what format
+  // it was played in.
+  const set = document.createElement("span");
+  set.className = "deck-set";
+  set.textContent = d.set || "";
+
+  const badge = document.createElement("span");
+  badge.className = d.buildable ? "badge ok" : "badge";
+  badge.textContent = d.buildable
+    ? "✓ buildable"
+    : `${d.short} card${d.short === 1 ? "" : "s"} short`;
+  const size = document.createElement("span");
+  size.className = "deck-size";
+  size.textContent = `${d.size} cards`;
+  summary.append(title, set, badge, size);
+  deck.append(summary);
+
+  // A buildable deck has nothing to list, so the row stays a closed line
+  // with its tick.
+  if (!d.buildable) deck.append(list(d.missing));
+  return deck;
 }
 
 /* Paste a list
    A port of decks/parse.go, so that a list reads here exactly as it does when
-   `just add-decks` takes it and nothing is accepted in one place that the
+   `just watch-decks` takes it and nothing is accepted in one place that the
    other would turn away. */
 
 // entryRe matches a decklist line: a count, then the card name. The optional

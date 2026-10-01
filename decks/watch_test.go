@@ -84,6 +84,20 @@ func TestWatchFilesACopyOnce(t *testing.T) {
 	}
 }
 
+// A name the catalog is behind on is warned about, but doesn't lose the list.
+func TestWatchWarnsAboutANameTheCatalogDoesntPrint(t *testing.T) {
+	w, c := newWatcher(t)
+	c.text = "MainDeck:\n1 Lightnign Rush\n"
+	out := w.mustPoll(t)
+
+	if !strings.Contains(out, `no card called "Lightnign Rush" in the catalog, did you mean "Lightning Rush"?`) {
+		t.Errorf("the watcher doesn't warn about the misspelling:\n%s", out)
+	}
+	if w.added != 1 {
+		t.Error("the deck wasn't recorded")
+	}
+}
+
 func TestWatchKeepsQuietAboutWhatIsntADeck(t *testing.T) {
 	w, c := newWatcher(t)
 	for _, text := range []string{"https://riftdecks.com/x", "3 pigs went to market", ""} {
@@ -138,5 +152,12 @@ func TestOldDecksAreGivenAnID(t *testing.T) {
 	}
 	if reg.Decks[1].ID != "keepme00" {
 		t.Errorf("second deck's ID is %q, want the one it had", reg.Decks[1].ID)
+	}
+}
+
+func write(t *testing.T, path, content string) {
+	t.Helper()
+	if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
+		t.Fatalf("failed to write %s: %v", path, err)
 	}
 }

@@ -1,6 +1,9 @@
 package ankigen
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // A Block is one independently importable slice of the deck output: it
 // writes its own import file (and, for image decks, its own media) under
@@ -27,6 +30,9 @@ var Blocks = []Block{
 	{Name: "reaction-cards", Run: runReactionCards},
 	{Name: "action-cards", Run: runActionCards},
 	{Name: "signature-cards", Run: runSignatureCards},
+	// Rulings run last, since reviewing them asks questions at the terminal
+	// and the blocks before it don't need anyone there.
+	{Name: "rulings", Run: runRulings},
 }
 
 // BlockByName finds a block by name, for a caller that wants to run less than
@@ -90,5 +96,21 @@ func runSignatureCards(opts Options) (BlockResult, error) {
 	if err != nil {
 		return BlockResult{}, err
 	}
+	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
+}
+
+// runRulings reviews the rulings not yet decided on before writing their deck.
+// With none left, or no terminal to answer at, it writes the deck straight
+// away, so a run of every block only stops to ask when there is something to
+// ask about.
+func runRulings(opts Options) (BlockResult, error) {
+	ro := opts.Rules
+	ro.OutDir = opts.OutDir
+	res, err := ReviewRulings(ro, os.Stdin, os.Stdout)
+	if err != nil {
+		return BlockResult{}, err
+	}
+	fmt.Printf("\n%d %s reviewed this pass · %d approved · %d skipped · %d left\n\n",
+		res.Decided, plural(res.Decided, "ruling"), res.Notes, res.Skipped, res.Left)
 	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
 }

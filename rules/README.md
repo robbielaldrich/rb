@@ -25,7 +25,7 @@ Each entry:
 
 ## Anki notes
 
-`rb gen-rules-anki` (`just gen-rules-anki`) walks the rulings one at a time and
+The `rulings` block of `rb gen-anki` (`just gen-anki -only rulings`) walks the rulings one at a time and
 drafts a short question and a short answer from each: the ruling's own
 question, and the sentences that open its answer. Drafting is mechanical, since
 a ruling explains itself over several paragraphs and a note has to say the same
@@ -74,5 +74,5 @@ but never read, including all of r/riftboundtcg — 178K members and denser in
 rules content than r/Riftbound, never enumerated at all. Resuming needs only a
 working scraper.
 
-Anki notes are drafted a ruling at a time by `rb gen-rules-anki`; nothing has
+Anki notes are drafted a ruling at a time by the `rulings` block of `rb gen-anki`; nothing has
 been reviewed yet, so `anki-review.json` doesn't exist until the first pass.
