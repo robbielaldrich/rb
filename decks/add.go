@@ -29,27 +29,37 @@ func RunAdder(decksPath, catalogPath, setsPath string) error {
 		return fmt.Errorf("failed to load the deck register: %w", err)
 	}
 
-	cs, err := cards.Load(catalogPath)
+	p, latest, err := loadCatalog(catalogPath, setsPath)
 	if err != nil {
-		return fmt.Errorf("failed to load catalog: %w", err)
+		return err
 	}
 
-	sets, err := cards.LoadSets(setsPath)
-	if err != nil {
-		return fmt.Errorf("failed to load the sets: %w", err)
-	}
-	latest, err := cards.Latest(sets, time.Now())
-	if err != nil {
-		return fmt.Errorf("failed to work out the latest set: %w", err)
-	}
-
-	a := &adder{registry: reg, path: decksPath, pool: newPool(cs, nil), latestSet: latest.SetID}
+	a := &adder{registry: reg, path: decksPath, pool: p, latestSet: latest}
 	if err := a.run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to read the pasted decks: %w", err)
 	}
 
 	fmt.Printf("\nadded %d %s · %d in the register\n", a.added, plural(a.added, "deck"), len(reg.Decks))
 	return nil
+}
+
+// loadCatalog reads what registering a deck needs besides the register: the
+// catalog, to check names against and find the sets they're printed in, and
+// the newest set in print, to date the deck by.
+func loadCatalog(catalogPath, setsPath string) (*pool, string, error) {
+	cs, err := cards.Load(catalogPath)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to load catalog: %w", err)
+	}
+	sets, err := cards.LoadSets(setsPath)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to load the sets: %w", err)
+	}
+	latest, err := cards.Latest(sets, time.Now())
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to work out the latest set: %w", err)
+	}
+	return newPool(cs, nil), latest.SetID, nil
 }
 
 type adder struct {
@@ -97,25 +107,13 @@ func (a *adder) record(sc *bufio.Scanner, out io.Writer, text string) error {
 		fmt.Fprintf(out, "  same cards as %q, already registered\n", have.Name)
 		return nil
 	}
-	for _, e := range d.Copies(true) {
-		if _, known := a.pool.have(e.Name); known {
-			continue
-		}
-		if near, ok := a.pool.nearest(e.Name); ok {
-			fmt.Fprintf(out, "  no card called %q in the catalog, did you mean %q? recording it as pasted\n", e.Name, near)
-			continue
-		}
-		fmt.Fprintf(out, "  no card called %q in the catalog, recording it as pasted\n", e.Name)
-	}
+	a.pool.warnUnknown(d, out)
 
 	fmt.Fprintf(out, "  name [%s]: ", d.Name)
 	if name := readLine(sc); name != "" {
 		d.Name = name
 	}
-	d.LatestSet = a.latestSet
-	d.AddedAt = time.Now()
-
-	a.registry.Decks = append(a.registry.Decks, d)
+	d = a.registry.register(d, a.pool, a.latestSet, time.Now())
 	if err := a.registry.save(a.path); err != nil {
 		return fmt.Errorf("failed to save the deck register: %w", err)
 	}

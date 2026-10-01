@@ -25,6 +25,10 @@ add-anki-media *flags:
 add-decks:
     go run ./cmd/rb add-decks -catalog-file cards/cards.json -sets-file cards/sets.json -decks-file decks/decks.json
 
+# save every decklist copied to the clipboard, until ctrl+c
+watch-decks *flags:
+    go run ./cmd/rb watch-decks -catalog-file cards/cards.json -sets-file cards/sets.json -decks-file decks/decks.json {{flags}}
+
 match-decks *flags:
     go run ./cmd/rb match-decks -catalog-file cards/cards.json -collection-file collection/collection.json -decks-file decks/decks.json -out decks/match-decks-result.txt {{flags}}
 

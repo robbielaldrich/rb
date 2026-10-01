@@ -1,6 +1,8 @@
 package decks
 
 import (
+	"fmt"
+	"io"
 	"regexp"
 	"slices"
 	"strings"
@@ -32,12 +34,18 @@ type pool struct {
 // Details is what the catalog says about a card beyond how many are owned:
 // every set it is printed in, and the domains it belongs to.
 type Details struct {
-	Sets    []string
+	Sets []string
+	// SetIDs are the same sets by ID, leaving out the promotional ones: a
+	// promo reprint isn't a set anyone builds a deck out of.
+	SetIDs  []string
 	Domains []string
 }
 
 func (d *Details) add(c cards.Card) {
 	d.Sets = appendUnique(d.Sets, c.Set.Label)
+	if !strings.Contains(strings.ToLower(c.Set.Label), "promotional") {
+		d.SetIDs = appendUnique(d.SetIDs, c.Set.SetID)
+	}
 	for _, domain := range c.Classification.Domain {
 		d.Domains = appendUnique(d.Domains, domain)
 	}
@@ -46,6 +54,9 @@ func (d *Details) add(c cards.Card) {
 func (d *Details) merge(other *Details) {
 	for _, s := range other.Sets {
 		d.Sets = appendUnique(d.Sets, s)
+	}
+	for _, s := range other.SetIDs {
+		d.SetIDs = appendUnique(d.SetIDs, s)
 	}
 	for _, domain := range other.Domains {
 		d.Domains = appendUnique(d.Domains, domain)
@@ -193,6 +204,39 @@ func sharesTail(a, b string) bool {
 		return false
 	}
 	return long == short || strings.HasSuffix(long, " "+short)
+}
+
+// sets lists the sets a deck's cards are printed in, in ID order. Runes are
+// left out, since every set prints them and they would name every set there
+// is.
+func (p *pool) sets(d Deck) []string {
+	var out []string
+	for _, e := range d.Cards(true) {
+		if p.isRune(e.Name) {
+			continue
+		}
+		for _, id := range p.details(e.Name).SetIDs {
+			out = appendUnique(out, id)
+		}
+	}
+	slices.Sort(out)
+	return out
+}
+
+// warnUnknown says which of a deck's names no card is printed under, with the
+// closest one where there is one. The deck is recorded as pasted either way,
+// since the catalog may simply be behind the format.
+func (p *pool) warnUnknown(d Deck, out io.Writer) {
+	for _, e := range d.Copies(true) {
+		if _, known := p.have(e.Name); known {
+			continue
+		}
+		if near, ok := p.nearest(e.Name); ok {
+			fmt.Fprintf(out, "  no card called %q in the catalog, did you mean %q? recording it as pasted\n", e.Name, near)
+			continue
+		}
+		fmt.Fprintf(out, "  no card called %q in the catalog, recording it as pasted\n", e.Name)
+	}
 }
 
 // isRune reports whether the catalog files the named card as a rune.

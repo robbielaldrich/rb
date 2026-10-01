@@ -2,6 +2,8 @@ package decks
 
 import (
 	"cmp"
+	"crypto/rand"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -30,6 +32,9 @@ type Section struct {
 
 // Deck is one registered decklist.
 type Deck struct {
+	// ID tells decks apart for good, since several can be filed under one
+	// name — every deck the watcher saves is named after its legend.
+	ID string `json:"id"`
 	// Name is what the deck is filed under: whatever the pile is called when
 	// it's talked about, e.g. "wuhan top akali".
 	Name string `json:"name"`
@@ -41,7 +46,10 @@ type Deck struct {
 	// pasted under dates it.
 	LatestSet string    `json:"latest_set"`
 	AddedAt   time.Time `json:"added_at"`
-	Sections  []Section `json:"sections"`
+	// Sets are the sets the deck's cards are printed in, by set ID. A reprint
+	// puts a card in more than one, and any of them will do to build with.
+	Sets     []string  `json:"sets,omitempty"`
+	Sections []Section `json:"sections"`
 }
 
 // Title heads a deck the way it is talked about: the legend it plays, then
@@ -201,7 +209,38 @@ func loadRegistry(path string) (*registry, error) {
 	if err := json.Unmarshal(data, &r); err != nil {
 		return nil, fmt.Errorf("failed to parse %s: %w", path, err)
 	}
+	// Decks registered before IDs existed are given one here, and keep it
+	// from the next save on.
+	for i := range r.Decks {
+		if r.Decks[i].ID == "" {
+			r.Decks[i].ID = r.newID()
+		}
+	}
 	return &r, nil
+}
+
+// newID picks an ID no registered deck holds. Eight hex digits is short
+// enough to type and leaves collisions to the retry.
+func (r *registry) newID() string {
+	for {
+		b := make([]byte, 4)
+		rand.Read(b)
+		id := hex.EncodeToString(b)
+		if !slices.ContainsFunc(r.Decks, func(d Deck) bool { return d.ID == id }) {
+			return id
+		}
+	}
+}
+
+// register stamps a deck with what it is filed under besides its cards, and
+// appends it.
+func (r *registry) register(d Deck, p *pool, latestSet string, now time.Time) Deck {
+	d.ID = r.newID()
+	d.LatestSet = latestSet
+	d.AddedAt = now
+	d.Sets = p.sets(d)
+	r.Decks = append(r.Decks, d)
+	return d
 }
 
 // duplicate reports the registered deck that holds exactly these cards.

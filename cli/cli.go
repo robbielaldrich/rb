@@ -1,12 +1,15 @@
 package cli
 
 import (
+	"context"
 	"errors"
 	"flag"
 	"fmt"
 	"io"
 	"os"
+	"os/signal"
 	"strings"
+	"time"
 
 	"rb/ankigen"
 	"rb/collection"
@@ -15,7 +18,7 @@ import (
 	"rb/rules"
 )
 
-var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "match-decks", "gen-anki", "gen-rules-anki", "gen-rules-cards", "add-anki-media", "missing"}
+var commands = []string{"download-cards", "collect", "validate", "collection-stats", "add-decks", "watch-decks", "match-decks", "gen-anki", "gen-rules-anki", "gen-rules-cards", "add-anki-media", "missing"}
 
 func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
@@ -63,6 +66,15 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 		setsFile := fs.String("sets-file", "cards/sets.json", "set list to date each deck by the newest set in print")
 		decksFile := fs.String("decks-file", "decks/decks.json", "deck register to append to")
 		return func() error { return addDecks(*decksFile, *catalogFile, *setsFile) }
+
+	case "watch-decks":
+		opts := decks.WatchOptions{Notify: true}
+		fs.StringVar(&opts.CatalogPath, "catalog-file", "cards/cards.json", "card catalog to check the copied card names against")
+		fs.StringVar(&opts.SetsPath, "sets-file", "cards/sets.json", "set list to date each deck by the newest set in print")
+		fs.StringVar(&opts.DecksPath, "decks-file", "decks/decks.json", "deck register to append to")
+		fs.DurationVar(&opts.Interval, "interval", 500*time.Millisecond, "how often to read the clipboard")
+		fs.BoolVar(&opts.Notify, "notify", true, "raise a notification for each deck saved")
+		return func() error { return watchDecks(opts) }
 
 	case "match-decks":
 		var opts decks.Options
@@ -221,6 +233,15 @@ func missing(collectionFile, catalogFile string, filters []string, axis collecti
 func addDecks(decksFile, catalogFile, setsFile string) error {
 	if err := decks.RunAdder(decksFile, catalogFile, setsFile); err != nil {
 		return fmt.Errorf("failed to register the decks: %w", err)
+	}
+	return nil
+}
+
+func watchDecks(opts decks.WatchOptions) error {
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer stop()
+	if err := decks.RunWatcher(ctx, opts); err != nil {
+		return fmt.Errorf("failed to watch the clipboard for decks: %w", err)
 	}
 	return nil
 }
