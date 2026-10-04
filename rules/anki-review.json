@@ -1,0 +1,165 @@
+{
+ "notes": [
+  {
+   "key": "reddit#c020487f",
+   "status": "approved",
+   "front": "Does damage lower a unit's Might?",
+   "back": "No. Damage never reduces Might — it is marked on the unit (use counters).",
+   "decidedAt": "2026-10-04T14:23:58.280617-07:00"
+  },
+  {
+   "key": "reddit#77547f3e",
+   "status": "approved",
+   "front": "Does a temporary '-X Might this turn' debuff defeat an already-damaged unit?",
+   "back": "Yes. Akali 3M took 4 damage, was saved by En Garde (+2M -> 5M) with 4 damage marked, then hit by Eclipse (-4 Might this turn) -> 1M.",
+   "decidedAt": "2026-10-04T14:24:03.461074-07:00"
+  },
+  {
+   "key": "reddit#43b1e3c4",
+   "status": "approved",
+   "front": "Does healing happen after a showdown even if combat damage was never calculated?",
+   "back": "Yes. Annie put 5 damage on a 6-Might Master Yi; the attacker moved in two units and the defender wiped both with Cannon Barrage before damage was calculated.",
+   "decidedAt": "2026-10-04T14:24:18.535648-07:00"
+  },
+  {
+   "key": "reddit#73079fb1",
+   "status": "approved",
+   "front": "Does Red Akali's in-and-out 'when I move' ping persist if she leaves the showdown?",
+   "back": "No. If she is the only unit, leaving ends the showdown and the damage heals — you cannot stack chip damage by bouncing alone.",
+   "decidedAt": "2026-10-04T14:24:26.132178-07:00"
+  },
+  {
+   "key": "reddit#8bbdf5b4",
+   "status": "approved",
+   "front": "Does focus pass automatically when a chain resolves?",
+   "back": "Yes — and this is widely misplayed. Focus passes to the other player any time a chain resolves; you cannot resolve your own spell and immediately fire another.",
+   "decidedAt": "2026-10-04T14:24:34.958458-07:00"
+  },
+  {
+   "key": "reddit#1e46190b",
+   "status": "approved",
+   "front": "Can you play an action after passing once in a showdown?",
+   "back": "Yes. Attacker may act; if they decline or their action resolves, defender may; then back to attacker, repeating until BOTH pass consecutively, at which point combat damage is dealt.",
+   "decidedAt": "2026-10-04T14:24:58.278095-07:00"
+  },
+  {
+   "key": "reddit#792f4ee1",
+   "status": "approved",
+   "front": "Are 'Add'-type energy abilities reactable?",
+   "back": "No. Exhausting something like Lux, Crownguard for energy behaves like tapping runes — it is not reactable and puts nothing on the chain.",
+   "decidedAt": "2026-10-04T14:25:04.4253-07:00"
+  },
+  {
+   "key": "reddit#1306efbc",
+   "status": "approved",
+   "front": "If a Might debuff expires and a unit crosses back above the threshold, does it 'become Mighty' again?",
+   "back": "Yes, and it re-triggers 'when I become Mighty' effects.",
+   "decidedAt": "2026-10-04T14:25:12.140914-07:00"
+  },
+  {
+   "key": "reddit#7f3fd7de",
+   "status": "approved",
+   "front": "Does Stun prevent a unit from gaining Might?",
+   "back": "No. Stun reads only 'it doesn't deal combat damage this turn' and has zero interaction with gaining or losing Might.",
+   "decidedAt": "2026-10-04T14:25:14.745069-07:00"
+  },
+  {
+   "key": "abandoned-hall#countered-spell",
+   "status": "approved",
+   "front": "Does Abandoned Hall's ability trigger if the spell is countered?",
+   "back": "No. Abandoned Hall's \"when a player plays a spell\" condition is fulfilled only when that spell finishes resolving.",
+   "decidedAt": "2026-10-04T14:25:19.370443-07:00"
+  },
+  {
+   "key": "abandoned-hall#movement-eligibility",
+   "status": "approved",
+   "front": "Can a unit moved into or away from Abandoned Hall by a spell be targeted?",
+   "back": "After the spell resolves, Abandoned Hall can choose only a unit at Abandoned Hall controlled by the player who played that spell.",
+   "decidedAt": "2026-10-04T14:25:41.736821-07:00"
+  },
+  {
+   "key": "abandoned-hall#replay",
+   "status": "approved",
+   "front": "Can Abandoned Hall's triggered ability choose a unit that a spell plays there?",
+   "back": "Yes, if the player who played the spell controls that unit when the ability finalizes.",
+   "decidedAt": "2026-10-04T14:25:58.299784-07:00"
+  },
+  {
+   "key": "akshan-mischievous#aurora-timing",
+   "status": "approved",
+   "front": "If my Dazzling Aurora plays Akshan, Mischievous at the end of my turn, will the Dazzling Aurora I take from my opponent trigger that turn?",
+   "back": "No. You gain control of the enemy Dazzling Aurora after its end-of-turn trigger condition has already been checked.",
+   "decidedAt": "2026-10-04T14:26:08.733244-07:00"
+  },
+  {
+   "key": "akshan-mischievous#dual-akshan-control",
+   "status": "approved",
+   "front": "If my opponent and I each use Akshan, Mischievous to take the same gear, who controls it when either Akshan dies?",
+   "back": "The most recently played Akshan takes precedence while both are on the board.",
+   "decidedAt": "2026-10-04T14:26:17.02673-07:00"
+  },
+  {
+   "key": "alpha-strike#targeting",
+   "status": "approved",
+   "front": "How are targets chosen when playing Alpha Strike?",
+   "back": "Alpha Strike's controller chooses its targets while finalizing the spell, in the following order.",
+   "decidedAt": "2026-10-04T14:26:20.390897-07:00"
+  },
+  {
+   "key": "alpha-strike#split-distribution",
+   "status": "skipped",
+   "front": "When and how is Alpha Strike's damage distributed?",
+   "back": "Alpha Strike's controller chooses how to distribute its damage during resolution, not while choosing targets.",
+   "decidedAt": "2026-10-04T14:26:26.767259-07:00"
+  },
+  {
+   "key": "alpha-strike#might-reduction",
+   "status": "skipped",
+   "front": "Alpha Strike — What if the friendly unit's might is reduced?",
+   "back": "If the friendly target remains legal but has lower might when Alpha Strike resolves, Alpha Strike uses that reduced might as the amount of damage to split.",
+   "decidedAt": "2026-10-04T14:26:32.401635-07:00"
+  },
+  {
+   "key": "alpha-strike#illegal-friendly-target",
+   "status": "skipped",
+   "front": "What if the chosen friendly unit leaves the board or becomes illegal before Alpha Strike resolves?",
+   "back": "Alpha Strike deals no damage if the chosen friendly unit is an illegal target when the spell resolves.",
+   "decidedAt": "2026-10-04T14:26:34.192281-07:00"
+  },
+  {
+   "key": "alpha-strike#illegal-enemy-target",
+   "status": "skipped",
+   "front": "What if a chosen enemy unit leaves a battlefield or becomes illegal before Alpha Strike resolves?",
+   "back": "An enemy unit takes no damage if it remains an illegal target when Alpha Strike resolves.",
+   "decidedAt": "2026-10-04T14:26:36.319808-07:00"
+  },
+  {
+   "key": "aphelios-exalted#equipment-copy-effects",
+   "status": "skipped",
+   "front": "How does Aphelios, Exalted interact with Svellsongur and Shady Spectacles?",
+   "back": "Aphelios triggers once when either Svellsongur or Shady Spectacles is attached to him, but another unit that becomes a copy of Aphelios through Shady Spectacles does not trigger.",
+   "decidedAt": "2026-10-04T14:26:38.54886-07:00"
+  },
+  {
+   "key": "applied-researchers#other-spell-costs",
+   "status": "approved",
+   "front": "Does Applied Researchers reduce Repeat, Flow, and Deflect costs?",
+   "back": "Yes, provided Applied Researchers is Empowered and the cost belongs to a spell.",
+   "decidedAt": "2026-10-04T14:26:41.527848-07:00"
+  },
+  {
+   "key": "applied-researchers#shock-blast-cost",
+   "status": "skipped",
+   "front": "Can Applied Researchers reduce Shock Blast's cost to zero?",
+   "back": "Yes, if Applied Researchers is Empowered, you can play Shock Blast for .",
+   "decidedAt": "2026-10-04T14:26:46.340857-07:00"
+  },
+  {
+   "key": "arcane-shift#replay-at-same-battlefield",
+   "status": "skipped",
+   "front": "Can I use Arcane Shift to banish the only unit I own and control at a battlefield I control, then play it there again?",
+   "back": "Yes, as long as the unit is not a token and you control that battlefield.",
+   "decidedAt": "2026-10-04T14:26:55.192607-07:00"
+  }
+ ]
+}
