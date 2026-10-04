@@ -422,7 +422,7 @@ q.addEventListener("input", () => {
   const term = q.value.trim().toLowerCase();
   results.innerHTML = "";
   if (!term) return;
-  const matches = cards.filter(c => c.name.toLowerCase().includes(term));
+  const matches = cards.filter(c => nameMatches(c.name, term));
   const shown = matches.slice(0, 50);
   status.textContent = matches.length === 0
     ? `No card named like "${q.value.trim()}".`
@@ -456,6 +456,17 @@ q.addEventListener("input", () => {
     results.append(li);
   }
 });
+
+// nameMatches reports whether a search names a card. The words are matched
+// rather than the string, in any order and each as a fragment, so punctuation
+// doesn't count: "Akshan, Mischievous" off a decklist and "akshan mis" typed
+// in both find the "Akshan - Mischievous" the catalog prints. With the word
+// breaks gone too, "reksai" still finds "Rek'Sai".
+function nameMatches(name, term) {
+  const n = normalize(name), t = normalize(term);
+  if (!t) return name.toLowerCase().includes(term);
+  return t.split(" ").every(w => n.includes(w)) || squash(n).includes(squash(t));
+}
 
 /* Tabs */
 const tabs = [...document.querySelectorAll('[role="tab"]')];
