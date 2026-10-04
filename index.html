@@ -242,7 +242,7 @@
 <nav role="tablist" aria-label="Views">
   <button role="tab" id="tab-search" aria-controls="panel-search" aria-selected="true">Do I have this card?</button>
   <button role="tab" id="tab-decks" aria-controls="panel-decks" aria-selected="false">Decks</button>
-  <button role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false">Summary</button>
+  <button role="tab" id="tab-collection" aria-controls="panel-collection" aria-selected="false">Collection</button>
   <button role="tab" id="tab-rules" aria-controls="panel-rules" aria-selected="false">Rules</button>
 </nav>
 
@@ -292,7 +292,7 @@
   <div id="decks"></div>
 </section>
 
-<section role="tabpanel" id="panel-summary" aria-labelledby="tab-summary" hidden>
+<section role="tabpanel" id="panel-collection" aria-labelledby="tab-collection" hidden>
   <p id="summary-status" class="status">Loading summary&hellip;</p>
   <div class="scroll">
     <table id="summary">
@@ -481,7 +481,7 @@ function select(tab) {
   const hash = "#" + tab.id.replace("tab-", "");
   if (location.hash !== hash) location.hash = hash;
   if (tab.id === "tab-decks") loadDecks();
-  if (tab.id === "tab-summary") { loadSummary(); loadGuide(); }
+  if (tab.id === "tab-collection") { loadSummary(); loadGuide(); }
   if (tab.id === "tab-rules") loadRules();
   if (tab.id === "tab-search" && !q.disabled) q.focus();
 }
