@@ -742,7 +742,23 @@ function check(deck, p, sideboard) {
     buildable: missing.length === 0,
     missing,
     held: all.filter(covered),
+    sideboard: SIDEBOARD ? [] : sideboardEntries(deck, p, all),
   };
+}
+
+// sideboardEntries measures a deck's sideboard against what the collection
+// has left once the main deck is built, so a card played in both isn't
+// counted as covering the two at once. It lists what is short first.
+function sideboardEntries(deck, p, main) {
+  const used = new Map(main.map(m => [m.name, m.need]));
+  const side = { sections: deck.sections.filter(s => isSideboard(s.name)) };
+  const out = entries(side, p, true).map(m => {
+    const taken = used.get(m.name) || 0;
+    if (taken === 0) return m;
+    const spare = Math.max(m.have - taken, 0);
+    return { ...m, have: spare, short: Math.max(m.need - spare, 0), spare: true };
+  });
+  return [...out.filter(m => !covered(m)), ...out.filter(covered)];
 }
 
 // evaluate ranks the decks by how far from buildable they are.
@@ -933,6 +949,7 @@ function deckRow(d) {
   // Opening a deck shows the whole list, what is short of it first, the way
   // a pasted list reads.
   deck.append(...cardGroups(d.missing, d.held));
+  if (d.sideboard.length > 0) deck.append(group("Sideboard"), list(d.sideboard));
   return deck;
 }
 
@@ -1146,7 +1163,9 @@ function list(ms) {
 
     const count = document.createElement("span");
     count.className = "count";
-    count.textContent = `have ${m.have} of ${m.need}`;
+    // A sideboard card the main deck also plays is measured by the copies
+    // left over from it.
+    count.textContent = `have ${m.have}${m.spare ? " spare" : ""} of ${m.need}`;
     li.append(need, card, count);
 
     if (m.unknown) {
