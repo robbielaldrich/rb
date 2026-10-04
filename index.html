@@ -88,8 +88,8 @@
   .count { color: var(--muted); font-variant-numeric: tabular-nums; }
   .where { grid-column: 2 / -1; color: var(--muted); font-size: .8rem; }
   .unknown { grid-column: 2 / -1; color: var(--short); font-size: .8rem; }
-  /* A card the collection covers, which only the pasted-list report shows:
-     the registered decks list what is missing and nothing else. */
+  /* A card the collection covers, listed under what is missing so a deck
+     reads in full. */
   .need.ok { color: var(--have); }
   .missing li.held .card { color: var(--fg); }
 
@@ -125,6 +125,7 @@
   .paste-actions button:hover, .quiz-actions button:hover { border-color: var(--accent); color: var(--accent); }
   .paste-error { color: var(--short); }
   .group { color: var(--muted); font-size: .8rem; margin: .75rem 0 .25rem; }
+  .deck > .group { padding-left: 1.75rem; }
 
   /* Summary */
   /* Six columns don't fit a phone, so the table scrolls rather than the page. */
@@ -689,8 +690,7 @@ function deckCards(deck, sideboard) {
 }
 
 // entries measures every card a deck asks for against the pool, the ones the
-// collection covers as well as the ones it doesn't. The deck report shows only
-// the shortfall, but a list pasted in to be checked wants the whole answer.
+// collection covers as well as the ones it doesn't.
 function entries(deck, p, sideboard) {
   const out = [];
   for (const e of deckCards(deck, sideboard)) {
@@ -723,8 +723,8 @@ function entries(deck, p, sideboard) {
 // happened to answer for it.
 const covered = m => !m.unknown && m.have >= m.need;
 
-// check measures one deck against the pool, listing every card it asks for
-// that the collection can't cover.
+// check measures one deck against the pool: every card it asks for, and the
+// ones among them the collection can't cover.
 function check(deck, p, sideboard) {
   const all = entries(deck, p, sideboard);
   const missing = all.filter(m => !covered(m));
@@ -741,6 +741,7 @@ function check(deck, p, sideboard) {
     short: missing.reduce((n, m) => n + m.short, 0),
     buildable: missing.length === 0,
     missing,
+    held: all.filter(covered),
   };
 }
 
@@ -929,9 +930,9 @@ function deckRow(d) {
   summary.append(title, set, badge, size);
   deck.append(summary);
 
-  // A buildable deck has nothing to list, so the row stays a closed line
-  // with its tick.
-  if (!d.buildable) deck.append(list(d.missing));
+  // Opening a deck shows the whole list, what is short of it first, the way
+  // a pasted list reads.
+  deck.append(...cardGroups(d.missing, d.held));
   return deck;
 }
 
@@ -1098,8 +1099,16 @@ function renderPasted(deck, all) {
       : `${shortCopies} short across ${short.length} card${short.length === 1 ? "" : "s"}`) +
     ` · ${held.length} of ${all.length} covered · runes ignored · ${scope}.`;
 
-  if (short.length > 0) pasteResult.append(group("Missing"), list(short));
-  if (held.length > 0) pasteResult.append(group("In the collection"), list(held));
+  pasteResult.append(...cardGroups(short, held));
+}
+
+// cardGroups lists the cards short first and the covered ones after, leaving
+// out a heading with nothing under it.
+function cardGroups(short, held) {
+  const out = [];
+  if (short.length > 0) out.push(group("Missing"), list(short));
+  if (held.length > 0) out.push(group("In the collection"), list(held));
+  return out;
 }
 
 function group(text) {
