@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"slices"
 	"strings"
+
+	"rb/cards"
 )
 
 // HiddenDomainResult reports what GenerateHiddenDomains produced.
@@ -41,7 +43,10 @@ func GenerateHiddenDomains(opts Options) (HiddenDomainResult, error) {
 		return HiddenDomainResult{}, fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	hidden := selectHidden(cs, false)
+	// A signature card is unlocked by a legend rather than by a domain's
+	// runes, so it is no answer to what a domain's open runes could be
+	// holding; the signature deck asks after it from the legend's end.
+	hidden := slices.DeleteFunc(selectHidden(cs, false), cards.Card.IsSignature)
 	if len(hidden) == 0 {
 		return HiddenDomainResult{}, fmt.Errorf("no Hidden cards in %s", opts.CatalogPath)
 	}

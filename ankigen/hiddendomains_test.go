@@ -141,6 +141,31 @@ func TestHiddenDomainsKeepTheirQuestionAsSetsAreAdded(t *testing.T) {
 	}
 }
 
+// A signature card belongs to a legend, not a domain, so it is left off the
+// roster of every domain it is printed in.
+func TestHiddenDomainsLeaveOutSignatureCards(t *testing.T) {
+	sig := hiddenDomainCard("ogn-003-298", "Fox-Fire", "ogn", "Mind", "Calm")
+	supertype := cards.SupertypeSignature
+	sig.Classification.Supertype = &supertype
+	opts := fixture(t, []cards.Card{
+		sig,
+		hiddenDomainCard("ogn-002-298", "Sprite Call", "ogn", "Mind"),
+	})
+
+	res, err := GenerateHiddenDomains(opts)
+	if err != nil {
+		t.Fatalf("GenerateHiddenDomains: %v", err)
+	}
+
+	_, rows := readDeck(t, res.DeckFile)
+	if len(rows) != 1 {
+		t.Fatalf("got %d notes, want only Mind's (Calm holds nothing but the signature card): %v", len(rows), rows)
+	}
+	if strings.Contains(rows[0][1], "Fox-Fire") || !strings.Contains(rows[0][1], "Sprite Call") {
+		t.Errorf("Mind back = %q, want Sprite Call without the signature card", rows[0][1])
+	}
+}
+
 func TestNoHiddenCardsIsAnErrorForDomains(t *testing.T) {
 	opts := fixture(t, []cards.Card{
 		{
