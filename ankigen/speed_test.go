@@ -215,3 +215,36 @@ func TestNoSpeedCardsIsAnError(t *testing.T) {
 		t.Fatal("want an error when the catalog holds no Action cards")
 	}
 }
+
+// A unit whose Reaction keyword only marks a mana ability isn't a card the
+// domain can answer with, so it stays off the roster.
+func TestSpeedCardsLeaveOutManaAbilities(t *testing.T) {
+	sage := reactionCard("unl-002-219", "Dragonsoul Sage", 2, "Body")
+	sage.Classification.Type = "Unit"
+	sage.Text.Plain = "[Reaction][&gt;] :rb_exhaust:: [Add] :rb_energy_1:. (Abilities that add resources can't be reacted to.)"
+	// An activated Reaction ability that does something else still counts.
+	guard := reactionCard("unl-003-219", "Watchful Guard", 2, "Body")
+	guard.Classification.Type = "Unit"
+	guard.Text.Plain = "[Reaction][&gt;] :rb_exhaust:: Give a unit +1 :rb_might: this turn. [Add] nothing."
+
+	opts := reactionOpts(t, []cards.Card{
+		sage, guard,
+		reactionCard("unl-001-219", "Defy", 2, "Body"),
+	})
+	res, err := GenerateReactionCards(opts)
+	if err != nil {
+		t.Fatalf("GenerateReactionCards: %v", err)
+	}
+
+	_, rows := readDeck(t, res.DeckFile)
+	if len(rows) != 1 {
+		t.Fatalf("got %d notes, want one for Body at 2 Energy: %v", len(rows), fronts(rows))
+	}
+	back := rows[0][1]
+	if strings.Contains(back, "Dragonsoul Sage") {
+		t.Errorf("back = %q, want the mana ability left out", back)
+	}
+	if !strings.Contains(back, "Defy") || !strings.Contains(back, "Watchful Guard") {
+		t.Errorf("back = %q, want Defy and Watchful Guard kept", back)
+	}
+}

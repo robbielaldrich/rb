@@ -11,6 +11,16 @@ Releases are tagged `anki-vMAJOR.MINOR.PATCH` on the commit that ships them:
 - **PATCH** — only answers change, so a re-import updates notes in place and
   keeps their scheduling.
 
+## 1.0.1 — 2026-10-15
+
+**Reaction Cards** — Body, 2 Energy
+
+- Cards whose Reaction keyword only marks an ability that adds resources are
+  left off the rosters: the card itself isn't played at Reaction speed, and
+  an ability that adds resources can't be reacted to. Dragonsoul Sage drops
+  out of Body at 2 Energy.
+- The question is unchanged, so re-importing updates the note in place.
+
 ## 1.0.0 — 2026-10-04
 
 **Hidden by Domain** — Calm, Mind and Order

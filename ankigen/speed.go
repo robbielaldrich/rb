@@ -113,7 +113,7 @@ func speedCards(cs []cards.Card, keyword string) []cards.Card {
 	var out []cards.Card
 	at := map[string]int{}
 	for _, c := range cs {
-		if c.Classification.Type == cards.TypeLegend || c.IsSignature() || !c.HasKeyword(keyword) {
+		if c.Classification.Type == cards.TypeLegend || c.IsSignature() || !c.HasKeyword(keyword) || isManaAbility(c) {
 			continue
 		}
 		i, ok := at[c.BaseName()]
@@ -158,4 +158,30 @@ func atCost(cs []cards.Card, energy int) []cards.Card {
 		}
 	}
 	return out
+}
+
+// isManaAbility reports whether a card's speed keyword heads an activated
+// ability that only adds resources, as Dragonsoul Sage's "[Reaction][>]
+// Exhaust: [Add] 1 Energy" does. That keyword says when the ability can be
+// used, not when the card can be played, and an ability that adds resources
+// can't be reacted to, so it is nothing an opponent has to play around.
+func isManaAbility(c cards.Card) bool {
+	text := strings.TrimSpace(c.Text.Plain)
+	activated := false
+	for strings.HasPrefix(text, "[") {
+		end := strings.Index(text, "]")
+		if end < 0 {
+			return false
+		}
+		if k := text[1:end]; k == ">" || k == "&gt;" {
+			activated = true
+		}
+		text = strings.TrimLeft(text[end+1:], " ")
+	}
+	if !activated {
+		return false
+	}
+	// The ability runs to its first full stop: its cost, then its effect.
+	ability, _, _ := strings.Cut(text, ".")
+	return strings.Contains(ability, "[Add]")
 }
