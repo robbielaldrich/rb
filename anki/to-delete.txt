@@ -85,3 +85,6 @@
 2026-09-26	Riftbound::Action Cards	What are all the Action cards in Order that cost 4 Energy or less?
 2026-09-26	Riftbound::Action Cards	What are all the Action cards in Order that cost 5 Energy or less?
 2026-09-26	Riftbound::Action Cards	What are all the Action cards in Order that cost 6 Energy or less?
+2026-10-25	Riftbound::Signature Cards	What is the signature card of Jax - Grandmaster At Arms?
+2026-10-25	Riftbound::Signature Cards	What is the signature card of Rek'sai - Void Burrower?
+2026-10-25	Riftbound::Signature Cards	What is the signature card of Yordle, Kennen - Heart of the Tempest?

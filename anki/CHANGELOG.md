@@ -11,6 +11,31 @@ Releases are tagged `anki-vMAJOR.MINOR.PATCH` on the commit that ships them:
 - **PATCH** — only answers change, so a re-import updates notes in place and
   keeps their scheduling.
 
+## 2.0.0 — 2026-10-25
+
+Card data now comes from riftbound.gg instead of Riftcodex, which brings in
+Radiance and fixes several card names Riftcodex misspelled.
+
+**Signature Cards**
+
+- Nine new questions for the Radiance legends.
+- Three questions are reworded with the corrected legend names: Jax -
+  Grandmaster at Arms, Rek'Sai - Void Burrower, and Kennen - Heart of the
+  Tempest (previously "Yordle, Kennen"). The old notes are listed in
+  `to-delete.txt`.
+
+**Hidden Effects**
+
+- Six new questions for Radiance's Hidden cards.
+
+**Action Cards**, **Reaction Cards**, **Hidden by Domain**
+
+- Radiance cards join the rosters, and a new question asks after the Calm
+  Action cards that cost 1 Energy.
+- Vendetta champions are spelled "Name - Title" like every other set's, and
+  Ride the Wind loses its capital T. Existing questions are unchanged, so
+  re-importing updates those notes in place.
+
 ## 1.0.1 — 2026-10-15
 
 **Reaction Cards** — Body, 2 Energy

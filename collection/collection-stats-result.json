@@ -1,33 +1,18 @@
 {
   "sets": [
     {
-      "set": "JDG",
-      "label": "Riftbound Judge Promotional Cards",
-      "cards": {
-        "owned": 0,
-        "total": 3
-      },
-      "playset": {
-        "owned": 0,
-        "total": 3
-      },
-      "alternate_art": null,
-      "overnumbered": null,
-      "signature": null
-    },
-    {
       "set": "OGN",
-      "label": "Origins",
+      "label": "Origins - Main Set",
       "cards": {
-        "owned": 123,
-        "total": 298
+        "owned": 126,
+        "total": 296
       },
       "playset": {
-        "owned": 60,
-        "total": 262
+        "owned": 65,
+        "total": 260
       },
       "alternate_art": {
-        "owned": 0,
+        "owned": 1,
         "total": 30
       },
       "overnumbered": {
@@ -41,7 +26,7 @@
     },
     {
       "set": "OGS",
-      "label": "Proving Grounds",
+      "label": "Origins - Proving Grounds",
       "cards": {
         "owned": 24,
         "total": 24
@@ -55,55 +40,43 @@
       "signature": null
     },
     {
-      "set": "OPP",
-      "label": "Riftbound Organized Play Promotional Cards",
+      "set": "RAD",
+      "label": "Radiance",
       "cards": {
-        "owned": 9,
-        "total": 116
+        "owned": 0,
+        "total": 173
       },
       "playset": {
         "owned": 0,
-        "total": 88
+        "total": 154
       },
       "alternate_art": {
         "owned": 0,
-        "total": 1
+        "total": 29
       },
-      "overnumbered": null,
-      "signature": null
-    },
-    {
-      "set": "PR",
-      "label": "Riftbound Promotional Cards",
-      "cards": {
-        "owned": 1,
-        "total": 4
-      },
-      "playset": {
+      "overnumbered": {
         "owned": 0,
-        "total": 4
+        "total": 17
       },
-      "alternate_art": {
+      "signature": {
         "owned": 0,
-        "total": 9
-      },
-      "overnumbered": null,
-      "signature": null
+        "total": 15
+      }
     },
     {
       "set": "SFD",
       "label": "Spiritforged",
       "cards": {
         "owned": 130,
-        "total": 222
+        "total": 227
       },
       "playset": {
-        "owned": 21,
-        "total": 195
+        "owned": 22,
+        "total": 200
       },
       "alternate_art": {
         "owned": 3,
-        "total": 24
+        "total": 30
       },
       "overnumbered": {
         "owned": 1,
@@ -118,20 +91,20 @@
       "set": "UNL",
       "label": "Unleashed",
       "cards": {
-        "owned": 123,
-        "total": 219
+        "owned": 126,
+        "total": 225
       },
       "playset": {
-        "owned": 14,
-        "total": 192
+        "owned": 16,
+        "total": 198
       },
       "alternate_art": {
         "owned": 3,
-        "total": 30
+        "total": 36
       },
       "overnumbered": {
         "owned": 0,
-        "total": 18
+        "total": 19
       },
       "signature": {
         "owned": 0,
@@ -142,44 +115,47 @@
       "set": "VEN",
       "label": "Vendetta",
       "cards": {
-        "owned": 145,
-        "total": 188
+        "owned": 160,
+        "total": 172
       },
       "playset": {
-        "owned": 74,
-        "total": 168
+        "owned": 109,
+        "total": 153
       },
       "alternate_art": {
-        "owned": 4,
-        "total": 18
+        "owned": 7,
+        "total": 30
       },
       "overnumbered": {
-        "owned": 0,
-        "total": 12
+        "owned": 1,
+        "total": 31
       },
-      "signature": null
+      "signature": {
+        "owned": 0,
+        "total": 9
+      }
     }
   ],
   "total": {
     "cards": {
-      "owned": 555,
-      "total": 1074
+      "owned": 566,
+      "total": 1117
     },
     "playset": {
-      "owned": 178,
-      "total": 932
+      "owned": 221,
+      "total": 985
     },
     "alternate_art": {
-      "owned": 10,
-      "total": 112
+      "owned": 14,
+      "total": 155
     },
     "overnumbered": {
-      "owned": 1,
-      "total": 72
+      "owned": 2,
+      "total": 109
     },
     "signature": {
       "owned": 0,
-      "total": 36
+      "total": 60
     }
   }
 }
