@@ -43,11 +43,11 @@
       "set": "RAD",
       "label": "Radiance",
       "cards": {
-        "owned": 0,
+        "owned": 58,
         "total": 173
       },
       "playset": {
-        "owned": 0,
+        "owned": 48,
         "total": 154
       },
       "alternate_art": {
@@ -138,11 +138,11 @@
   ],
   "total": {
     "cards": {
-      "owned": 566,
+      "owned": 624,
       "total": 1117
     },
     "playset": {
-      "owned": 221,
+      "owned": 269,
       "total": 985
     },
     "alternate_art": {
