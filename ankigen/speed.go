@@ -105,10 +105,9 @@ func generateSpeedCards(speed, deckName, fileName string, opts Options) (SpeedRe
 // under both its alternate art and its plain printing.
 //
 // Which printing stands for the card matters, because the roster names the
-// set beside it. A card handed out as an organized-play promo is kept as the
-// printing from the set it belongs to: Lunar Boon is an Unleashed card that
-// was also given away, and reading it as an OPP card says nothing about where
-// to find it.
+// set beside it. A card also handed out as a promo is kept as its plain
+// printing: Lunar Boon is an Unleashed card that was also given away, and the
+// giveaway art says nothing about where to find it.
 func speedCards(cs []cards.Card, keyword string) []cards.Card {
 	var out []cards.Card
 	at := map[string]int{}

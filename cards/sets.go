@@ -8,8 +8,7 @@ import (
 	"time"
 )
 
-// Set is one card set, as returned by the Riftcodex API (GET /sets) and
-// stored in sets.json.
+// Set is one card set, as stored in sets.json.
 type Set struct {
 	ID          string `json:"id"`
 	Name        string `json:"name"`

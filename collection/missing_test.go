@@ -122,18 +122,22 @@ func TestMissingSetAxisWantsOneCopy(t *testing.T) {
 	}
 }
 
-// A promo is never what a deck is short of, but it is still worth owning, so
-// it leaves the playset axis and stays on the set one.
-func TestMissingLeavesPromosOffThePlaysetAxis(t *testing.T) {
-	cs := []cards.Card{promoPrinting("opp-052-298", "Stalwart Poro", "opp")}
+// A promo is another printing of a card its set prints, so it is never wanted
+// in its own right, but its copies count towards that card.
+func TestMissingCountsPromosTowardsTheirCard(t *testing.T) {
+	cs := []cards.Card{
+		printing("unl-009-219", "Upstage Comedy", "unl", cards.Metadata{}),
+		promoPrinting("unl-009p-219", "Upstage Comedy (Unleashed Nexus Night Promo)", "unl"),
+	}
+	coll := &collection{Cards: []collectedCard{{RiftboundID: "unl-009p-219", Quantity: 1}}}
 
-	if got := wants(cs, &collection{}, AxisPlayset); len(got) != 0 {
-		t.Errorf("playset axis wants %+v, want nothing from a promo set", got)
+	if got := wants(cs, coll, AxisSet); len(got) != 0 {
+		t.Errorf("set axis wants %+v, want the promo to stand for its card", got)
 	}
 
-	got := wants(cs, &collection{}, AxisSet)
-	if len(got) != 1 || got[0].short() != 1 {
-		t.Fatalf("set axis wants %+v, want the one promo asked for once", got)
+	got := wants(cs, coll, AxisPlayset)
+	if len(got) != 1 || got[0].sortID != "unl-009-219" || got[0].short() != 2 {
+		t.Fatalf("playset axis wants %+v, want two more of the card at its own number", got)
 	}
 }
 

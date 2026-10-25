@@ -1,83 +1,44 @@
 [
   {
-    "id": "69bc5bf6e195be3e561d1eb0",
-    "name": "Riftbound Judge Promotional Cards",
-    "set_id": "JDG",
-    "card_count": 3,
-    "tcgplayer_id": "24552",
-    "cardmarket_id": [
-      "6322",
-      "6483"
-    ],
-    "published_on": "2025-12-01T00:00:00"
+    "id": "RAD",
+    "name": "Radiance",
+    "set_id": "RAD",
+    "card_count": 282,
+    "published_on": "2026-10-23T00:00:00"
   },
   {
-    "id": "69bc5bf6e195be3e561d1eb4",
-    "name": "Riftbound Promotional Cards",
-    "set_id": "PR",
-    "card_count": 13,
-    "tcgplayer_id": "24343",
-    "cardmarket_id": [
-      "6322",
-      "6483"
-    ],
-    "published_on": "2025-10-31T00:00:00"
-  },
-  {
-    "id": "69bc5bf6e195be3e561d1eb3",
-    "name": "Riftbound Organized Play Promotional Cards",
-    "set_id": "OPP",
-    "card_count": 133,
-    "tcgplayer_id": "24343",
-    "cardmarket_id": [
-      "6322",
-      "6483"
-    ],
-    "published_on": "2025-10-31T00:00:00"
-  },
-  {
-    "id": "69bc5bf6e195be3e561d1eb1",
-    "name": "Origins",
-    "set_id": "OGN",
-    "card_count": 352,
-    "tcgplayer_id": "24344",
-    "cardmarket_id": "6286",
-    "published_on": "2025-10-31T00:00:00"
-  },
-  {
-    "id": "6a32e5e7189085654c4f249e",
+    "id": "VEN",
     "name": "Vendetta",
     "set_id": "VEN",
-    "card_count": 358,
-    "tcgplayer_id": null,
-    "cardmarket_id": null,
+    "card_count": 272,
     "published_on": "2026-07-31T00:00:00"
   },
   {
-    "id": "69bc5bf6e195be3e561d1eaf",
-    "name": "Spiritforged",
-    "set_id": "SFD",
-    "card_count": 288,
-    "tcgplayer_id": "24519",
-    "cardmarket_id": "6399",
-    "published_on": "2026-02-13T00:00:00"
-  },
-  {
-    "id": "69bc5bf6e195be3e561d1eae",
+    "id": "UNL",
     "name": "Unleashed",
     "set_id": "UNL",
-    "card_count": 280,
-    "tcgplayer_id": "24560",
-    "cardmarket_id": null,
+    "card_count": 293,
     "published_on": "2026-05-08T00:00:00"
   },
   {
-    "id": "69bc5bf6e195be3e561d1eb2",
-    "name": "Origins: Proving Grounds",
+    "id": "SFD",
+    "name": "Spiritforged",
+    "set_id": "SFD",
+    "card_count": 312,
+    "published_on": "2026-02-13T00:00:00"
+  },
+  {
+    "id": "OGN",
+    "name": "Origins - Main Set",
+    "set_id": "OGN",
+    "card_count": 381,
+    "published_on": "2025-10-31T00:00:00"
+  },
+  {
+    "id": "OGS",
+    "name": "Origins - Proving Grounds",
     "set_id": "OGS",
-    "card_count": 24,
-    "tcgplayer_id": "24439",
-    "cardmarket_id": "6289",
+    "card_count": 32,
     "published_on": "2025-10-31T00:00:00"
   }
 ]

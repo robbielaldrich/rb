@@ -83,7 +83,6 @@ type want struct {
 	rarity string
 	copies int
 	target int
-	promo  bool
 }
 
 // short is how many copies are still needed to reach the target.
@@ -108,16 +107,12 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 		}
 		e.copies += qty[c.RiftboundID]
 
-		// A chase printing carries neither number nor rarity of its own into
-		// the report: the card is wanted at the number the set prints it at,
-		// and at the rarity it is pulled at there rather than the Showcase a
-		// reprint of it wears.
-		if !c.IsChasePrinting() {
+		// A chase printing or a promo carries neither number nor rarity of its
+		// own into the report: the card is wanted at the number the set prints
+		// it at, and at the rarity it is pulled at there rather than the
+		// Showcase or Promo a reprint of it wears. Its copies still count.
+		if !c.IsChasePrinting() && !c.IsPromo() {
 			e.number, e.sortID, e.rarity = c.Number(), c.RiftboundID, c.Classification.Rarity
-			// Accumulated rather than taken from the last printing, the way
-			// Stats does it: a card any printing of which is a promo is one
-			// the playset is asked for somewhere else.
-			e.promo = e.promo || c.IsPromo()
 		}
 	}
 
@@ -128,20 +123,13 @@ func wants(cs []cards.Card, coll *collection, axis Axis) []want {
 		if e.number == "" || e.short() <= 0 {
 			continue
 		}
-		// A promo is another printing of a card a main set already prints, so
-		// it is never what a deck is short of — the playset is asked for once,
-		// where the card itself lives. It is still worth owning, so the set
-		// axis goes on asking for it.
-		if axis == AxisPlayset && e.promo {
-			continue
-		}
 		out = append(out, *e)
 	}
 
 	// Binder order: by set, then by riftbound_id, whose zero-padded numbers
 	// sort as they are printed and whose prefixes keep the main run, the runes
-	// and the promos in their own blocks rather than interleaved by a
-	// collector number the three series each start again from one.
+	// and the special showcases in their own blocks rather than interleaved by
+	// a collector number the three series each start again from one.
 	slices.SortFunc(out, func(a, b want) int {
 		return cmp.Or(
 			cmp.Compare(a.setID, b.setID),

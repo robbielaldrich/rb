@@ -1,7 +1,7 @@
 package cards
 
-// Card is a single Riftbound card, as returned by the Riftcodex API
-// (https://riftcodex.com/docs/endpoints/cards/) and stored in cards.json.
+// Card is a single Riftbound card, as stored in cards.json. Package
+// riftboundgg builds it from the riftbound.gg card data.
 type Card struct {
 	ID              string         `json:"id"`
 	Name            string         `json:"name"`
@@ -35,8 +35,7 @@ const (
 )
 
 // RarityPromo marks a printing handed out at an event rather than pulled from
-// a pack. The promo sets — organized play, judge, launch — are made of nothing
-// else, and the sets sold in packs hold none of it.
+// a pack. Promos are filed under the set whose card they reprint.
 const RarityPromo = "Promo"
 
 // SupertypeSignature marks a card printed as the signature of a champion. A

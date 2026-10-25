@@ -61,7 +61,7 @@ func Load(path string) ([]Card, error) {
 // optional variant letter), and the printed set size.
 //
 // The number is matched loosely enough to cover the series lettered rather
-// than numbered — ven-sp1-006, opp-r01b-166 — so that they are printed as the
+// than numbered — ven-sp1-006, rad-r01bp-166 — so that they are printed as the
 // number and set size they carry instead of falling back to a bare collector
 // number that several cards in a set share.
 var riftIDRe = regexp.MustCompile(`^([a-z]+)-([0-9a-z*]+)-([0-9]+)$`)
@@ -80,34 +80,11 @@ func (c Card) Number() string {
 	return strconv.Itoa(c.CollectorNumber)
 }
 
-// SetSize is the printed set size a card's number is quoted out of — "166" for
-// ven-044-166 — or empty for an id carrying none.
-//
-// In a promo set that is the size of the set being reprinted rather than of
-// the set the card is filed under, which is what tells one promo of a card
-// from another: OPP holds an Origins Fury Rune numbered out of 298 and a
-// Vendetta one numbered out of 166. It is read off the end of the id rather
-// than through riftIDRe, since the printings numbered outside the main run —
-// r01b, sp1 — carry a set size that the collector-number pattern won't match.
-func (c Card) SetSize() string {
-	i := strings.LastIndex(c.RiftboundID, "-")
-	if i < 0 {
-		return ""
-	}
-	size := c.RiftboundID[i+1:]
-	for _, r := range size {
-		if r < '0' || r > '9' {
-			return ""
-		}
-	}
-	return size
-}
-
 // IsAlternateArt reports whether this printing is an alternate art.
 //
-// The API flags most of them, but a dozen are missing the flag; their
-// riftbound_id still carries the "a" that tells the printing apart from the
-// plain one at the same collector number, e.g. ven-113a-166.
+// The catalog flags them, and their riftbound_id carries the "a" that tells
+// the printing apart from the plain one at the same collector number, e.g.
+// ven-113a-166; either is taken as enough.
 func (c Card) IsAlternateArt() bool {
 	if c.Metadata.AlternateArt {
 		return true

@@ -14,7 +14,7 @@ import (
 	"rb/ankigen"
 	"rb/collection"
 	"rb/decks"
-	"rb/riftcodex"
+	"rb/riftboundgg"
 	"rb/rules"
 )
 
@@ -24,10 +24,9 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 	switch cmd {
 	case "download-cards":
 		outDir := fs.String("out", "cards", "directory to write downloaded card data into")
-		missingFile := fs.String("missing-file", "cards/missing-from-riftcodex.json", "cards Riftcodex does not carry, to add to the download")
 		images := fs.Bool("images", true, "also download card images")
 		concurrency := fs.Int("concurrency", 8, "number of concurrent image downloads")
-		return func() error { return downloadCards(*outDir, *missingFile, *images, *concurrency) }
+		return func() error { return downloadCards(*outDir, *images, *concurrency) }
 
 	case "collect":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to search (cards.json)")
@@ -176,8 +175,8 @@ func flagLines(fs *flag.FlagSet) []string {
 	return lines
 }
 
-func downloadCards(outDir, missingFile string, images bool, concurrency int) error {
-	if err := riftcodex.DownloadCards(outDir, missingFile, images, concurrency); err != nil {
+func downloadCards(outDir string, images bool, concurrency int) error {
+	if err := riftboundgg.DownloadCards(outDir, images, concurrency); err != nil {
 		return fmt.Errorf("failed to download cards: %w", err)
 	}
 	return nil

@@ -61,7 +61,6 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 		owned   bool // some printing of it is in the collection
 		copies  int  // how many, over every printing
 		playset int  // how many one deck can use
-		promo   bool // the set prints it as a promo, not as a card of its own
 	}
 	byName := map[nameKey]*card{}
 
@@ -92,9 +91,12 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 			s.over.count(n > 0)
 		case c.Metadata.Signature:
 			s.sig.count(n > 0)
+		case c.IsPromo():
+			// A promo is another printing of a card the set prints, filed
+			// alongside it: its copies count towards that card, but it is
+			// not a card of its own to collect.
 		default:
 			e.printed = true
-			e.promo = e.promo || c.IsPromo()
 		}
 	}
 
@@ -106,11 +108,8 @@ func summarise(cs []cards.Card, coll *collection) []setStats {
 		s.named.count(e.owned)
 		// Battlefields and legends sit out the playset share: a deck fields one
 		// of each, so holding them to three would only dilute the reading of
-		// how far the cards you do need in triplicate have come. So do the
-		// promo sets, whose every card is another printing of one a main set
-		// already prints: the playset is measured once, against the card, and
-		// promo copies count towards it wherever they are filed.
-		if e.playset > 1 && !e.promo {
+		// how far the cards you do need in triplicate have come.
+		if e.playset > 1 {
 			s.playset.count(e.copies >= e.playset)
 		}
 	}

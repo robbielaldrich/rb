@@ -144,9 +144,20 @@ type rendered struct {
 	textMasked string
 }
 
+// scanExts are the formats card scans are kept in: riftbound.gg only serves
+// WebP, while the scans downloaded from Riftcodex before it, still used for
+// the cards they cover, are PNGs.
+var scanExts = []string{".png", ".webp"}
+
 // cardScan reads a card's scan at the size the decks show it at.
 func cardScan(c cards.Card, opts Options) (*image.RGBA, error) {
-	src := filepath.Join(opts.ImageDir, c.RiftboundID+".png")
+	src := filepath.Join(opts.ImageDir, c.RiftboundID+scanExts[0])
+	for _, ext := range scanExts {
+		if p := filepath.Join(opts.ImageDir, c.RiftboundID+ext); fileExists(p) {
+			src = p
+			break
+		}
+	}
 	img, err := loadCardImage(src)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read the scan of %s: %w", c.Label(), err)

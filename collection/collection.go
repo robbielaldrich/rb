@@ -96,18 +96,16 @@ func labels(set map[string]bool) string {
 }
 
 // nameKey identifies the card a printing is of, rather than the printing
-// itself: the set it is filed under, the card it shows, and the size of the
-// set it is numbered out of.
+// itself: the set it is filed under and the card it shows.
 //
 // Stats and Missing both fold their printings onto it, which is what
-// makes them count the same cards as one another. Every printing of a card —
-// plain, alternate art, overnumbered — shares a key, while a promo set's
-// promos of different sets keep theirs apart, since only the set size they are
-// numbered out of tells an Origins Fury Rune from a Vendetta one.
-type nameKey struct{ set, name, size string }
+// makes them count the same cards as one another. Every printing of a card in
+// a set — plain, alternate art, overnumbered, promo — shares a key, since
+// promos are filed under the set whose card they reprint.
+type nameKey struct{ set, name string }
 
 func cardKey(c cards.Card) nameKey {
-	return nameKey{strings.ToUpper(c.Set.SetID), c.BaseName(), c.SetSize()}
+	return nameKey{strings.ToUpper(c.Set.SetID), c.BaseName()}
 }
 
 // quantities is how many copies of each printing the collection holds, keyed

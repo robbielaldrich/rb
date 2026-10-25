@@ -131,31 +131,15 @@ func TestUnflaggedAlternateArtStillCounts(t *testing.T) {
 	}
 }
 
-// promoPrinting is a printing handed out at an event, as the promo sets are
-// made up of entirely.
+// promoPrinting is a printing handed out at an event, filed under the set
+// whose card it reprints.
 func promoPrinting(id, name, setID string) cards.Card {
 	c := printing(id, name, setID, cards.Metadata{})
 	c.Classification.Rarity = cards.RarityPromo
 	return c
 }
 
-// A promo set holds promos of several sets at once, so two promos of the same
-// card are two cards to collect: only the set size they are numbered out of
-// tells the Origins Fury Rune from the Vendetta one.
-func TestPromosOfDifferentSetsAreCountedApart(t *testing.T) {
-	cs := []cards.Card{
-		promoPrinting("opp-007b-298", "Fury Rune", "opp"),
-		promoPrinting("opp-r01b-166", "Fury Rune (Nexus Night Promo)", "opp"),
-	}
-	s := playsetFor(t, cs, map[string]int{"opp-007b-298": 1})
-
-	if s.named != (tally{owned: 1, total: 2}) {
-		t.Errorf("named = %v, want 1/2 — one Fury Rune promo owned of two", s.named)
-	}
-}
-
-// Printings of one card within a set still fold together: the set size is only
-// there to tell a promo set's reprints of different sets apart.
+// Printings of one card within a set fold together.
 func TestPrintingsOfOneCardStillFold(t *testing.T) {
 	s := statsFor(t, "ven-001a-166")
 	if s.named != (tally{owned: 1, total: 3}) {
@@ -163,21 +147,20 @@ func TestPrintingsOfOneCardStillFold(t *testing.T) {
 	}
 }
 
-// A promo set's cards are reprints of cards a main set already prints, so they
-// are counted as cards to own but never measured against a playset: the deck's
-// three copies are asked for once, where the card itself lives.
-func TestPromosAreCollectedButNotPlaysetted(t *testing.T) {
+// A promo is another printing of a card its set prints: it is not a card of
+// its own to collect, but its copies count towards that card's playset.
+func TestPromosCountTowardsTheirCard(t *testing.T) {
 	cs := []cards.Card{
-		promoPrinting("opp-052-298", "Stalwart Poro", "opp"),
-		promoPrinting("opp-007b-298", "Fury Rune", "opp"),
+		printing("unl-009-219", "Upstage Comedy", "unl", cards.Metadata{}),
+		promoPrinting("unl-009p-219", "Upstage Comedy (Unleashed Nexus Night Promo)", "unl"),
 	}
-	s := playsetFor(t, cs, map[string]int{"opp-052-298": 1})
+	s := playsetFor(t, cs, map[string]int{"unl-009-219": 2, "unl-009p-219": 1})
 
-	if s.named != (tally{owned: 1, total: 2}) {
-		t.Errorf("named = %v, want 1/2 — promos are still cards to collect", s.named)
+	if s.named != (tally{owned: 1, total: 1}) {
+		t.Errorf("named = %v, want 1/1 — the promo folds into its card", s.named)
 	}
-	if s.playset != (tally{}) {
-		t.Errorf("playset = %v, want an empty tally for a promo set", s.playset)
+	if s.playset != (tally{owned: 1, total: 1}) {
+		t.Errorf("playset = %v, want 1/1 — two plain copies and a promo make three", s.playset)
 	}
 }
 

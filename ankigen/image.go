@@ -6,9 +6,11 @@ import (
 	"image/color"
 	"image/draw"
 	"image/jpeg"
-	"image/png"
+	_ "image/png"
 	"math"
 	"os"
+
+	_ "golang.org/x/image/webp"
 )
 
 // jpegQuality trades a little sharpness for a deck that syncs: the source
@@ -25,7 +27,7 @@ func loadCardImage(path string) (*image.RGBA, error) {
 	}
 	defer f.Close()
 
-	src, err := png.Decode(f)
+	src, _, err := image.Decode(f)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode %s: %w", path, err)
 	}
