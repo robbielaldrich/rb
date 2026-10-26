@@ -85,7 +85,7 @@ func TestReviewKeepsRewordsAndSkips(t *testing.T) {
 	}
 	// The citation is added when the deck is written, not carried in the
 	// wording the review settled on.
-	want := "How are targets chosen when playing Alpha Strike?\tIts controller chooses them while finalizing the spell.<br><br><small>Core Rules 402.2</small>\triftbound::rules riftbound::rules::cards riftbound::topic::alpha-strike"
+	want := "How are targets chosen when playing Alpha Strike?\tIts controller chooses them while finalizing the spell.<br><br><small>Core Rules 402.2</small>\triftbound::rules riftbound::rules::cards riftbound::topic::alpha-strike\tRiftbound::Rulings"
 	if lines[0] != want {
 		t.Errorf("first note:\n%s\nwant:\n%s", lines[0], want)
 	}

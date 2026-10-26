@@ -11,6 +11,18 @@ Releases are tagged `anki-vMAJOR.MINOR.PATCH` on the commit that ships them:
 - **PATCH** — only answers change, so a re-import updates notes in place and
   keeps their scheduling.
 
+## 2.1.0 — 2026-10-25
+
+Every deck now ships in one import file, `riftbound.txt`, which names each
+note's deck in its last column, so a single import brings in all of them. The
+six per-deck files are gone. Deck names and questions are unchanged, so
+importing it with Existing notes set to Update updates the notes already in
+the collection.
+
+**Rulings**
+
+- A new question on when Astral Heron triggers and which card it discounts.
+
 ## 2.0.0 — 2026-10-25
 
 Card data now comes from riftbound.gg instead of Riftcodex, which brings in

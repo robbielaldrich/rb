@@ -160,6 +160,195 @@
    "front": "Can I use Arcane Shift to banish the only unit I own and control at a battlefield I control, then play it there again?",
    "back": "Yes, as long as the unit is not a token and you control that battlefield.",
    "decidedAt": "2026-10-04T14:26:55.192607-07:00"
+  },
+  {
+   "key": "astral-heron#trigger-timing",
+   "status": "approved",
+   "front": "When exactly does Astral Heron trigger, and which card gets its discount?",
+   "back": "Astral Heron triggers after your first card of the turn finishes resolving, and if its triggered ability resolves, it discounts the next card you play this turn after that resolution.",
+   "decidedAt": "2026-10-25T21:58:01.625838-07:00"
+  },
+  {
+   "key": "astral-heron#self-trigger",
+   "status": "skipped",
+   "front": "Does Astral Heron's ability trigger if it's the first card I play this turn and I play it to a battlefield?",
+   "back": "Yes, if Astral Heron is your first card played that turn and enters a battlefield as it resolves.",
+   "decidedAt": "2026-10-25T21:58:10.798086-07:00"
+  },
+  {
+   "key": "astral-heron#moved-during-resolution",
+   "status": "skipped",
+   "front": "Does Astral Heron trigger if the first card I play moves Astral Heron to base?",
+   "back": "No, if the spell leaves Astral Heron at base when it finishes resolving.",
+   "decidedAt": "2026-10-25T21:58:11.567609-07:00"
+  },
+  {
+   "key": "astral-heron#removed-in-response",
+   "status": "skipped",
+   "front": "Once Astral Heron's triggered ability is on the chain, can I stop the cost reduction by killing or moving Astral Heron?",
+   "back": "No. Once the triggered ability is on the chain, it still creates the discount even if you kill or move Astral Heron.",
+   "decidedAt": "2026-10-25T21:58:11.994728-07:00"
+  },
+  {
+   "key": "astral-heron#discount-after-counter",
+   "status": "skipped",
+   "front": "If the spell that receives Astral Heron's discount is later countered, is the discount granted to a different card instead?",
+   "back": "No. Once the discount has reduced the next spell's cost, countering that spell does not transfer the discount to another card.",
+   "decidedAt": "2026-10-25T21:58:12.362817-07:00"
+  },
+  {
+   "key": "azir-sovereign#attack-trigger-without-azir",
+   "status": "skipped",
+   "front": "If Azir, Sovereign is killed or returned to his base before his attack trigger resolves, do token units still move?",
+   "back": "If Azir is killed, no token units move; if he is returned to base, no token units move unless he returns to a battlefield before the move instruction executes.",
+   "decidedAt": "2026-10-25T21:58:12.679402-07:00"
+  },
+  {
+   "key": "baited-hook#kill-reaction-window",
+   "status": "skipped",
+   "front": "Can my opponent react before Baited Hook kills my unit?",
+   "back": "Yes. \"Kill a friendly unit\" comes after the \":\" in Baited Hook's activated ability, so it is an effect instruction rather than part of the activation cost.",
+   "decidedAt": "2026-10-25T21:58:13.048977-07:00"
+  },
+  {
+   "key": "baited-hook#illegal-target",
+   "status": "skipped",
+   "front": "What happens if the targeted unit is removed before Baited Hook's ability resolves?",
+   "back": "The unit is not killed, you still look at the top 5 cards, but you cannot banish or play a unit from among them and must recycle every card you looked at.",
+   "decidedAt": "2026-10-25T21:58:13.384858-07:00"
+  },
+  {
+   "key": "baited-hook#deathknell-order",
+   "status": "skipped",
+   "front": "Does a unit's Deathknell resolve before or after the unit played by Baited Hook and its triggers?",
+   "back": "The unit played by Baited Hook enters before the killed unit's Deathknell resolves.",
+   "decidedAt": "2026-10-25T21:58:13.699833-07:00"
+  },
+  {
+   "key": "baited-hook#karthus-deathknell-timing",
+   "status": "skipped",
+   "front": "If Baited Hook kills Glasc Mixologist and plays Karthus, Eternal, does Glasc Mixologist's Deathknell trigger twice?",
+   "back": "No. Baited Hook kills Glasc Mixologist before it plays Karthus, Eternal.",
+   "decidedAt": "2026-10-25T21:58:14.026201-07:00"
+  },
+  {
+   "key": "baron-nashor#creation-movement",
+   "status": "skipped",
+   "front": "Does Baron Nashor move to the Baron Pit when it's created as part of playing him?",
+   "back": "No. Baron Nashor enters the Baron Pit directly; he does not move there.",
+   "decidedAt": "2026-10-25T21:58:14.458508-07:00"
+  },
+  {
+   "key": "baron-nashor#baron-pit-showdown",
+   "status": "skipped",
+   "front": "What happens after Baron Nashor enters the Baron Pit?",
+   "back": "Baron Nashor's entry contests the newly created Baron Pit and leads to a non-combat showdown there.",
+   "decidedAt": "2026-10-25T21:58:14.88087-07:00"
+  },
+  {
+   "key": "baron-nashor#baron-pit-victory",
+   "status": "skipped",
+   "front": "Baron Nashor — Does the Baron Pit need to be scored to win by conquering?",
+   "back": "Yes, when the potential winning point would come from conquering.",
+   "decidedAt": "2026-10-25T21:58:15.298609-07:00"
+  },
+  {
+   "key": "baron-nashor#might-loss-survival",
+   "status": "skipped",
+   "front": "Can a unit survive combat damage that becomes lethal when Baron Nashor dies in the same combat?",
+   "back": "Yes, if the unit does not have lethal damage when the cleanup checks it while Baron Nashor's +2 might still applies.",
+   "decidedAt": "2026-10-25T21:58:15.666784-07:00"
+  },
+  {
+   "key": "baron-nashor#warden-play-lock",
+   "status": "skipped",
+   "front": "Can I play Baron Nashor while an opponent's Mageseeker Warden is at a battlefield?",
+   "back": "Yes. You choose your base as Baron Nashor's play location because Mageseeker Warden makes it the only legal option.",
+   "decidedAt": "2026-10-25T21:58:16.075383-07:00"
+  },
+  {
+   "key": "bone-skewer#targeting-protection",
+   "status": "skipped",
+   "front": "Can Bone Skewer choose a unit that says it \"can't be chosen by enemy spells and abilities\"?",
+   "back": "Yes. The unit's untargetability ability is inactive while the card is in hand, and Bone Skewer's choice does not target it.",
+   "decidedAt": "2026-10-25T21:58:16.458599-07:00"
+  },
+  {
+   "key": "bone-skewer#stun-targeting",
+   "status": "skipped",
+   "front": "Does Bone Skewer stun a unit that can't be chosen by enemy spells or abilities?",
+   "back": "Yes. The reflexive trigger that stuns the unit does not ask its controller to choose anything.",
+   "decidedAt": "2026-10-25T21:58:16.811483-07:00"
+  },
+  {
+   "key": "bone-skewer#hide-instead-of-play",
+   "status": "skipped",
+   "front": "If a unit chosen by Bone Skewer has Hidden, can the opponent hide it instead of playing it?",
+   "back": "No. Hide is a separate action, not a way to fulfill Bone Skewer's instruction to play the unit.",
+   "decidedAt": "2026-10-25T21:58:18.048917-07:00"
+  },
+  {
+   "key": "bone-skewer#optional-additional-costs",
+   "status": "skipped",
+   "front": "Can a unit played for free by Bone Skewer still get an effect for paying an optional additional cost?",
+   "back": "Yes.",
+   "decidedAt": "2026-10-25T21:58:18.554601-07:00"
+  },
+  {
+   "key": "brynhir-thundersong#existing-cards",
+   "status": "skipped",
+   "front": "Does Brynhir Thundersong stop cards already on the chain?",
+   "back": "No. A card already on the chain has already started its play because playing a card means placing it there and queuing it for finalization.",
+   "decidedAt": "2026-10-25T21:58:19.019867-07:00"
+  },
+  {
+   "key": "call-to-battle#same-battlefield-destination",
+   "status": "skipped",
+   "front": "Can I choose a unit's current battlefield as Call to Battle's destination?",
+   "back": "No. When a spell or ability has you choose a move destination, that destination must be somewhere other than the unit's current location.",
+   "decidedAt": "2026-10-25T21:58:19.458218-07:00"
+  },
+  {
+   "key": "consuming-curse#self-count",
+   "status": "skipped",
+   "front": "When I play Consuming Curse from my trash, does it count itself for the bonus damage?",
+   "back": "No. The first step of playing Consuming Curse moves it from your trash to the chain.",
+   "decidedAt": "2026-10-25T21:58:30.450668-07:00"
+  },
+  {
+   "key": "diana-lunari#trigger-resolution-order",
+   "status": "skipped",
+   "front": "Does Diana, Lunari's ability resolve before or after attack and defend abilities from the start of combat?",
+   "back": "When combat opens with a new showdown, Diana's ability triggers first but resolves last, after all attack and defend abilities generated immediately afterward.",
+   "decidedAt": "2026-10-25T21:58:30.863669-07:00"
+  },
+  {
+   "key": "diana-lunari#ability-finalization-cost",
+   "status": "skipped",
+   "front": "When do I pay the 1 energy for Diana, Lunari's ability?",
+   "back": "You pay it while Diana's triggered ability is being finalized, before opponents receive the normal opportunity to play Reactions to the ability.",
+   "decidedAt": "2026-10-25T21:58:31.13785-07:00"
+  },
+  {
+   "key": "elder-dragon#lethal-damage-timing",
+   "status": "skipped",
+   "front": "Does damage from earlier in the turn become lethal when Elder Dragon enters, and can I react?",
+   "back": "Damage still marked by Elder Dragon's controller becomes lethal to enemy units when Elder Dragon enters, and opponents cannot react after it enters before those units are killed in the resulting cleanup.",
+   "decidedAt": "2026-10-25T21:58:31.376878-07:00"
+  },
+  {
+   "key": "elder-dragon#zero-target-finalization",
+   "status": "skipped",
+   "front": "Does Elder Dragon's play effect finalize if its passive leaves no enemy units to target?",
+   "back": "Yes. The words \"up to\" allow Elder Dragon's controller to choose zero targets.",
+   "decidedAt": "2026-10-25T21:58:31.639337-07:00"
+  },
+  {
+   "key": "emperors-dais#ability-finalization-cost",
+   "status": "skipped",
+   "front": "When do I pay 1 energy and return a unit for Emperor's Dais?",
+   "back": "During finalization, you decide whether to use the ability and, if you do, pay and return the unit.",
+   "decidedAt": "2026-10-25T21:58:32.042228-07:00"
   }
  ]
 }

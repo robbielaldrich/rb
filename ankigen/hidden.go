@@ -88,7 +88,7 @@ func GenerateHiddenEffects(opts Options) (Result, error) {
 		})
 	}
 
-	effectFile := filepath.Join(opts.OutDir, "riftbound-hidden-effects.txt")
+	effectFile := filepath.Join(opts.OutDir, DeckFile)
 	if err := effects.write(effectFile); err != nil {
 		return Result{}, fmt.Errorf("failed to write deck: %w", err)
 	}

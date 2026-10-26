@@ -8,6 +8,8 @@ import (
 	"io"
 	"os"
 	"os/signal"
+	"path/filepath"
+	"slices"
 	"strings"
 	"time"
 
@@ -243,20 +245,21 @@ func genAnki(opts ankigen.Options, only string) error {
 		if err != nil {
 			return fmt.Errorf("failed to generate the %s block: %w", b.Name, err)
 		}
-		files = append(files, res.Files...)
+		for _, f := range res.Files {
+			if !slices.Contains(files, f) {
+				files = append(files, f)
+			}
+		}
 		notes += res.Notes
 	}
 
-	fmt.Printf("wrote %d notes across %d deck files:\n", notes, len(files))
-	for _, f := range files {
-		fmt.Printf("  %s\n", f)
-	}
+	fmt.Printf("wrote %d notes into %s\n", notes, strings.Join(files, ", "))
 	fmt.Printf(`
 to import:
   1. run: just add-anki-media   (copies %s/media/* into Anki's collection.media)
-  2. in Anki, File > Import, and choose whichever deck files above you want —
-     each imports independently, so pick and choose
-`, opts.OutDir)
+  2. in Anki, File > Import, choose %s, and set Existing notes to Update —
+     every deck is in the one file, each row naming its own deck
+`, opts.OutDir, filepath.Join(opts.OutDir, ankigen.DeckFile))
 	return nil
 }
 

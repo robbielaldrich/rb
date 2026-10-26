@@ -117,7 +117,7 @@ func ReviewRulings(opts RulesOptions, in io.Reader, out io.Writer) (RulesResult,
 		return RulesResult{}, fmt.Errorf("failed to create %s: %w", opts.OutDir, err)
 	}
 	d := rulesDeck(opts.DeckName, rs, rev)
-	res.DeckFile, res.Notes = filepath.Join(opts.OutDir, "riftbound-rulings.txt"), len(d.notes)
+	res.DeckFile, res.Notes = filepath.Join(opts.OutDir, DeckFile), len(d.notes)
 	if err := d.write(res.DeckFile); err != nil {
 		return RulesResult{}, fmt.Errorf("failed to write deck: %w", err)
 	}

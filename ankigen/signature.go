@@ -80,7 +80,7 @@ func GenerateSignatureCards(opts Options) (SignatureResult, error) {
 		})
 	}
 
-	deckFile := filepath.Join(opts.OutDir, "riftbound-signature-cards.txt")
+	deckFile := filepath.Join(opts.OutDir, DeckFile)
 	if err := d.write(deckFile); err != nil {
 		return SignatureResult{}, fmt.Errorf("failed to write deck: %w", err)
 	}

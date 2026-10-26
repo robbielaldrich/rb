@@ -105,10 +105,15 @@ func TestGenerateHiddenEffects(t *testing.T) {
 	headers, rows := readDeck(t, res.EffectDeckFile)
 	wantHeaders := []string{
 		"#separator:Tab", "#html:true", "#notetype:Basic",
-		"#deck:Riftbound::Hidden Effects", "#tags column:3",
+		"#tags column:3", "#deck column:4",
 	}
 	if strings.Join(headers, "\n") != strings.Join(wantHeaders, "\n") {
 		t.Errorf("headers = %v, want %v", headers, wantHeaders)
+	}
+	for _, r := range rows {
+		if r[len(r)-1] != "Riftbound::Hidden Effects" {
+			t.Errorf("deck = %q, want %q", r[len(r)-1], "Riftbound::Hidden Effects")
+		}
 	}
 	if len(rows) != 1 {
 		t.Fatalf("got %d note rows, want 1: %v", len(rows), rows)

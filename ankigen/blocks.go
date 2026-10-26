@@ -5,12 +5,12 @@ import (
 	"os"
 )
 
-// A Block is one independently importable slice of the deck output: it
-// writes its own import file (and, for image decks, its own media) under
-// opts.OutDir and reports what it wrote. Splitting generation into blocks
-// lets a run regenerate one deck — say, after a new set's rulings land —
-// without redoing the image rendering the others depend on, and lets the
-// files be imported into Anki one at a time rather than all at once.
+// A Block is one independently generated slice of the deck output: it writes
+// its deck's rows into the shared import file (and, for image decks, its own
+// media) under opts.OutDir and reports what it wrote. Splitting generation into
+// blocks lets a run regenerate one deck — say, after a new set's rulings land —
+// without redoing the image rendering the others depend on, while the other
+// decks' rows stay in the file as they were.
 type Block struct {
 	Name string
 	Run  func(Options) (BlockResult, error)

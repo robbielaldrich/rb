@@ -1,7 +1,6 @@
 package ankigen
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -15,6 +14,12 @@ import (
 // option lines, then one tab-separated note per line. Anki treats the first
 // field as a note's identity, so re-importing a regenerated file updates the
 // existing notes instead of duplicating them.
+//
+// Every deck shares one file, each row naming its deck in the last column, so
+// a single import brings in all of them.
+
+// DeckFile is the import file every deck writes its notes into.
+const DeckFile = "riftbound.txt"
 
 // note is one row of the import file.
 type note struct {
@@ -29,38 +34,99 @@ type deck struct {
 	notes    []note
 }
 
+// row is one note line of an import file already on disk, kept as written so
+// the decks this run doesn't regenerate pass through untouched.
+type row struct {
+	deck  string
+	front string
+	line  string
+}
+
+// write puts the deck's notes into the shared import file at path, replacing
+// the rows it wrote last time and keeping every other deck's. A deck keeps its
+// place in the file, and one written for the first time goes at the end.
 func (d *deck) write(path string) error {
-	// Read before the file is truncated: what it used to ask is the only
+	// Read before the file is rewritten: what it used to ask is the only
 	// record of notes this run has stopped generating.
-	before, err := previousFronts(path)
+	notetype, rows, err := readRows(path)
 	if err != nil {
 		return err
 	}
-
-	f, err := os.Create(path)
-	if err != nil {
-		return fmt.Errorf("failed to create %s: %w", path, err)
-	}
-	w := bufio.NewWriter(f)
-
-	fmt.Fprintf(w, "#separator:Tab\n")
-	fmt.Fprintf(w, "#html:true\n")
-	fmt.Fprintf(w, "#notetype:%s\n", d.notetype)
-	fmt.Fprintf(w, "#deck:%s\n", d.name)
-	fmt.Fprintf(w, "#tags column:3\n")
-	for _, n := range d.notes {
-		fmt.Fprintf(w, "%s\t%s\t%s\n", field(n.front), field(n.back), field(strings.Join(n.tags, " ")))
+	if notetype != "" && notetype != d.notetype {
+		return fmt.Errorf("%s holds %s notes, and the %s deck can't share it with %s notes", path, notetype, d.name, d.notetype)
 	}
 
-	if err := w.Flush(); err != nil {
-		f.Close()
+	before := map[string]bool{}
+	for _, r := range rows {
+		if r.deck == d.name {
+			before[r.front] = true
+		}
+	}
+
+	var lines []string
+	placed := false
+	for _, r := range rows {
+		if r.deck != d.name {
+			lines = append(lines, r.line)
+		} else if !placed {
+			lines = append(lines, d.lines()...)
+			placed = true
+		}
+	}
+	if !placed {
+		lines = append(lines, d.lines()...)
+	}
+
+	var b strings.Builder
+	fmt.Fprintf(&b, "#separator:Tab\n")
+	fmt.Fprintf(&b, "#html:true\n")
+	fmt.Fprintf(&b, "#notetype:%s\n", d.notetype)
+	fmt.Fprintf(&b, "#tags column:3\n")
+	fmt.Fprintf(&b, "#deck column:4\n")
+	for _, l := range lines {
+		b.WriteString(l + "\n")
+	}
+	if err := os.WriteFile(path, []byte(b.String()), 0o644); err != nil {
 		return fmt.Errorf("failed to write %s: %w", path, err)
-	}
-	if err := f.Close(); err != nil {
-		return fmt.Errorf("failed to close %s: %w", path, err)
 	}
 
 	return recordStale(filepath.Join(filepath.Dir(path), staleFile), d.name, before, d.fronts())
+}
+
+// lines renders the deck's notes as rows of the import file.
+func (d *deck) lines() []string {
+	out := make([]string, 0, len(d.notes))
+	for _, n := range d.notes {
+		out = append(out, fmt.Sprintf("%s\t%s\t%s\t%s", field(n.front), field(n.back), field(strings.Join(n.tags, " ")), field(d.name)))
+	}
+	return out
+}
+
+// readRows reads the notetype and note rows of an import file already on
+// disk. A file that isn't there yet holds nothing, which is not an error: it
+// is the first run.
+func readRows(path string) (notetype string, rows []row, err error) {
+	data, err := os.ReadFile(path)
+	if os.IsNotExist(err) {
+		return "", nil, nil
+	} else if err != nil {
+		return "", nil, fmt.Errorf("failed to read %s: %w", path, err)
+	}
+
+	for _, line := range strings.Split(string(data), "\n") {
+		if t, ok := strings.CutPrefix(line, "#notetype:"); ok {
+			notetype = t
+		}
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		fields := strings.Split(line, "\t")
+		if len(fields) != 4 {
+			return "", nil, fmt.Errorf("%s has a row with %d fields, want front, back, tags and deck: %q", path, len(fields), line)
+		}
+		rows = append(rows, row{deck: unfield(fields[3]), front: unfield(fields[0]), line: line})
+	}
+	return notetype, rows, nil
 }
 
 // staleFile is where a run records the notes it has stopped generating. It
@@ -102,28 +168,6 @@ func (d *deck) fronts() map[string]bool {
 		out[n.front] = true
 	}
 	return out
-}
-
-// previousFronts reads the questions a deck file already on disk asks. A file
-// that isn't there yet has asked nothing, which is not an error: it is the
-// first run.
-func previousFronts(path string) (map[string]bool, error) {
-	data, err := os.ReadFile(path)
-	if os.IsNotExist(err) {
-		return nil, nil
-	} else if err != nil {
-		return nil, fmt.Errorf("failed to read %s: %w", path, err)
-	}
-
-	out := map[string]bool{}
-	for _, line := range strings.Split(string(data), "\n") {
-		if line == "" || strings.HasPrefix(line, "#") {
-			continue
-		}
-		front, _, _ := strings.Cut(line, "\t")
-		out[unfield(front)] = true
-	}
-	return out, nil
 }
 
 // recordStale keeps the list of this deck's dropped questions up to date:

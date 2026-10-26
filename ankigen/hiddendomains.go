@@ -74,7 +74,7 @@ func GenerateHiddenDomains(opts Options) (HiddenDomainResult, error) {
 		})
 	}
 
-	deckFile := filepath.Join(opts.OutDir, "riftbound-hidden-by-domain.txt")
+	deckFile := filepath.Join(opts.OutDir, DeckFile)
 	if err := d.write(deckFile); err != nil {
 		return HiddenDomainResult{}, fmt.Errorf("failed to write deck: %w", err)
 	}

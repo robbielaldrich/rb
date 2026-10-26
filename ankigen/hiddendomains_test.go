@@ -36,10 +36,15 @@ func TestGenerateHiddenDomains(t *testing.T) {
 	headers, rows := readDeck(t, res.DeckFile)
 	wantHeaders := []string{
 		"#separator:Tab", "#html:true", "#notetype:Basic",
-		"#deck:Riftbound::Hidden by Domain", "#tags column:3",
+		"#tags column:3", "#deck column:4",
 	}
 	if strings.Join(headers, "\n") != strings.Join(wantHeaders, "\n") {
 		t.Errorf("headers = %v, want %v", headers, wantHeaders)
+	}
+	for _, r := range rows {
+		if r[len(r)-1] != "Riftbound::Hidden by Domain" {
+			t.Errorf("deck = %q, want %q", r[len(r)-1], "Riftbound::Hidden by Domain")
+		}
 	}
 	if len(rows) != 2 {
 		t.Fatalf("got %d note rows, want 2: %v", len(rows), rows)

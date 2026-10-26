@@ -146,3 +146,35 @@ func TestStaleListIsSharedBetweenDecks(t *testing.T) {
 		t.Errorf("recorded %v, want both decks' dropped questions", lines)
 	}
 }
+
+// Every deck writes into the one import file, so a deck rewriting its rows
+// must keep the others' as they were, and in their place.
+func TestDecksShareTheImportFile(t *testing.T) {
+	path := filepath.Join(t.TempDir(), DeckFile)
+
+	costs := deck{name: "Riftbound::Costs", notetype: "Basic", notes: []note{{front: "cost one", back: "a"}}}
+	effects := deck{name: "Riftbound::Effects", notetype: "Basic", notes: []note{{front: "effect one", back: "b"}}}
+	if err := costs.write(path); err != nil {
+		t.Fatal(err)
+	}
+	if err := effects.write(path); err != nil {
+		t.Fatal(err)
+	}
+
+	costs.notes = []note{{front: "cost one", back: "changed"}, {front: "cost two", back: "c"}}
+	if err := costs.write(path); err != nil {
+		t.Fatal(err)
+	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := "#separator:Tab\n#html:true\n#notetype:Basic\n#tags column:3\n#deck column:4\n" +
+		"cost one\tchanged\t\tRiftbound::Costs\n" +
+		"cost two\tc\t\tRiftbound::Costs\n" +
+		"effect one\tb\t\tRiftbound::Effects\n"
+	if string(data) != want {
+		t.Errorf("file =\n%s\nwant\n%s", data, want)
+	}
+}
