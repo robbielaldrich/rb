@@ -1281,36 +1281,68 @@
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
     },
     {
+      "riftbound_id": "rad-009-166",
+      "name": "Antagonistic Apparatus",
+      "number": "9/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-010-166",
+      "name": "Forbidden Technique",
+      "number": "10/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-011-166",
+      "name": "Incorrigible Construct",
+      "number": "11/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
       "riftbound_id": "rad-012-166",
       "name": "Runeblade Anvil",
       "number": "12/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:24:40.697113-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-013-166",
       "name": "Lost to the Sands",
       "number": "13/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:25:48.406842-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-014-166",
+      "name": "Shimmering Swimmer",
+      "number": "14/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-015-166",
       "name": "Akali - Brash",
       "number": "15/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-25T14:52:42.540193-07:00"
+      "quantity": 6,
+      "updated_at": "2026-10-26T21:18:15.794487-07:00"
     },
     {
       "riftbound_id": "rad-016-166",
       "name": "Coalesced Energy",
       "number": "16/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:38.4864-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:15:09.814187-07:00"
     },
     {
       "riftbound_id": "rad-017-166",
@@ -1325,24 +1357,24 @@
       "name": "Drakehound Packmaster",
       "number": "18/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:52:53.830814-07:00"
+      "quantity": 4,
+      "updated_at": "2026-10-26T21:17:59.986228-07:00"
     },
     {
       "riftbound_id": "rad-019-166",
       "name": "Firebrand Raider",
       "number": "19/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:52:35.432087-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:15:06.606387-07:00"
     },
     {
       "riftbound_id": "rad-020-166",
       "name": "Mordekaiser - Twice Slain",
       "number": "20/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:50.013879-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:17:47.850952-07:00"
     },
     {
       "riftbound_id": "rad-021-166",
@@ -1421,32 +1453,32 @@
       "name": "Battle Preparations",
       "number": "32/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:27:32.588639-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-033-166",
       "name": "Command: Attack",
       "number": "33/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:23:38.915004-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-034-166",
       "name": "Hunker Down",
       "number": "34/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:27:05.956639-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-035-166",
       "name": "Invigorating Bloom",
       "number": "35/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:25:04.296132-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-036-166",
@@ -1457,28 +1489,52 @@
       "updated_at": "2026-10-25T14:30:18.985775-07:00"
     },
     {
+      "riftbound_id": "rad-037-166",
+      "name": "Watchful Curator",
+      "number": "37/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-038-166",
+      "name": "Ahri - Confident",
+      "number": "38/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:17:27.764547-07:00"
+    },
+    {
       "riftbound_id": "rad-039-166",
       "name": "Ephemeral Ward",
       "number": "39/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:52:05.183241-07:00"
+      "quantity": 5,
+      "updated_at": "2026-10-26T21:17:39.556083-07:00"
+    },
+    {
+      "riftbound_id": "rad-040-166",
+      "name": "Heartening Soul",
+      "number": "40/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:18:12.418804-07:00"
     },
     {
       "riftbound_id": "rad-041-166",
       "name": "Hush",
       "number": "41/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-25T14:52:30.718203-07:00"
+      "quantity": 5,
+      "updated_at": "2026-10-26T21:18:03.962769-07:00"
     },
     {
       "riftbound_id": "rad-042-166",
       "name": "Orianna - Exquisite",
       "number": "42/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:22.936397-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:15:13.621608-07:00"
     },
     {
       "riftbound_id": "rad-043-166",
@@ -1503,6 +1559,22 @@
       "set_id": "RAD",
       "quantity": 1,
       "updated_at": "2026-10-25T14:13:44.858901-07:00"
+    },
+    {
+      "riftbound_id": "rad-045-166",
+      "name": "K'Sante - Dauntless",
+      "number": "45/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:16:14.685322-07:00"
+    },
+    {
+      "riftbound_id": "rad-045a-166",
+      "name": "K'Sante - Dauntless (Alternate Art)",
+      "number": "45a/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:15:55.909613-07:00"
     },
     {
       "riftbound_id": "rad-047-166",
@@ -1573,48 +1645,72 @@
       "name": "Clanging Sentry",
       "number": "55/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:24:07.881586-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-056-166",
       "name": "Improvised Projectile",
       "number": "56/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:26:13.566617-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-057-166",
       "name": "Piltovan Guidebot",
       "number": "57/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:32:41.258821-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-058-166",
+      "name": "Riptide Mage",
+      "number": "58/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-059-166",
+      "name": "Supernova",
+      "number": "59/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-060-166",
       "name": "The Empyrean",
       "number": "60/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:24:14.76212-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-061-166",
       "name": "Ekko - Ingenious",
       "number": "61/166",
       "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:17:44.035123-07:00"
+    },
+    {
+      "riftbound_id": "rad-061a-166",
+      "name": "Ekko - Ingenious (Alternate Art)",
+      "number": "61a/166",
+      "set_id": "RAD",
       "quantity": 1,
-      "updated_at": "2026-10-25T14:51:53.824508-07:00"
+      "updated_at": "2026-10-26T21:16:18.829058-07:00"
     },
     {
       "riftbound_id": "rad-062-166",
       "name": "Gravity Field",
       "number": "62/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:01.673233-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:16:46.244859-07:00"
     },
     {
       "riftbound_id": "rad-063-166",
@@ -1629,8 +1725,16 @@
       "name": "Scrutinizing Scope",
       "number": "64/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:51:42.598813-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:17:11.747926-07:00"
+    },
+    {
+      "riftbound_id": "rad-065-166",
+      "name": "Seraphine - Inspiring",
+      "number": "65/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:15:01.886601-07:00"
     },
     {
       "riftbound_id": "rad-065a-166",
@@ -1645,16 +1749,16 @@
       "name": "Spirit of the Forge",
       "number": "66/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:29:49.641046-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:16:57.579159-07:00"
     },
     {
       "riftbound_id": "rad-068-166",
       "name": "Orianna - Mechanical Marvel",
       "number": "68/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:51:49.823874-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:16:26.56487-07:00"
     },
     {
       "riftbound_id": "rad-070-166",
@@ -1725,72 +1829,96 @@
       "name": "Armored Tusker",
       "number": "78/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:27:12.348305-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-079-166",
+      "name": "Avalanche",
+      "number": "79/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-080-166",
+      "name": "Bloodscent Swarm",
+      "number": "80/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-081-166",
       "name": "Elnuk Herd",
       "number": "81/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:26:52.46004-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-082-166",
       "name": "Primordial Roar",
       "number": "82/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:29:32.919865-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-083-166",
       "name": "Stalwart Goatherd",
       "number": "83/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:25:09.696936-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-084-166",
       "name": "Cataclysm",
       "number": "84/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:53:35.940672-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:18:18.985754-07:00"
     },
     {
       "riftbound_id": "rad-085-166",
       "name": "Graves - Blasting Through",
       "number": "85/166",
       "set_id": "RAD",
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:17:15.237183-07:00"
+    },
+    {
+      "riftbound_id": "rad-086-166",
+      "name": "K'Sante - Courageous",
+      "number": "86/166",
+      "set_id": "RAD",
       "quantity": 1,
-      "updated_at": "2026-10-25T14:53:43.220074-07:00"
+      "updated_at": "2026-10-26T21:17:18.955523-07:00"
     },
     {
       "riftbound_id": "rad-087-166",
       "name": "Portable Portal",
       "number": "87/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:51:14.296979-07:00"
+      "quantity": 4,
+      "updated_at": "2026-10-26T21:17:01.635007-07:00"
     },
     {
       "riftbound_id": "rad-088-166",
       "name": "Staunch Survivor",
       "number": "88/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:51:21.000834-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:16:41.932426-07:00"
     },
     {
       "riftbound_id": "rad-089-166",
       "name": "Titanic Shrine",
       "number": "89/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:53:39.131619-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:17:36.618334-07:00"
     },
     {
       "riftbound_id": "rad-090-166",
@@ -1813,8 +1941,8 @@
       "name": "Seraphic Wyvern",
       "number": "92/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:51:17.744478-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:15:48.933836-07:00"
     },
     {
       "riftbound_id": "rad-093-166",
@@ -1881,6 +2009,30 @@
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
     },
     {
+      "riftbound_id": "rad-101-166",
+      "name": "An Offer You Can't Refuse",
+      "number": "101/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-102-166",
+      "name": "Demon Shade",
+      "number": "102/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-103-166",
+      "name": "Gutter Guardian",
+      "number": "103/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
       "riftbound_id": "rad-104-166",
       "name": "Pitiless Stalker",
       "number": "104/166",
@@ -1897,36 +2049,52 @@
       "updated_at": "2026-10-25T14:26:55.717533-07:00"
     },
     {
+      "riftbound_id": "rad-106-166",
+      "name": "The Good Stuff",
+      "number": "106/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-107-166",
+      "name": "Bedeviling Stranger",
+      "number": "107/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:14:53.35892-07:00"
+    },
+    {
       "riftbound_id": "rad-108-166",
       "name": "Bushwhack Trap",
       "number": "108/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:53:32.276683-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:16:49.828043-07:00"
     },
     {
       "riftbound_id": "rad-109-166",
       "name": "Evelynn - In Control",
       "number": "109/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:53:29.315676-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:14:50.320432-07:00"
     },
     {
       "riftbound_id": "rad-110-166",
       "name": "Lulu - Whimsical",
       "number": "110/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:53:24.753665-07:00"
+      "quantity": 4,
+      "updated_at": "2026-10-26T21:17:56.314911-07:00"
     },
     {
       "riftbound_id": "rad-111-166",
       "name": "Mechanical Bandit",
       "number": "111/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:53:19.181475-07:00"
+      "quantity": 5,
+      "updated_at": "2026-10-26T21:14:43.430604-07:00"
     },
     {
       "riftbound_id": "rad-112-166",
@@ -1951,6 +2119,14 @@
       "set_id": "RAD",
       "quantity": 1,
       "updated_at": "2026-10-25T14:14:07.225387-07:00"
+    },
+    {
+      "riftbound_id": "rad-114-166",
+      "name": "Riven - Deserter",
+      "number": "114/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-10-26T21:16:04.021378-07:00"
     },
     {
       "riftbound_id": "rad-116-166",
@@ -2021,32 +2197,56 @@
       "name": "Burn Away",
       "number": "124/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:26:09.014678-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-125-166",
       "name": "Dune Devourer",
       "number": "125/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:31:30.741931-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-126-166",
+      "name": "Mournful Spirit",
+      "number": "126/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-127-166",
       "name": "Rousing Display",
       "number": "127/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:25:43.751756-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-128-166",
+      "name": "Steadfast Outrider",
+      "number": "128/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-129-166",
+      "name": "Trifarian Captain",
+      "number": "129/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-130-166",
       "name": "Battlefield Armorer",
       "number": "130/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:51:10.120884-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:18:07.370468-07:00"
     },
     {
       "riftbound_id": "rad-131-166",
@@ -2055,6 +2255,14 @@
       "set_id": "RAD",
       "quantity": 2,
       "updated_at": "2026-10-25T14:52:58.498077-07:00"
+    },
+    {
+      "riftbound_id": "rad-132-166",
+      "name": "Heimerdinger - Academy Instructor",
+      "number": "132/166",
+      "set_id": "RAD",
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:17:32.779451-07:00"
     },
     {
       "riftbound_id": "rad-132p-166",
@@ -2077,16 +2285,16 @@
       "name": "Raucous Anthem",
       "number": "134/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:53:04.981503-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:17:22.995712-07:00"
     },
     {
       "riftbound_id": "rad-135-166",
       "name": "Remember the Fallen",
       "number": "135/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-25T14:51:06.336549-07:00"
+      "quantity": 5,
+      "updated_at": "2026-10-26T21:16:37.740641-07:00"
     },
     {
       "riftbound_id": "rad-136-166",
@@ -2133,8 +2341,8 @@
       "name": "The Ball",
       "number": "146/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:51:02.240866-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:16:08.436366-07:00"
     },
     {
       "riftbound_id": "rad-147-166",
@@ -2173,8 +2381,8 @@
       "name": "Last Caress",
       "number": "154/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:50:58.761277-07:00"
+      "quantity": 2,
+      "updated_at": "2026-10-26T21:16:30.752556-07:00"
     },
     {
       "riftbound_id": "rad-155-166",
@@ -2197,16 +2405,88 @@
       "name": "Bandle Scouts' Academy",
       "number": "157/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:25:35.438816-07:00"
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-158-166",
+      "name": "Black Market",
+      "number": "158/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-159-166",
+      "name": "Black Rose Sanctum",
+      "number": "159/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
       "riftbound_id": "rad-160-166",
       "name": "Cosmic Vista",
       "number": "160/166",
       "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-161-166",
+      "name": "Durand Memorial",
+      "number": "161/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-162-166",
+      "name": "Firelights' Hideout",
+      "number": "162/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-163-166",
+      "name": "Hunters' Circle",
+      "number": "163/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-164-166",
+      "name": "Packed Amphitheater",
+      "number": "164/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-165-166",
+      "name": "Rakelstake",
+      "number": "165/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-166-166",
+      "name": "Ruined Monastery",
+      "number": "166/166",
+      "set_id": "RAD",
+      "quantity": 3,
+      "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-r05a",
+      "name": "Chaos Rune (Alternate Art)",
+      "number": "5",
+      "set_id": "RAD",
       "quantity": 1,
-      "updated_at": "2026-10-25T14:23:11.771446-07:00"
+      "updated_at": "2026-10-26T21:15:41.3989-07:00"
     },
     {
       "riftbound_id": "sfd-001-221",
