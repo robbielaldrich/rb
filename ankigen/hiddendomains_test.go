@@ -29,50 +29,36 @@ func TestGenerateHiddenDomains(t *testing.T) {
 	if err != nil {
 		t.Fatalf("GenerateHiddenDomains: %v", err)
 	}
-	if res.Notes != 2 {
-		t.Fatalf("Notes = %d, want one per domain (Chaos, Order)", res.Notes)
+	if res.Notes != 3 {
+		t.Fatalf("Notes = %d, want one per card in each domain", res.Notes)
 	}
 
 	headers, rows := readDeck(t, res.DeckFile)
-	wantHeaders := []string{
-		"#separator:Tab", "#html:true", "#notetype:Basic",
-		"#tags column:3", "#deck column:4",
-	}
-	if strings.Join(headers, "\n") != strings.Join(wantHeaders, "\n") {
-		t.Errorf("headers = %v, want %v", headers, wantHeaders)
-	}
+	checkHeaders(t, headers)
 	for _, r := range rows {
-		if r[len(r)-1] != "Riftbound::Hidden by Domain" {
-			t.Errorf("deck = %q, want %q", r[len(r)-1], "Riftbound::Hidden by Domain")
+		if r[3] != "Riftbound::Hidden by Domain" || r[4] != "Cloze" {
+			t.Errorf("deck, notetype = %q, %q, want Riftbound::Hidden by Domain, Cloze", r[3], r[4])
 		}
-	}
-	if len(rows) != 2 {
-		t.Fatalf("got %d note rows, want 2: %v", len(rows), rows)
 	}
 
 	// Domains come in name order, and the cards within one in theirs.
+	want := []string{"Chaos: Bone Skewer", "Chaos: Tideturner", "Order: Guards!"}
+	if got := blanks(rows); strings.Join(got, "\n") != strings.Join(want, "\n") {
+		t.Fatalf("blanks = %v, want %v", got, want)
+	}
+
 	front, back, tags := rows[0][0], rows[0][1], rows[0][2]
-	if front != "Which Hidden cards are available to Chaos?" {
-		t.Errorf("front = %q", front)
+	if front != "<b>Hidden</b> cards available to <b>Chaos</b>:<ul><li>{{c1::Bone Skewer <i>(UNL)</i>}}</li><li>Tideturner <i>(OGN)</i></li></ul>" {
+		t.Errorf("front = %q, want the Chaos list with Bone Skewer blanked", front)
 	}
-	if !strings.Contains(back, "<b>2 cards</b>") {
-		t.Errorf("back = %q, want it to count the roster", back)
-	}
-	if i, j := strings.Index(back, "Bone Skewer"), strings.Index(back, "Tideturner"); i < 0 || j < 0 || i > j {
-		t.Errorf("back = %q, want both Chaos cards in name order", back)
-	}
-	// The set is named beside each card, a roster being the roster of a format.
-	if !strings.Contains(back, "<i>(UNL)</i>") || !strings.Contains(back, "<i>(OGN)</i>") {
-		t.Errorf("back = %q, want each card's set", back)
-	}
-	if !strings.Contains(tags, "riftbound::domain::chaos") {
+	if !strings.Contains(tags, "riftbound::domain::chaos") || !strings.Contains(tags, "riftbound::card::bone-skewer") {
 		t.Errorf("tags = %q", tags)
 	}
 
-	// The scans are shown small, and reference the same media the other decks
-	// use rather than a second copy.
-	if !strings.Contains(back, "<img src='rb-unl-001-219.jpg' width='180'>") {
-		t.Errorf("back = %q, want the card's scan shown as a thumbnail", back)
+	// The scan references the same media the other decks use rather than a
+	// second copy.
+	if back != "<img src='rb-unl-001-219.jpg' width='250'>" {
+		t.Errorf("back = %q, want the blanked card's scan", back)
 	}
 	if _, err := os.Stat(filepath.Join(res.MediaDir, "rb-unl-001-219.jpg")); err != nil {
 		t.Errorf("the scan was not written: %v", err)
@@ -80,7 +66,7 @@ func TestGenerateHiddenDomains(t *testing.T) {
 }
 
 // A card of two domains is playable out of either, so it belongs to both
-// rosters.
+// lists, and is a note in each.
 func TestHiddenDomainsListDualDomainCardsUnderBoth(t *testing.T) {
 	opts := fixture(t, []cards.Card{
 		hiddenDomainCard("ogn-001-298", "Fox-Fire", "ogn", "Mind", "Calm"),
@@ -93,31 +79,18 @@ func TestHiddenDomainsListDualDomainCardsUnderBoth(t *testing.T) {
 	}
 
 	_, rows := readDeck(t, res.DeckFile)
-	backs := map[string]string{}
-	for _, r := range rows {
-		backs[r[0]] = r[1]
+	want := []string{"Calm: Fox-Fire", "Mind: Fox-Fire", "Mind: Sprite Call"}
+	if got := blanks(rows); strings.Join(got, "\n") != strings.Join(want, "\n") {
+		t.Fatalf("blanks = %v, want %v", got, want)
 	}
-
-	calm, ok := backs["Which Hidden cards are available to Calm?"]
-	if !ok {
-		t.Fatalf("no Calm note, got %v", backs)
-	}
-	if !strings.Contains(calm, "Fox-Fire") {
-		t.Errorf("Calm back = %q, want Fox-Fire", calm)
-	}
-	if !strings.Contains(calm, "<b>1 card</b>") {
-		t.Errorf("Calm back = %q, want a single-card roster counted in the singular", calm)
-	}
-
-	mind := backs["Which Hidden cards are available to Mind?"]
-	if !strings.Contains(mind, "Fox-Fire") || !strings.Contains(mind, "Sprite Call") {
-		t.Errorf("Mind back = %q, want both Mind cards", mind)
+	if rows[0][5] == rows[1][5] {
+		t.Errorf("both Fox-Fire notes have GUID %q, want one per domain", rows[0][5])
 	}
 }
 
-// The question is a note's identity in Anki, so a rerun against a grown
-// catalog has to leave it alone and rewrite only the roster behind it.
-func TestHiddenDomainsKeepTheirQuestionAsSetsAreAdded(t *testing.T) {
+// A note's GUID is its identity in Anki, so a rerun against a grown catalog has
+// to keep it and rewrite only the list around the card.
+func TestHiddenDomainsKeepTheirGUIDAsSetsAreAdded(t *testing.T) {
 	first := fixture(t, []cards.Card{
 		hiddenDomainCard("ogn-001-298", "Tideturner", "ogn", "Chaos"),
 	})
@@ -126,7 +99,7 @@ func TestHiddenDomainsKeepTheirQuestionAsSetsAreAdded(t *testing.T) {
 		t.Fatalf("GenerateHiddenDomains: %v", err)
 	}
 	_, rows := readDeck(t, res.DeckFile)
-	before := rows[0][0]
+	before := rows[0][5]
 
 	second := fixture(t, []cards.Card{
 		hiddenDomainCard("ogn-001-298", "Tideturner", "ogn", "Chaos"),
@@ -138,16 +111,25 @@ func TestHiddenDomainsKeepTheirQuestionAsSetsAreAdded(t *testing.T) {
 	}
 	_, rows = readDeck(t, res.DeckFile)
 
-	if rows[0][0] != before {
-		t.Errorf("question changed from %q to %q, which would orphan the old note", before, rows[0][0])
+	var tide []string
+	for _, r := range rows {
+		if strings.Contains(r[2], "riftbound::card::tideturner") {
+			tide = r
+		}
 	}
-	if !strings.Contains(rows[0][1], "Spiderling") || !strings.Contains(rows[0][1], "<b>2 cards</b>") {
-		t.Errorf("back = %q, want the new card folded into the roster", rows[0][1])
+	if tide == nil {
+		t.Fatalf("no Tideturner note in %v", blanks(rows))
+	}
+	if tide[5] != before {
+		t.Errorf("GUID changed from %q to %q, which would orphan the old note", before, tide[5])
+	}
+	if !strings.Contains(tide[0], "<li>Spiderling <i>(VEN)</i></li>") {
+		t.Errorf("front = %q, want the new card shown in the list", tide[0])
 	}
 }
 
 // A signature card belongs to a legend, not a domain, so it is left off the
-// roster of every domain it is printed in.
+// list of every domain it is printed in.
 func TestHiddenDomainsLeaveOutSignatureCards(t *testing.T) {
 	sig := hiddenDomainCard("ogn-003-298", "Fox-Fire", "ogn", "Mind", "Calm")
 	supertype := cards.SupertypeSignature
@@ -163,11 +145,11 @@ func TestHiddenDomainsLeaveOutSignatureCards(t *testing.T) {
 	}
 
 	_, rows := readDeck(t, res.DeckFile)
-	if len(rows) != 1 {
-		t.Fatalf("got %d notes, want only Mind's (Calm holds nothing but the signature card): %v", len(rows), rows)
+	if got := blanks(rows); len(got) != 1 || got[0] != "Mind: Sprite Call" {
+		t.Fatalf("blanks = %v, want only Mind's Sprite Call", got)
 	}
-	if strings.Contains(rows[0][1], "Fox-Fire") || !strings.Contains(rows[0][1], "Sprite Call") {
-		t.Errorf("Mind back = %q, want Sprite Call without the signature card", rows[0][1])
+	if strings.Contains(rows[0][0], "Fox-Fire") {
+		t.Errorf("front = %q, want the signature card left out", rows[0][0])
 	}
 }
 

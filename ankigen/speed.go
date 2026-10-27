@@ -34,10 +34,11 @@ func GenerateActionCards(opts Options) (SpeedResult, error) {
 // generateSpeedCards builds a deck for learning which cards a domain can play
 // at a given speed, the keyword being Action or Reaction.
 //
-// Each domain gets one question per Energy cost it actually prints at that
-// speed: "cards that cost 3 Energy". Exactly 3, whatever Power they also ask
-// for — Power is paid from a domain's own runes and doesn't change which card
-// this is.
+// Each domain gets one list per Energy cost it actually prints at that speed:
+// "cards that cost 3 Energy". Exactly 3, whatever Power they also ask for —
+// Power is paid from a domain's own runes and doesn't change which card this
+// is. Each list is learnt a card at a time, as an overlapping cloze (see
+// clozeRoster).
 //
 // The costs don't nest. A cumulative band — "3 Energy or less" — repeats every
 // cheaper band inside itself, so the dearest one carries the whole roster and
@@ -70,26 +71,22 @@ func generateSpeedCards(speed, deckName string, opts Options) (SpeedResult, erro
 		return SpeedResult{}, err
 	}
 
-	d := deck{name: deckName, notetype: "Basic"}
+	d := deck{name: deckName, notetype: "Cloze"}
 	rosters := byDomain(found)
 	for _, domain := range slices.Sorted(maps.Keys(rosters)) {
 		all := rosters[domain]
 		slices.SortFunc(all, func(a, b cards.Card) int {
 			return strings.Compare(a.BaseName(), b.BaseName())
 		})
-		// Only the costs the domain prints at: asking for 4 Energy where it
-		// has nothing at 4 is a question with no answer.
+		// Only the costs the domain prints at: a list of nothing at 4 Energy
+		// has no card to ask after.
 		for _, energy := range energyCosts(all) {
-			within := atCost(all, energy)
-			d.notes = append(d.notes, note{
-				front: fmt.Sprintf("What are all the %s cards in %s that cost %d Energy?", speed, domain, energy),
-				back:  roster(within, images),
-				tags: []string{
-					"riftbound::" + strings.ToLower(speed) + "-cards",
-					"riftbound::domain::" + strings.ToLower(domain),
-					"riftbound::energy::" + strconv.Itoa(energy),
-				},
-			})
+			heading := fmt.Sprintf("<b>%s</b> cards in <b>%s</b> that cost <b>%d Energy</b>:", speed, domain, energy)
+			d.notes = append(d.notes, clozeRoster(heading, atCost(all, energy), images, []string{
+				"riftbound::" + strings.ToLower(speed) + "-cards",
+				"riftbound::domain::" + strings.ToLower(domain),
+				"riftbound::energy::" + strconv.Itoa(energy),
+			})...)
 		}
 	}
 

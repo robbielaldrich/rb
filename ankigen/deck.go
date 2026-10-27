@@ -11,12 +11,13 @@ import (
 
 // The output is Anki's plain-text import format, documented at
 // https://docs.ankiweb.net/importing/text-files.html: a few "#key:value"
-// option lines, then one tab-separated note per line. Anki treats the first
-// field as a note's identity, so re-importing a regenerated file updates the
-// existing notes instead of duplicating them.
+// option lines, then one tab-separated note per line. Re-importing a
+// regenerated file updates the existing notes instead of duplicating them,
+// matching each by its GUID where the row gives one and by its first field
+// where it doesn't.
 //
-// Every deck shares one file, each row naming its deck in the last column, so
-// a single import brings in all of them.
+// Every deck shares one file, each row naming its deck and notetype, so a
+// single import brings in all of them.
 
 // DeckFile is the import file every deck writes its notes into.
 const DeckFile = "riftbound.txt"
@@ -26,6 +27,10 @@ type note struct {
 	front string
 	back  string
 	tags  []string
+	// guid is the note's identity in Anki, or empty to let Anki match it by
+	// its first field. A Basic note's question is fixed, so it can be; a cloze
+	// note's first field is the whole list, which changes whenever it grows.
+	guid string
 }
 
 type deck struct {
@@ -38,7 +43,7 @@ type deck struct {
 // the decks this run doesn't regenerate pass through untouched.
 type row struct {
 	deck  string
-	front string
+	label string
 	line  string
 }
 
@@ -48,18 +53,15 @@ type row struct {
 func (d *deck) write(path string) error {
 	// Read before the file is rewritten: what it used to ask is the only
 	// record of notes this run has stopped generating.
-	notetype, rows, err := readRows(path)
+	rows, err := readRows(path)
 	if err != nil {
 		return err
-	}
-	if notetype != "" && notetype != d.notetype {
-		return fmt.Errorf("%s holds %s notes, and the %s deck can't share it with %s notes", path, notetype, d.name, d.notetype)
 	}
 
 	before := map[string]bool{}
 	for _, r := range rows {
 		if r.deck == d.name {
-			before[r.front] = true
+			before[r.label] = true
 		}
 	}
 
@@ -80,9 +82,10 @@ func (d *deck) write(path string) error {
 	var b strings.Builder
 	fmt.Fprintf(&b, "#separator:Tab\n")
 	fmt.Fprintf(&b, "#html:true\n")
-	fmt.Fprintf(&b, "#notetype:%s\n", d.notetype)
 	fmt.Fprintf(&b, "#tags column:3\n")
 	fmt.Fprintf(&b, "#deck column:4\n")
+	fmt.Fprintf(&b, "#notetype column:5\n")
+	fmt.Fprintf(&b, "#guid column:6\n")
 	for _, l := range lines {
 		b.WriteString(l + "\n")
 	}
@@ -90,43 +93,57 @@ func (d *deck) write(path string) error {
 		return fmt.Errorf("failed to write %s: %w", path, err)
 	}
 
-	return recordStale(filepath.Join(filepath.Dir(path), staleFile), d.name, before, d.fronts())
+	return recordStale(filepath.Join(filepath.Dir(path), staleFile), d.name, before, d.labels())
 }
 
 // lines renders the deck's notes as rows of the import file.
 func (d *deck) lines() []string {
 	out := make([]string, 0, len(d.notes))
 	for _, n := range d.notes {
-		out = append(out, fmt.Sprintf("%s\t%s\t%s\t%s", field(n.front), field(n.back), field(strings.Join(n.tags, " ")), field(d.name)))
+		out = append(out, strings.Join([]string{
+			field(n.front), field(n.back), field(strings.Join(n.tags, " ")),
+			field(d.name), field(d.notetype), field(n.guid),
+		}, "\t"))
 	}
 	return out
 }
 
-// readRows reads the notetype and note rows of an import file already on
-// disk. A file that isn't there yet holds nothing, which is not an error: it
-// is the first run.
-func readRows(path string) (notetype string, rows []row, err error) {
+// readRows reads the note rows of an import file already on disk. A file that
+// isn't there yet holds nothing, which is not an error: it is the first run.
+//
+// A row of four fields is from before the file named each row's notetype and
+// GUID, when every note was Basic and matched by its question, and is brought
+// up to six so it can sit under the headers written now.
+func readRows(path string) ([]row, error) {
 	data, err := os.ReadFile(path)
 	if os.IsNotExist(err) {
-		return "", nil, nil
+		return nil, nil
 	} else if err != nil {
-		return "", nil, fmt.Errorf("failed to read %s: %w", path, err)
+		return nil, fmt.Errorf("failed to read %s: %w", path, err)
 	}
 
+	var rows []row
 	for _, line := range strings.Split(string(data), "\n") {
-		if t, ok := strings.CutPrefix(line, "#notetype:"); ok {
-			notetype = t
-		}
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
 		fields := strings.Split(line, "\t")
-		if len(fields) != 4 {
-			return "", nil, fmt.Errorf("%s has a row with %d fields, want front, back, tags and deck: %q", path, len(fields), line)
+		switch len(fields) {
+		case 4:
+			fields = append(fields, "Basic", "")
+			line = strings.Join(fields, "\t")
+		case 6:
+		default:
+			return nil, fmt.Errorf("%s has a row with %d fields, want front, back, tags, deck, notetype and guid: %q", path, len(fields), line)
 		}
-		rows = append(rows, row{deck: unfield(fields[3]), front: unfield(fields[0]), line: line})
+		deckName := unfield(fields[3])
+		rows = append(rows, row{
+			deck:  deckName,
+			label: label(deckName, unfield(fields[0]), strings.Fields(unfield(fields[2])), unfield(fields[5])),
+			line:  line,
+		})
 	}
-	return notetype, rows, nil
+	return rows, nil
 }
 
 // staleFile is where a run records the notes it has stopped generating. It
@@ -144,35 +161,51 @@ const staleHeader = `# Notes these decks used to generate and no longer do.
 #
 # Re-importing can't remove them: Anki only updates the notes a file mentions,
 # so these are still in the collection, still scheduled, and no longer correct.
-# Search Anki for the question, delete the note, then delete the line.
+# Search Anki for the note — its question, or the search given in its place —
+# delete it, then delete the line.
 #
 # Written by ` + "`rb gen-anki`" + `. A question that comes back — a new set can
 # make a dropped one worth asking again — is taken off this list by the run
 # that starts asking it.
 #
-# date	deck	question
+# date	deck	note
 `
 
 // stale is one note that was generated once and isn't any more.
 type stale struct {
 	date  string
 	deck  string
-	front string
+	label string
 }
 
-// fronts lists the questions this deck asks. Anki files a note under its first
-// field, so the question is the identity a note is kept or lost by.
-func (d *deck) fronts() map[string]bool {
+// labels lists what this deck's notes go by in to-delete.txt.
+func (d *deck) labels() map[string]bool {
 	out := make(map[string]bool, len(d.notes))
 	for _, n := range d.notes {
-		out[n.front] = true
+		out[label(d.name, n.front, n.tags, n.guid)] = true
 	}
 	return out
 }
 
-// recordStale keeps the list of this deck's dropped questions up to date:
-// anything asked before and not now goes on it, and anything on it that is
-// asked again comes off. Other decks' lines are left alone, since every deck
+// label is how to-delete.txt names a note, which is how it is found in Anki to
+// be deleted. A note matched by its first field is its question. A note
+// matched by GUID has no question to search for, so it is named by an Anki
+// search for its deck and tags, which pick out that one note just as the GUID
+// they make does.
+func label(deckName, front string, tags []string, guid string) string {
+	if guid == "" {
+		return front
+	}
+	terms := []string{fmt.Sprintf("deck:%q", deckName)}
+	for _, t := range tags {
+		terms = append(terms, "tag:"+t)
+	}
+	return strings.Join(terms, " ")
+}
+
+// recordStale keeps the list of this deck's dropped notes up to date: anything
+// generated before and not now goes on it, and anything on it that is
+// generated again comes off. Other decks' lines are left alone, since every deck
 // written into a directory shares the one list.
 func recordStale(path, deckName string, before, now map[string]bool) error {
 	kept, err := readStale(path)
@@ -184,24 +217,24 @@ func recordStale(path, deckName string, before, now map[string]bool) error {
 	listed := map[string]bool{}
 	for _, s := range kept {
 		if s.deck == deckName {
-			if now[s.front] {
+			if now[s.label] {
 				continue
 			}
-			listed[s.front] = true
+			listed[s.label] = true
 		}
 		out = append(out, s)
 	}
 
 	today := time.Now().Format(time.DateOnly)
 	var dropped []string
-	for front := range before {
-		if !now[front] && !listed[front] {
-			dropped = append(dropped, front)
+	for l := range before {
+		if !now[l] && !listed[l] {
+			dropped = append(dropped, l)
 		}
 	}
 	slices.Sort(dropped)
-	for _, front := range dropped {
-		out = append(out, stale{date: today, deck: deckName, front: front})
+	for _, l := range dropped {
+		out = append(out, stale{date: today, deck: deckName, label: l})
 	}
 
 	if len(out) == 0 && !fileExists(path) {
@@ -227,7 +260,7 @@ func readStale(path string) ([]stale, error) {
 		if len(parts) != 3 {
 			continue
 		}
-		out = append(out, stale{date: parts[0], deck: parts[1], front: parts[2]})
+		out = append(out, stale{date: parts[0], deck: parts[1], label: parts[2]})
 	}
 	return out, nil
 }
@@ -236,7 +269,7 @@ func writeStale(path string, ss []stale) error {
 	var b strings.Builder
 	b.WriteString(staleHeader)
 	for _, s := range ss {
-		fmt.Fprintf(&b, "%s\t%s\t%s\n", s.date, s.deck, s.front)
+		fmt.Fprintf(&b, "%s\t%s\t%s\n", s.date, s.deck, s.label)
 	}
 
 	if err := os.WriteFile(path, []byte(b.String()), 0o644); err != nil {

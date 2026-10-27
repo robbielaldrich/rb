@@ -2,13 +2,14 @@
 #
 # Re-importing can't remove them: Anki only updates the notes a file mentions,
 # so these are still in the collection, still scheduled, and no longer correct.
-# Search Anki for the question, delete the note, then delete the line.
+# Search Anki for the note — its question, or the search given in its place —
+# delete it, then delete the line.
 #
 # Written by `rb gen-anki`. A question that comes back — a new set can
 # make a dropped one worth asking again — is taken off this list by the run
 # that starts asking it.
 #
-# date	deck	question
+# date	deck	note
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Body that cost 0 Power or less?
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Body that cost 1 Power or less?
 2026-09-20	Riftbound::Reaction Spells	What are all the Reaction spells in Calm that cost 0 Power or less?
@@ -88,3 +89,54 @@
 2026-10-25	Riftbound::Signature Cards	What is the signature card of Jax - Grandmaster At Arms?
 2026-10-25	Riftbound::Signature Cards	What is the signature card of Rek'sai - Void Burrower?
 2026-10-25	Riftbound::Signature Cards	What is the signature card of Yordle, Kennen - Heart of the Tempest?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Body?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Calm?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Chaos?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Fury?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Mind?
+2026-10-25	Riftbound::Hidden by Domain	Which Hidden cards are available to Order?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Body that cost 1 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Body that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Body that cost 4 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Calm that cost 1 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Calm that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Calm that cost 3 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Calm that cost 4 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Chaos that cost 1 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Chaos that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Chaos that cost 3 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Fury that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Fury that cost 3 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Mind that cost 1 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Mind that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Mind that cost 3 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Mind that cost 7 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Order that cost 1 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Order that cost 2 Energy?
+2026-10-25	Riftbound::Reaction Cards	What are all the Reaction cards in Order that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 1 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 2 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 4 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 5 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Body that cost 6 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Calm that cost 1 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Calm that cost 2 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Calm that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Chaos that cost 1 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Chaos that cost 2 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Chaos that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Chaos that cost 8 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 1 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 2 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 4 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 5 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Fury that cost 8 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Mind that cost 1 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Mind that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Mind that cost 5 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Order that cost 2 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Order that cost 3 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Order that cost 5 Energy?
+2026-10-25	Riftbound::Action Cards	What are all the Action cards in Order that cost 6 Energy?

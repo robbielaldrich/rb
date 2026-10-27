@@ -11,6 +11,22 @@ Releases are tagged `anki-vMAJOR.MINOR.PATCH` on the commit that ships them:
 - **PATCH** — only answers change, so a re-import updates notes in place and
   keeps their scheduling.
 
+## 3.0.0 — 2026-10-25
+
+**Action Cards**, **Reaction Cards**, **Hidden by Domain**
+
+- Each list is now learnt a card at a time. In place of one question asking
+  for a whole list, every card in it gets a Cloze note showing the list with
+  that card blanked out, and the card's scan behind the blank, so Anki
+  schedules each card on its own while the rest of the list stays in view.
+- The cloze notes are matched by a GUID made from the list and the card, so
+  when a new set adds to a list, re-importing updates the notes already in
+  it instead of replacing them.
+- The 51 old list questions are listed in `to-delete.txt`.
+
+The import file now names each row's notetype and GUID, since it holds both
+Basic and Cloze notes. The other decks are unchanged.
+
 ## 2.1.0 — 2026-10-25
 
 Every deck now ships in one import file, `riftbound.txt`, which names each

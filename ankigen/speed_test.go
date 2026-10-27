@@ -68,16 +68,8 @@ func actionCard(id, name string, energy int, domains ...string) cards.Card {
 	return c
 }
 
-func fronts(rows [][]string) []string {
-	var out []string
-	for _, r := range rows {
-		out = append(out, r[0])
-	}
-	return out
-}
-
-// Each domain gets a band for every Energy cost from 1 to its dearest card,
-// one per Energy cost the domain prints at, each holding only that cost.
+// Each domain gets a list for every Energy cost it prints at, each holding
+// only that cost, and each card in a list gets a note blanking it out.
 func TestGenerateReactionCards(t *testing.T) {
 	opts := reactionOpts(t, []cards.Card{
 		reactionCard("unl-001-219", "Zap", 1, "Body"),
@@ -99,54 +91,75 @@ func TestGenerateReactionCards(t *testing.T) {
 	}
 
 	headers, rows := readDeck(t, res.DeckFile)
-	wantHeaders := []string{
-		"#separator:Tab", "#html:true", "#notetype:Basic",
-		"#tags column:3", "#deck column:4",
-	}
-	if strings.Join(headers, "\n") != strings.Join(wantHeaders, "\n") {
-		t.Errorf("headers = %v, want %v", headers, wantHeaders)
-	}
+	checkHeaders(t, headers)
 	for _, r := range rows {
-		if r[len(r)-1] != "Riftbound::Reaction Cards" {
-			t.Errorf("deck = %q, want %q", r[len(r)-1], "Riftbound::Reaction Cards")
+		if r[3] != "Riftbound::Reaction Cards" || r[4] != "Cloze" {
+			t.Errorf("deck, notetype = %q, %q, want Riftbound::Reaction Cards, Cloze", r[3], r[4])
 		}
 	}
 
+	// A free card is asked for at nothing rather than folded into every list
+	// above it, 2 and 3 go unasked because Body prints nothing at either, and
+	// within a list the cards come in name order.
 	want := []string{
-		// A free card is asked for at nothing rather than folded into every
-		// band above it, and 2 and 3 go unasked because Body prints nothing
-		// at either.
-		"What are all the Reaction cards in Body that cost 0 Energy?",
-		"What are all the Reaction cards in Body that cost 1 Energy?",
-		"What are all the Reaction cards in Body that cost 4 Energy?",
-		"What are all the Reaction cards in Chaos that cost 2 Energy?",
+		"Body 0: Free Swing",
+		"Body 1: Bash", "Body 1: Zap",
+		"Body 4: Anvil",
+		"Chaos 2: Lunar Boon",
 	}
-	if strings.Join(fronts(rows), "\n") != strings.Join(want, "\n") {
-		t.Fatalf("fronts =\n%s\nwant\n%s", strings.Join(fronts(rows), "\n"), strings.Join(want, "\n"))
+	if got := blanks(rows); strings.Join(got, "\n") != strings.Join(want, "\n") {
+		t.Fatalf("blanks =\n%s\nwant\n%s", strings.Join(got, "\n"), strings.Join(want, "\n"))
 	}
 
-	free, one, four := rows[0], rows[1], rows[2]
-	if !strings.Contains(free[1], "<b>1 card</b>") || !strings.Contains(free[1], "Free Swing") {
-		t.Errorf("0-Energy back = %q, want the free card alone", free[1])
+	// The Bash note shows the rest of its list, and nothing from the lists
+	// beside it: each card is read once, where it costs.
+	bash := rows[1]
+	if !strings.HasPrefix(bash[0], "<b>Reaction</b> cards in <b>Body</b> that cost <b>1 Energy</b>:") {
+		t.Errorf("front = %q, want the list named", bash[0])
 	}
-	// The cheap cards are not repeated in the bands above them, which is the
-	// whole of the change: each is read once, where it costs.
-	if !strings.Contains(one[1], "<b>2 cards</b>") || strings.Contains(one[1], "Free Swing") {
-		t.Errorf("1-Energy back = %q, want the two 1-Energy cards and nothing cheaper", one[1])
+	if !strings.Contains(bash[0], "<li>{{c1::Bash <i>(UNL)</i>}}</li><li>Zap <i>(UNL)</i></li>") {
+		t.Errorf("front = %q, want Bash blanked with its set and Zap shown", bash[0])
 	}
-	if !strings.Contains(four[1], "<b>1 card</b>") || !strings.Contains(four[1], "Anvil") {
-		t.Errorf("4-Energy back = %q, want Anvil alone rather than the whole roster", four[1])
+	if strings.Contains(bash[0], "Free Swing") || strings.Contains(bash[0], "Anvil") {
+		t.Errorf("front = %q, want only the 1-Energy cards", bash[0])
 	}
-	// Within a cost, by name.
-	if strings.Index(one[1], "<li>Bash ") > strings.Index(one[1], "<li>Zap ") {
-		t.Errorf("back = %q, want the two named in name order", one[1])
+	if bash[1] != "<img src='rb-unl-003-219.jpg' width='250'>" {
+		t.Errorf("back = %q, want the blanked card's scan", bash[1])
 	}
-	if !strings.Contains(four[1], "<i>(UNL)</i>") || !strings.Contains(four[1], "<img src='rb-unl-002-219.jpg' width='180'>") {
-		t.Errorf("back = %q, want the set named and the scan shown", four[1])
+	for _, tag := range []string{"riftbound::reaction-cards", "riftbound::domain::body", "riftbound::energy::1", "riftbound::card::bash"} {
+		if !strings.Contains(bash[2], tag) {
+			t.Errorf("tags = %q, want %s", bash[2], tag)
+		}
 	}
-	if !strings.Contains(four[2], "riftbound::domain::body") || !strings.Contains(four[2], "riftbound::energy::4") {
-		t.Errorf("tags = %q", four[2])
+
+	seen := map[string]bool{}
+	for _, r := range rows {
+		if r[5] == "" || seen[r[5]] {
+			t.Errorf("guid = %q, want every note its own", r[5])
+		}
+		seen[r[5]] = true
 	}
+}
+
+// blanks names each note by its list's domain and cost and the card it
+// blanks, read back from its tags.
+func blanks(rows [][]string) []string {
+	var out []string
+	for _, r := range rows {
+		var domain, energy, card string
+		for _, tag := range strings.Fields(r[2]) {
+			if v, ok := strings.CutPrefix(tag, "riftbound::domain::"); ok {
+				domain = strings.ToUpper(v[:1]) + v[1:]
+			} else if v, ok := strings.CutPrefix(tag, "riftbound::energy::"); ok {
+				energy = v
+			}
+		}
+		if _, rest, ok := strings.Cut(r[0], "{{c1::"); ok {
+			card, _, _ = strings.Cut(rest, " <i>(")
+		}
+		out = append(out, strings.TrimSpace(domain+" "+energy)+": "+card)
+	}
+	return out
 }
 
 func TestActionCardsShareThePathAndKeepToTheirOwnKeyword(t *testing.T) {
@@ -166,24 +179,14 @@ func TestActionCardsShareThePathAndKeepToTheirOwnKeyword(t *testing.T) {
 		t.Fatal(err)
 	}
 	_, rows := readDeck(t, res.DeckFile)
-	want := []string{
-		"What are all the Action cards in Body that cost 1 Energy?",
-		"What are all the Action cards in Body that cost 2 Energy?",
+	// The gear costs 2 and the spell 1, so each is in its own list, and
+	// neither the Reaction card nor the legend is in either.
+	want := []string{"Body 1: Void Seeker", "Body 2: Long Sword"}
+	if got := blanks(rows); strings.Join(got, "\n") != strings.Join(want, "\n") {
+		t.Fatalf("blanks = %v, want %v", got, want)
 	}
-	if strings.Join(fronts(rows), "\n") != strings.Join(want, "\n") {
-		t.Fatalf("fronts = %v, want %v", fronts(rows), want)
-	}
-	// The gear costs 2 and the spell 1, so each is now in its own band.
-	if back := rows[1][1]; !strings.Contains(back, "Long Sword") {
-		t.Errorf("2-Energy back = %q, want the gear as well as the spells", back)
-	}
-	if back := rows[0][1]; !strings.Contains(back, "Void Seeker") {
-		t.Errorf("1-Energy back = %q, want the spell", back)
-	}
-	for _, r := range rows {
-		if strings.Contains(r[1], "Flash") || strings.Contains(r[1], "Eye of Twilight") {
-			t.Errorf("%q answers %q, want no Reaction card and no legend", r[0], r[1])
-		}
+	if !strings.HasPrefix(rows[0][0], "<b>Action</b> cards in <b>Body</b>") || !strings.Contains(rows[0][2], "riftbound::action-cards") {
+		t.Errorf("front, tags = %q, %q, want an Action list", rows[0][0], rows[0][2])
 	}
 }
 
@@ -201,8 +204,8 @@ func TestSpeedCardsCollapsePrintings(t *testing.T) {
 	if len(rows) != 1 {
 		t.Fatalf("got %d rows, want the two printings collapsed into one note", len(rows))
 	}
-	if strings.Count(rows[0][1], "<li>") != 1 {
-		t.Errorf("back = %q, want Lunar Boon listed once despite two printings", rows[0][1])
+	if strings.Count(rows[0][0], "<li>") != 1 {
+		t.Errorf("front = %q, want Lunar Boon listed once despite two printings", rows[0][0])
 	}
 }
 
@@ -242,14 +245,8 @@ func TestSpeedCardsLeaveOutManaAbilities(t *testing.T) {
 	}
 
 	_, rows := readDeck(t, res.DeckFile)
-	if len(rows) != 1 {
-		t.Fatalf("got %d notes, want one for Body at 2 Energy: %v", len(rows), fronts(rows))
-	}
-	back := rows[0][1]
-	if strings.Contains(back, "Dragonsoul Sage") {
-		t.Errorf("back = %q, want the mana ability left out", back)
-	}
-	if !strings.Contains(back, "Defy") || !strings.Contains(back, "Watchful Guard") {
-		t.Errorf("back = %q, want Defy and Watchful Guard kept", back)
+	want := []string{"Body 2: Defy", "Body 2: Watchful Guard"}
+	if got := blanks(rows); strings.Join(got, "\n") != strings.Join(want, "\n") {
+		t.Errorf("blanks = %v, want %v, the mana ability left out", got, want)
 	}
 }

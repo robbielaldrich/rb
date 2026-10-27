@@ -170,11 +170,58 @@ func TestDecksShareTheImportFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := "#separator:Tab\n#html:true\n#notetype:Basic\n#tags column:3\n#deck column:4\n" +
-		"cost one\tchanged\t\tRiftbound::Costs\n" +
-		"cost two\tc\t\tRiftbound::Costs\n" +
-		"effect one\tb\t\tRiftbound::Effects\n"
+	want := strings.Join(wantHeaders, "\n") + "\n" +
+		"cost one\tchanged\t\tRiftbound::Costs\tBasic\t\n" +
+		"cost two\tc\t\tRiftbound::Costs\tBasic\t\n" +
+		"effect one\tb\t\tRiftbound::Effects\tBasic\t\n"
 	if string(data) != want {
 		t.Errorf("file =\n%s\nwant\n%s", data, want)
+	}
+}
+
+// A file written before rows named their notetype and GUID is read as Basic
+// notes, so a run of one block keeps the other decks' rows importable.
+func TestOlderRowsAreBroughtUpToDate(t *testing.T) {
+	path := filepath.Join(t.TempDir(), DeckFile)
+	old := "#separator:Tab\n#html:true\n#notetype:Basic\n#tags column:3\n#deck column:4\n" +
+		"old question\tanswer\ttag\tRiftbound::Old\n"
+	if err := os.WriteFile(path, []byte(old), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := (&deck{name: "Riftbound::New", notetype: "Basic", notes: []note{{front: "q", back: "a"}}}).write(path); err != nil {
+		t.Fatal(err)
+	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), "\nold question\tanswer\ttag\tRiftbound::Old\tBasic\t\n") {
+		t.Errorf("file =\n%s\nwant the older row given a notetype and an empty GUID", data)
+	}
+}
+
+// A dropped cloze note has no question to search for, so it is listed as a
+// search for its deck and tags.
+func TestDroppedClozeNotesAreListedAsASearch(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, DeckFile)
+
+	tags := []string{"riftbound::domain::calm", "riftbound::card::hush"}
+	full := deck{name: "Riftbound::Lists", notetype: "Cloze", notes: []note{
+		{front: "{{c1::Hush}}", tags: tags, guid: guidFor(tags)},
+	}}
+	if err := full.write(path); err != nil {
+		t.Fatal(err)
+	}
+	if err := (&deck{name: "Riftbound::Lists", notetype: "Cloze"}).write(path); err != nil {
+		t.Fatal(err)
+	}
+
+	lines := staleLines(t, dir)
+	want := "\tRiftbound::Lists\tdeck:\"Riftbound::Lists\" tag:riftbound::domain::calm tag:riftbound::card::hush"
+	if len(lines) != 1 || !strings.HasSuffix(lines[0], want) {
+		t.Errorf("recorded %v, want the note's search", lines)
 	}
 }

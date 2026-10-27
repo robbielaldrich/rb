@@ -28,15 +28,15 @@ type HiddenDomainResult struct {
 // what any one of them costs. This deck asks that direction — domain to
 // roster — which no per-card deck can drill however well it is known.
 //
-// The back carries the scans as well as the names, since a roster recalled as
-// a list of words is not yet a read: it is the cards themselves you have to
-// see coming.
+// Each domain's list is learnt a card at a time, as an overlapping cloze (see
+// clozeRoster), and each card is shown when its blank is revealed, since a
+// roster recalled as a list of words is not yet a read: it is the cards
+// themselves you have to see coming.
 //
 // A domain's roster grows with every set, so this is regenerated rather than
-// edited. Anki takes a note's first field as its identity, and the question
-// names only the domain, so a later run rewrites the list behind a question
-// that has not changed — the note keeps its scheduling instead of coming back
-// as a new card with the old one left beside it.
+// edited. Each note's GUID is made from the domain and the card, so a later
+// run rewrites the list around a card that was already there and the note
+// keeps its scheduling.
 func GenerateHiddenDomains(opts Options) (HiddenDomainResult, error) {
 	cs, err := loadLegal(opts.CatalogPath)
 	if err != nil {
@@ -61,17 +61,14 @@ func GenerateHiddenDomains(opts Options) (HiddenDomainResult, error) {
 		return HiddenDomainResult{}, err
 	}
 
-	d := deck{name: opts.HiddenDomainDeckName, notetype: "Basic"}
+	d := deck{name: opts.HiddenDomainDeckName, notetype: "Cloze"}
 	rosters := byDomain(hidden)
 	for _, domain := range slices.Sorted(maps.Keys(rosters)) {
-		d.notes = append(d.notes, note{
-			front: fmt.Sprintf("Which Hidden cards are available to %s?", domain),
-			back:  roster(rosters[domain], images),
-			tags: []string{
-				"riftbound::hidden-domains",
-				"riftbound::domain::" + strings.ToLower(domain),
-			},
-		})
+		heading := fmt.Sprintf("<b>Hidden</b> cards available to <b>%s</b>:", domain)
+		d.notes = append(d.notes, clozeRoster(heading, rosters[domain], images, []string{
+			"riftbound::hidden-domains",
+			"riftbound::domain::" + strings.ToLower(domain),
+		})...)
 	}
 
 	deckFile := filepath.Join(opts.OutDir, DeckFile)
