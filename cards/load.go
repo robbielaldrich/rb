@@ -152,9 +152,33 @@ func (c Card) HasKeyword(name string) bool {
 		if strings.EqualFold(text[1:end], name) {
 			return true
 		}
-		text = strings.TrimLeft(text[end+1:], " ")
+		// A keyword may carry its reminder text before the next one starts,
+		// e.g. "[Hidden] (Hide now for ...)[Action]", so step over it rather
+		// than taking it for the end of the keywords.
+		text = skipReminder(strings.TrimLeft(text[end+1:], " "))
 	}
 	return false
+}
+
+// skipReminder drops a parenthesised reminder from the front of s, along with
+// the space after it, leaving s untouched when it doesn't open with one.
+func skipReminder(s string) string {
+	if !strings.HasPrefix(s, "(") {
+		return s
+	}
+	depth := 0
+	for i, r := range s {
+		switch r {
+		case '(':
+			depth++
+		case ')':
+			depth--
+			if depth == 0 {
+				return strings.TrimLeft(s[i+1:], " ")
+			}
+		}
+	}
+	return s
 }
 
 func cutFold(s, prefix string) (rest string, ok bool) {

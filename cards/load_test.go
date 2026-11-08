@@ -13,6 +13,10 @@ func TestHasKeyword(t *testing.T) {
 		{"bracketed", "[Hidden] (Hide now for :rb_rune_rainbow: to react later.)Deal 2.", true},
 		{"second in a run", "[Ganking][Hidden]I can move.", true},
 		{"run without reminder text", "[Hidden][Backline]Once each turn...", true},
+		// Switcheroo: the first keyword's reminder text sits between the two.
+		{"after another's reminder text", "[Action] (Play on your turn or in showdowns.)[Hidden] (Hide now.)Swap...", true},
+		{"after reminder with spaces", "[Action] (Play on your turn.) [Hidden] (Hide now.)Swap...", true},
+		{"named after reminder text", "[Action] (Play on your turn.)You may hide a card with [Hidden].", false},
 		// Windsinger's rules text is missing its brackets in the API data.
 		{"bare with reminder text", "Hidden (Hide now for :rb_rune_rainbow:.)When you play me...", true},
 		// Teemo lets you hide other cards without being Hidden himself.
