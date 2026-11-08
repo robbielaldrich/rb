@@ -1233,6 +1233,14 @@
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
     },
     {
+      "riftbound_id": "rad-002p-166",
+      "name": "Banner of Conquest (Radiance Nexus Night Promo)",
+      "number": "2p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:53:53.60448-08:00"
+    },
+    {
       "riftbound_id": "rad-003-166",
       "name": "Bilgewater Tracker",
       "number": "3/166",
@@ -1333,32 +1341,32 @@
       "name": "Akali - Brash",
       "number": "15/166",
       "set_id": "RAD",
-      "quantity": 6,
-      "updated_at": "2026-10-26T21:18:15.794487-07:00"
+      "quantity": 7,
+      "updated_at": "2026-11-08T10:53:07.709214-08:00"
     },
     {
       "riftbound_id": "rad-016-166",
       "name": "Coalesced Energy",
       "number": "16/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:15:09.814187-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:51:07.185593-08:00"
     },
     {
       "riftbound_id": "rad-017-166",
       "name": "Detonation Amplifier",
       "number": "17/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:29:36.017381-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-08T10:52:34.686637-08:00"
     },
     {
       "riftbound_id": "rad-018-166",
       "name": "Drakehound Packmaster",
       "number": "18/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-26T21:17:59.986228-07:00"
+      "quantity": 6,
+      "updated_at": "2026-11-08T10:48:06.723718-08:00"
     },
     {
       "riftbound_id": "rad-019-166",
@@ -1373,16 +1381,16 @@
       "name": "Mordekaiser - Twice Slain",
       "number": "20/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:17:47.850952-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:53:27.206314-08:00"
     },
     {
       "riftbound_id": "rad-021-166",
       "name": "Ekko - Revolutionary",
       "number": "21/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:52:46.567438-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:49:56.522724-08:00"
     },
     {
       "riftbound_id": "rad-024-166",
@@ -1517,32 +1525,32 @@
       "name": "Heartening Soul",
       "number": "40/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-26T21:18:12.418804-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:48:40.583564-08:00"
     },
     {
       "riftbound_id": "rad-041-166",
       "name": "Hush",
       "number": "41/166",
       "set_id": "RAD",
-      "quantity": 5,
-      "updated_at": "2026-10-26T21:18:03.962769-07:00"
+      "quantity": 6,
+      "updated_at": "2026-11-08T10:53:17.771525-08:00"
     },
     {
       "riftbound_id": "rad-042-166",
       "name": "Orianna - Exquisite",
       "number": "42/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:15:13.621608-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:50:56.606854-08:00"
     },
     {
       "riftbound_id": "rad-043-166",
       "name": "Riven - Broken Blade",
       "number": "43/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:14.541832-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:51:40.382226-08:00"
     },
     {
       "riftbound_id": "rad-043a-166",
@@ -1591,6 +1599,14 @@
       "set_id": "RAD",
       "quantity": 3,
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
+    },
+    {
+      "riftbound_id": "rad-048p-166",
+      "name": "High Note (Radiance Nexus Night Promo)",
+      "number": "48p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:54:08.108343-08:00"
     },
     {
       "riftbound_id": "rad-049-166",
@@ -1693,8 +1709,8 @@
       "name": "Ekko - Ingenious",
       "number": "61/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:17:44.035123-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:47:41.233273-08:00"
     },
     {
       "riftbound_id": "rad-061a-166",
@@ -1709,32 +1725,32 @@
       "name": "Gravity Field",
       "number": "62/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:16:46.244859-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:52:21.981571-08:00"
     },
     {
       "riftbound_id": "rad-063-166",
       "name": "Kai'Sa - Rebel",
       "number": "63/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:34:59.080538-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:51:25.59951-08:00"
     },
     {
       "riftbound_id": "rad-064-166",
       "name": "Scrutinizing Scope",
       "number": "64/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:17:11.747926-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:46:46.056489-08:00"
     },
     {
       "riftbound_id": "rad-065-166",
       "name": "Seraphine - Inspiring",
       "number": "65/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-26T21:15:01.886601-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:53:36.664192-08:00"
     },
     {
       "riftbound_id": "rad-065a-166",
@@ -1749,16 +1765,32 @@
       "name": "Spirit of the Forge",
       "number": "66/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:16:57.579159-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:52:41.951935-08:00"
+    },
+    {
+      "riftbound_id": "rad-066p-166",
+      "name": "Spirit of the Forge (Radiance Nexus Night Promo)",
+      "number": "66p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:54:02.044424-08:00"
+    },
+    {
+      "riftbound_id": "rad-067-166",
+      "name": "Clocktower Guardian",
+      "number": "67/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:48:52.089035-08:00"
     },
     {
       "riftbound_id": "rad-068-166",
       "name": "Orianna - Mechanical Marvel",
       "number": "68/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-26T21:16:26.56487-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:54:37.058116-08:00"
     },
     {
       "riftbound_id": "rad-070-166",
@@ -1767,6 +1799,14 @@
       "set_id": "RAD",
       "quantity": 3,
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
+    },
+    {
+      "riftbound_id": "rad-070p-166",
+      "name": "Hold 'Em (Radiance Nexus Night Promo)",
+      "number": "70p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:54:15.90766-08:00"
     },
     {
       "riftbound_id": "rad-071-166",
@@ -1877,32 +1917,32 @@
       "name": "Cataclysm",
       "number": "84/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:18:18.985754-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:50:20.43362-08:00"
     },
     {
       "riftbound_id": "rad-085-166",
       "name": "Graves - Blasting Through",
       "number": "85/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-26T21:17:15.237183-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:50:28.148265-08:00"
     },
     {
       "riftbound_id": "rad-086-166",
       "name": "K'Sante - Courageous",
       "number": "86/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-26T21:17:18.955523-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-08T10:47:52.080962-08:00"
     },
     {
       "riftbound_id": "rad-087-166",
       "name": "Portable Portal",
       "number": "87/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-26T21:17:01.635007-07:00"
+      "quantity": 6,
+      "updated_at": "2026-11-08T10:51:16.667724-08:00"
     },
     {
       "riftbound_id": "rad-088-166",
@@ -1917,8 +1957,8 @@
       "name": "Titanic Shrine",
       "number": "89/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:17:36.618334-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:49:46.258501-08:00"
     },
     {
       "riftbound_id": "rad-090-166",
@@ -1927,6 +1967,14 @@
       "set_id": "RAD",
       "quantity": 1,
       "updated_at": "2026-10-25T14:13:39.858958-07:00"
+    },
+    {
+      "riftbound_id": "rad-091-166",
+      "name": "Jarvan IV - Martial Paragon",
+      "number": "91/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:50:48.919286-08:00"
     },
     {
       "riftbound_id": "rad-091a-166",
@@ -2061,16 +2109,16 @@
       "name": "Bedeviling Stranger",
       "number": "107/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-26T21:14:53.35892-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-08T10:50:04.303821-08:00"
     },
     {
       "riftbound_id": "rad-108-166",
       "name": "Bushwhack Trap",
       "number": "108/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-26T21:16:49.828043-07:00"
+      "quantity": 5,
+      "updated_at": "2026-11-08T10:53:31.668297-08:00"
     },
     {
       "riftbound_id": "rad-109-166",
@@ -2081,12 +2129,20 @@
       "updated_at": "2026-10-26T21:14:50.320432-07:00"
     },
     {
+      "riftbound_id": "rad-109a-166",
+      "name": "Evelynn - In Control (Alternate Art)",
+      "number": "109a/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:49:01.911964-08:00"
+    },
+    {
       "riftbound_id": "rad-110-166",
       "name": "Lulu - Whimsical",
       "number": "110/166",
       "set_id": "RAD",
-      "quantity": 4,
-      "updated_at": "2026-10-26T21:17:56.314911-07:00"
+      "quantity": 5,
+      "updated_at": "2026-11-08T10:52:58.008992-08:00"
     },
     {
       "riftbound_id": "rad-111-166",
@@ -2101,8 +2157,8 @@
       "name": "Ziggs - Explosive",
       "number": "112/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:31:21.054931-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:52:28.817227-08:00"
     },
     {
       "riftbound_id": "rad-112a-166",
@@ -2245,24 +2301,24 @@
       "name": "Battlefield Armorer",
       "number": "130/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-26T21:18:07.370468-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:52:50.034787-08:00"
     },
     {
       "riftbound_id": "rad-131-166",
       "name": "Demacian Illuminators",
       "number": "131/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:52:58.498077-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:53:22.588267-08:00"
     },
     {
       "riftbound_id": "rad-132-166",
       "name": "Heimerdinger - Academy Instructor",
       "number": "132/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-26T21:17:32.779451-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-08T10:53:43.221845-08:00"
     },
     {
       "riftbound_id": "rad-132p-166",
@@ -2285,32 +2341,32 @@
       "name": "Raucous Anthem",
       "number": "134/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-26T21:17:22.995712-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-08T10:48:46.888348-08:00"
     },
     {
       "riftbound_id": "rad-135-166",
       "name": "Remember the Fallen",
       "number": "135/166",
       "set_id": "RAD",
-      "quantity": 5,
-      "updated_at": "2026-10-26T21:16:37.740641-07:00"
+      "quantity": 6,
+      "updated_at": "2026-11-08T10:53:02.595118-08:00"
     },
     {
       "riftbound_id": "rad-136-166",
       "name": "Dockside Lock-Up",
       "number": "136/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:53:01.579456-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-08T10:52:13.247877-08:00"
     },
     {
       "riftbound_id": "rad-137-166",
       "name": "Mordekaiser - Dominating",
       "number": "137/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:14:12.454076-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-08T10:52:04.893146-08:00"
     },
     {
       "riftbound_id": "rad-139-166",
@@ -2481,12 +2537,36 @@
       "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
+      "riftbound_id": "rad-r01bp-166",
+      "name": "Fury Rune (Radiance Nexus Night Promo)",
+      "number": "r01bp/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:54:22.540234-08:00"
+    },
+    {
+      "riftbound_id": "rad-r02bp-166",
+      "name": "Calm Rune (Radiance Nexus Night Promo)",
+      "number": "r02bp/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:54:28.361694-08:00"
+    },
+    {
       "riftbound_id": "rad-r05a",
       "name": "Chaos Rune (Alternate Art)",
       "number": "5",
       "set_id": "RAD",
       "quantity": 1,
       "updated_at": "2026-10-26T21:15:41.3989-07:00"
+    },
+    {
+      "riftbound_id": "rad-r06a",
+      "name": "Order Rune (Alternate Art)",
+      "number": "6",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-08T10:50:38.468362-08:00"
     },
     {
       "riftbound_id": "sfd-001-221",
