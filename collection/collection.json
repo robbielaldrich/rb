@@ -2601,6 +2601,22 @@
       "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
+      "riftbound_id": "rad-182*-166",
+      "name": "Kayn - Unleashed (Signature)",
+      "number": "182*/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-10T08:05:27.817786-08:00"
+    },
+    {
+      "riftbound_id": "rad-182-166",
+      "name": "Kayn - Unleashed (Overnumbered)",
+      "number": "182/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-10T08:05:24.898547-08:00"
+    },
+    {
       "riftbound_id": "rad-r01bp-166",
       "name": "Fury Rune (Radiance Nexus Night Promo)",
       "number": "r01bp/166",
