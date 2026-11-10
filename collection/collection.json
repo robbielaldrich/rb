@@ -85,8 +85,8 @@
       "name": "Falling Star",
       "number": "29/298",
       "set_id": "OGN",
-      "quantity": 1,
-      "updated_at": "2026-09-05T13:02:52.395920819-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-09T22:27:12.028684-08:00"
     },
     {
       "riftbound_id": "ogn-033-298",
@@ -553,6 +553,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-128-298",
+      "name": "Challenge",
+      "number": "128/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:27:18.4456-08:00"
+    },
+    {
       "riftbound_id": "ogn-129-298",
       "name": "Confront",
       "number": "129/298",
@@ -617,6 +625,14 @@
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
     },
     {
+      "riftbound_id": "ogn-138-298",
+      "name": "Catalyst of Aeons",
+      "number": "138/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-11-09T22:27:25.382163-08:00"
+    },
+    {
       "riftbound_id": "ogn-142-298",
       "name": "Mountain Drake",
       "number": "142/298",
@@ -639,6 +655,14 @@
       "set_id": "OGN",
       "quantity": 3,
       "updated_at": "2026-09-05T13:05:26.638474005-07:00"
+    },
+    {
+      "riftbound_id": "ogn-162-298",
+      "name": "Miss Fortune - Captain",
+      "number": "162/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:27:00.639657-08:00"
     },
     {
       "riftbound_id": "ogn-166-298",
@@ -713,6 +737,14 @@
       "updated_at": "2026-09-06T22:11:27.974522582-07:00"
     },
     {
+      "riftbound_id": "ogn-181-298",
+      "name": "Pack of Wonders",
+      "number": "181/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:26:55.181253-08:00"
+    },
+    {
       "riftbound_id": "ogn-182-298",
       "name": "Scrapheap",
       "number": "182/298",
@@ -735,6 +767,14 @@
       "set_id": "OGN",
       "quantity": 6,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-186-298",
+      "name": "Treasure Trove",
+      "number": "186/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-11-09T22:26:44.963052-08:00"
     },
     {
       "riftbound_id": "ogn-191-298",
@@ -953,6 +993,22 @@
       "updated_at": "2026-09-05T13:03:00.339022219-07:00"
     },
     {
+      "riftbound_id": "ogn-267-298",
+      "name": "Miss Fortune - Bounty Hunter",
+      "number": "267/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:27:06.729393-08:00"
+    },
+    {
+      "riftbound_id": "ogn-268-298",
+      "name": "Bullet Time",
+      "number": "268/298",
+      "set_id": "OGN",
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:27:35.399506-08:00"
+    },
+    {
       "riftbound_id": "ogn-279-298",
       "name": "Fortified Position",
       "number": "279/298",
@@ -975,6 +1031,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-09-05T17:09:55.296460965-07:00"
+    },
+    {
+      "riftbound_id": "ogn-287-298",
+      "name": "Sigil of the Storm",
+      "number": "287/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:26:48.30184-08:00"
     },
     {
       "riftbound_id": "ogn-288-298",
@@ -2933,8 +2997,8 @@
       "name": "Rocket Barrage",
       "number": "77/221",
       "set_id": "SFD",
-      "quantity": 1,
-      "updated_at": "2026-08-23T15:10:15.737910075-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:26:32.845376-08:00"
     },
     {
       "riftbound_id": "sfd-078-221",
@@ -3281,6 +3345,14 @@
       "updated_at": "2026-08-23T15:05:22.82798047-07:00"
     },
     {
+      "riftbound_id": "sfd-150-221",
+      "name": "Last Rites",
+      "number": "150/221",
+      "set_id": "SFD",
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:26:37.609989-08:00"
+    },
+    {
       "riftbound_id": "sfd-151-221",
       "name": "Bonds of Strength",
       "number": "151/221",
@@ -3599,6 +3671,14 @@
       "set_id": "SFD",
       "quantity": 2,
       "updated_at": "2026-09-05T17:15:35.687112822-07:00"
+    },
+    {
+      "riftbound_id": "sfd-219-221",
+      "name": "The Papertree",
+      "number": "219/221",
+      "set_id": "SFD",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:26:28.943841-08:00"
     },
     {
       "riftbound_id": "sfd-221-221",
@@ -3977,6 +4057,14 @@
       "updated_at": "2026-09-26T12:34:56.260410301-07:00"
     },
     {
+      "riftbound_id": "unl-070-219",
+      "name": "Turn to Dust",
+      "number": "70/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:27:30.629337-08:00"
+    },
+    {
       "riftbound_id": "unl-071-219",
       "name": "Chakram Dancer",
       "number": "71/219",
@@ -3991,6 +4079,14 @@
       "set_id": "UNL",
       "quantity": 2,
       "updated_at": "2026-08-23T14:21:46.874519802-07:00"
+    },
+    {
+      "riftbound_id": "unl-073-219",
+      "name": "Deadly Flourish",
+      "number": "73/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:26:19.430551-08:00"
     },
     {
       "riftbound_id": "unl-075-219",
@@ -4063,6 +4159,14 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T13:50:37.174424493-07:00"
+    },
+    {
+      "riftbound_id": "unl-088-219",
+      "name": "Gutter Palace",
+      "number": "88/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:26:02.2172-08:00"
     },
     {
       "riftbound_id": "unl-091-219",
@@ -4165,8 +4269,8 @@
       "name": "Disposal Order",
       "number": "103/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T13:57:45.031640422-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:26:15.38066-08:00"
     },
     {
       "riftbound_id": "unl-105-219",
@@ -4221,8 +4325,8 @@
       "name": "Elder Dragon",
       "number": "118/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-09-05T13:01:36.530874114-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-09T22:26:08.452298-08:00"
     },
     {
       "riftbound_id": "unl-120-219",
@@ -4341,8 +4445,8 @@
       "name": "Scryer's Bloom",
       "number": "136/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:20:58.022816541-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-09T22:25:54.745399-08:00"
     },
     {
       "riftbound_id": "unl-137p-219",
@@ -4359,6 +4463,22 @@
       "set_id": "UNL",
       "quantity": 1,
       "updated_at": "2026-08-23T13:50:42.021626117-07:00"
+    },
+    {
+      "riftbound_id": "unl-142-219",
+      "name": "Heedless Resurrection",
+      "number": "142/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:25:57.536071-08:00"
+    },
+    {
+      "riftbound_id": "unl-147-219",
+      "name": "Baron Nashor",
+      "number": "147/219",
+      "set_id": "UNL",
+      "quantity": 1,
+      "updated_at": "2026-11-09T22:26:22.471947-08:00"
     },
     {
       "riftbound_id": "unl-150-219",
@@ -5421,8 +5541,8 @@
       "name": "Cataclysmic Duel",
       "number": "90/166",
       "set_id": "VEN",
-      "quantity": 1,
-      "updated_at": "2026-10-04T14:22:12.41152-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-09T22:25:44.258775-08:00"
     },
     {
       "riftbound_id": "ven-093-166",
