@@ -2437,24 +2437,32 @@
       "name": "Ekko - Boy Who Shattered Time",
       "number": "139/166",
       "set_id": "RAD",
-      "quantity": 2,
-      "updated_at": "2026-10-25T14:33:00.851309-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:41.588940-08:00"
     },
     {
       "riftbound_id": "rad-141-166",
       "name": "Ziggs - Hexplosives Expert",
       "number": "141/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:25:22.184081-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:05.683421-08:00"
     },
     {
       "riftbound_id": "rad-143-166",
       "name": "Mordekaiser - Iron Revenant",
       "number": "143/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:32:09.253393-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:05.683421-08:00"
+    },
+    {
+      "riftbound_id": "rad-145-166",
+      "name": "Orianna - Lady of Clockwork",
+      "number": "145/166",
+      "set_id": "RAD",
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:41.588940-08:00"
     },
     {
       "riftbound_id": "rad-146-166",
@@ -2469,16 +2477,24 @@
       "name": "K'Sante - Pride of Nazumah",
       "number": "147/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:31:59.405952-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:05.683421-08:00"
     },
     {
       "riftbound_id": "rad-149-166",
       "name": "Riven - The Exile",
       "number": "149/166",
       "set_id": "RAD",
-      "quantity": 3,
-      "updated_at": "2026-10-25T14:31:06.447269-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:41.588940-08:00"
+    },
+    {
+      "riftbound_id": "rad-151-166",
+      "name": "Seraphine - Starry-Eyed Songstress",
+      "number": "151/166",
+      "set_id": "RAD",
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:41.588940-08:00"
     },
     {
       "riftbound_id": "rad-152-166",
@@ -2493,8 +2509,8 @@
       "name": "Evelynn - Agony's Embrace",
       "number": "153/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:31:49.614942-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:05.683421-08:00"
     },
     {
       "riftbound_id": "rad-154-166",
@@ -2509,8 +2525,8 @@
       "name": "Jarvan IV - Exemplar of Demacia",
       "number": "155/166",
       "set_id": "RAD",
-      "quantity": 1,
-      "updated_at": "2026-10-25T14:27:48.468739-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-10T08:08:05.683421-08:00"
     },
     {
       "riftbound_id": "rad-156-166",
