@@ -4,11 +4,11 @@
       "set": "OGN",
       "label": "Origins - Main Set",
       "cards": {
-        "owned": 126,
+        "owned": 135,
         "total": 296
       },
       "playset": {
-        "owned": 65,
+        "owned": 68,
         "total": 260
       },
       "alternate_art": {
@@ -43,15 +43,15 @@
       "set": "RAD",
       "label": "Radiance",
       "cards": {
-        "owned": 58,
+        "owned": 157,
         "total": 173
       },
       "playset": {
-        "owned": 48,
+        "owned": 116,
         "total": 154
       },
       "alternate_art": {
-        "owned": 0,
+        "owned": 9,
         "total": 29
       },
       "overnumbered": {
@@ -67,7 +67,7 @@
       "set": "SFD",
       "label": "Spiritforged",
       "cards": {
-        "owned": 130,
+        "owned": 132,
         "total": 227
       },
       "playset": {
@@ -91,11 +91,11 @@
       "set": "UNL",
       "label": "Unleashed",
       "cards": {
-        "owned": 126,
+        "owned": 132,
         "total": 225
       },
       "playset": {
-        "owned": 16,
+        "owned": 18,
         "total": 198
       },
       "alternate_art": {
@@ -138,15 +138,15 @@
   ],
   "total": {
     "cards": {
-      "owned": 624,
+      "owned": 740,
       "total": 1117
     },
     "playset": {
-      "owned": 269,
+      "owned": 342,
       "total": 985
     },
     "alternate_art": {
-      "owned": 14,
+      "owned": 23,
       "total": 155
     },
     "overnumbered": {
