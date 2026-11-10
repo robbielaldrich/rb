@@ -19,7 +19,12 @@ import (
 // With no filters the whole catalog is searched; a set label or a domain
 // narrows the search to it, for the common case of entering a stack of cards
 // from one box or one pile.
-func RunEditor(collectionPath, catalogPath string, filters []string) error {
+//
+// On the way out it rewrites the summary data the collection page reads, if
+// dataPath names a file, so the page's stats keep up with each session
+// without a separate run of collection-stats. The summary covers the whole
+// catalog, whatever the filters narrowed the search to.
+func RunEditor(collectionPath, catalogPath, dataPath string, filters []string) error {
 	coll, err := load(collectionPath)
 	if err != nil {
 		return fmt.Errorf("failed to load collection: %w", err)
@@ -30,13 +35,21 @@ func RunEditor(collectionPath, catalogPath string, filters []string) error {
 		return fmt.Errorf("failed to load catalog: %w", err)
 	}
 
-	cs, scope, err := narrow(cs, filters)
+	narrowed, scope, err := narrow(cs, filters)
 	if err != nil {
 		return err
 	}
 
-	if err := newEditor(coll, cs, collectionPath, scope).run(os.Stdin, os.Stdout); err != nil {
+	// The editor saves each change into coll as it makes it, so coll is the
+	// collection as it now stands on disk by the time the editor returns.
+	if err := newEditor(coll, narrowed, collectionPath, scope).run(os.Stdin, os.Stdout); err != nil {
 		return fmt.Errorf("failed to run the collection editor: %w", err)
+	}
+
+	if dataPath != "" {
+		if err := writeStatsData(dataPath, summarise(cs, coll)); err != nil {
+			return fmt.Errorf("failed to write the summary data: %w", err)
+		}
 	}
 	return nil
 }

@@ -33,7 +33,8 @@ func bind(cmd string, fs *flag.FlagSet) func() error {
 	case "collect":
 		catalogFile := fs.String("catalog-file", "cards/cards.json", "card catalog to search (cards.json)")
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to read and write")
-		return func() error { return collect(*collectionFile, *catalogFile, fs.Args()) }
+		dataFile := fs.String("json-out", "collection/collection-stats-result.json", "file to leave the summary data in for the collection page on exit, or \"\" to leave none")
+		return func() error { return collect(*collectionFile, *catalogFile, *dataFile, fs.Args()) }
 
 	case "validate":
 		collectionFile := fs.String("collection-file", "collection/collection.json", "collection file to check and correct")
@@ -184,8 +185,8 @@ func downloadCards(outDir string, images bool, concurrency int) error {
 	return nil
 }
 
-func collect(collectionFile, catalogFile string, filters []string) error {
-	if err := collection.RunEditor(collectionFile, catalogFile, filters); err != nil {
+func collect(collectionFile, catalogFile, dataFile string, filters []string) error {
+	if err := collection.RunEditor(collectionFile, catalogFile, dataFile, filters); err != nil {
 		return fmt.Errorf("failed to run editor: %w", err)
 	}
 	return nil
