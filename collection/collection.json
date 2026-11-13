@@ -1401,6 +1401,14 @@
       "updated_at": "2026-10-26T21:19:30.366175-07:00"
     },
     {
+      "riftbound_id": "rad-014p-166",
+      "name": "Shimmering Swimmer (Radiance Nexus Night Promo)",
+      "number": "14p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-12T23:33:57.053594-08:00"
+    },
+    {
       "riftbound_id": "rad-015-166",
       "name": "Akali - Brash",
       "number": "15/166",
@@ -1727,6 +1735,14 @@
       "set_id": "RAD",
       "quantity": 3,
       "updated_at": "2026-10-26T21:19:30.366175-07:00"
+    },
+    {
+      "riftbound_id": "rad-055p-166",
+      "name": "Clanging Sentry (Radiance Nexus Night Promo)",
+      "number": "55p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-12T23:34:03.34538-08:00"
     },
     {
       "riftbound_id": "rad-056-166",
@@ -2071,6 +2087,14 @@
       "set_id": "RAD",
       "quantity": 3,
       "updated_at": "2026-10-25T14:15:45.924723-07:00"
+    },
+    {
+      "riftbound_id": "rad-094p-166",
+      "name": "Explosimian (Radiance Nexus Night Promo)",
+      "number": "94p/166",
+      "set_id": "RAD",
+      "quantity": 1,
+      "updated_at": "2026-11-12T23:34:12.954957-08:00"
     },
     {
       "riftbound_id": "rad-095-166",
@@ -2438,7 +2462,7 @@
       "number": "139/166",
       "set_id": "RAD",
       "quantity": 4,
-      "updated_at": "2026-11-10T08:08:41.588940-08:00"
+      "updated_at": "2026-11-10T08:08:41.58894-08:00"
     },
     {
       "riftbound_id": "rad-141-166",
@@ -2462,7 +2486,7 @@
       "number": "145/166",
       "set_id": "RAD",
       "quantity": 4,
-      "updated_at": "2026-11-10T08:08:41.588940-08:00"
+      "updated_at": "2026-11-10T08:08:41.58894-08:00"
     },
     {
       "riftbound_id": "rad-146-166",
@@ -2486,7 +2510,7 @@
       "number": "149/166",
       "set_id": "RAD",
       "quantity": 4,
-      "updated_at": "2026-11-10T08:08:41.588940-08:00"
+      "updated_at": "2026-11-10T08:08:41.58894-08:00"
     },
     {
       "riftbound_id": "rad-151-166",
@@ -2494,7 +2518,7 @@
       "number": "151/166",
       "set_id": "RAD",
       "quantity": 4,
-      "updated_at": "2026-11-10T08:08:41.588940-08:00"
+      "updated_at": "2026-11-10T08:08:41.58894-08:00"
     },
     {
       "riftbound_id": "rad-152-166",
@@ -5373,8 +5397,8 @@
       "name": "Swain, Visionary",
       "number": "65/166",
       "set_id": "VEN",
-      "quantity": 4,
-      "updated_at": "2026-09-29T21:04:39.712171-07:00"
+      "quantity": 5,
+      "updated_at": "2026-11-12T23:31:02.270395-08:00"
     },
     {
       "riftbound_id": "ven-066-166",
@@ -5391,6 +5415,14 @@
       "set_id": "VEN",
       "quantity": 1,
       "updated_at": "2026-09-29T21:03:07.633845-07:00"
+    },
+    {
+      "riftbound_id": "ven-069-166",
+      "name": "Mel - Newly Awakened",
+      "number": "69/166",
+      "set_id": "VEN",
+      "quantity": 1,
+      "updated_at": "2026-11-12T23:30:54.63822-08:00"
     },
     {
       "riftbound_id": "ven-069a-166",
@@ -5549,8 +5581,8 @@
       "name": "Jayce, Hammer in Hand",
       "number": "88/166",
       "set_id": "VEN",
-      "quantity": 3,
-      "updated_at": "2026-09-29T21:05:25.371181-07:00"
+      "quantity": 4,
+      "updated_at": "2026-11-12T23:31:06.434757-08:00"
     },
     {
       "riftbound_id": "ven-088a-166",
