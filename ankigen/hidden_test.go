@@ -38,13 +38,14 @@ func fixture(t *testing.T, cards []cards.Card) Options {
 	}
 
 	return Options{
-		CatalogPath:          catPath,
-		ImageDir:             imgDir,
-		OutDir:               filepath.Join(dir, "out"),
-		EffectDeckName:       "Riftbound::Hidden Effects",
-		EffectMaskFraction:   0.4,
-		HiddenDomainDeckName: "Riftbound::Hidden by Domain",
-		ImageWidth:           60,
+		CatalogPath:           catPath,
+		ImageDir:              imgDir,
+		OutDir:                filepath.Join(dir, "out"),
+		EffectDeckName:        "Riftbound::Hidden Effects",
+		EffectMaskFraction:    0.4,
+		HiddenDomainDeckName:  "Riftbound::Hidden by Domain",
+		LegendAbilityDeckName: "Riftbound::Legend Abilities",
+		ImageWidth:            60,
 	}
 }
 

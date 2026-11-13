@@ -39,6 +39,9 @@ type Options struct {
 	HiddenDomainDeckName string
 	// SignatureDeckName is the deck asking which card each legend brings.
 	SignatureDeckName string
+	// LegendAbilityDeckName is the deck asking each legend's ability, and
+	// which legend an ability belongs to.
+	LegendAbilityDeckName string
 	// Rules configures the rulings block. Its OutDir is ignored in favour of
 	// the one above, so every block writes into the same place.
 	Rules RulesOptions

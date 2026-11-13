@@ -30,6 +30,7 @@ var Blocks = []Block{
 	{Name: "reaction-cards", Run: runReactionCards},
 	{Name: "action-cards", Run: runActionCards},
 	{Name: "signature-cards", Run: runSignatureCards},
+	{Name: "legend-abilities", Run: runLegendAbilities},
 	// Rulings run last, since reviewing them asks questions at the terminal
 	// and the blocks before it don't need anyone there.
 	{Name: "rulings", Run: runRulings},
@@ -93,6 +94,14 @@ func runActionCards(opts Options) (BlockResult, error) {
 
 func runSignatureCards(opts Options) (BlockResult, error) {
 	res, err := GenerateSignatureCards(opts)
+	if err != nil {
+		return BlockResult{}, err
+	}
+	return BlockResult{Files: []string{res.DeckFile}, Notes: res.Notes}, nil
+}
+
+func runLegendAbilities(opts Options) (BlockResult, error) {
+	res, err := GenerateLegendAbilities(opts)
 	if err != nil {
 		return BlockResult{}, err
 	}

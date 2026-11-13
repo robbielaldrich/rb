@@ -11,6 +11,15 @@ Releases are tagged `anki-vMAJOR.MINOR.PATCH` on the commit that ships them:
 - **PATCH** — only answers change, so a re-import updates notes in place and
   keeps their scheduling.
 
+## 3.1.0 — 2026-11-11
+
+**Legend Abilities** (new)
+
+- One "Basic (and reversed card)" note per legend, 58 in all. One side shows
+  the legend's card cut off under its title band and asks for its ability;
+  the other shows the ability, with the legend's name blanked out where the
+  text uses it, and asks which legend it is.
+
 ## 3.0.0 — 2026-10-25
 
 **Action Cards**, **Reaction Cards**, **Hidden by Domain**

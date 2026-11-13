@@ -149,6 +149,16 @@ func keywordBandBottom(src *image.RGBA) (int, bool) {
 	return 0, false
 }
 
+// cropTop returns the top frac of the image, cutting the rest away rather
+// than painting it out.
+func cropTop(src *image.RGBA, frac float64) *image.RGBA {
+	b := src.Bounds()
+	h := max(min(bandHeight(b.Dy(), frac), b.Dy()), 1)
+	dst := image.NewRGBA(image.Rect(0, 0, b.Dx(), h))
+	draw.Draw(dst, dst.Bounds(), src, b.Min, draw.Src)
+	return dst
+}
+
 func bandHeight(height int, frac float64) int {
 	return int(math.Round(float64(height) * frac))
 }
