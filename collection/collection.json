@@ -57,6 +57,14 @@
       "updated_at": "2026-09-06T22:10:49.45456591-07:00"
     },
     {
+      "riftbound_id": "ogn-014-298",
+      "name": "Sky Splitter",
+      "number": "14/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-11-15T22:30:59.773027-08:00"
+    },
+    {
       "riftbound_id": "ogn-016-298",
       "name": "Dangerous Duo",
       "number": "16/298",
@@ -97,6 +105,14 @@
       "updated_at": "2026-09-05T17:12:07.495843133-07:00"
     },
     {
+      "riftbound_id": "ogn-038-298",
+      "name": "Kadregrin the Infernal",
+      "number": "38/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-11-15T22:30:06.911335-08:00"
+    },
+    {
       "riftbound_id": "ogn-039-298",
       "name": "Kai'Sa - Survivor",
       "number": "39/298",
@@ -111,6 +127,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-10-12T14:19:05.54629-07:00"
+    },
+    {
+      "riftbound_id": "ogn-041a-298",
+      "name": "Volibear - Furious (Alternate Art)",
+      "number": "41a/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-15T22:32:41.054123-08:00"
     },
     {
       "riftbound_id": "ogn-042-298",
@@ -985,6 +1009,22 @@
       "updated_at": "2026-09-05T17:07:43.534307152-07:00"
     },
     {
+      "riftbound_id": "ogn-249-298",
+      "name": "Volibear - Relentless Storm",
+      "number": "249/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-15T22:32:56.005529-08:00"
+    },
+    {
+      "riftbound_id": "ogn-250-298",
+      "name": "Stormbringer",
+      "number": "250/298",
+      "set_id": "OGN",
+      "quantity": 3,
+      "updated_at": "2026-11-15T22:31:37.425466-08:00"
+    },
+    {
       "riftbound_id": "ogn-264-298",
       "name": "Guerilla Warfare",
       "number": "264/298",
@@ -1071,6 +1111,14 @@
       "set_id": "OGN",
       "quantity": 1,
       "updated_at": "2026-08-30T21:53:00.975433-07:00"
+    },
+    {
+      "riftbound_id": "ogn-295-298",
+      "name": "Vilemaw's Lair",
+      "number": "295/298",
+      "set_id": "OGN",
+      "quantity": 1,
+      "updated_at": "2026-11-15T22:32:05.180972-08:00"
     },
     {
       "riftbound_id": "ogn-296-298",
@@ -4329,6 +4377,14 @@
       "updated_at": "2026-11-09T22:26:15.38066-08:00"
     },
     {
+      "riftbound_id": "unl-104-219",
+      "name": "Gentle Gemdragon",
+      "number": "104/219",
+      "set_id": "UNL",
+      "quantity": 3,
+      "updated_at": "2026-11-15T22:33:12.106216-08:00"
+    },
+    {
       "riftbound_id": "unl-105-219",
       "name": "Imposing Challenger",
       "number": "105/219",
@@ -4341,8 +4397,8 @@
       "name": "Repulse",
       "number": "106/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:18:56.403268248-07:00"
+      "quantity": 2,
+      "updated_at": "2026-11-15T22:35:56.093029-08:00"
     },
     {
       "riftbound_id": "unl-107p-219",
@@ -4389,8 +4445,8 @@
       "name": "Rengar - Trophy Hunter",
       "number": "120/219",
       "set_id": "UNL",
-      "quantity": 1,
-      "updated_at": "2026-08-23T14:20:32.964648743-07:00"
+      "quantity": 3,
+      "updated_at": "2026-11-15T22:33:45.144947-08:00"
     },
     {
       "riftbound_id": "unl-121-219",
